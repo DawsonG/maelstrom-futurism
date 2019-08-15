@@ -81,3 +81,5 @@ export const Button: React.SFC<ButtonProps> = ({
     </button>
   );
 };
+
+export default Button;

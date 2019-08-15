@@ -1,0 +1,65 @@
+import React from "react";
+import { css } from "@emotion/core";
+
+import theme from "../theme";
+
+interface ColumnInterface {
+  children?: any;
+  xs?: number;
+  sm?: number;
+  md?: number;
+  lg?: number;
+}
+
+const Column: React.SFC<ColumnInterface> = ({
+  children,
+  xs,
+  sm,
+  md,
+  lg,
+  ...rest
+}) => {
+  const baseWidth = 8.33333333;
+  const xsWidth = xs ? baseWidth * xs + "%" : null;
+  const smWidth = sm ? baseWidth * sm + "%" : null;
+  const mdWidth = md ? baseWidth * md + "%" : null;
+  const lgWidth = lg ? baseWidth * lg + "%" : null;
+
+  const style = css`
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    @media only screen and (min-width: ${theme.bp("xs")}) {
+      flex-basis: ${xsWidth};
+      max-width: ${xsWidth};
+    }
+
+    @media only screen and (min-width: ${theme.bp("sm")}) {
+      flex-basis: ${smWidth};
+      max-width: ${smWidth};
+    }
+
+    @media only screen and (min-width: ${theme.bp("md")}) {
+      flex-basis: ${mdWidth};
+      max-width: ${mdWidth};
+    }
+
+    @media only screen and (min-width: ${theme.bp("lg")}) {
+      flex-basis: ${lgWidth};
+      max-width: ${lgWidth};
+    }
+
+    ${!xsWidth && !smWidth && !mdWidth && !lgWidth && "flex: 1 0 auto;"}
+  `;
+
+  return (
+    <div css={style} {...rest}>
+      {children}
+    </div>
+  );
+};
+
+export default Column;

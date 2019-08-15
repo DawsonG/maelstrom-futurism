@@ -1,0 +1,64 @@
+import React from "react";
+
+import Input from "./Input";
+import MaterialInput from "./MaterialInput";
+
+export type Variant =
+  | "normal"
+  | "normal:hidden"
+  | "material"
+  | "material:hidden";
+
+interface InputWrapper {
+  variant?: Variant;
+  /**
+   * A valid HTML5 type. (Required)
+   */
+  type: string;
+
+  /**
+   * A unique (in form) field name (Required)
+   */
+  name: string;
+
+  /**
+   * The label to display above the input.  Leave blank to hide.
+   */
+  label?: string;
+
+  /**
+   * Text to use as a placeholder
+   */
+  placeholder?: string;
+
+  /**
+   * Use textarea?
+   */
+  multiline?: boolean;
+
+  /**
+   * required to submit form
+   */
+  required?: boolean;
+
+  /**
+   * explicitly pass down ref
+   */
+  ref?: (node: any) => any;
+}
+
+const InputWrapper: React.SFC<InputWrapper> = ({
+  variant = "normal",
+  type,
+  name,
+  ...rest
+}) => {
+  switch (variant) {
+    case "normal":
+      return <Input type={type} name={name} {...rest} />;
+    case "material":
+      return <MaterialInput type={type} name={name} {...rest} />;
+  }
+};
+
+export default InputWrapper;
