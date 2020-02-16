@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { ReactNode } from "react";
 import { css } from "emotion";
 
 const scales = {
@@ -32,54 +32,59 @@ const kind = (outline: boolean) => (bg: string, color: string) => {
   };
 };
 
-type Kind = "primary" | "secondary" | "cancel" | "dark" | "gray";
-type Kinds = Record<Kind, any>;
+export type Variant = "primary" | "secondary" | "cancel" | "dark" | "gray";
+export type ButtonType = "button" | "submit";
+export type Scale = "small" | "normal" | "big";
 
-const kinds = (outline: boolean): Kinds => {
+const kinds = (variant: Variant, outline: boolean) => {
   const get = kind(outline);
 
-  return {
+  const rtns = {
     primary: get("#1FB6FF", "white"),
     secondary: get("#5352ED", "white"),
     cancel: get("#FF4949", "white"),
     dark: get("#273444", "white"),
     gray: get("#8492A6", "white")
   };
+
+  return rtns[variant];
 };
 
 export interface ButtonProps {
-  scale?: "small" | "normal" | "big";
-  kind: "primary" | "secondary" | "cancel" | "dark" | "gray";
-  outline: boolean;
-  onClick: React.MouseEventHandler;
+  children?: ReactNode;
+  type?: ButtonType;
+  scale?: Scale;
+  variant?: Variant;
+  outline?: boolean;
+  onClick?: React.MouseEventHandler;
 }
 
 const buttonStyle = css`
   cursor: pointer;
-  margin: 3px 5px;
+  margin: 6px 5px 0px 0px;
   border: none;
   border-radius: 3px;
 `;
 
-export const Button: React.SFC<ButtonProps> = ({
+export default ({
   children,
   onClick,
-  scale,
-  kind,
-  outline
-}) => {
-  return (
-    <button
-      className={buttonStyle}
-      style={{
-        ...kinds(outline)[kind],
-        ...scales[scale]
-      }}
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
-};
-
-export default Button;
+  scale = "normal",
+  variant = "secondary",
+  outline,
+  type = "button",
+  ...rest
+}: ButtonProps) => (
+  <button
+    className={buttonStyle}
+    css={{
+      ...kinds(variant, outline),
+      ...scales[scale]
+    }}
+    onClick={onClick}
+    type={type}
+    {...rest}
+  >
+    {children}
+  </button>
+);

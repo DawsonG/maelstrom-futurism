@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 
 import { chatWindow, messageGroup } from "./Chat.styles";
 
-interface MessageInterface {
+interface IMessage {
   isMe: boolean;
   from: string;
   timeStamp: number;
@@ -10,11 +10,11 @@ interface MessageInterface {
 }
 
 interface ChatInterface {
-  messages?: Array<MessageInterface>;
+  messages?: Array<IMessage>;
 }
 
 interface MessageGroupInterface {
-  messages?: Array<MessageInterface>;
+  messages?: Array<IMessage>;
   isMe: boolean;
 }
 
@@ -29,6 +29,8 @@ class Chat extends Component<ChatInterface> {
     const { messages } = this.props;
     const children = [];
     let msg = [];
+
+    if (!messages) return;
 
     for (let i = 0; i < messages.length; i++) {
       const current = messages[i];

@@ -9,6 +9,20 @@ interface ColumnInterface {
   sm?: number;
   md?: number;
   lg?: number;
+  topBorder?: boolean | string;
+  bottomBorder?: boolean | string;
+  leftBorder?: boolean | string;
+  rightBorder?: boolean | string;
+}
+
+function borderWrite(bName: string, bVar?: boolean | string) {
+  if (!bVar) return;
+
+  if (typeof bVar === "boolean" && bVar) {
+    return `${bName}: solid 1px ${theme.color("border")};`;
+  }
+
+  return `${bName}: ${bVar};`;
 }
 
 const Column: React.SFC<ColumnInterface> = ({
@@ -17,6 +31,10 @@ const Column: React.SFC<ColumnInterface> = ({
   sm,
   md,
   lg,
+  topBorder,
+  bottomBorder,
+  leftBorder,
+  rightBorder,
   ...rest
 }) => {
   const baseWidth = 8.33333333;
@@ -31,6 +49,8 @@ const Column: React.SFC<ColumnInterface> = ({
     padding-right: 0.5rem;
     padding-left: 0.5rem;
     padding-bottom: 0.5rem;
+    
+    ${topBorder ? `border-top: ${topBorder}` : ""}
 
     @media only screen and (min-width: ${theme.bp("xs")}) {
       flex-basis: ${xsWidth};
@@ -53,6 +73,11 @@ const Column: React.SFC<ColumnInterface> = ({
     }
 
     ${!xsWidth && !smWidth && !mdWidth && !lgWidth && "flex: 1 0 auto;"}
+    
+    ${borderWrite("border-top", topBorder)}
+    ${borderWrite("border-right", rightBorder)}
+    ${borderWrite("border-bottom", bottomBorder)}
+    ${borderWrite("border-left", leftBorder)}
   `;
 
   return (

@@ -7,19 +7,19 @@ type tContainer = {
 
 const Container = styled.div`
   margin: 0 auto;
-  width: 100%;
-  
+  width: ${(p: tContainer) => (p.fluid ? "100%" : "1180px")};
+
   padding-left: 1rem;
   padding-right: 1rem;
-  
-  //@media only screen and (max-width: ${theme.bp("sm")}) {
-  //  // Still 100%
-  //}
-  
-  @media only screen and (min-width: ${theme.bp("md")}) {
-     max-width: ${(p: tContainer) => (p.fluid ? "100%" : "970px")};
+
+  @media only screen and (max-width: ${theme.bp("sm")}) {
+    width: 100%;
   }
-  
+
+  @media only screen and (min-width: ${theme.bp("md")}) {
+    max-width: ${(p: tContainer) => (p.fluid ? "100%" : "970px")};
+  }
+
   @media only screen and (min-width: ${theme.bp("lg")}) {
     max-width: ${(p: tContainer) => (p.fluid ? "100%" : "1180px")};
   }

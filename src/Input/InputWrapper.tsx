@@ -42,6 +42,16 @@ interface InputWrapper {
   required?: boolean;
 
   /**
+   * For use of Inputs outside traditional forms
+   */
+  value?: string;
+
+  /**
+   * Called whenever the value changes. For use of Inputs outside traditional forms
+   */
+  onChange?: (e: React.FormEvent<HTMLInputElement>) => void;
+
+  /**
    * explicitly pass down ref
    */
   ref?: (node: any) => any;

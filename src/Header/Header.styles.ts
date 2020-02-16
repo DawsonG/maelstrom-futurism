@@ -8,7 +8,7 @@ export const header = css`
   box-shadow: 0px 1px 4px ${lighten(0.1, theme.color("border"))};
   
   &.sticky {
-    position: fixed;
+    position: sticky;
     background: #fff;
     top: 0;
     left: 0;

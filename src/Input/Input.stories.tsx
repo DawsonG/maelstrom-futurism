@@ -1,27 +1,26 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { storiesOf } from "@storybook/react";
 
-import Form from "../Form";
 import Input from "./";
 
-storiesOf("Input", module)
-  .add("Text - singleline", () => (
-    <Form>
+storiesOf("Form", module)
+  .add("Input - Text - singleline", () => (
+    <Fragment>
       <Input
         type="text"
         name="singleline"
         placeholder="Text input"
         label="Basic input"
       />
-    </Form>
+    </Fragment>
   ))
   .add("Text - multiline", () => (
-    <Form>
+    <Fragment>
       <Input type="text" name="multiline" multiline />
-    </Form>
+    </Fragment>
   ))
   .add("Text - MaterialInput", () => (
-    <Form>
+    <Fragment>
       <Input
         type="text"
         name="materialInput"
@@ -30,5 +29,5 @@ storiesOf("Input", module)
         label="Material Input"
         required
       />
-    </Form>
+    </Fragment>
   ));

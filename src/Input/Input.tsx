@@ -4,7 +4,6 @@ import styled from "@emotion/styled";
 import { lighten } from "polished";
 
 import theme from "../theme";
-import { FormControl } from "../Form";
 
 const fcContainer = css`
   margin-top: 0.5em;
@@ -61,28 +60,30 @@ interface InputInterface {
    * Use textarea?
    */
   multiline?: boolean;
+
+  /**
+   * Literal input value for use outside traditional form
+   */
+  value?: string;
+
+  register?: any;
 }
 
 class Input extends PureComponent<InputInterface> {
   render() {
-    const { type, name, label, ...restProps } = this.props;
+    const { type, name, label, value, register, ...restProps } = this.props;
 
     return (
-      <FormControl>
-        {({ values, setValue }) => (
-          <div className={fcContainer}>
-            {label && <label htmlFor={name}>{label}</label>}
-            <StyledInput
-              id={name}
-              name={name}
-              type={type}
-              value={values[name]}
-              onChange={e => setValue(name, e.target.value)}
-              {...restProps}
-            />
-          </div>
-        )}
-      </FormControl>
+      <div className={fcContainer}>
+        {label && <label htmlFor={name}>{label}</label>}
+        <StyledInput
+          id={name}
+          name={name}
+          type={type}
+          ref={register}
+          {...restProps}
+        />
+      </div>
     );
   }
 }

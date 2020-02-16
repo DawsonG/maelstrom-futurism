@@ -3,7 +3,6 @@ import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 
 import theme from "../theme";
-import { FormControl } from "../Form";
 
 const fcContainer = css`
   position: relative;
@@ -112,32 +111,29 @@ interface InputInterface {
    * Use textarea?
    */
   multiline?: boolean;
+
+  register?: any;
 }
 
 class MaterialInput extends PureComponent<InputInterface> {
   render() {
-    const { type, name, label, ...restProps } = this.props;
+    const { type, name, label, register, ...restProps } = this.props;
 
     return (
-      <FormControl>
-        {({ values, setValue }) => (
-          <div css={fcContainer}>
-            <StyledInput
-              id={name}
-              name={name}
-              type={type}
-              value={values[name]}
-              onChange={e => setValue(name, e.target.value)}
-              {...restProps}
-            />
-            {label && (
-              <label css={labelCss} htmlFor={name}>
-                {label}
-              </label>
-            )}
-          </div>
+      <div css={fcContainer}>
+        <StyledInput
+          id={name}
+          name={name}
+          type={type}
+          ref={register}
+          {...restProps}
+        />
+        {label && (
+          <label css={labelCss} htmlFor={name}>
+            {label}
+          </label>
         )}
-      </FormControl>
+      </div>
     );
   }
 }
