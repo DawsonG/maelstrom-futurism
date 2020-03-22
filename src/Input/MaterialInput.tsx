@@ -112,12 +112,12 @@ interface InputInterface {
    */
   multiline?: boolean;
 
-  register?: any;
+  forwardedRef?: any;
 }
 
 class MaterialInput extends PureComponent<InputInterface> {
   render() {
-    const { type, name, label, register, ...restProps } = this.props;
+    const { type, name, label, forwardedRef, ...restProps } = this.props;
 
     return (
       <div css={fcContainer}>
@@ -125,7 +125,7 @@ class MaterialInput extends PureComponent<InputInterface> {
           id={name}
           name={name}
           type={type}
-          ref={register}
+          ref={forwardedRef}
           {...restProps}
         />
         {label && (

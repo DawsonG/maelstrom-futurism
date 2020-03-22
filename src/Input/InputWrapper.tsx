@@ -57,18 +57,17 @@ interface InputWrapper {
   ref?: (node: any) => any;
 }
 
-const InputWrapper: React.SFC<InputWrapper> = ({
-  variant = "normal",
-  type,
-  name,
-  ...rest
-}) => {
-  switch (variant) {
-    case "normal":
-      return <Input type={type} name={name} {...rest} />;
-    case "material":
-      return <MaterialInput type={type} name={name} {...rest} />;
+const InputWrapper = React.forwardRef(
+  ({ variant = "normal", type, name, ...rest }: InputWrapper, ref?: any) => {
+    switch (variant) {
+      case "normal":
+        return <Input type={type} name={name} {...rest} />;
+      case "material":
+        return (
+          <MaterialInput type={type} name={name} forwardedRef={ref} {...rest} />
+        );
+    }
   }
-};
+);
 
 export default InputWrapper;

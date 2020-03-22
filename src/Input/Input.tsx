@@ -66,12 +66,12 @@ interface InputInterface {
    */
   value?: string;
 
-  register?: any;
+  ref?: any;
 }
 
 class Input extends PureComponent<InputInterface> {
   render() {
-    const { type, name, label, value, register, ...restProps } = this.props;
+    const { type, name, label, value, ref, ...restProps } = this.props;
 
     return (
       <div className={fcContainer}>
@@ -80,7 +80,7 @@ class Input extends PureComponent<InputInterface> {
           id={name}
           name={name}
           type={type}
-          ref={register}
+          ref={ref}
           {...restProps}
         />
       </div>

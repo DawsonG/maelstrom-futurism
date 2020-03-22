@@ -10,6 +10,16 @@ export { Container, Grid, Column } from "./Layout";
 export { default as Paper } from "./Paper";
 
 /*---------------------------------------*/
+/* Typography and Headings               */
+/*---------------------------------------*/
+export { default as Typography, Title } from "./Typography";
+
+/*---------------------------------------*/
+/* Navigation                            */
+/*---------------------------------------*/
+export { default as Navbar } from "./Navbar";
+
+/*---------------------------------------*/
 /* Components                            */
 /*---------------------------------------*/
 export { default as Annotator } from "./Annotator";

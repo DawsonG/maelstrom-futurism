@@ -1,5 +1,15 @@
-import * as React from "react";
+import React from "react";
 import { Global, css } from "@emotion/core";
+
+import OpenSansTtf from "./Typography/fonts/OpenSans-Regular.ttf";
+import OpenSansWoff from "./Typography/fonts/OpenSans-Regular.woff";
+import OpenSansEot from "./Typography/fonts/OpenSans-Regular.eot";
+import OpenSansSvg from "./Typography/fonts/OpenSans-Regular.svg";
+
+import RobotoTtf from "./Typography/fonts/Roboto-Regular.ttf";
+import RobotoWoff from "./Typography/fonts/Roboto-Regular.woff";
+import RobotoEot from "./Typography/fonts/Roboto-Regular.eot";
+import RobotoSvg from "./Typography/fonts/Roboto-Regular.svg";
 
 import theme from "./theme";
 
@@ -8,20 +18,18 @@ export default () => (
     styles={css`
       @font-face {
         font-family: "OpenSans";
-        src: url("./Typography/fonts/OpenSans-Regular.eot");
-        src: url("./Typography/fonts/OpenSans-Regular.eot?iefix") format("eot"),
-          url("./Typography/fonts/OpenSans-Regular.woff") format("woff"),
-          url("./Typography/fonts/OpenSans-Regular.ttf") format("truetype"),
-          url("./Typography/fonts/OpenSans-Regular.svg#webfont") format("svg");
+        src: url(${OpenSansEot});
+        src: url(${OpenSansEot}) format("eot"),
+          url(${OpenSansWoff}) format("woff"),
+          url(${OpenSansTtf}) format("truetype"),
+          url(${OpenSansSvg}) format("svg");
       }
 
       @font-face {
         font-family: "Roboto";
-        src: url("./Typography/fonts/Roboto-Regular.eot");
-        src: url("./Typography/fonts/Roboto-Regular.eot?iefix") format("eot"),
-          url("./Typography/fonts/Roboto-Regular.woff") format("woff"),
-          url("./Typography/fonts/Roboto-Regular.ttf") format("truetype"),
-          url("./Typography/fonts/Roboto-Regular.svg#webfont") format("svg");
+        src: url(${RobotoEot});
+        src: url(${RobotoEot}) format("eot"), url(${RobotoWoff}) format("woff"),
+          url(${RobotoTtf}) format("truetype"), url(${RobotoSvg}) format("svg");
       }
 
       html {

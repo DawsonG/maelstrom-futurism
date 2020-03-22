@@ -57,6 +57,7 @@ export interface ButtonProps {
   variant?: Variant;
   outline?: boolean;
   onClick?: React.MouseEventHandler;
+  disabled?: boolean;
 }
 
 const buttonStyle = css`
@@ -73,6 +74,7 @@ export default ({
   variant = "secondary",
   outline,
   type = "button",
+  disabled = false,
   ...rest
 }: ButtonProps) => (
   <button
