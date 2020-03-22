@@ -1,6 +1,6 @@
 {
   "name": "maelstrom-futurism",
-  "version": "0.4.0",
+  "version": "0.4.0a",
   "description": "OSMstudios own React component library",
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
   "main": "dist/main.bundle.js",
@@ -21,6 +21,7 @@
     "dev:docz": "docz dev",
     "build:docz": "docz build",
     "prepublishOnly": "npm run test && npm run build",
+    "prepare": "webpack --mode=production",
     "test:watch": "npm test -- --watchAll",
     "precommit": "pretty-quick --staged",
     "format": "pretty-quick",
