@@ -1,5 +1,8 @@
-import React, { ReactNode } from "react";
-import { css } from "emotion";
+import React, { ReactNode, useEffect, useRef } from "react";
+
+import debounce from "../utils/debounce";
+
+import { buttonStyle } from "./Button.styles";
 
 const scales = {
   small: {
@@ -22,7 +25,7 @@ const kind = (outline: boolean) => (bg: string, color: string) => {
 
   return {
     background: backgroundColor,
-    boxshadow: `inset 0 0 0 1px ${boxShadowColor}`,
+    boxShadow: `inset 0 0 0 1px ${boxShadowColor}`,
     color: `${outline ? bg : color}`,
     transition: "all .3s",
     "&:hover": {
@@ -60,13 +63,6 @@ export interface ButtonProps {
   disabled?: boolean;
 }
 
-const buttonStyle = css`
-  cursor: pointer;
-  margin: 6px 5px 0px 0px;
-  border: none;
-  border-radius: 3px;
-`;
-
 export default ({
   children,
   onClick,
@@ -76,17 +72,47 @@ export default ({
   type = "button",
   disabled = false,
   ...rest
-}: ButtonProps) => (
-  <button
-    className={buttonStyle}
-    css={{
-      ...kinds(variant, outline),
-      ...scales[scale]
-    }}
-    onClick={onClick}
-    type={type}
-    {...rest}
-  >
-    {children}
-  </button>
-);
+}: ButtonProps) => {
+  const buttonRef = useRef(null);
+
+  const addRipple = e => {
+    const rippleContainer = buttonRef.current.querySelector("div");
+    const size = buttonRef.current.offsetWidth;
+    const pos = buttonRef.current.getBoundingClientRect();
+
+    const rippler = document.createElement("span");
+    const x = e.pageX - pos.left - size / 2;
+    const y = e.pageY - pos.top - size / 2;
+    rippleContainer.appendChild(rippler);
+    rippler.setAttribute(
+      "style",
+      `top: ${y}px; left: ${x}px; height: ${size}px; width: ${size}px;`
+    );
+  };
+
+  const cleanUp = () => {
+    buttonRef.current.querySelector("div").innerHTML = "";
+  };
+
+  useEffect(() => {
+    buttonRef.current.addEventListener("mousedown", addRipple);
+    buttonRef.current.addEventListener("mouseup", debounce(cleanUp, 2000));
+  }, []);
+
+  return (
+    <button
+      className={buttonStyle}
+      css={{
+        ...kinds(variant, outline),
+        ...scales[scale]
+      }}
+      onClick={onClick}
+      ref={buttonRef}
+      type={type}
+      {...rest}
+    >
+      {children}
+      <div className="rippleContainer" />
+    </button>
+  );
+};
