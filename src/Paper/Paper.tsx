@@ -50,7 +50,7 @@ const paperStyle = (width, centered) => css`
 `;
 
 const getBoxShadow = (
-  variant = Variant.SINGLE,
+  variant: Variant | String = Variant.SINGLE,
   hDirection = HDirection.LEFT,
   vDirection = VDirection.BOTTOM
 ) => {
@@ -118,7 +118,7 @@ export default function Paper({
   width,
   centered
 }: {
-  variant?: Variant;
+  variant?: Variant | String;
   children: ReactNode;
   width?: String;
   centered?: boolean;

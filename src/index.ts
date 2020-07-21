@@ -7,7 +7,7 @@ export { default as GlobalStyle } from "./GlobalStyle";
 /* Layouts, Page Appearance              */
 /*---------------------------------------*/
 export { Container, Grid, Column } from "./Layout";
-export { default as Paper } from "./Paper";
+export { default as Paper, PaperVariant } from "./Paper";
 
 /*---------------------------------------*/
 /* Typography and Headings               */
