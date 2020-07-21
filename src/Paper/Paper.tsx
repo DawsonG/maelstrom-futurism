@@ -50,7 +50,7 @@ const paperStyle = (width, centered) => css`
 `;
 
 const getBoxShadow = (
-  variant: Variant | String = Variant.SINGLE,
+  variant: Variant | string = Variant.SINGLE,
   hDirection = HDirection.LEFT,
   vDirection = VDirection.BOTTOM
 ) => {
