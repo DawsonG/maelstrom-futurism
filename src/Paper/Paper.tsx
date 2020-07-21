@@ -118,9 +118,9 @@ export default function Paper({
   width,
   centered
 }: {
-  variant?: Variant | String;
+  variant?: Variant | string;
   children: ReactNode;
-  width?: String;
+  width?: string;
   centered?: boolean;
 }) {
   return (
