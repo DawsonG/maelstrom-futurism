@@ -7,7 +7,8 @@ import theme from "../theme";
 export enum Variant {
   SINGLE = "single",
   STACK = "stack",
-  RANDOM_STACK = "random_stack"
+  RANDOM_STACK = "random_stack",
+  NONE = "none"
 }
 
 export enum HDirection {
@@ -53,6 +54,10 @@ const getBoxShadow = (
   hDirection = HDirection.LEFT,
   vDirection = VDirection.BOTTOM
 ) => {
+  if (variant == Variant.NONE) {
+    return "";
+  }
+
   if (variant == Variant.SINGLE) {
     return css`
       box-shadow: 0px 1px 4px ${lighten(0.1, theme.color("border"))};
