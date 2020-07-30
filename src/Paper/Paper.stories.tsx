@@ -117,4 +117,22 @@ storiesOf("Paper", module)
         suspendisse potenti nullam.
       </p>
     </Paper>
+  ))
+  .add("PaperVariant.NONE", () => (
+    <Paper variant="none">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Hendrerit dolor
+        magna eget est lorem ipsum dolor. Facilisi cras fermentum odio eu
+        feugiat pretium nibh ipsum consequat. Tristique risus nec feugiat in
+        fermentum posuere urna nec. Quis varius quam quisque id diam vel. Et
+        magnis dis parturient montes. Consectetur lorem donec massa sapien
+        faucibus. Auctor neque vitae tempus quam. Enim praesent elementum
+        facilisis leo vel. Iaculis eu non diam phasellus vestibulum lorem.
+        Varius morbi enim nunc faucibus a pellentesque sit. Turpis egestas
+        maecenas pharetra convallis. Donec pretium vulputate sapien nec sagittis
+        aliquam malesuada bibendum arcu. Velit ut tortor pretium viverra
+        suspendisse potenti nullam.
+      </p>
+    </Paper>
   ));

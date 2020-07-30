@@ -25,11 +25,13 @@ export enum VDirection {
 /*
  * https://css-tricks.com/snippets/css/stack-of-paper/
  */
-const paperStyle = (width, centered) => css`
+const paperStyle = (width, centered, variant?: Variant | string) => css`
   background-color: ${theme.color("trueWhite")};
   padding: 3em;
   margin: 2em 1em;
-  border: solid 1px ${theme.color("border")};
+  ${variant === Variant.NONE
+    ? ""
+    : `border: solid 1px ${theme.color("border")};`}
   position: relative;
   width: ${width};
 
@@ -124,7 +126,7 @@ export default function Paper({
   centered?: boolean;
 }) {
   return (
-    <div css={[paperStyle(width, centered), getBoxShadow(variant)]}>
+    <div css={[paperStyle(width, centered, variant), getBoxShadow(variant)]}>
       {children}
     </div>
   );

@@ -26,11 +26,17 @@ class Theme {
     active: "#2196F3"
   };
 
+  heights = {
+    normal: "0",
+    "very high": "1000"
+  };
+
   borderRadius = `${this.space[1]}px`;
 
   size = (name: string) => this.sizes[name];
   color = (name: string) => this.colors[name];
   bp = (name: string) => this.breakpoints[name];
+  height = (name: string) => this.heights[name];
 }
 
 export default new Theme();

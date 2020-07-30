@@ -4,6 +4,7 @@ import { lighten } from "polished";
 import theme from "../theme";
 
 export const navbar = css`
+  z-index: ${theme.height("very high")};
   border-bottom: solid 1px ${theme.color("border")};
   box-shadow: 0px 1px 4px ${lighten(0.1, theme.color("border"))};
 
