@@ -27,7 +27,12 @@ class Theme {
   };
 
   heights = {
+    "very low": "-1000",
+    low: "-100",
+    sunk: "-10",
     normal: "0",
+    raised: "10",
+    high: "100",
     "very high": "1000"
   };
 

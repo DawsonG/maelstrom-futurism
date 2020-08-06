@@ -61,7 +61,7 @@ const InputWrapper = React.forwardRef(
   ({ variant = "normal", type, name, ...rest }: InputWrapper, ref?: any) => {
     switch (variant) {
       case "normal":
-        return <Input type={type} name={name} {...rest} />;
+        return <Input type={type} name={name} forwardedRef={ref} {...rest} />;
       case "material":
         return (
           <MaterialInput type={type} name={name} forwardedRef={ref} {...rest} />

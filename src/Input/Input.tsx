@@ -66,12 +66,17 @@ interface InputInterface {
    */
   value?: string;
 
-  ref?: any;
+  /**
+   * Value used for preloaded state
+   */
+  defaultValue?: string;
+
+  forwardedRef?: any;
 }
 
 class Input extends PureComponent<InputInterface> {
   render() {
-    const { type, name, label, value, ref, ...restProps } = this.props;
+    const { type, name, label, value, forwardedRef, ...restProps } = this.props;
 
     return (
       <div className={fcContainer}>
@@ -80,7 +85,7 @@ class Input extends PureComponent<InputInterface> {
           id={name}
           name={name}
           type={type}
-          ref={ref}
+          ref={forwardedRef}
           {...restProps}
         />
       </div>

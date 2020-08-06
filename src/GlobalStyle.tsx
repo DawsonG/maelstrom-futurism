@@ -60,6 +60,31 @@ export default () => (
       h4 {
         font-family: OpenSans, Lato, Helvetica, sans-serif;
       }
+
+      table {
+        table-layout: fixed;
+        width: 100%;
+        border-collapse: collapse;
+        border: none;
+        box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
+        border-spacing: 0 2px;
+        margin: 10px;
+      }
+
+      thead > tr > th {
+        border-bottom: solid 2px ${theme.color("border")};
+        text-align: left;
+      }
+
+      tbody > tr:not(:last-child) > td {
+        border-bottom: solid 1px ${theme.color("border")};
+      }
+
+      th,
+      td {
+        margin-right: 2px;
+        padding: 10px 15px;
+      }
     `}
   />
 );
