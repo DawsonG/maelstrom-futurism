@@ -55,6 +55,11 @@ interface InputWrapper {
    * explicitly pass down ref
    */
   ref?: (node: any) => any;
+
+  /**
+   * add defaultValue
+   */
+  defaultValue?: string;
 }
 
 const InputWrapper = React.forwardRef(
