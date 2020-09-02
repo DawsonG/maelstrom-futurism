@@ -61,6 +61,13 @@ export default () => (
         font-family: OpenSans, Lato, Helvetica, sans-serif;
       }
 
+      h1 > a,
+      h2 > a,
+      h3 > a,
+      h4 > a {
+        color: ${theme.color("trueBlack")};
+      }
+
       table {
         table-layout: fixed;
         width: 100%;

@@ -20,6 +20,7 @@ class Theme {
 
   colors = {
     trueWhite: "#FFFFFF",
+    trueBlack: "#000000",
     font: "#16191F",
     border: "#B4B4B4",
     muted: "#707070",

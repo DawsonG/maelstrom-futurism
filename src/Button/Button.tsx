@@ -75,7 +75,7 @@ export default ({
 }: ButtonProps) => {
   const buttonRef = useRef(null);
 
-  const addRipple = e => {
+  const addRipple = (e: React.MouseEvent) => {
     const rippleContainer = buttonRef.current.querySelector("div");
     const size = buttonRef.current.offsetWidth;
     const pos = buttonRef.current.getBoundingClientRect();
@@ -91,7 +91,9 @@ export default ({
   };
 
   const cleanUp = () => {
-    buttonRef.current.querySelector("div").innerHTML = "";
+    if (buttonRef && buttonRef.current.querySelector("div")) {
+      buttonRef.current.querySelector("div").innerHTML = "";
+    }
   };
 
   useEffect(() => {

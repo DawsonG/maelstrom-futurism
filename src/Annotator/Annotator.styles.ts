@@ -31,23 +31,6 @@ export const inputStyle = css`
   padding: 0.5em 1em;
   font-family: Roboto, sans-serif;
   font-size: 1em;
-
-  ::-webkit-input-placeholder {
-    /* Chrome/Opera/Safari */
-    color: ${theme.color("muted")};
-  }
-  ::-moz-placeholder {
-    /* Firefox 19+ */
-    color: ${theme.color("muted")};
-  }
-  :-ms-input-placeholder {
-    /* IE 10+ */
-    color: ${theme.color("muted")};
-  }
-  :-moz-placeholder {
-    /* Firefox 18- */
-    color: ${theme.color("muted")};
-  }
 `;
 
 export const zeroPos = css`
@@ -58,4 +41,11 @@ export const zeroPos = css`
   pointer-events: none;
   white-space: pre;
   opacity: 0.3;
+
+  font-family: Roboto, sans-serif;
+  font-size: 1em;
+
+  .mf_annotator_span {
+    //border-radius: 3px;
+  }
 `;
