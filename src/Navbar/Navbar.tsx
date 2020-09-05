@@ -41,7 +41,7 @@ const Navbar: INavbar = ({
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
-    if (!window) return;
+    if (typeof window === "undefined") return;
     const mediaQuery = window.matchMedia(`(max-width: ${theme.bp("sm")})`);
     mediaQuery.addListener(handleMediaQueryChange);
     handleMediaQueryChange(mediaQuery);
