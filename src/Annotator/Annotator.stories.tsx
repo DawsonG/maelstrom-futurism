@@ -10,33 +10,42 @@ storiesOf("Annotator", module)
       <div>
         <p>
           Annotators are used for identifying parts of speech, named entity
-          recognition, and more in{" "}
+          recognition, and more! They're ideal for Machine Learning applications
+          and the management of datasets.
         </p>
 
-        <Annotator
-          name="basic"
-          entityLabels={[
-            { name: "City", color: "#0000ff" },
-            { name: "Region", color: "#ff0000" }
-          ]}
-        />
+        <div>
+          <strong>Try selecting the city and state and labeling them.</strong>
+          <br />
+          <Annotator
+            name="basic"
+            entityLabels={[
+              { name: "City", color: "#0000ff" },
+              { name: "State", color: "#ff0000" }
+            ]}
+            value="I live in Seattle, Washington."
+            isEditable={false}
+          />
+        </div>
       </div>
 
       <div>
+        <p>Annotator values can also be edited.</p>
+
         <Annotator
           name="basic"
           entityLabels={[
-            { name: "City", color: "#0000ff" },
-            { name: "Region", color: "#ff0000" }
+            { name: "Noun", color: "#0000ff" },
+            { name: "Verb", color: "#ff0000" }
           ]}
-          value="This annotator starts with a value."
+          value="This annotator starts with a value, but you can edit it."
         />
       </div>
 
       <div>
         <p>
-          Annotators don't have to be editable. You can just use them for
-          annotating and not creating content.
+          Annotators can also be used to edit existing entities. This Annotator
+          includes not only text but pre-selected entities!
         </p>
         <Annotator
           name="basic"
@@ -47,7 +56,7 @@ storiesOf("Annotator", module)
           defaultEntities={[
             {
               start: 5,
-              end: 13,
+              end: 14,
               value: "annotator",
               label: { name: "Noun", color: "#0000ff" }
             },
@@ -74,7 +83,7 @@ storiesOf("Annotator", module)
       defaultEntities={[
         {
           start: 5,
-          end: 14,
+          end: 15,
           value: "annotator",
           label: { name: "Noun", color: "#0000ff" }
         },

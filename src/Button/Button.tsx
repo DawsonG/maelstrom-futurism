@@ -35,11 +35,16 @@ const kind = (outline: boolean) => (bg: string, color: string) => {
   };
 };
 
-export type Variant = "primary" | "secondary" | "cancel" | "dark" | "gray";
+export type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "cancel"
+  | "dark"
+  | "gray";
 export type ButtonType = "button" | "submit";
 export type Scale = "small" | "normal" | "big";
 
-const kinds = (variant: Variant, outline: boolean) => {
+const kinds = (variant: ButtonVariant, outline: boolean) => {
   const get = kind(outline);
 
   const rtns = {
@@ -55,9 +60,14 @@ const kinds = (variant: Variant, outline: boolean) => {
 
 export interface ButtonProps {
   children?: ReactNode;
+
+  /**
+   * Either type="submit" or type="button"
+   */
   type?: ButtonType;
+
   scale?: Scale;
-  variant?: Variant;
+  variant?: ButtonVariant;
   outline?: boolean;
   onClick?: React.MouseEventHandler;
   disabled?: boolean;

@@ -1,3 +1,5 @@
 module.exports = {
-  typescript: true
+  typescript: true,
+  host: "0.0.0.0",
+  disableHostCheck: true
 };
