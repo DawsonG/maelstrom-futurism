@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
-import { css } from "emotion";
-import styled from "@emotion/styled";
+import { css } from "@emotion/core";
 import { lighten } from "polished";
 
 import theme from "../theme";
@@ -9,7 +8,7 @@ const fcContainer = css`
   margin-top: 0.5em;
 `;
 
-const StyledInput = styled("input")`
+const styledInput = css`
   border: solid 1px ${theme.color("border")};
   border-radius: 4px;
   padding: 0.5em 1em;
@@ -79,13 +78,14 @@ class Input extends PureComponent<InputInterface> {
     const { type, name, label, value, forwardedRef, ...restProps } = this.props;
 
     return (
-      <div className={fcContainer}>
+      <div css={fcContainer}>
         {label && <label htmlFor={name}>{label}</label>}
-        <StyledInput
+        <input
           id={name}
           name={name}
           type={type}
           ref={forwardedRef}
+          css={styledInput}
           {...restProps}
         />
       </div>

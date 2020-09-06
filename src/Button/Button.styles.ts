@@ -1,4 +1,4 @@
-import { css, keyframes } from "emotion";
+import { css, keyframes } from "@emotion/core";
 
 export const ripple = keyframes`
   to {

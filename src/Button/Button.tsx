@@ -113,11 +113,7 @@ export default ({
 
   return (
     <button
-      className={buttonStyle}
-      css={{
-        ...kinds(variant, outline),
-        ...scales[scale]
-      }}
+      css={[buttonStyle, kinds(variant, outline), scales[scale]]}
       onClick={onClick}
       ref={buttonRef}
       type={type}

@@ -40,17 +40,15 @@ const Navbar: INavbar = ({
   const [isOpen, setIsOpen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  if (typeof window !== "undefined") {
-    useEffect(() => {
-      const mediaQuery = window.matchMedia(`(max-width: ${theme.bp("sm")})`);
-      mediaQuery.addListener(handleMediaQueryChange);
-      handleMediaQueryChange(mediaQuery);
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(`(max-width: ${theme.bp("sm")})`);
+    mediaQuery.addListener(handleMediaQueryChange);
+    handleMediaQueryChange(mediaQuery);
 
-      return () => {
-        mediaQuery.removeListener(handleMediaQueryChange);
-      };
-    }, []);
-  }
+    return () => {
+      mediaQuery.removeListener(handleMediaQueryChange);
+    };
+  }, []);
 
   const handleMediaQueryChange = mediaQuery => {
     if (mediaQuery.matches) {
