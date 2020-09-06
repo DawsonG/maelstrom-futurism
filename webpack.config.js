@@ -9,7 +9,8 @@ module.exports = {
     path: path.resolve(__dirname, "./dist"),
     filename: "[name].bundle.js",
     library: "maelstrom-futurism",
-    libraryTarget: "umd"
+    libraryTarget: "umd",
+    globalObject: "this"
   },
   externals: [nodeExternals()],
 
