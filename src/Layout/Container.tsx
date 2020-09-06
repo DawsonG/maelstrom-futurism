@@ -1,28 +1,36 @@
-import styled from "@emotion/styled";
+import React, { ReactNode } from "react";
+import { css } from "@emotion/core";
 import theme from "../theme";
 
-type tContainer = {
+type IContainer = {
   fluid?: boolean;
+  children?: ReactNode;
 };
 
-const Container = styled.div`
-  margin: 0 auto;
-  width: ${(p: tContainer) => (p.fluid ? "100%" : "1180px")};
+const Container: React.FC<IContainer> = ({ fluid, children }) => (
+  <div
+    css={css`
+      margin: 0 auto;
+      width: ${fluid ? "100%" : "1180px"};
 
-  padding-left: 1rem;
-  padding-right: 1rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
 
-  @media only screen and (max-width: ${theme.bp("sm")}) {
-    width: 100%;
-  }
+      @media only screen and (max-width: ${theme.bp("sm")}) {
+        width: 100%;
+      }
 
-  @media only screen and (min-width: ${theme.bp("md")}) {
-    max-width: ${(p: tContainer) => (p.fluid ? "100%" : "970px")};
-  }
+      @media only screen and (min-width: ${theme.bp("md")}) {
+        max-width: ${fluid ? "100%" : "970px"};
+      }
 
-  @media only screen and (min-width: ${theme.bp("lg")}) {
-    max-width: ${(p: tContainer) => (p.fluid ? "100%" : "1180px")};
-  }
-`;
+      @media only screen and (min-width: ${theme.bp("lg")}) {
+        max-width: ${fluid ? "100%" : "1180px"};
+      }
+    `}
+  >
+    {children}
+  </div>
+);
 
 export default Container;
