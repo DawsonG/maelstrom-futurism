@@ -31,30 +31,30 @@ const Annotator: React.FC<IAnnotator> = ({
     setSelections([]);
   };
 
-  const selectionChangeHandler = () => {
-    const selection = window.getSelection();
-
-    if (
-      selection.anchorNode &&
-      selection.anchorNode.parentNode === inputNode.current
-    ) {
-      setSelections(prevState => {
-        const newSelection = {
-          start: selection.anchorOffset,
-          end: (selection as any).extentOffset // missing TS item
-        };
-
-        // Don't allow the selection to just grow and grow. Cap it at a reasonable level.
-        if (prevState.length > 50) {
-          return [newSelection];
-        }
-
-        return [...prevState, newSelection];
-      });
-    }
-  };
-
   useEffect(() => {
+    const selectionChangeHandler = () => {
+      const selection = window.getSelection();
+
+      if (
+        selection.anchorNode &&
+        selection.anchorNode.parentNode === inputNode.current
+      ) {
+        setSelections(prevState => {
+          const newSelection = {
+            start: selection.anchorOffset,
+            end: (selection as any).extentOffset // missing TS item
+          };
+
+          // Don't allow the selection to just grow and grow. Cap it at a reasonable level.
+          if (prevState.length > 50) {
+            return [newSelection];
+          }
+
+          return [...prevState, newSelection];
+        });
+      }
+    };
+
     document.addEventListener("selectionchange", selectionChangeHandler, false);
 
     return () =>
