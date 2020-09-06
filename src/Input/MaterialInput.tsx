@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
 import { css } from "@emotion/core";
-import styled from "@emotion/styled";
 
 import theme from "../theme";
 
@@ -19,7 +18,7 @@ const labelCss = css`
   transition: 0.3s ease all;
 `;
 
-const StyledInput = styled("input")`
+const styledInput = css`
   border: none;
   border-bottom: solid 2px ${theme.color("border")};
   padding: 0.5em 0.25em;
@@ -121,11 +120,12 @@ class MaterialInput extends PureComponent<InputInterface> {
 
     return (
       <div css={fcContainer}>
-        <StyledInput
+        <input
           id={name}
           name={name}
           type={type}
           ref={forwardedRef}
+          css={styledInput}
           {...restProps}
         />
         {label && (
