@@ -25,7 +25,11 @@ export enum VDirection {
 /*
  * https://css-tricks.com/snippets/css/stack-of-paper/
  */
-const paperStyle = (width, centered, variant?: Variant | string) => css`
+const paperStyle = (
+  width: string,
+  centered: boolean,
+  variant?: Variant | string
+) => css`
   background-color: ${theme.color("trueWhite")};
   padding: 3em;
   margin: 2em 1em;
