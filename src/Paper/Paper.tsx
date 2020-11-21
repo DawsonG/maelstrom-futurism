@@ -33,9 +33,11 @@ const paperStyle = (
   background-color: ${theme.color("trueWhite")};
   padding: 3em;
   margin: 2em 1em;
-  ${variant === Variant.NONE
-    ? ""
-    : `border: solid 1px ${theme.color("border")};`}
+  ${
+    variant === Variant.NONE
+      ? ""
+      : `border: solid 1px ${theme.color("border")};`
+  }
   position: relative;
   width: ${width};
 
@@ -53,6 +55,12 @@ const paperStyle = (
     transform: translate(-50%, -50%);
     left: 50%;
   `}
+  
+  @media only screen and (max-width: ${theme.bp("sm")}) {
+    width: 100%;
+    padding: 1.5em;
+    margin: 0;
+  }
 `;
 
 const getBoxShadow = (
