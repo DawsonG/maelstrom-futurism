@@ -72,7 +72,7 @@ const Column: React.SFC<ColumnInterface> = ({
       max-width: ${lgWidth};
     }
 
-    ${!xsWidth && !smWidth && !mdWidth && !lgWidth && "flex: 1 0 auto;"}
+    ${!xsWidth && !smWidth && !mdWidth && !lgWidth && "flex: 1 0 0;"}
     
     ${borderWrite("border-top", topBorder)}
     ${borderWrite("border-right", rightBorder)}
