@@ -7,7 +7,7 @@ type IContainer = {
   children?: ReactNode;
 };
 
-const Container: React.FC<IContainer> = ({ fluid, children }) => (
+const Container: React.FC<IContainer> = ({ fluid, children, ...rest }) => (
   <div
     css={css`
       margin: 0 auto;
@@ -28,6 +28,7 @@ const Container: React.FC<IContainer> = ({ fluid, children }) => (
         max-width: ${fluid ? "100%" : "1180px"};
       }
     `}
+    {...rest}
   >
     {children}
   </div>
