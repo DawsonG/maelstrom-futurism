@@ -38,6 +38,11 @@ const Column: React.SFC<ColumnInterface> = ({
   ...rest
 }) => {
   const baseWidth = 8.33333333;
+
+  /**
+   * If one of these values is null we attempt to use the next largest so on until the largest size.
+   * If no larger sizes are available we default to the smaller values.
+   */
   const xsWidth = xs ? baseWidth * xs + "%" : null;
   const smWidth = sm ? baseWidth * sm + "%" : null;
   const mdWidth = md ? baseWidth * md + "%" : null;
@@ -53,13 +58,13 @@ const Column: React.SFC<ColumnInterface> = ({
     ${topBorder ? `border-top: ${topBorder}` : ""}
 
     @media only screen and (min-width: ${theme.bp("xs")}) {
-      flex-basis: ${xsWidth};
-      max-width: ${xsWidth};
+      flex-basis: ${xsWidth || smWidth || mdWidth || lgWidth};
+      max-width: ${xsWidth || smWidth || mdWidth || lgWidth};
     }
 
     @media only screen and (min-width: ${theme.bp("sm")}) {
-      flex-basis: ${smWidth};
-      max-width: ${smWidth};
+      flex-basis: ${smWidth || mdWidth || lgWidth || xsWidth};
+      max-width: ${smWidth || mdWidth || lgWidth || xsWidth};
     }
 
     @media only screen and (min-width: ${theme.bp("md")}) {

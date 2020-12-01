@@ -5,6 +5,7 @@ import theme from "../theme";
 type IContainer = {
   fluid?: boolean;
   children?: ReactNode;
+  [rest: string]: any;
 };
 
 const Container: React.FC<IContainer> = ({ fluid, children, ...rest }) => (

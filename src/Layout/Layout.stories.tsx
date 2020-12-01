@@ -15,16 +15,16 @@ storiesOf("Layout", module).add("Column Demo", () => (
     <Container fluid>
       <h1>Fluid Container - Sized Columns</h1>
       <Grid>
-        <Column xs={12} sm={12} md={3} lg={1}>
+        <Column sm={12} md={3} lg={1}>
           <div css={boxStyle} />
         </Column>
-        <Column xs={12} sm={2} md={3} lg={4}>
+        <Column sm={2} md={3} lg={4}>
           <div css={boxStyle} />
         </Column>
-        <Column xs={12} sm={5} md={3} lg={4}>
+        <Column sm={5} md={3} lg={4}>
           <div css={boxStyle} />
         </Column>
-        <Column xs={12} sm={5} md={3} lg={3}>
+        <Column sm={5} md={3} lg={3}>
           <div css={boxStyle} />
         </Column>
       </Grid>
@@ -48,16 +48,16 @@ storiesOf("Layout", module).add("Column Demo", () => (
     <Container>
       <h1>Container - Sized Columns</h1>
       <Grid>
-        <Column xs={12} sm={6} md={3}>
+        <Column sm={6} md={3}>
           <div css={boxStyle} />
         </Column>
-        <Column xs={12} sm={6} md={3}>
+        <Column sm={6} md={3}>
           <div css={boxStyle} />
         </Column>
-        <Column xs={12} sm={6} md={3}>
+        <Column sm={6} md={3}>
           <div css={boxStyle} />
         </Column>
-        <Column xs={12} sm={6} md={3}>
+        <Column sm={6} md={3}>
           <div css={boxStyle} />
         </Column>
       </Grid>
