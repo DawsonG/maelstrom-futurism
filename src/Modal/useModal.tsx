@@ -1,18 +1,16 @@
 import React, { Fragment, useState } from "react";
 import Modal from "./Modal";
-/*
-type useModalFunction = [
-  (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
-  React.FC<IRenderModal>,
-  boolean
-];
-*/
+
 interface IRenderModal {
   title?: string;
   children: React.ReactChild;
 }
 
-const useModal = () => {
+const useModal = (): [
+  (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
+  React.FC<IRenderModal>,
+  boolean
+] => {
   const [isVisible, setIsVisible] = useState(false);
 
   function toggle() {
