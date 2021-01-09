@@ -11,13 +11,25 @@ export const modalOverlay = css`
   opacity: 0.5;
 `;
 
-export const modal = css`
+export const modalWrapper = css`
   z-index: 1050;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+`;
+
+export const modal = css`
+  z-index: 1060;
   background: white;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   margin: 1.75rem auto;
   border-radius: 3px;
   max-width: 500px;
+  min-width: 300px;
+  min-height: 200px;
   padding: 1rem 0.75rem;
 `;
 
