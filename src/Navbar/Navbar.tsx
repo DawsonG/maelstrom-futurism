@@ -58,9 +58,7 @@ const Navbar: INavbar = ({
     }
   };
 
-  const toggleNav = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleNav = () => setIsOpen(!isOpen);
 
   let offsetTop: number = 0;
   const headerRef = useRef<HTMLDivElement>(null);
@@ -88,4 +86,5 @@ const Navbar: INavbar = ({
 Navbar.Brand = Brand;
 Navbar.Link = Link;
 Navbar.Group = Group;
+
 export default Navbar;

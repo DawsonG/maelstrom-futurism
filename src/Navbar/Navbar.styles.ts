@@ -33,4 +33,10 @@ export const navbar = css`
     left: 0;
     right: 0;
   }
+
+  button {
+    background: transparent;
+    margin: 0;
+    border: 0;
+  }
 `;
