@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 
 import {
   modalOverlay,
-  modalWrapper,
   modal,
   modalHeader,
   modalCloseButton
@@ -14,37 +13,36 @@ interface IModal {
   children?: React.ReactNode;
 
   isShowing?: boolean | (() => void);
-  hide?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  hide?: () => void; //(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const Modal: React.FC<IModal> = ({ title, children, isShowing, hide }) =>
   isShowing
     ? ReactDOM.createPortal(
         <Fragment>
-          <div css={modalOverlay} onClick={() => hide(null)} />
           <div
-            css={modalWrapper}
-            aria-modal
-            aria-hidden
-            tabIndex={-1}
-            role="dialog"
-          >
-            <div css={modal}>
-              <div css={modalHeader}>
-                {title}
-                <button
-                  type="button"
-                  css={modalCloseButton}
-                  data-dismiss="modal"
-                  aria-label="Close"
-                  onClick={hide}
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-
-              {children}
+            css={modalOverlay}
+            onClick={e => {
+              e.preventDefault();
+              console.log("overlay clicked");
+              hide();
+            }}
+          />
+          <div css={modal} aria-modal aria-hidden tabIndex={-1} role="dialog">
+            <div css={modalHeader}>
+              <div className="title">{title}</div>
+              <button
+                type="button"
+                css={modalCloseButton}
+                data-dismiss="modal"
+                aria-label="Close"
+                onClick={hide}
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
+
+            {children}
           </div>
         </Fragment>,
         document.body

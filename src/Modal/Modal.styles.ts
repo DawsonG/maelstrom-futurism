@@ -11,31 +11,26 @@ export const modalOverlay = css`
   opacity: 0.5;
 `;
 
-export const modalWrapper = css`
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1050;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  outline: 0;
-`;
-
 export const modal = css`
-  z-index: 100;
+  z-index: 1050;
   background: white;
   position: relative;
   margin: 1.75rem auto;
   border-radius: 3px;
   max-width: 500px;
-  padding: 2rem;
+  padding: 1rem 0.75rem;
 `;
 
 export const modalHeader = css`
   display: flex;
   justify-content: flex-end;
+  padding: 0.15rem 0 0.5rem 0;
+
+  .title {
+    font-weight: bold;
+    text-transform: uppercase;
+    flex-grow: 1;
+  }
 `;
 
 export const modalCloseButton = css`
