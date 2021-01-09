@@ -21,7 +21,7 @@ const Modal: React.FC<IModal> = ({ title, children, isShowing, hide }) =>
   isShowing
     ? ReactDOM.createPortal(
         <Fragment>
-          <div css={modalOverlay} />
+          <div css={modalOverlay} onClick={() => hide(null)} />
           <div
             css={modalWrapper}
             aria-modal

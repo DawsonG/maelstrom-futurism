@@ -26,3 +26,4 @@ export { default as Annotator } from "./Annotator";
 export { default as Button } from "./Button";
 export { default as Chat } from "./Chat";
 export { default as Input } from "./Input";
+export { default as Modal, useModal } from "./Modal";
