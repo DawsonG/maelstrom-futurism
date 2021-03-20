@@ -43,7 +43,6 @@ const StoryflowEditor: React.FC<IStoryflowEditor> = ({
       });
 
       setStoryCards(tBoxes);
-      console.log(tBoxes["1"].physicalXY);
       emitChange({ stories: { ...tBoxes }, connections: conns });
     },
     [stories]

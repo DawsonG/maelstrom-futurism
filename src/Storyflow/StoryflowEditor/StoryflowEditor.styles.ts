@@ -44,7 +44,7 @@ export const storyContainer = css`
   background-color: ${theme.color("trueWhite")};
   z-index: 3;
 
-  padding: 0.8em;
+  padding: 0 0.8em;
   width: 128px;
   max-height: 128px;
   box-shadow: 0px 1px 4px ${lighten(0.1, theme.color("border"))};
@@ -65,5 +65,7 @@ export const titleStyle = css`
 
 export const handleStyle = css`
   position: absolute;
-  left: 10px;
+  top: 0px
+  left: 0px;
+  margin-left: -0.6em;
 `;
