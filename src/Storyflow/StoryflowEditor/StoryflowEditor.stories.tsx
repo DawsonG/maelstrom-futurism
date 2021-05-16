@@ -1,3 +1,4 @@
+/*
 import React from "react";
 import { storiesOf } from "@storybook/react";
 
@@ -34,11 +35,11 @@ const stories: IStoryflow = {
   ]
 };
 
-storiesOf("StoryflowEditor-", module).add("Basic", () => (
+storiesOf("StoryflowEditor", module).add("Basic", () => (
   <StoryflowEditor storyflow={stories} />
 ));
 
-/*
+
   .add("With Managed State", () => {
     const [localStories, setStories] = useState(stories);
 
