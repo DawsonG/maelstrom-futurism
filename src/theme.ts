@@ -6,14 +6,14 @@ class Theme {
     md: "1.414em",
     lg: "2em",
     xl: "2.827em",
-    xxl: "4em"
+    xxl: "4em",
   };
 
   breakpoints = {
     xs: "0px",
     sm: "576px",
     md: "992px",
-    lg: "1200px"
+    lg: "1200px",
   };
 
   space = [0, 4, 8, 16, 24, 32, 40, 48, 64];
@@ -24,7 +24,7 @@ class Theme {
     font: "#16191F",
     border: "#B4B4B4",
     muted: "#707070",
-    active: "#2196F3"
+    active: "#2196F3",
   };
 
   heights = {
@@ -34,7 +34,7 @@ class Theme {
     normal: "0",
     raised: "10",
     high: "100",
-    "very high": "1000"
+    "very high": "1000",
   };
 
   borderRadius = `${this.space[1]}px`;

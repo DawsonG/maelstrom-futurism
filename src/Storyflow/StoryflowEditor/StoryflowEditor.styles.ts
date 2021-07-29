@@ -1,4 +1,4 @@
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 import { lighten } from "polished";
 
 import theme from "../../theme";

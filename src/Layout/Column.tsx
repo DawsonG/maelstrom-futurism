@@ -1,5 +1,5 @@
 import React from "react";
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 
 import theme from "../theme";
 
@@ -54,7 +54,7 @@ const Column: React.SFC<ColumnInterface> = ({
     padding-right: 0.5rem;
     padding-left: 0.5rem;
     padding-bottom: 0.5rem;
-    
+
     ${topBorder ? `border-top: ${topBorder}` : ""}
 
     @media only screen and (min-width: ${theme.bp("xs")}) {
@@ -78,7 +78,7 @@ const Column: React.SFC<ColumnInterface> = ({
     }
 
     ${!xsWidth && !smWidth && !mdWidth && !lgWidth && "flex: 1 0 0;"}
-    
+
     ${borderWrite("border-top", topBorder)}
     ${borderWrite("border-right", rightBorder)}
     ${borderWrite("border-bottom", bottomBorder)}

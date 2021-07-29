@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef } from "react";
+import React, { ReactNode, useRef } from "react";
 
 import debounce from "../utils/debounce";
 
@@ -7,16 +7,16 @@ import { buttonStyle } from "./Button.styles";
 const scales = {
   small: {
     padding: `5px 10px`,
-    fontSize: 14
+    fontSize: 14,
   },
   normal: {
     padding: `10px 20px`,
-    fontSize: 16
+    fontSize: 16,
   },
   big: {
     padding: `20px 30px`,
-    fontSize: 18
-  }
+    fontSize: 18,
+  },
 };
 
 const kind = (outline: boolean) => (bg: string, color: string) => {
@@ -30,8 +30,8 @@ const kind = (outline: boolean) => (bg: string, color: string) => {
     transition: "all .3s",
     "&:hover": {
       boxShadow: `inset 0 0 0 1000px ${boxShadowColor}`,
-      color
-    }
+      color,
+    },
   };
 };
 
@@ -52,7 +52,7 @@ const kinds = (variant: ButtonVariant, outline: boolean) => {
     secondary: get("#5352ED", "white"),
     cancel: get("#FF4949", "white"),
     dark: get("#273444", "white"),
-    gray: get("#8492A6", "white")
+    gray: get("#8492A6", "white"),
   };
 
   return rtns[variant];
@@ -73,7 +73,7 @@ export interface ButtonProps {
   disabled?: boolean;
 }
 
-export default ({
+const Button: React.FC<ButtonProps> = ({
   children,
   onClick,
   scale = "normal",
@@ -82,11 +82,15 @@ export default ({
   type = "button",
   disabled = false,
   ...rest
-}: ButtonProps) => {
-  const buttonRef = useRef(null);
+}) => {
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const addRipple = (e: React.MouseEvent) => {
+    if (!buttonRef || !buttonRef.current) return;
+    
     const rippleContainer = buttonRef.current.querySelector("div");
+    if (!rippleContainer) return;
+    
     const size = buttonRef.current.offsetWidth;
     const pos = buttonRef.current.getBoundingClientRect();
 
@@ -101,21 +105,21 @@ export default ({
   };
 
   const cleanUp = () => {
-    if (buttonRef && buttonRef.current.querySelector("div")) {
-      buttonRef.current.querySelector("div").innerHTML = "";
-    }
+    if (!buttonRef || !buttonRef.current) return;
+    const rippleContainer = buttonRef.current.querySelector("div");
+    if (!rippleContainer) return;
+    
+    rippleContainer.innerHTML = "";
   };
 
-  useEffect(() => {
-    buttonRef.current.addEventListener("mousedown", addRipple);
-    buttonRef.current.addEventListener("mouseup", debounce(cleanUp, 2000));
-  }, []);
 
   return (
     <button
-      css={[buttonStyle, kinds(variant, outline), scales[scale]]}
+      css={[buttonStyle, kinds(variant, !!outline), scales[scale]]}
       onClick={onClick}
       ref={buttonRef}
+      onMouseDown={addRipple}
+      onMouseUp={debounce(cleanUp, 2000)}
       type={type}
       {...rest}
     >
@@ -124,3 +128,5 @@ export default ({
     </button>
   );
 };
+
+export default Button;

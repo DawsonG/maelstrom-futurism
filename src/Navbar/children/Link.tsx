@@ -1,6 +1,5 @@
-// Not in typescript because dynamic tags get really tricky
 import React from "react";
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 
 import theme from "../../theme";
 
@@ -26,8 +25,13 @@ const style = css`
   }
 `;
 
-const Link = ({ tag = "a", children, ...rest }) => {
-  const CustomTag = tag;
+interface ILink {
+  tag?: React.ElementType | string;
+  children?: React.ReactChildren;
+}
+
+const Link: React.FC<ILink> = ({ tag = "a", children, ...rest }) => {
+  const CustomTag = tag as React.ElementType;
 
   return (
     <CustomTag css={style} {...rest}>

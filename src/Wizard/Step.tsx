@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 
 const Step = ({
-  children
+  children,
 }: //isActive,
 //transitions
 {

@@ -1,3 +1,8 @@
+export type TSelection = {
+  start: number;
+  end: number;
+};
+
 export interface ILabel {
   name: string;
   color: string;

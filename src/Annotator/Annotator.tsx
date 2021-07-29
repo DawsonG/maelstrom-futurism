@@ -5,7 +5,7 @@ import ContentEditable from "react-contenteditable";
 import { brightness, hexToDecimal } from "../utils/colors";
 
 import * as styles from "./Annotator.styles";
-import { IAnnotator, ILabel } from "./Annotator.interfaces";
+import { IAnnotator, ILabel, IEntity, TSelection } from "./Annotator.interfaces";
 
 const Annotator: React.FC<IAnnotator> = ({
   name,
@@ -13,21 +13,22 @@ const Annotator: React.FC<IAnnotator> = ({
   value,
   isEditable = true,
   defaultEntities,
-  entityLabels
+  entityLabels,
 }) => {
   let inputNode = useRef(null);
 
-  const [selections, setSelections] = useState([]);
+  const [selections, setSelections] = useState<Array<TSelection>>([]);
   const [text, setText] = useState(value || "");
   const [entities, setEntities] = useState(defaultEntities || []);
 
   const handleEntityClick = (label: ILabel) => {
-    if (selections.length < 1) return;
+    const select = selections.pop();
+    if (!select) return;
 
-    const { start, end } = selections.pop();
+    const { start, end } = select;
     const value = text.substr(start, end - start);
 
-    setEntities(prevState => [...prevState, { start, end, value, label }]);
+    setEntities((prevState) => [...prevState, { start, end, value, label }]);
     setSelections([]);
   };
 
@@ -36,13 +37,14 @@ const Annotator: React.FC<IAnnotator> = ({
       const selection = window.getSelection();
 
       if (
+        selection &&
         selection.anchorNode &&
         selection.anchorNode.parentNode === inputNode.current
       ) {
-        setSelections(prevState => {
+        setSelections((prevState) => {
           const newSelection = {
             start: selection.anchorOffset,
-            end: (selection as any).extentOffset // missing TS item
+            end: (selection as any).extentOffset, // missing TS item
           };
 
           // Don't allow the selection to just grow and grow. Cap it at a reasonable level.
@@ -61,21 +63,21 @@ const Annotator: React.FC<IAnnotator> = ({
       document.removeEventListener("selectionchange", selectionChangeHandler);
   }, [entities]);
 
-  const handleTextChange = (event: any) => {
-    const oldText = text;
-    const oldEntities = entities;
-    const newText = event.target.value;
-    const newEntities = [];
+  const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const oldText: string = text;
+    const oldEntities: Array<IEntity> = entities;
+    const newText: string = event.target.value;
+    const newEntities: Array<IEntity> = [];
 
     //update the entity boundaries
 
-    oldEntities.forEach(oldEntity => {
+    oldEntities.forEach((oldEntity) => {
       const oldSelection = oldText.substr(
         oldEntity.start,
         oldEntity.end - oldEntity.start
       );
 
-      function findClosestStart(lastMatch?: number) {
+      function findClosestStart(lastMatch?: number): number {
         if (!lastMatch) {
           const index = newText.indexOf(oldSelection);
           if (index === -1) {
@@ -105,8 +107,8 @@ const Annotator: React.FC<IAnnotator> = ({
 
       newEntities.push({
         ...oldEntity,
-        start: start,
-        end: start + oldSelection.length
+        start,
+        end: start + oldSelection.length,
       });
     });
 
@@ -139,13 +141,13 @@ const Annotator: React.FC<IAnnotator> = ({
       <div css={styles.wrapper}>
         <div css={styles.labelList}>
           {entityLabels &&
-            entityLabels.map(label => (
+            entityLabels.map((label) => (
               <span
                 key={label.name}
                 css={styles.labelStyle}
                 style={{
                   backgroundColor: label.color,
-                  color: brightness(label.color) < 50 ? "white" : "black"
+                  color: brightness(label.color) < 50 ? "white" : "black",
                 }}
                 role="button"
                 onClick={() => handleEntityClick(label)}

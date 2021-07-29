@@ -1,5 +1,5 @@
 import React from "react";
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 
 import theme from "../theme";
 
@@ -13,7 +13,11 @@ const titleStyle = css`
   margin: 0;
 `;
 
-const Title = ({ children }) => (
+interface ITitle {
+  children: React.ReactChildren;
+}
+
+const Title: React.FC<ITitle> = ({ children }) => (
   <div css={titleWrapper}>
     <h1 css={titleStyle}>{children}</h1>
   </div>

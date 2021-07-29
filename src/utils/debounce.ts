@@ -1,12 +1,13 @@
-export default (func, delay) => {
-  let inDebounce = undefined;
+export default (func: () => void, delay: number) => {
+  let inDebounce: ReturnType<typeof setTimeout> | undefined = undefined;
 
-  return function() {
+  return function (this: unknown) {
     const context = this;
     const args = arguments;
-    clearTimeout(inDebounce);
-    return (inDebounce = setTimeout(function() {
+    if (inDebounce) clearTimeout(inDebounce);
+    inDebounce = setTimeout(() => {
       return func.apply(context, args);
-    }, delay));
+    }, delay);
+    return inDebounce;
   };
 };

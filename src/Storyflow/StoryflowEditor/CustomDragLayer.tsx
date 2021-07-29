@@ -10,7 +10,7 @@ const layerStyles: React.CSSProperties = {
   left: 0,
   top: 0,
   width: "100%",
-  height: "100%"
+  height: "100%",
 };
 
 function getItemStyles(
@@ -21,7 +21,7 @@ function getItemStyles(
 ) {
   if (!initialOffset || !currentOffset) {
     return {
-      display: "none"
+      display: "none",
     };
   }
 
@@ -39,7 +39,7 @@ function getItemStyles(
   }
 
   return {
-    transform: `translate(${x - physicalXY[0]}px, ${y - physicalXY[1]}px)`
+    transform: `translate(${x - physicalXY[0]}px, ${y - physicalXY[1]}px)`,
   };
 }
 
@@ -48,19 +48,14 @@ export interface CustomDragLayerProps {
 }
 
 const CustomDragLayer: React.FC<CustomDragLayerProps> = ({ snapToGrid }) => {
-  const {
-    itemType,
-    isDragging,
-    item,
-    initialOffset,
-    currentOffset
-  } = useDragLayer(monitor => ({
-    item: monitor.getItem(),
-    itemType: monitor.getItemType(),
-    initialOffset: monitor.getInitialSourceClientOffset(),
-    currentOffset: monitor.getSourceClientOffset(),
-    isDragging: monitor.isDragging()
-  }));
+  const { itemType, isDragging, item, initialOffset, currentOffset } =
+    useDragLayer((monitor) => ({
+      item: monitor.getItem(),
+      itemType: monitor.getItemType(),
+      initialOffset: monitor.getInitialSourceClientOffset(),
+      currentOffset: monitor.getSourceClientOffset(),
+      isDragging: monitor.isDragging(),
+    }));
 
   function renderItem() {
     switch (itemType) {

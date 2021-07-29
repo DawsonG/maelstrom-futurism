@@ -21,7 +21,7 @@ storiesOf("Annotator", module)
             name="basic"
             entityLabels={[
               { name: "City", color: "#0000ff" },
-              { name: "State", color: "#ff0000" }
+              { name: "State", color: "#ff0000" },
             ]}
             value="I live in Seattle, Washington."
             isEditable={false}
@@ -36,7 +36,7 @@ storiesOf("Annotator", module)
           name="basic"
           entityLabels={[
             { name: "Noun", color: "#0000ff" },
-            { name: "Verb", color: "#ff0000" }
+            { name: "Verb", color: "#ff0000" },
           ]}
           value="This annotator starts with a value, but you can edit it."
         />
@@ -51,21 +51,21 @@ storiesOf("Annotator", module)
           name="basic"
           entityLabels={[
             { name: "Noun", color: "#0000ff" },
-            { name: "Verb", color: "#ff0000" }
+            { name: "Verb", color: "#ff0000" },
           ]}
           defaultEntities={[
             {
               start: 5,
               end: 14,
               value: "annotator",
-              label: { name: "Noun", color: "#0000ff" }
+              label: { name: "Noun", color: "#0000ff" },
             },
             {
               start: 20,
               end: 23,
               value: "has",
-              label: { name: "Verb", color: "#ff0000" }
-            }
+              label: { name: "Verb", color: "#ff0000" },
+            },
           ]}
           isEditable={false}
           value="This annotator also has default entities!"
@@ -78,21 +78,21 @@ storiesOf("Annotator", module)
       name="basic"
       entityLabels={[
         { name: "Noun", color: "#0000ff" },
-        { name: "Verb", color: "#ff0000" }
+        { name: "Verb", color: "#ff0000" },
       ]}
       defaultEntities={[
         {
           start: 5,
           end: 15,
           value: "annotator",
-          label: { name: "Noun", color: "#0000ff" }
+          label: { name: "Noun", color: "#0000ff" },
         },
         {
           start: 20,
           end: 23,
           value: "has",
-          label: { name: "Verb", color: "#ff0000" }
-        }
+          label: { name: "Verb", color: "#ff0000" },
+        },
       ]}
       isEditable={false}
       value="This annotator also has default entities!"

@@ -22,13 +22,13 @@ const FormBuilder: React.FC<IFormBuilder> = ({
   model,
   values,
   onSubmit,
-  emitChange
+  emitChange,
 }) => {
-  const [internalValues, setInternalValues] = useState(values);
+  const [internalValues, setInternalValues] = useState<Record<string, string> | undefined>(values);
 
-  const onChange = e => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
-      target: { name, value }
+      target: { name, value },
     } = e;
     setInternalValues({ ...internalValues, [name]: value });
     if (emitChange && isFunction(emitChange)) emitChange(name, value);
@@ -37,7 +37,9 @@ const FormBuilder: React.FC<IFormBuilder> = ({
   const submitForm = (e: FormEvent) => {
     e.preventDefault();
 
-    if (onSubmit && isFunction(onSubmit)) onSubmit(internalValues);
+    if (internalValues && onSubmit && isFunction(onSubmit)) {
+      onSubmit(internalValues);
+    }
   };
 
   const mapFields = (m: ModelItem) => {
@@ -46,19 +48,20 @@ const FormBuilder: React.FC<IFormBuilder> = ({
       label: m.label || capitalize(m.name),
       onChange,
       type: m.contentType,
-      value: internalValues && internalValues[internalValues.name]
+      value: internalValues && internalValues[internalValues.name],
     };
 
     switch (m.contentType) {
       case "text":
       case "tel":
+      default:
         return <Input {...constantFields} />;
     }
   };
 
   return (
     <form onSubmit={submitForm}>
-      {model.map(m => mapFields(m))}
+      {model.map((m) => mapFields(m))}
 
       <Button type="submit">Save</Button>
     </form>

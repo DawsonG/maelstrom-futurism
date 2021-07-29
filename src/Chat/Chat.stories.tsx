@@ -11,49 +11,39 @@ storiesOf("Chat", module).add("Conversation", () => (
         {
           isMe: false,
           from: "Abigail",
-          timeStamp: moment()
-            .subtract(5, "minutes")
-            .milliseconds(),
-          message: "Hi, I'm Abigail!"
+          timeStamp: moment().subtract(5, "minutes").milliseconds(),
+          message: "Hi, I'm Abigail!",
         },
         {
           isMe: true,
           from: "Dawson",
-          timeStamp: moment()
-            .subtract(4, "minutes")
-            .milliseconds(),
-          message: "Hi, what's on my todo list today?"
+          timeStamp: moment().subtract(4, "minutes").milliseconds(),
+          message: "Hi, what's on my todo list today?",
         },
         {
           isMe: false,
           from: "Abigail",
-          timeStamp: moment()
-            .subtract(3, "minutes")
-            .milliseconds(),
-          message: "Looks like you have a few items on your list:"
+          timeStamp: moment().subtract(3, "minutes").milliseconds(),
+          message: "Looks like you have a few items on your list:",
         },
         {
           isMe: false,
           from: "Abigail",
-          timeStamp: moment()
-            .subtract(3, "minutes")
-            .milliseconds(),
-          message: "1. Style chat component"
+          timeStamp: moment().subtract(3, "minutes").milliseconds(),
+          message: "1. Style chat component",
         },
         {
           isMe: false,
           from: "Abigail",
-          timeStamp: moment()
-            .subtract(3, "minutes")
-            .milliseconds(),
-          message: "2. Make world osmer"
+          timeStamp: moment().subtract(3, "minutes").milliseconds(),
+          message: "2. Make world osmer",
         },
         {
           isMe: true,
           from: "Dawson",
           timeStamp: moment().milliseconds(),
-          message: "Thanks!"
-        }
+          message: "Thanks!",
+        },
       ]}
     />
   </div>

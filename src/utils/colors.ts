@@ -1,4 +1,10 @@
-export const hexToDecimal = color => {
+type TColor = {
+  r: number;
+  g: number;
+  b: number;
+};
+
+export const hexToDecimal = (color: string): TColor => {
   let trimmedColor = color;
   if (trimmedColor.startsWith("#")) {
     trimmedColor = color.substring(1);
@@ -6,23 +12,23 @@ export const hexToDecimal = color => {
   const rgb = [
     trimmedColor.substr(0, 2),
     trimmedColor.substr(2, 2),
-    trimmedColor.substr(4, 2)
+    trimmedColor.substr(4, 2),
   ];
 
   return {
     r: parseInt(rgb[0], 16),
     g: parseInt(rgb[1], 16),
-    b: parseInt(rgb[2], 16)
+    b: parseInt(rgb[2], 16),
   };
 };
 
-export const brightness = color => {
+export const brightness = (color: string) => {
   const { r, g, b } = hexToDecimal(color);
 
   return (r * 299 + g * 587 + b * 114) / 1000;
 };
 
-export const lightenDarkenColor = (color, amount) => {
+export const lightenDarkenColor = (color: string, amount: number) => {
   if (color[0] == "#") {
     color = color.slice(1);
   }

@@ -8,7 +8,7 @@ export const titleCase = (s: string): string => {
   let str = s.toLowerCase();
   str
     .split(" ") // cut it up into words
-    .map(c => capitalize(c)) // capitalize those words
+    .map((c) => capitalize(c)) // capitalize those words
     .join(" "); // join it back together
 
   return str;

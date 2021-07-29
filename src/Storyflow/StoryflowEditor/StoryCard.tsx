@@ -7,25 +7,25 @@ import {
   storyContainer,
   storyDndPreview,
   titleStyle,
-  handleStyle
+  handleStyle,
 } from "./StoryflowEditor.styles";
 import { IStory } from "../Storyflow.interfaces";
 
 const getLocationStyle = (physicalXY: Array<Number>) => ({
   left: `${physicalXY[0]}px`,
-  top: `${physicalXY[1]}px`
+  top: `${physicalXY[1]}px`,
 });
 
 const getOpacity = (isDragging: boolean) => ({
-  opacity: isDragging ? 0 : 1
+  opacity: isDragging ? 0 : 1,
 });
 
 const StoryCard: React.FC<IStory> = ({ id, title, content, physicalXY }) => {
   const [{ isDragging }, dragRef, preview] = useDrag({
     item: { type: "CARD", id, title, content, physicalXY },
-    collect: monitor => ({
-      isDragging: monitor.isDragging()
-    })
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
   });
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const StoryCard: React.FC<IStory> = ({ id, title, content, physicalXY }) => {
       css={[
         storyContainer,
         getLocationStyle(physicalXY),
-        getOpacity(isDragging)
+        getOpacity(isDragging),
       ]}
     >
       <div css={titleStyle}>
@@ -54,7 +54,7 @@ const StoryCard: React.FC<IStory> = ({ id, title, content, physicalXY }) => {
   );
 };
 
-export const StoryCardPreview: React.FC<IStory> = props => (
+export const StoryCardPreview: React.FC<IStory> = (props) => (
   <div css={storyDndPreview}>
     <StoryCard {...props} />
   </div>

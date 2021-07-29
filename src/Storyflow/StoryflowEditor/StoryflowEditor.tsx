@@ -18,7 +18,7 @@ interface IStoryflowEditor {
 
 const StoryflowEditor: React.FC<IStoryflowEditor> = ({
   storyflow,
-  onChange
+  onChange,
 }) => {
   const { stories, connections } = storyflow;
 
@@ -37,9 +37,9 @@ const StoryflowEditor: React.FC<IStoryflowEditor> = ({
       const tBoxes = update(storyCards, {
         [id]: {
           physicalXY: {
-            $set: physicalXY
-          }
-        }
+            $set: physicalXY,
+          },
+        },
       });
 
       setStoryCards(tBoxes);
@@ -62,9 +62,9 @@ const StoryflowEditor: React.FC<IStoryflowEditor> = ({
       moveBox(item.id, [x, y]);
       return undefined;
     },
-    collect: monitor => ({
-      isOver: !!monitor.isOver()
-    })
+    collect: (monitor) => ({
+      isOver: !!monitor.isOver(),
+    }),
   });
   /*
   useEffect(() => {
@@ -103,8 +103,8 @@ const StoryflowEditor: React.FC<IStoryflowEditor> = ({
   return (
     <Fragment>
       <div ref={dropRef} css={masterContainer}>
-        {Object.keys(storyCards).map(key => (
-          <StoryCard id={key} key={key} {...storyCards[key]} />
+        {Object.keys(storyCards).map((key) => (
+          <StoryCard key={key} {...storyCards[key]} />
         ))}
         <SvgLayer connections={connections} />
       </div>

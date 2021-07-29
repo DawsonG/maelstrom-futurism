@@ -1,129 +1,73 @@
 {
   "name": "maelstrom-futurism",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "OSMstudios own React component library",
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
-  "main": "dist/main.bundle.js",
-  "module": "dist/plugin.es.js",
-  "typings": "dist/index.d.ts",
-  "unpkg": "dist/plugin.umd.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "typings": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
   "repository": "https://github.com/DawsonG/maelstrom-futurism",
   "license": "MIT",
   "scripts": {
-    "storybook": "start-storybook -p 5006 --ci",
-    "build-storybook": "npm run build && rimraf storybook-static && build-storybook",
-    "build": "webpack --mode=production",
-    "build:watch": "chokidar 'src/**/*.ts' 'src/**/*.tsx' -c 'npm run build'",
-    "test:cover": "npm run test && codecov",
+    "prebuild": "rimraf dist",
+    "build": "concurrently npm:build:*",
+    "build:esm": "babel src --extensions .ts,.tsx -d dist/esm --source-maps --copy-files --no-copy-ignored",
+    "build:cjs": "babel src --extensions .ts,.tsx -d dist/cjs --source-maps --copy-files --no-copy-ignored",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
     "test": "jest",
-    "dev:docz": "docz dev",
-    "build:docz": "docz build",
-    "prepublishOnly": "npm run test && npm run build",
-    "prepare": "webpack --mode=production",
-    "test:watch": "npm test -- --watchAll",
-    "precommit": "pretty-quick --staged",
-    "format": "pretty-quick",
-    "now-build": "npm run build-storybook",
-    "now-start": "cd storybook-static && serve",
-    "deploy": "npm run now-build && cd storybook-static && now"
+    "prepublishOnly": "npm run build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.6",
-    "@babel/plugin-proposal-object-rest-spread": "^7.10.4",
-    "@babel/preset-env": "^7.11.5",
-    "@babel/preset-react": "^7.10.4",
-    "@babel/preset-typescript": "^7.10.4",
-    "@emotion/babel-preset-css-prop": "^10.0.27",
-    "@storybook/addon-a11y": "^6.2.9",
-    "@storybook/addon-actions": "^6.2.9",
-    "@storybook/addon-essentials": "^6.2.9",
-    "@storybook/addon-knobs": "^6.2.9",
-    "@storybook/addon-links": "^6.2.9",
-    "@storybook/addon-viewport": "^6.2.9",
-    "@storybook/addons": "^6.2.9",
-    "@storybook/react": "^6.2.9",
-    "@storybook/source-loader": "^6.2.9",
-    "@types/enzyme": "^3.10.5",
-    "@types/jest": "^26.0.13",
-    "@types/react-dom": "^16.9.9",
-    "@types/react-test-renderer": "^16.9.3",
-    "@types/sinon": "^9.0.5",
-    "@types/storybook__react": "^5.2.1",
-    "awesome-typescript-loader": "^5.2.1",
-    "babel-core": "^7.0.0-0",
-    "babel-jest": "^26.1.0",
-    "babel-loader": "^8.1.0",
-    "babel-plugin-require-context-hook": "^1.0.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "chokidar": "^3.4.0",
-    "clean-webpack-plugin": "^3.0.0",
-    "codecov": "^3.7.0",
-    "docz": "^2.3.1",
-    "enzyme": "^3.6.0",
-    "enzyme-adapter-react-16": "^1.15.4",
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.14.8",
+    "@babel/plugin-syntax-jsx": "^7.14.5",
+    "@babel/plugin-transform-react-display-name": "^7.14.5",
+    "@babel/plugin-transform-react-jsx": "^7.14.9",
+    "@babel/plugin-transform-react-jsx-development": "^7.14.5",
+    "@babel/plugin-transform-react-pure-annotations": "^7.14.5",
+    "@babel/plugin-transform-typescript": "^7.14.6",
+    "@babel/preset-env": "^7.14.9",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.14.5",
+    "@storybook/addon-actions": "^6.3.6",
+    "@storybook/addon-essentials": "^6.3.6",
+    "@storybook/addon-links": "^6.3.6",
+    "@storybook/react": "^6.3.6",
+    "@types/react-dom": "^17.0.9",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "concurrently": "^6.2.0",
     "husky": "^2.2.0",
-    "jest": "^26.1.0",
-    "jest-emotion": "^10.0.11",
-    "moment": "^2.27.0",
     "prettier": "^1.15.2",
-    "pretty-quick": "^1.6.0",
-    "react-test-renderer": "^16.13.1",
-    "serve": "^11.3.2",
-    "sinon": "^7.1.1",
-    "ts-jest": "^26.1.1",
-    "typescript": "^4.0.2",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-node-externals": "^1.7.2"
-  },
-  "jest": {
-    "setupFiles": [
-      "<rootDir>/tests/__setup__/setup.ts"
-    ],
-    "setupTestFrameworkScriptFile": "<rootDir>/tests/__setup__/setupFramework.ts",
-    "transform": {
-      ".[jt]sx?$": "<rootDir>/node_modules/babel-jest"
-    },
-    "testRegex": "(<rootDir>/(tests|src)/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
-    "moduleNameMapper": {
-      "@src/(.*)": "<rootDir>/src/$1",
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tests/__mocks__/fileMock.js"
-    },
-    "collectCoverage": true,
-    "coverageDirectory": "<rootDir>/coverage"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.0.2"
   },
   "dependencies": {
-    "@emotion/core": "^10.1.1",
-    "fast-deep-equal": "^2.0.1",
+    "@emotion/babel-plugin": "^11.3.0",
+    "@emotion/react": "^11.4.0",
     "immutability-helper": "^3.1.1",
-    "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.15",
     "polished": "^3.6.6",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1",
     "react-contenteditable": "^3.3.5",
     "react-dnd": "^11.1.3",
     "react-dnd-html5-backend": "^11.1.3",
-    "react-dom": "^17.0.1",
-    "react-icons": "^3.11.0",
-    "react-icons-kit": "^1.3.0",
-    "scroll-data-hook": "^1.0.4",
-    "storybook": "^6.2.9"
+    "react-icons": "^4.2.0"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }

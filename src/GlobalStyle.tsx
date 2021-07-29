@@ -1,15 +1,13 @@
 import React from "react";
-import { Global, css } from "@emotion/core";
+import { Global, css } from "@emotion/react";
 
 import OpenSansTtf from "./Typography/fonts/OpenSans-Regular.ttf";
 import OpenSansWoff from "./Typography/fonts/OpenSans-Regular.woff";
 import OpenSansEot from "./Typography/fonts/OpenSans-Regular.eot";
-import OpenSansSvg from "./Typography/fonts/OpenSans-Regular.svg";
 
 import RobotoTtf from "./Typography/fonts/Roboto-Regular.ttf";
 import RobotoWoff from "./Typography/fonts/Roboto-Regular.woff";
 import RobotoEot from "./Typography/fonts/Roboto-Regular.eot";
-import RobotoSvg from "./Typography/fonts/Roboto-Regular.svg";
 
 import theme from "./theme";
 
@@ -21,15 +19,14 @@ export default () => (
         src: url(${OpenSansEot});
         src: url(${OpenSansEot}) format("eot"),
           url(${OpenSansWoff}) format("woff"),
-          url(${OpenSansTtf}) format("truetype"),
-          url(${OpenSansSvg}) format("svg");
+          url(${OpenSansTtf}) format("truetype");
       }
 
       @font-face {
         font-family: "Roboto";
         src: url(${RobotoEot});
         src: url(${RobotoEot}) format("eot"), url(${RobotoWoff}) format("woff"),
-          url(${RobotoTtf}) format("truetype"), url(${RobotoSvg}) format("svg");
+          url(${RobotoTtf}) format("truetype");
       }
 
       html {

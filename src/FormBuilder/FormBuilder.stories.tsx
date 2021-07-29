@@ -6,12 +6,12 @@ import FormBuilder from ".";
 const formModel = [
   {
     name: "name",
-    contentType: "text"
+    contentType: "text",
   },
   {
     name: "phone number",
-    contentType: "tel"
-  }
+    contentType: "tel",
+  },
 ];
 
 storiesOf("Form", module).add("FormBuilder - No Values", () => (

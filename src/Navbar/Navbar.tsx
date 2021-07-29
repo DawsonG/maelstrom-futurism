@@ -3,9 +3,8 @@ import React, {
   useState,
   useEffect,
   useRef,
-  useLayoutEffect
+  useLayoutEffect,
 } from "react";
-import { useScrollData } from "scroll-data-hook";
 
 import MenuToggle from "./children/MenuToggle";
 import { Group, Brand, Link } from "./children";
@@ -14,7 +13,7 @@ import theme from "../theme";
 
 export enum ToggleSide {
   RIGHT = "right",
-  LEFT = "left"
+  LEFT = "left",
 }
 
 type ChildProps = { children?: ReactNode };
@@ -35,22 +34,14 @@ interface INavbar extends React.FC<INavbarProps> {
 const Navbar: INavbar = ({
   children,
   sticky = false,
-  toggleSide = ToggleSide.LEFT
+  toggleSide = ToggleSide.LEFT,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
+  const headerRef = useRef<HTMLDivElement>(null);
+  let offsetTop: number = 0;
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(`(max-width: ${theme.bp("sm")})`);
-    mediaQuery.addListener(handleMediaQueryChange);
-    handleMediaQueryChange(mediaQuery);
-
-    return () => {
-      mediaQuery.removeListener(handleMediaQueryChange);
-    };
-  }, []);
-
-  const handleMediaQueryChange = mediaQuery => {
+  const handleMediaQueryChange = (mediaQuery: any) => {
     if (mediaQuery.matches) {
       setIsSmallScreen(true);
     } else {
@@ -58,23 +49,42 @@ const Navbar: INavbar = ({
     }
   };
 
+  const handleScroll = (e: React.UIEvent<HTMLElement>): void => {
+    e.stopPropagation(); // necessary?
+    
+    if (!headerRef.current) return;
+    if (!sticky) return;
+    
+    if (window.pageYOffset > offsetTop) {
+      headerRef.current.className = "sticky";   
+    } else {
+      headerRef.current.className = ""; 
+    }
+  };
+
   const toggleNav = () => setIsOpen(!isOpen);
 
-  let offsetTop: number = 0;
-  const headerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const mediaQuery: MediaQueryList = window.matchMedia(`(max-width: ${theme.bp("sm")})`);
+    mediaQuery.addListener(handleMediaQueryChange);
+    handleMediaQueryChange(mediaQuery);
+
+    return () => {
+      mediaQuery.removeListener(handleMediaQueryChange);
+    };
+  }, []);
+  
   useLayoutEffect(() => {
+    if (!headerRef.current) return;
+    
     offsetTop = headerRef.current.offsetTop;
   });
-
-  const {
-    position: { y }
-  } = useScrollData({});
 
   return (
     <nav
       css={styles.navbar}
       ref={headerRef}
-      className={sticky && y > offsetTop ? "sticky" : null}
+      onScroll={handleScroll}
     >
       {toggleSide === ToggleSide.LEFT && <MenuToggle onClick={toggleNav} />}
       {(!isSmallScreen || isOpen) && children}

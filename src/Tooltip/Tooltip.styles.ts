@@ -1,4 +1,4 @@
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 
 export const styledTooltip = (left: number, top: number, show: boolean) => css`
   position: fixed;

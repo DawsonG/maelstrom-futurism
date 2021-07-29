@@ -1,5 +1,5 @@
 import React from "react";
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 
 const gridStyle = css`
   display: flex;
@@ -10,6 +10,10 @@ const gridStyle = css`
   margin-left: -0.5rem;
 `;
 
-const Grid = ({ children }) => <div css={gridStyle}>{children}</div>;
+interface IGrid {
+  children?: React.ReactChildren;
+}
+
+const Grid: React.FC<IGrid> = ({ children }) => <div css={gridStyle}>{children}</div>;
 
 export default Grid;

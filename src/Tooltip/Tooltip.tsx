@@ -16,17 +16,21 @@ interface ITooltip {
 
 const Tooltip: React.FC<ITooltip> = ({ children, pos }) => {
   const [innerPos, setPos] = useState(pos);
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const current = ref.current;
-    if (current) {
+    if (current && pos) {
       setPos({
         top: pos.top,
         left: pos.left - current.offsetWidth / 2,
-        show: true
+        show: true,
       });
     }
   }, [ref]);
+
+  if (!innerPos) {
+    return null;
+  }
 
   return (
     <div
@@ -38,19 +42,19 @@ const Tooltip: React.FC<ITooltip> = ({ children, pos }) => {
   );
 };
 
-const useTooltip = message => {
-  const ref = useRef(null);
+const useTooltip = (message: string) => {
+  const ref = useRef<HTMLElement>(null);
   const shift = 4;
-  let container = null;
+  let container: HTMLDivElement | null = null;
 
-  const hoverHandler = (current, flag) => {
+  const hoverHandler = (current: HTMLElement, flag: boolean) => {
     if (flag) {
       container = document.createElement("div");
       document.body.append(container);
       const { top, left } = current.getBoundingClientRect();
       const pos = {
         top: top + current.offsetHeight + shift,
-        left: left + current.offsetWidth / 2
+        left: left + current.offsetWidth / 2,
       };
       ReactDOM.render(<Tooltip {...pos}>{message}</Tooltip>, container);
     } else {

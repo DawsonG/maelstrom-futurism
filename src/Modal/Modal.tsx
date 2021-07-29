@@ -6,7 +6,7 @@ import {
   modalWrapper,
   modal,
   modalHeader,
-  modalCloseButton
+  modalCloseButton,
 } from "./Modal.styles";
 
 interface IModal {
@@ -14,7 +14,7 @@ interface IModal {
   children?: React.ReactNode;
 
   isShowing?: boolean | (() => void);
-  hide?: () => void; //(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  hide: () => void; //(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const Modal: React.FC<IModal> = ({ title, children, isShowing, hide }) =>

@@ -1,6 +1,6 @@
-import { css, keyframes } from "@emotion/core";
+import { css, keyframes, SerializedStyles } from "@emotion/react";
 
-export const ripple = keyframes`
+export const ripple: SerializedStyles = keyframes`
   to {
     opacity  : 0;
     transform: scale(2);

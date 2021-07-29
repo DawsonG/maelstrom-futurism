@@ -20,7 +20,8 @@ interface MessageGroupInterface {
 
 const MessageGroup = ({ messages, isMe }: MessageGroupInterface) => (
   <div css={messageGroup} className={isMe ? "ours" : ""}>
-    {messages && messages.map(m => <div className="message">{m.message}</div>)}
+    {messages &&
+      messages.map((m) => <div className="message">{m.message}</div>)}
   </div>
 );
 

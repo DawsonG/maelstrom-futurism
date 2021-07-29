@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 import { lighten } from "polished";
 
 import theme from "../theme";
@@ -8,36 +8,34 @@ export enum Variant {
   SINGLE = "single",
   STACK = "stack",
   RANDOM_STACK = "random_stack",
-  NONE = "none"
+  NONE = "none",
 }
 
 export enum HDirection {
   RIGHT = "right",
   CENTER = "center",
-  LEFT = "left"
+  LEFT = "left",
 }
 
 export enum VDirection {
   TOP = "top",
-  BOTTOM = "bottom"
+  BOTTOM = "bottom",
 }
 
 /*
  * https://css-tricks.com/snippets/css/stack-of-paper/
  */
 const paperStyle = (
-  width: string,
-  centered: boolean,
+  width?: string,
+  centered?: boolean,
   variant?: Variant | string
 ) => css`
   background-color: ${theme.color("trueWhite")};
   padding: 3em;
   margin: 2em 1em;
-  ${
-    variant === Variant.NONE
-      ? ""
-      : `border: solid 1px ${theme.color("border")};`
-  }
+  ${variant === Variant.NONE
+    ? ""
+    : `border: solid 1px ${theme.color("border")};`}
   position: relative;
   width: ${width};
 
@@ -49,13 +47,13 @@ const paperStyle = (
   }
 
   ${centered &&
-    `
+  `
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
     left: 50%;
   `}
-  
+
   @media only screen and (max-width: ${theme.bp("sm")}) {
     width: 100%;
     padding: 1.5em;
@@ -65,7 +63,7 @@ const paperStyle = (
 
 const getBoxShadow = (
   variant: Variant | string = Variant.SINGLE,
-  hDirection = HDirection.LEFT,
+  // hDirection = HDirection.LEFT,
   vDirection = VDirection.BOTTOM
 ) => {
   if (variant == Variant.NONE) {
@@ -123,14 +121,14 @@ const getBoxShadow = (
     `;
   }
 
-  console.log(hDirection, vDirection);
+  return '';
 };
 
 export default function Paper({
   variant,
   children,
   width,
-  centered
+  centered,
 }: {
   variant?: Variant | string;
   children: ReactNode;
