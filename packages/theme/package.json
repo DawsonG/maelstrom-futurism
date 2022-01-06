@@ -1,0 +1,27 @@
+{
+  "name": "theme",
+  "version": "0.7.0",
+  "description": "Theme configuration",
+  "author": "Dawson Goodell <dawsong@osmstudios.com>",
+  "homepage": "https://github.com/DawsonG/maelstrom-futurism#readme",
+  "license": "ISC",
+  "main": "lib/theme.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
+    "directory": "packages/theme"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/DawsonG/maelstrom-futurism/issues"
+  }
+}
