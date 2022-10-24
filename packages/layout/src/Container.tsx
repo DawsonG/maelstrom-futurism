@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { css } from "@emotion/react";
-import theme from "../theme";
+import theme from "@maelstrom-futurism/theme";
 
 type IContainer = {
   fluid?: boolean;

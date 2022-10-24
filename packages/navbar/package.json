@@ -21,10 +21,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DawsonG/maelstrom-futurism.git"
+    "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
+    "directory": "packages/navbar"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "tsc"
   },
   "bugs": {
     "url": "https://github.com/DawsonG/maelstrom-futurism/issues"

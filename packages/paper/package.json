@@ -1,0 +1,21 @@
+{
+  "name": "@maelstrom-futurism/paper",
+  "version": "1.0.0",
+  "description": "Stacks of paper",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc --outDir dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dawson Goodell <dawsong@osmstudios.com>",
+  "homepage": "https://osmstudios.com",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
+    "directory": "packages/paper"
+  },
+  "dependencies": {
+    "polished": "^4.2.2"
+  }
+}

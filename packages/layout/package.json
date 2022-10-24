@@ -1,5 +1,5 @@
 {
-  "name": "layout",
+  "name": "@maelstrom-futurism/layout",
   "version": "1.0.0",
   "description": "Basic layout components of MF",
   "keywords": [
@@ -10,14 +10,14 @@
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
   "homepage": "http://www.osmstudios.com",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
-  "typings": "dist/types/index.d.ts",
+  "main": "dist/layout/index.js",
+  "module": "dist/layout/index.js",
+  "types": "dist/layout/index.d.ts",
+  "typings": "dist/layout/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
     }
   },
   "files": [
@@ -39,9 +39,7 @@
     "test": "jest --env=jsdom --passWithNoTests",
     "lint": "concurrently yarn:lint:*",
     "version": "yarn build",
-    "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
+    "build:all": "tsc --outDir dist",
     "test:cov": "npm run test --coverage",
     "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
     "lint:types": "tsc --noEmit"
@@ -61,6 +59,8 @@
   "devDependencies": {
     "@emotion/react": "^11.4.0",
     "@types/react": "^17.0.15",
-    "react": "^17.0.2"
+    "concurrently": "^7.0.0",
+    "react": "^17.0.2",
+    "typescript": "^4.5.4"
   }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@emotion/react";
 
-import theme from "../theme";
+import theme from "@maelstrom-futurism/theme";
 
 interface ColumnInterface {
   children?: any;

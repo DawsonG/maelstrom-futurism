@@ -20,7 +20,11 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
-    "declarationMap": true
+    "declarationMap": true,
+    "baseUrl": ".", // This must be specified if "paths" is.
+    "paths": {
+      "@maelstrom-futurism/*": ["packages/*"],
+    },
   },
   "include": ["packages"],
   "exclude": ["node_modules", "**/*.stories.tsx"],

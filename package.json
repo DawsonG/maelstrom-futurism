@@ -1,7 +1,6 @@
 {
-  "name": "maelstrom-futurism",
+  "name": "@maelstrom-futurism/core",
   "version": "0.7.0",
-  "private": true,
   "description": "OSMstudios own React component library",
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
   "workspaces": {
@@ -25,7 +24,6 @@
   "repository": "https://github.com/DawsonG/maelstrom-futurism",
   "license": "MIT",
   "scripts": {
-    "prebuild": "rimraf dist",
     "build": "lerna run build --ignore src --no-private --stream",
     "test": "jest",
     "prepublishOnly": "npm run build",
@@ -41,14 +39,14 @@
     "@babel/preset-typescript": "^7.14.5",
     "@emotion/babel-plugin": "^11.3.0",
     "@emotion/react": "^11.1.4",
-    "react": "^17.0.2",
     "cross-env": "^7.0.3",
     "lerna": "^4.0.0",
+    "react": "^17.0.2",
     "rimraf": "^3.0.2",
     "typescript": "^4.3.5"
   },
   "peerDependencies": {
     "@emotion/react": "^11.1.4",
-    "react": ">=17.0.2"
+    "react": ">=17.0.0"
   }
 }
