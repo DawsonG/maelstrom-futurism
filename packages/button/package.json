@@ -1,32 +1,27 @@
 {
-  "name": "@maelstrom-futurism/input",
-  "version": "1.0.0",
-  "description": "Re-usable input components of MF",
+  "name": "@maelstrom-futurism/button",
+  "version": "0.7.0",
+  "description": "A button (with very cool ripples!) for MF",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "default": "./dist/index.js"
-    }
-  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
-    "test": "jest --env=jsdom --passWithNoTests"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
-    "directory": "packages/input"
+    "directory": "packages/button"
   },
   "keywords": [
-    "input",
-    "material-ui"
+    "button",
+    "component",
+    "react"
   ],
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
   "license": "MIT",

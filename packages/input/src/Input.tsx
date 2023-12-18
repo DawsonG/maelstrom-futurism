@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "@emotion/react";
-import { lighten } from "polished";
+import { lighten } from 'polished';
 
 import { useTheme } from "@maelstrom-futurism/theme";
 
@@ -56,6 +56,7 @@ const Input = ({label, name, type, forwardedRef, ...restProps}: InputProps): JSX
     padding: 0.5em 1em;
     width: 100%;
     font-size: 1em;
+    color: ${theme.color("text")};
     background-color: ${theme.color("interactable")};
 
     ::-webkit-input-placeholder {
@@ -73,6 +74,11 @@ const Input = ({label, name, type, forwardedRef, ...restProps}: InputProps): JSX
     :-moz-placeholder {
       /* Firefox 18- */
       color: ${theme.color("muted")};
+    }
+
+    :focus {
+      outline: none !important;
+      border: solid 1px ${lighten(0.1, theme.color("border"))};
     }
   `;
 

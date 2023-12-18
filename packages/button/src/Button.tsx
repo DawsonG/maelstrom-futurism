@@ -1,6 +1,6 @@
 import React, { ReactNode, useRef } from "react";
 
-import debounce from "../utils/debounce";
+import debounce from "./utils/debounce";
 
 import { buttonStyle } from "./Button.styles";
 
@@ -73,7 +73,7 @@ export interface ButtonProps {
   disabled?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({
+const Button = ({
   children,
   onClick,
   scale = "normal",
@@ -82,7 +82,7 @@ const Button: React.FC<ButtonProps> = ({
   type = "button",
   disabled = false,
   ...rest
-}) => {
+}: ButtonProps): JSX.Element => {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const addRipple = (e: React.MouseEvent) => {
