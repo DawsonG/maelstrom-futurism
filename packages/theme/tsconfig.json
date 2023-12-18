@@ -1,8 +1,10 @@
 {
   "extends": "../../tsconfig.json",
+  "include": ["src"],
   "compilerOptions": {
+    "outDir": "./dist",
+    "sourceMap": true,
     "declaration": true,
-    "declarationDir": "dist",
-  },
-  "include": ["lib"]
+    "declarationDir": "dist"
+  }
 }

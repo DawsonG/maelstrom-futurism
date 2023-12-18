@@ -2,9 +2,21 @@
   "name": "@maelstrom-futurism/paper",
   "version": "1.0.0",
   "description": "Stacks of paper",
-  "main": "index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsc --outDir dist",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
@@ -16,6 +28,11 @@
     "directory": "packages/paper"
   },
   "dependencies": {
-    "polished": "^4.2.2"
+    "polished": "^4.2.2",
+    "@maelstrom-futurism/theme": "../theme"
+  },
+  "peerDependences": {
+    "react": ">= 18.0.0",
+    "react-dom": ">= 18.0.0"
   }
 }

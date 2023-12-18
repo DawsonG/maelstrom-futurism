@@ -10,10 +10,10 @@
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
   "homepage": "http://www.osmstudios.com",
   "license": "MIT",
-  "main": "dist/layout/index.js",
-  "module": "dist/layout/index.js",
-  "types": "dist/layout/index.d.ts",
-  "typings": "dist/layout/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/index.js",
@@ -23,44 +23,24 @@
   "files": [
     "dist"
   ],
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
     "directory": "packages/layout"
   },
   "scripts": {
-    "prebuild": "rimraf dist",
-    "start": "nodemon --watch src --exec yarn build -e ts,tsx",
-    "build": "concurrently npm:build:*",
+    "build": "tsc",
     "test": "jest --env=jsdom --passWithNoTests",
-    "lint": "concurrently yarn:lint:*",
-    "version": "yarn build",
-    "build:all": "tsc --outDir dist",
-    "test:cov": "npm run test --coverage",
-    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
-    "lint:types": "tsc --noEmit"
+    "test:cov": "npm run test --coverage"
   },
   "bugs": {
     "url": "https://github.com/DawsonG/maelstrom-futurism/issues"
   },
-  "devDependences": {
-    "react": "17.0.2",
-    "@emotion/react": "^11.1.4",
-    "@maelstrom-futurism/theme": "0.7.0"
+  "dependencies": {
+    "@maelstrom-futurism/theme": "*"
   },
-  "peerDependences": {
-    "@emotion/react": ">= 11",
-    "react": ">= 17.0.2"
-  },
-  "devDependencies": {
-    "@emotion/react": "^11.4.0",
-    "@types/react": "^17.0.15",
-    "concurrently": "^7.0.0",
-    "react": "^17.0.2",
-    "typescript": "^4.5.4"
+  "peerDependencies": {
+    "@emotion/react": "^11.10.5",
+    "react": ">= 18.0.0"
   }
 }

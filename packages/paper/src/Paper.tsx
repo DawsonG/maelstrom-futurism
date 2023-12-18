@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { css } from "@emotion/react";
 import { lighten } from "polished";
 
-import theme from "@maelstrom-futurism/theme";
+import Theme, { useTheme } from "@maelstrom-futurism/theme";
 
 export enum Variant {
   SINGLE = "single",
@@ -26,6 +26,7 @@ export enum VDirection {
  * https://css-tricks.com/snippets/css/stack-of-paper/
  */
 const paperStyle = (
+  theme: Theme,
   width?: string,
   centered?: boolean,
   variant?: Variant | string
@@ -62,9 +63,10 @@ const paperStyle = (
 `;
 
 const getBoxShadow = (
+  theme: Theme,
   variant: Variant | string = Variant.SINGLE,
   // hDirection = HDirection.LEFT,
-  vDirection = VDirection.BOTTOM
+  vDirection = VDirection.BOTTOM,
 ) => {
   if (variant == Variant.NONE) {
     return "";
@@ -135,8 +137,10 @@ export default function Paper({
   width?: string;
   centered?: boolean;
 }) {
+  const theme = useTheme();
+
   return (
-    <div css={[paperStyle(width, centered, variant), getBoxShadow(variant)]}>
+    <div css={[paperStyle(theme, width, centered, variant), getBoxShadow(theme, variant)]}>
       {children}
     </div>
   );

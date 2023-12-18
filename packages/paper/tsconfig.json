@@ -2,10 +2,14 @@
     "extends": "../../tsconfig.json",
     "include": ["src"],
     "compilerOptions": {
+        "outDir": "dist",
         "jsxImportSource": "@emotion/react",
         "jsx": "react-jsx",
         "sourceMap": true,
         "declaration": true,
         "declarationDir": "dist"
-    }
+    },
+    "references": [
+        { "@maelstrom-futurism/theme": "../theme" }
+    ]
 }

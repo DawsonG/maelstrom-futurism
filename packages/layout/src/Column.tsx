@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@emotion/react";
 
-import theme from "@maelstrom-futurism/theme";
+import { useTheme } from "@maelstrom-futurism/theme";
 
 interface ColumnInterface {
   children?: any;
@@ -15,17 +15,17 @@ interface ColumnInterface {
   rightBorder?: boolean | string;
 }
 
-function borderWrite(bName: string, bVar?: boolean | string) {
+function borderWrite(bName: string, color: string, bVar?: boolean | string) {
   if (!bVar) return;
 
   if (typeof bVar === "boolean" && bVar) {
-    return `${bName}: solid 1px ${theme.color("border")};`;
+    return `${bName}: solid 1px ${color};`;
   }
 
   return `${bName}: ${bVar};`;
 }
 
-const Column: React.SFC<ColumnInterface> = ({
+const Column = ({
   children,
   xs,
   sm,
@@ -36,7 +36,8 @@ const Column: React.SFC<ColumnInterface> = ({
   leftBorder,
   rightBorder,
   ...rest
-}) => {
+}: ColumnInterface): JSX.Element  => {
+  const theme = useTheme();
   const baseWidth = 8.33333333;
 
   /**
@@ -79,10 +80,10 @@ const Column: React.SFC<ColumnInterface> = ({
 
     ${!xsWidth && !smWidth && !mdWidth && !lgWidth && "flex: 1 0 0;"}
 
-    ${borderWrite("border-top", topBorder)}
-    ${borderWrite("border-right", rightBorder)}
-    ${borderWrite("border-bottom", bottomBorder)}
-    ${borderWrite("border-left", leftBorder)}
+    ${borderWrite("border-top", theme.color("border"), topBorder)}
+    ${borderWrite("border-right", theme.color("border"), rightBorder)}
+    ${borderWrite("border-bottom", theme.color("border"), bottomBorder)}
+    ${borderWrite("border-left", theme.color("border"), leftBorder)}
   `;
 
   return (

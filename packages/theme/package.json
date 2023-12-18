@@ -5,13 +5,12 @@
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
   "homepage": "https://github.com/DawsonG/maelstrom-futurism#readme",
   "license": "ISC",
-  "main": "dist/theme.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "files": [
-    "lib"
+    "dist"
   ],
   "repository": {
     "type": "git",
@@ -24,5 +23,8 @@
   },
   "bugs": {
     "url": "https://github.com/DawsonG/maelstrom-futurism/issues"
+  },
+  "dependencies": {
+    "nord": "^0.2.1"
   }
 }
