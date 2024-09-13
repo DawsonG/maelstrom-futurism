@@ -1,72 +1,29 @@
-import React from 'react';
+import { useState } from 'react';
+import Button from '@maelstrom-futurism/button';
 import Paper, { PaperVariant } from '@maelstrom-futurism/paper';
-import { Container, Column, Grid } from '@maelstrom-futurism/layout';
-
-const Filler: React.FC = () => <div>
-  <header className="App-header">
-    <p>
-      Edit <code>src/App.tsx</code> and save to reload.
-    </p>
-    <a
-      className="App-link"
-      href="https://reactjs.org"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Learn React
-    </a>
-  </header>
-
-  <Column>
-    Test 1
-  </Column>
-</div>;
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
 
 function App() {
+  const [count, setCount] = useState(0)
+
   return (
-    <Container>
+    <>
       <Paper variant={PaperVariant.RANDOM_STACK}>
-        Random stack
+        <a href="https://vitejs.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
       </Paper>
-
-      <Paper variant={PaperVariant.STACK}>
-        <Filler/>
-      </Paper>
-
-      <Paper variant={PaperVariant.SINGLE}>
-        <Filler/>
-      </Paper>
-
-      <Grid>
-        <Column><Filler/></Column>
-        <Column><Filler/></Column>
-        <Column><Filler/></Column>
-      </Grid>
-
-      <Grid>
-        <Column sm={12} md={3} lg={1}>
-          <div className="box">
-            SM 12, MD 3, LG 1
-          </div>
-        </Column>
-        <Column sm={2} md={3} lg={4}>
-          <div className="box">
-            SM 2, MD 3, LG 4
-          </div>
-        </Column>
-        <Column sm={5} md={3} lg={4}>
-          <div className="box">
-            SM 5, MD 3, LG 4
-            </div>
-        </Column>
-        <Column sm={5} md={3} lg={3}>
-          <div className="box">
-            SM 5, MD 3, LG 3
-          </div>
-        </Column>
-      </Grid>
-    </Container>
-  );
+      <h1>Vite + React</h1>
+      <div className="card">
+        <Button>A test button</Button>
+      </div>
+    </>
+  )
 }
 
-export default App;
+export default App
