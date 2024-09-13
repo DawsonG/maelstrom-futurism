@@ -5,16 +5,17 @@ import { useTheme } from "@maelstrom-futurism/theme";
 interface ContainerProps {
   fluid?: boolean;
   children?: ReactNode;
+  margin?: string;
   [rest: string]: any;
 };
 
-const Container = ({ fluid, children, ...rest }: ContainerProps): JSX.Element => {
+const Container = ({ fluid, children, margin, ...rest }: ContainerProps): JSX.Element => {
   const theme = useTheme();
 
   return (
     <div
       css={css`
-        margin: 0 auto;
+        margin: ${margin ? margin : '0 auto'};
         width: ${fluid ? "100%" : "1180px"};
 
         padding-left: 1rem;

@@ -52,7 +52,7 @@ const Input = ({label, name, type, forwardedRef, ...restProps}: InputProps): JSX
 
   const styledInput = css`
     border: solid 1px ${theme.color("border")};
-    border-radius: 4px;
+    border-radius: ${theme.inputRadius()};
     padding: 0.5em 1em;
     width: 100%;
     font-size: 1em;

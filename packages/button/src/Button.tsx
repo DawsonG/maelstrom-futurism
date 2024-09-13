@@ -3,6 +3,8 @@ import React, { ReactNode, useRef } from "react";
 import debounce from "./utils/debounce";
 
 import { buttonStyle } from "./Button.styles";
+import { useTheme } from "@maelstrom-futurism/theme";
+import { css } from "@emotion/react";
 
 const scales = {
   small: {
@@ -48,7 +50,7 @@ const kinds = (variant: ButtonVariant, outline: boolean) => {
   const get = kind(outline);
 
   const rtns = {
-    primary: get("#1FB6FF", "white"),
+    primary: get("#88c0d0", "white"),
     secondary: get("#5352ED", "white"),
     cancel: get("#FF4949", "white"),
     dark: get("#273444", "white"),
@@ -83,7 +85,12 @@ const Button = ({
   disabled = false,
   ...rest
 }: ButtonProps): JSX.Element => {
+  const theme = useTheme();
   const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const buttonStyleByTheme = css`
+    border-radius: ${theme.buttonRadius()};
+  `;
 
   const addRipple = (e: React.MouseEvent) => {
     if (!buttonRef || !buttonRef.current) return;
@@ -115,7 +122,7 @@ const Button = ({
 
   return (
     <button
-      css={[buttonStyle, kinds(variant, !!outline), scales[scale]]}
+      css={[buttonStyle, buttonStyleByTheme, kinds(variant, !!outline), scales[scale]]}
       onClick={onClick}
       ref={buttonRef}
       onMouseDown={addRipple}

@@ -54,6 +54,7 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): JSX.Elem
             min-height: 100vh;
         }
         body {
+            margin: 0;
             color: ${themeValue.color("text")};
             background-color: ${themeValue.color("background")};
             font-family: Poppins;

@@ -31,7 +31,7 @@ const paperStyle = (
   centered?: boolean,
   variant?: Variant | string
 ) => css`
-  background-color: ${theme.color("trueWhite")};
+  background-color: ${theme.color("trueWhite")};;
   padding: 3em;
   margin: 2em 1em;
   ${variant === Variant.NONE

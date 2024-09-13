@@ -11,7 +11,6 @@ export const buttonStyle = css`
   cursor: pointer;
   margin: 6px 5px 0px 0px;
   border: none;
-  border-radius: 3px;
 
   position: relative;
   overflow: hidden;

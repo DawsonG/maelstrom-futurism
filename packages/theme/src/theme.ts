@@ -61,9 +61,9 @@ class Theme {
     "very high": "1000",
   };
 
-  borderRadius = (): string => {
-    return `${this.space[3]}px`;
-  }
+  borderRadius = (): string => `${this.space[3]}px`;
+  inputRadius = (): string => `${this.space[2]}px`;
+  buttonRadius = (): string => `${this.space[2]}px`;
 
   size(name: string): string {
     return this.sizes[name];
