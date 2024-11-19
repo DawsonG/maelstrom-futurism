@@ -66,18 +66,18 @@ class Theme {
   buttonRadius = (): string => `${this.space[2]}px`;
 
   size(name: string): string {
-    return this.sizes[name];
+    return this.sizes[name as keyof typeof this.sizes];
   }
 
   color = (name: string): string => {
     if (this.colorMode === "Light") {
-      return this.colorsLight[name];
+      return this.colorsLight[name as keyof typeof this.colorsLight];
     } else /* if (this.colorMode === "Dark") */{
-      return this.colorsDark[name];
+      return this.colorsDark[name as keyof typeof this.colorsDark];
     }
   };
-  bp = (name: string): string => this.breakpoints[name];
-  height = (name: string): string => this.heights[name];
+  bp = (name: string): string => this.breakpoints[name as keyof typeof this.breakpoints];
+  height = (name: string): string => this.heights[name as keyof typeof this.heights];
 
   constructor(colorMode: ColorMode) {
     this.colorMode = colorMode;

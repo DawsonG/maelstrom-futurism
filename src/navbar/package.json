@@ -34,7 +34,7 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "start": "nodemon --watch src --exec yarn build -e ts,tsx",
+    "start": "nodemon --watch src --exec npm run build -e ts,tsx",
     "build": "concurrently npm:build:*",
     "test": "jest --env=jsdom --passWithNoTests",
     "lint": "concurrently yarn:lint:*",
@@ -61,6 +61,8 @@
   "devDependencies": {
     "@emotion/react": "^11.4.0",
     "@types/react": "^17.0.15",
+    "concurrently": "^9.1.0",
+    "nodemon": "^3.1.7",
     "react": "^17.0.2"
   }
 }

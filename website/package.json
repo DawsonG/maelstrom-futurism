@@ -10,10 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@maelstrom-futurism/button": "../packages/button",
+    "@maelstrom-futurism/layout": "../packages/layout",
+    "@maelstrom-futurism/paper": "../packages/paper",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "@maelstrom-futurism/button": "../packages/button",
-    "@maelstrom-futurism/paper": "../packages/paper"
+    "react-router-dom": "^6.28.0",
+    "react-syntax-highlighter": "^15.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
