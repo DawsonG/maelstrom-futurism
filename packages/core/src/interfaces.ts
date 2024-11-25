@@ -14,3 +14,22 @@ export enum Direction {
     WEST,
     NORTHWEST,
 }
+
+export interface ColorSet {
+    background: string;
+    content: string;
+    textColor: string;
+    primary: string;
+    secondary: string;
+    alert: string;
+    warning: string;
+    success: string;
+    info: string;
+}
+
+export interface ThemeInterface {
+    colorSet?: ColorSet;
+    roundednessIntensity?: Intensity;
+    shadowIntensity?: Intensity;
+    shadowDirection?: Direction;
+}

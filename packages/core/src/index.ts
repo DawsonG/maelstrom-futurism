@@ -1,3 +1,4 @@
 export * from './interfaces';
-export { default as Theme } from './themes/theme';
-export * from './themes/ThemeProvider';
+export * from './themes';
+export * from './utils/colors';
+export { default as debounce } from './utils/debounce';

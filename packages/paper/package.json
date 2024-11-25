@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "polished": "^4.2.2",
-    "@maelstrom-futurism/theme": "../theme"
+    "@maelstrom-futurism/core": "../core"
   },
   "peerDependences": {
     "react": ">= 18.0.0",

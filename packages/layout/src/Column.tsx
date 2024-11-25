@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@emotion/react";
 
-import { useTheme } from "@maelstrom-futurism/theme";
+import { useTheme } from "@maelstrom-futurism/core";
 
 interface ColumnInterface {
   children?: any;
@@ -80,10 +80,10 @@ const Column = ({
 
     ${!xsWidth && !smWidth && !mdWidth && !lgWidth && "flex: 1 0 0;"}
 
-    ${borderWrite("border-top", theme.color("border"), topBorder)}
-    ${borderWrite("border-right", theme.color("border"), rightBorder)}
-    ${borderWrite("border-bottom", theme.color("border"), bottomBorder)}
-    ${borderWrite("border-left", theme.color("border"), leftBorder)}
+    ${borderWrite("border-top", theme.color("secondary"), topBorder)}
+    ${borderWrite("border-right", theme.color("secondary"), rightBorder)}
+    ${borderWrite("border-bottom", theme.color("secondary"), bottomBorder)}
+    ${borderWrite("border-left", theme.color("secondary"), leftBorder)}
   `;
 
   return (

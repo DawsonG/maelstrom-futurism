@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { css } from "@emotion/react";
 import { lighten } from "polished";
 
-import Theme, { useTheme } from "@maelstrom-futurism/theme";
+import { Theme, useTheme } from "@maelstrom-futurism/core";
 
 export enum Variant {
   SINGLE = "single",
@@ -31,12 +31,12 @@ const paperStyle = (
   centered?: boolean,
   variant?: Variant | string
 ) => css`
-  background-color: ${theme.color("trueWhite")};;
+  background-color: #fff;
   padding: 3em;
   margin: 2em 1em;
   ${variant === Variant.NONE
     ? ""
-    : `border: solid 1px ${theme.color("border")};`}
+    : `border: solid 1px ${theme.color("secondary")};`}
   position: relative;
   width: ${width};
 
@@ -74,7 +74,7 @@ const getBoxShadow = (
 
   if (variant == Variant.SINGLE) {
     return css`
-      box-shadow: 0px 1px 4px ${lighten(0.1, theme.color("border"))};
+      box-shadow: 0px 1px 4px ${lighten(0.1, theme.color("secondary"))};
     `;
   }
 

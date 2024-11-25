@@ -11,8 +11,11 @@
   },
   "dependencies": {
     "@maelstrom-futurism/button": "../packages/button",
+    "@maelstrom-futurism/core": "../packages/core",
+    "@maelstrom-futurism/input": "../packages/input",
     "@maelstrom-futurism/layout": "../packages/layout",
     "@maelstrom-futurism/paper": "../packages/paper",
+    "polished": "^4.3.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",

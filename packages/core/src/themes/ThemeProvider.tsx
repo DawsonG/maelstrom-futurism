@@ -4,19 +4,20 @@ import poppinsLight from './fonts/Poppins-Light.ttf';
 import poppinsMedium from './fonts/Poppins-Medium.ttf';
 import silkscreenMedium from './fonts/Silkscreen-Regular.ttf';
 import silkscreenBold from './fonts/Silkscreen-Bold.ttf';
-import Theme from './theme';
 
-const defaultValue = new Theme("User");
-const ThemeContext = createContext(defaultValue);
+import Theme from './theme';
+import { createTheme } from './createTheme';
+
+const ThemeContext = createContext(createTheme("nordDarkColors"));
 export const useTheme = () => useContext(ThemeContext);
 
 interface ThemeProviderProps {
-    theme?: Theme;
+    theme: Theme;
     children: ReactNode;
 }
 
 export const ThemeProvider = ({ theme, children }: ThemeProviderProps): JSX.Element => {
-    const themeValue = theme || new Theme("User");
+    const themeValue = theme;
 
     const globalStyles = css`
         html {
@@ -55,7 +56,7 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): JSX.Elem
         }
         body {
             margin: 0;
-            color: ${themeValue.color("text")};
+            color: ${themeValue.color("textColor")};
             background-color: ${themeValue.color("background")};
             font-family: Poppins;
         }

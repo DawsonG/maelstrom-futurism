@@ -1,9 +1,7 @@
 import React, { ReactNode, useRef } from "react";
 
-import debounce from "./utils/debounce";
-
 import { buttonStyle } from "./Button.styles";
-import { useTheme } from "@maelstrom-futurism/theme";
+import { useTheme, debounce } from "@maelstrom-futurism/core";
 import { css } from "@emotion/react";
 
 const scales = {

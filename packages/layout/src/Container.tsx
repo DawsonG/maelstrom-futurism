@@ -1,22 +1,30 @@
 import React, { ReactNode } from "react";
 import { css } from "@emotion/react";
-import { useTheme } from "@maelstrom-futurism/theme";
+import { useTheme } from "@maelstrom-futurism/core";
 
 interface ContainerProps {
   fluid?: boolean;
   children?: ReactNode;
   margin?: string;
+  maxWidth?: string;
   [rest: string]: any;
 };
 
-const Container = ({ fluid, children, margin, ...rest }: ContainerProps): JSX.Element => {
+const Container = ({ fluid, children, margin, maxWidth, ...rest }: ContainerProps): JSX.Element => {
   const theme = useTheme();
+  let fWidth;
+  if (fluid) {
+    fWidth = '100%';
+  }
+  if (maxWidth) {
+    fWidth = maxWidth;
+  }
 
   return (
     <div
       css={css`
         margin: ${margin ? margin : '0 auto'};
-        width: ${fluid ? "100%" : "1180px"};
+        width: ${fWidth};
 
         padding-left: 1rem;
         padding-right: 1rem;

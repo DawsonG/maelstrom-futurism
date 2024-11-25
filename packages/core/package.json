@@ -10,8 +10,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
-    "test": "jest"
+    "build": "tsc && npm run copy-files",
+    "clean": "rm -Rf ./dist",
+    "test": "jest",
+    "copy-files": "cp ./src/*.css ./dist"
   },
   "repository": {
     "type": "git",
