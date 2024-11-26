@@ -1,0 +1,46 @@
+{
+  "name": "@maelstrom-futurism/layout",
+  "version": "0.7.0",
+  "description": "Basic layout components of MF",
+  "keywords": [
+    "layout",
+    "grid",
+    "flexbox"
+  ],
+  "author": "Dawson Goodell <dawsong@osmstudios.com>",
+  "homepage": "http://www.osmstudios.com",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
+    "directory": "packages/layout"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --env=jsdom --passWithNoTests",
+    "test:cov": "npm run test --coverage"
+  },
+  "bugs": {
+    "url": "https://github.com/DawsonG/maelstrom-futurism/issues"
+  },
+  "dependencies": {
+    "@maelstrom-futurism/core": "*"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.10.5",
+    "react": ">= 18.0.0"
+  }
+}

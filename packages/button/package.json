@@ -1,0 +1,39 @@
+{
+  "name": "@maelstrom-futurism/button",
+  "version": "0.7.0",
+  "description": "A button (with very cool ripples!) for MF",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
+    "directory": "packages/button"
+  },
+  "keywords": [
+    "button",
+    "component",
+    "react"
+  ],
+  "author": "Dawson Goodell <dawsong@osmstudios.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DawsonG/maelstrom-futurism/issues"
+  },
+  "homepage": "https://github.com/DawsonG/maelstrom-futurism#readme",
+  "dependencies": {
+    "@maelstrom-futurism/core": "*"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.10.5",
+    "react": ">= 18.0.0"
+  }
+}

@@ -1,0 +1,123 @@
+@font-face {
+    font-family: "OpenSans";
+    src: url(./fonts/OpenSans-Regular.eot);
+    src: url(./fonts/OpenSans-Regular.eot) format("eot"),
+      url(./fonts/OpenSans-Regular.woff) format("woff"),
+      url(./fonts/OpenSans-Regular.ttf) format("truetype");
+  }
+
+  @font-face {
+    font-family: "Roboto";
+    src: url(./fonts/Roboto-Regular.eot);
+    src: url(./fonts/Roboto-Regular.eot) format("eot"), url(/fonts/Roboto-Regular.woff) format("woff"),
+      url(/fonts/Roboto-Regular.ttf) format("truetype");
+  }
+
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: OpenSans, Lato, Helvetica, sans-serif;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a {
+    color: #000;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    color: #16191F;
+}
+
+.container {
+    margin: 0 auto;
+    width: 1180px;
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media only screen and (max-width: 576px) {
+    .container {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .container {
+        max-width: 970px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .container {
+        max-width: 1180px;
+    }
+}
+
+.container-fluid {
+    margin: 0 auto;
+    width: 100%;
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.grid { 
+    width: 100%;
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-right: -0.5rem;
+    margin-left: -0.5rem;
+}
+
+.grid.space-between {
+    justify-content: space-between;
+}
+
+.grid.space-evenly {
+    justify-content: space-evenly;
+}
+
+button {
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 6px 5px 0px 0px;
+    border: none;
+    border-radius: 3px;
+
+    position: relative;
+    overflow: hidden;
+
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+}
+
+button.primary {
+    color: white;
+    background-color: #1FB6FF;
+}
+
+button.secondary {
+    color: white;
+    background-color: #5352ED;
+}

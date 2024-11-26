@@ -1,0 +1,34 @@
+{
+  "name": "@maelstrom-futurism/navbar",
+  "version": "1.0.0",
+  "description": "Navigation bar and styles",
+  "keywords": [
+    "navigation",
+    "navbar",
+    "top",
+    "navigation"
+  ],
+  "author": "Dawson Goodell <dawsong@osmstudios.com>",
+  "homepage": "https://osmstudios.com",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "main": "lib/navbar.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
+    "directory": "packages/navbar"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "tsc"
+  },
+  "bugs": {
+    "url": "https://github.com/DawsonG/maelstrom-futurism/issues"
+  }
+}

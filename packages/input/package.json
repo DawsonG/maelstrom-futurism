@@ -1,0 +1,44 @@
+{
+  "name": "@maelstrom-futurism/input",
+  "version": "1.0.0",
+  "description": "Re-usable input components of MF",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --env=jsdom --passWithNoTests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
+    "directory": "packages/input"
+  },
+  "keywords": [
+    "input",
+    "material-ui"
+  ],
+  "author": "Dawson Goodell <dawsong@osmstudios.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DawsonG/maelstrom-futurism/issues"
+  },
+  "homepage": "https://github.com/DawsonG/maelstrom-futurism#readme",
+  "dependencies": {
+    "@maelstrom-futurism/core": "*"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.10.5",
+    "react": ">= 18.0.0"
+  }
+}
