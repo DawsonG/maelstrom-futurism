@@ -1,10 +1,15 @@
 export enum Intensity {
     LOW,
     MEDIUM,
-    HIGH
+    HIGH,
 }
 
 export enum Direction {
+    COLUMN,
+    ROW,
+}
+
+export enum CardinalDirection {
     NORTH,
     NORTHEAST,
     EAST,
