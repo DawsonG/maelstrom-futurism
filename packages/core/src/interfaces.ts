@@ -4,9 +4,18 @@ export enum Intensity {
     HIGH,
 }
 
+export enum JustifyContent {
+    START = 'start',
+    CENTER = 'center',
+    END = 'end',
+    SPACE_BETWEEN = 'space-between',
+    SPACE_AROUND = 'space-around',
+    SPACE_EVENLY = 'space-evenly',
+}
+
 export enum Direction {
-    COLUMN,
-    ROW,
+    COLUMN = 'column',
+    ROW = 'row',
 }
 
 export enum CardinalDirection {
