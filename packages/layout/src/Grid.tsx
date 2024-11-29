@@ -2,7 +2,7 @@ import React, { HTMLAttributes } from "react";
 import { css } from "@emotion/react";
 import { Direction, JustifyContent } from "@maelstrom-futurism/core";
 
-interface GridProps extends HTMLAttributes<HTMLDivElement> {
+export interface GridProps extends HTMLAttributes<HTMLDivElement> {
   direction?: Direction;
   justifyContent?: JustifyContent;
 }
