@@ -27,9 +27,7 @@
     "build": "lerna run build --ignore src,website --no-private --stream",
     "test": "jest",
     "bootstrap": "lerna bootstrap",
-    "prepublishOnly": "npm run build",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
