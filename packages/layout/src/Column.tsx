@@ -1,8 +1,8 @@
+import { HTMLAttributes } from "react";
 import { css } from "@emotion/react";
-
 import { useTheme } from "@maelstrom-futurism/core";
 
-interface ColumnInterface {
+interface ColumnInterface extends HTMLAttributes<HTMLDivElement> {
   children?: any;
   xs?: number;
   sm?: number;

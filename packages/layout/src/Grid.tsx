@@ -1,8 +1,10 @@
-import React, { HTMLAttributes } from "react";
 import { css } from "@emotion/react";
-import { Direction, JustifyContent } from "@maelstrom-futurism/core";
+import { Box, BoxProps } from "@maelstrom-futurism/core";
 
-export interface GridProps extends HTMLAttributes<HTMLDivElement> {
+export type JustifyContent = 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly';
+export type Direction = 'column' | 'row';
+
+export interface GridProps extends Omit<BoxProps, 'css'> {
   direction?: Direction;
   justifyContent?: JustifyContent;
 }
@@ -18,7 +20,7 @@ const Grid = ({ children, direction, justifyContent, ...rest }: GridProps): JSX.
     margin-left: -0.5rem;
   `;
 
-  return <div css={gridStyle} {...rest}>{children}</div>;
+  return <Box css={gridStyle} {...rest}>{children}</Box>;
 }
   
 
