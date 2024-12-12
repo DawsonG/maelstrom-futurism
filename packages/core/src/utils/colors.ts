@@ -4,6 +4,16 @@ type TColor = {
   b: number;
 };
 
+export const isValidHex = (hex: string) => /^#(([0-9A-Fa-f]{2}){3,4}|[0-9A-Fa-f]{3})$/.test(hex);
+
+export const formatStringAsHexColor = (color: string) => {
+  let finalColor = color.startsWith('#') ? color : `#${color}`;
+  if (!isValidHex(finalColor)) 
+    throw new Error(`${color} cannot be made into a valid color hex code`);
+
+  return finalColor;
+};
+
 export const hexToDecimal = (color: string): TColor => {
   let trimmedColor = color;
   if (trimmedColor.startsWith("#")) {

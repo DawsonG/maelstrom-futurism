@@ -12,7 +12,7 @@
   "scripts": {
     "build": "tsc && npm run copy-files",
     "clean": "rm -Rf ./dist",
-    "test": "jest",
+    "test": "vitest",
     "copy-files": "cp -r ./src/*.css ./src/fonts ./dist"
   },
   "repository": {

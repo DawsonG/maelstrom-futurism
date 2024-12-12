@@ -1,9 +1,9 @@
 import React, { ReactNode, createContext, useContext } from 'react';
 import { Global, css } from '@emotion/react';
-import poppinsLight from './fonts/Poppins-Light.ttf';
-import poppinsMedium from './fonts/Poppins-Medium.ttf';
-import silkscreenMedium from './fonts/Silkscreen-Regular.ttf';
-import silkscreenBold from './fonts/Silkscreen-Bold.ttf';
+import poppinsLight from '../fonts/Poppins-Light.ttf';
+import poppinsMedium from '../fonts/Poppins-Medium.ttf';
+import silkscreenMedium from '../fonts/Silkscreen-Regular.ttf';
+import silkscreenBold from '../fonts/Silkscreen-Bold.ttf';
 
 import Theme from './theme';
 import { createTheme } from './createTheme';
@@ -63,6 +63,10 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): JSX.Elem
 
         h1, h2, h3, h4 {
             margin: ${themeValue.space[1]}px 0;
+        }
+        
+        a {
+            color: ${themeValue.color("linkColor")};
         }
     `;
 

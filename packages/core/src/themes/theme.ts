@@ -6,6 +6,7 @@ const defaultColors: ColorSet = {
   background: "#FFFFFF",
   content: "#FFFFFF",
   textColor: "#16191F",
+  linkColor: "#16191F",
   primary: "#88c0d0",
   secondary: "#B4B4B4",
   alert: "red",
