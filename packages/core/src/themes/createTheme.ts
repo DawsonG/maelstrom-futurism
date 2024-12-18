@@ -1,3 +1,4 @@
+import { ColorSet } from '../interfaces';
 import Theme from './theme';
 
 // This file should take a function that copies the default theme
@@ -6,6 +7,7 @@ import Theme from './theme';
 // Ideally, creating a theme could be done with a limited number of variables
 // like roundedness, shadow intensity, padding, and accent/base colors.
 // Animations may also be a good candidate for creating these.
+export type ColorSetName = 'nordDark' | 'nordLight';
 
 const nordDarkColors = {
     background: '#242933',
@@ -40,6 +42,25 @@ Aurora
 */
 };
 
-export const createTheme = (colorSetName: string) => {
-    return new Theme({ colorSet: nordDarkColors });
+const nordLightColors = {
+    background: '#242933',
+    content: '#2e3440',
+    textColor: '#eceff4',
+    linkColor: '#88c0d0',
+    primary: '#5e81ac',
+    secondary: '#81a1c1',
+    alert: '#bf616a',
+    warning: '#ebcb8b',
+    success: '#a3be8c',
+    info: '#5e81ac'
+
+};
+
+const NameToColorSetMap: Record<ColorSetName, ColorSet> = {
+    nordDark: nordDarkColors,
+    nordLight: nordLightColors,
+};
+
+export const createTheme = (colorSetName: ColorSetName) => {
+    return new Theme({ colorSet: NameToColorSetMap[colorSetName] });
 };
