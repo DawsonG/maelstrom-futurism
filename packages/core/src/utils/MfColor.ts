@@ -20,9 +20,9 @@ export default class MfColor {
                 .toLowerCase();
 
             if (this.colorNameMap[color]) {
-                hexColor = `#${this.colorNameMap[color]}`;
+                hexColor = this.colorNameMap[color];
             } else if (MfColor.isValidHex(`#${color}`)) {
-                hexColor = `#${color}`;
+                hexColor = color;
             } else if (this.isRgb(color) || this.isRgba(color)) {
                 const colorFromRgb = [...color.matchAll(/\d{1,3}/g)];
                 this._color = {
