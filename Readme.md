@@ -11,6 +11,7 @@
 * Highly reactive - since things don't move, it's important that they do react to user actions.  Buttons ripple, form fields light up, etc.
 * Simple typography with BOLD colors - actually, you know what, just pick whatever color.  We let you pick colors.  Typography is still simple though.
 * Rounded edges and organic flow - there is nothing worse than stubbing your line-of-sight on the corner of a table -- or button.
+* Only take what you need - each control is in it's own package so you can grab only what you need. (You also have to take Core because the other components rely on values it provides, but you get the idea.)
 
 ## License
 

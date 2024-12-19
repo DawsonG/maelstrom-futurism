@@ -1,12 +1,19 @@
-type TColor = {
+// Zero dependencies? Hell yeah!
+
+/**
+ * TColor is the real storage type used by MfColor. Manipulations and formatting
+ * are done against TColor and simply returned in the format requested by the user.
+ */
+export type TColor = {
     r: number;
     g: number;
     b: number;
     a?: number;
 };
 
-const trimLeft = /^[\s#]+/;
-const trimRight = /\s+$/;
+const TRIM_LEFT = /^[\s#]+/; // Remove spaces and '#' from start of figure
+const TRIM_RIGHT = /\s+$/;
+const COLOR_NUMBER_MATCH = /\d{1,3}/g; // Selects between 1 and 3 digits
 
 export default class MfColor {
     private _color: TColor;
@@ -14,25 +21,27 @@ export default class MfColor {
     constructor(colorStr: string | TColor) {
         let hexColor = '';
         if (Object.prototype.toString.call(colorStr) === '[object String]') {
-            const color = (colorStr as string)
-                .replace(trimLeft, '')
-                .replace(trimRight, '')
-                .toLowerCase();
+            const color = MfColor.normalizeHex(colorStr as string);
 
             if (this.colorNameMap[color]) {
                 hexColor = this.colorNameMap[color];
             } else if (MfColor.isValidHex(`#${color}`)) {
                 hexColor = color;
             } else if (this.isRgb(color) || this.isRgba(color)) {
-                const colorFromRgb = [...color.matchAll(/\d{1,3}/g)];
+                const colorFromRgb = [...color.matchAll(COLOR_NUMBER_MATCH)];
+
                 this._color = {
                     r: parseInt(colorFromRgb[0][0]),
                     g: parseInt(colorFromRgb[1][0]),
                     b: parseInt(colorFromRgb[2][0]),
                 };
+
+                if (colorFromRgb.length === 4) {
+                    this._color.a = parseInt(colorFromRgb[3][0]);
+                }
                 return;
             } else {
-                throw new Error(`Invalid parameter passed to create MfColor. ${color} is not a color`);
+                throw new Error(`Invalid parameter passed to create MfColor. "${colorStr}" is not a color`);
             }
         } else {
             this._color = colorStr as TColor;
@@ -96,14 +105,22 @@ export default class MfColor {
     /**
      * Checks to see if a passed value is formatted as an rgb string.
      * 
-     * Valid: rgb(250, 50, 50); rgb(50, 50, 50)
+     * Valid: rgb(250, 50, 50); rgb(50, 50, 50); rgb 40 139 10; 56 99 59; 255,255,255
      * Invalid: rgba(250, 250, 250, 50), #ff0000
      * 
      * @param value any string
      * @returns whether or not a given string is an rgb string
      */
     private isRgb(value: string): boolean {
-        return value.startsWith('rgb') && !value.startsWith('rgba');
+        const colorFromValue = [...value.matchAll(COLOR_NUMBER_MATCH)];
+        if (colorFromValue.length !== 3) return false;
+        for (const index in colorFromValue) {
+            if (parseInt(colorFromValue[index][0]) > 255 || parseInt(colorFromValue[index][0]) < 0) {
+                return false;    
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -116,7 +133,28 @@ export default class MfColor {
      * @returns whether or not a given string is an rgba string
      */
     private isRgba(value: string): boolean {
-        return value.startsWith('rgba');
+        const colorFromValue = [...value.matchAll(COLOR_NUMBER_MATCH)];
+        if (colorFromValue.length !== 4) return false;
+        for (const index in colorFromValue) {
+            if (parseInt(colorFromValue[index][0]) > 255 || parseInt(colorFromValue[index][0]) < 0) {
+                return false;    
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Takes user input and removed # or spaces and converts to lowercase.
+     * 
+     * @param value a presumed hex color value
+     * @returns a hex code without # or spaces
+     */
+    private static normalizeHex(value: string): string {
+        return value
+            .replace(TRIM_LEFT, '')
+            .replace(TRIM_RIGHT, '')
+            .toLowerCase();
     }
 
     /* ---------------------------------------
@@ -135,14 +173,14 @@ export default class MfColor {
     }
 
     /**
-     * 
+     * Converts a valid hexadecimal string color identifier with or without
+     * a # into a TColor object.
      * 
      * @param color a hexadecimal color identifier
      * @returns a TColor { r, g, b, a? } object
      */
     static hexToTColor = (color: string): TColor => {
-        let trimmedColor = color
-            .replace(trimLeft, '');
+        let trimmedColor = MfColor.normalizeHex(color);
 
         const rgb = [
             trimmedColor.substring(0, 2),
@@ -331,3 +369,31 @@ export default class MfColor {
         yellowgreen: '9acd32'
     }
 }
+
+/*
+change brightness
+export const lightenDarkenColor = (color: string, amount: number) => {
+  if (color[0] == "#") {
+    color = color.slice(1);
+  }
+
+  var num = parseInt(color, 16);
+
+  var r = (num >> 16) + amount;
+
+  if (r > 255) r = 255;
+  else if (r < 0) r = 0;
+
+  var b = ((num >> 8) & 0x00ff) + amount;
+
+  if (b > 255) b = 255;
+  else if (b < 0) b = 0;
+
+  var g = (num & 0x0000ff) + amount;
+
+  if (g > 255) g = 255;
+  else if (g < 0) g = 0;
+
+  return "#" + (g | (b << 8) | (r << 16)).toString(16);
+};
+*/

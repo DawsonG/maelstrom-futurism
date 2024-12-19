@@ -39,6 +39,7 @@
     "@emotion/babel-plugin": "^11.3.0",
     "@emotion/react": "^11.1.4",
     "@testing-library/react": "^13.4.0",
+    "@vitest/coverage-v8": "^2.1.8",
     "cross-env": "^7.0.3",
     "lerna": "^8.1.8",
     "react": "^18.2.0",
