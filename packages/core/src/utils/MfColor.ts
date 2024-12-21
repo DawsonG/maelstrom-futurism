@@ -11,6 +11,16 @@ export type RgbaColor = {
     a?: number;
 };
 
+/**
+ * HslColor is used for certain kinds of color manipulation.
+ */
+export type HslColor = {
+    h: number;
+    s: number;
+    l: number;
+    a?: number;
+};
+
 const TRIM_LEFT = /^[\s#]+/; // Remove spaces and '#' from start of figure
 const TRIM_RIGHT = /\s+$/;
 const RGB_NUMBER_MATCH = /rgba?[\( ]?(?<r>[01]?\d\d?|2[0-4]\d|25[0-5])\W+(?<g>[01]?\d\d?|2[0-4]\d|25[0-5])\W+(?<b>[01]?\d\d?|2[0-4]\d|25[0-5])\)?$/g;
@@ -27,7 +37,6 @@ export default class MfColor {
     constructor(colorStr: string | RgbaColor) {
         if (isString(colorStr)) {
             let hexColor = '';
-            // red tan
             const color = MfColor.normalizeHex(colorStr as string);
 
             if (this.colorNameMap[color]) {
@@ -103,6 +112,41 @@ export default class MfColor {
         return undefined;
     }
 
+    public toHsla(): HslColor {
+        const r = this._color.r / 255;
+        const g = this._color.g / 255;
+        const b = this._color.b / 255;
+
+        const min = Math.min(r, g, b);
+        const max = Math.max(r, g, b);
+        const delta = max - min;
+
+        let h = (max + min) / 2;
+        let s = h;
+        let l = h;
+
+        if (delta === 0) {
+            // Achromatic
+            return { h: 0, s: 0, l };
+        }
+        
+        s = l > 0.5 ? delta / (2 - max - min) : delta / (max + min);
+        switch (max) {
+            case r:
+                h = (g - b) / delta + (g < b ? 6 : 0);
+                break;
+            case g:
+                h = (b - r) / delta + 2;
+                break;
+            case b:
+                h = (r - g) / delta + 4;
+                break;
+        }
+        
+        
+        return { h, s, l };
+    }
+
     /**
      * Retrieve the color that was set when MfColor was created, before any manipulations.
      * 
@@ -163,7 +207,7 @@ export default class MfColor {
     /**
      * Checks to see if a passed value is formatted as an rgb string.
      * 
-     * Valid: rgb(250, 50, 50); rgb(50, 50, 50); rgb 40 139 10; 56 99 59; 255,255,255
+     * Valid: rgb(250, 50, 50); rgb(50, 50, 50); rgb 40 139 10; 56 99 59
      * Invalid: rgba(250, 250, 250, 50), #ff0000
      * 
      * @param value any string
@@ -189,6 +233,7 @@ export default class MfColor {
      */
     private isRgba(value: string): boolean {
         const colorGroups = new RegExp(RGBA_NUMBER_MATCH).exec(value)?.groups;
+
         if (!colorGroups || Object.keys(colorGroups).length !== 4) return false;
         ['r', 'g', 'b'].forEach(key => colorGroups[key] && testInRange(parseInt(colorGroups[key]), 0, 255));
         return testInRange(parseFloat(colorGroups.a), 0, 1);
