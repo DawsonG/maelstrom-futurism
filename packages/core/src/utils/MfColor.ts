@@ -1,10 +1,10 @@
 // Zero dependencies? Hell yeah!
 
 /**
- * TColor is the real storage type used by MfColor. Manipulations and formatting
- * are done against TColor and simply returned in the format requested by the user.
+ * RgbaColor is the real storage type used by MfColor. Manipulations and formatting
+ * are done against RgbaColor and simply returned in the format requested by the user.
  */
-export type TColor = {
+export type RgbaColor = {
     r: number;
     g: number;
     b: number;
@@ -16,9 +16,9 @@ const TRIM_RIGHT = /\s+$/;
 const COLOR_NUMBER_MATCH = /\d{1,3}/g; // Selects between 1 and 3 digits
 
 export default class MfColor {
-    private _color: TColor;
+    private _color: RgbaColor;
 
-    constructor(colorStr: string | TColor) {
+    constructor(colorStr: string | RgbaColor) {
         let hexColor = '';
         if (Object.prototype.toString.call(colorStr) === '[object String]') {
             const color = MfColor.normalizeHex(colorStr as string);
@@ -44,11 +44,11 @@ export default class MfColor {
                 throw new Error(`Invalid parameter passed to create MfColor. "${colorStr}" is not a color`);
             }
         } else {
-            this._color = colorStr as TColor;
+            this._color = colorStr as RgbaColor;
             return;
         }
 
-        this._color = MfColor.hexToTColor(hexColor);
+        this._color = MfColor.hexToRgbaColor(hexColor);
     }
 
     public toHex(): string {
@@ -65,7 +65,7 @@ export default class MfColor {
         return `rgb(${r}, ${g}, ${b})`;
     }
 
-    public toColor(): TColor {
+    public toColor(): RgbaColor {
         return this._color;
     }
 
@@ -174,12 +174,12 @@ export default class MfColor {
 
     /**
      * Converts a valid hexadecimal string color identifier with or without
-     * a # into a TColor object.
+     * a # into a RgbaColor object.
      * 
      * @param color a hexadecimal color identifier
-     * @returns a TColor { r, g, b, a? } object
+     * @returns a RgbaColor { r, g, b, a? } object
      */
-    static hexToTColor = (color: string): TColor => {
+    static hexToRgbaColor = (color: string): RgbaColor => {
         let trimmedColor = MfColor.normalizeHex(color);
 
         const rgb = [
@@ -188,7 +188,7 @@ export default class MfColor {
             trimmedColor.substring(4, 6),
         ];
 
-        const colorObj: TColor = {
+        const colorObj: RgbaColor = {
             r: parseInt(rgb[0], 16),
             g: parseInt(rgb[1], 16),
             b: parseInt(rgb[2], 16),
