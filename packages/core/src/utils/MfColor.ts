@@ -17,10 +17,11 @@ const COLOR_NUMBER_MATCH = /\d{1,3}/g; // Selects between 1 and 3 digits
 
 export default class MfColor {
     private _color: RgbaColor;
+    private readonly _originalColor: RgbaColor;
 
     constructor(colorStr: string | RgbaColor) {
-        let hexColor = '';
         if (Object.prototype.toString.call(colorStr) === '[object String]') {
+            let hexColor = '';
             const color = MfColor.normalizeHex(colorStr as string);
 
             if (this.colorNameMap[color]) {
@@ -39,16 +40,18 @@ export default class MfColor {
                 if (colorFromRgb.length === 4) {
                     this._color.a = parseInt(colorFromRgb[3][0]);
                 }
+                this._originalColor = { ...this._color };
                 return;
             } else {
                 throw new Error(`Invalid parameter passed to create MfColor. "${colorStr}" is not a color`);
             }
+
+            this._color = MfColor.hexToRgbaColor(hexColor);
         } else {
             this._color = colorStr as RgbaColor;
-            return;
         }
-
-        this._color = MfColor.hexToRgbaColor(hexColor);
+        
+        this._originalColor = { ...this._color }; // copy the color this was created with
     }
 
     public toHex(): string {
@@ -71,7 +74,7 @@ export default class MfColor {
 
     public toName(): string | undefined {
         if (this.toHex().toLowerCase().length > 7) {
-            // No rgba values have an alpha identifier
+            // No rgba values have a name identifier
             return undefined;
         }
 
@@ -86,6 +89,15 @@ export default class MfColor {
     }
 
     /**
+     * Retrieve the color that was set when MfColor was created, before any manipulations.
+     * 
+     * @returns the original color that MfColor object was created with
+     */
+    public getOriginalColor(): MfColor {
+        return new MfColor(this._originalColor);
+    }
+
+    /**
      * The perceived brightness of a given color as modeled by w3
      * https://www.w3.org/TR/AERT/#color-contrast.  These are approximations
      * that miss a lot of nuance (see https://stackoverflow.com/a/56678483)
@@ -96,6 +108,37 @@ export default class MfColor {
     public getBrightness(): number {
         const { r, g, b } = this._color;
         return (r * 299 + g * 587 + b * 114) / 1000;
+    }
+
+    /**
+     * Darken the base MfColor
+     * 
+     * @param amount value between 0 and 1 
+     */
+    public darken(percent: number) {
+        if (percent > 1 || percent < 0) {
+            throw new Error(`${percent} is not a value between 0 and 1`);
+        }
+        this.lightenDarken(-percent);
+    }
+
+    /**
+     * Lighten the base MfColor
+     * 
+     * @param amount value between 0 and 1 
+     */
+    public lighten(percent: number) {
+        if (percent > 1 || percent < 0) {
+            throw new Error(`${percent} is not a value between 0 and 1`);
+        }
+        this.lightenDarken(percent);
+    }
+
+    /**
+     * Reverts ALL changes made to a given MfColor
+     */
+    public revert() {
+        this._color = { ...this._originalColor };
     }
 
     /* ---------------------------------------
@@ -155,6 +198,27 @@ export default class MfColor {
             .replace(TRIM_LEFT, '')
             .replace(TRIM_RIGHT, '')
             .toLowerCase();
+    }
+
+    /**
+     * Lighten or darken a given color. Used through the public lighten or darken
+     * functions.
+     * 
+     * @param percentage a number between -1 and 1 to darken (-) or lighten (+)
+     */
+    private lightenDarken(percentage: number) {
+        let { r, g, b, a } = this._color;
+
+        // const amount = Math.floor(255 * percentage);
+        r += Math.round(r * percentage);
+        g += Math.round(g * percentage);
+        b += Math.round(b * percentage);
+        
+        r = Math.max(Math.min(255, r), 0);
+        g = Math.max(Math.min(255, g), 0);
+        b = Math.max(Math.min(255, b), 0);
+
+        this._color = { r, g, b, a };
     }
 
     /* ---------------------------------------
@@ -369,31 +433,3 @@ export default class MfColor {
         yellowgreen: '9acd32'
     }
 }
-
-/*
-change brightness
-export const lightenDarkenColor = (color: string, amount: number) => {
-  if (color[0] == "#") {
-    color = color.slice(1);
-  }
-
-  var num = parseInt(color, 16);
-
-  var r = (num >> 16) + amount;
-
-  if (r > 255) r = 255;
-  else if (r < 0) r = 0;
-
-  var b = ((num >> 8) & 0x00ff) + amount;
-
-  if (b > 255) b = 255;
-  else if (b < 0) b = 0;
-
-  var g = (num & 0x0000ff) + amount;
-
-  if (g > 255) g = 255;
-  else if (g < 0) g = 0;
-
-  return "#" + (g | (b << 8) | (r << 16)).toString(16);
-};
-*/

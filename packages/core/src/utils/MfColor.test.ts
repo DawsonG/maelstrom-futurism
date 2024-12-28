@@ -32,7 +32,7 @@ describe('MfColor', () => {
             ['an rgb string', 'rgb(200, 200, 200)', '#c8c8c8', 'rgb(200, 200, 200)', { r: 200, g: 200, b: 200 }, undefined],
             ['an rgb string without punctuation', 'rgb 255 0 0', '#ff0000', 'rgb(255, 0, 0)', { r: 255, g: 0, b: 0 }, 'red'],
             ['an rgb string with mixed punctuation', 'rgb 55,55,55', '#373737', 'rgb(55, 55, 55)', { r: 55, g: 55, b: 55 }, undefined],
-            ['an rgba string with alpha', 'rgb 55 55 55 55', '#37373737', 'rgba(55, 55, 55, 55)', { r: 55, g: 55, b: 55, a: 55 }, undefined],
+            ['an unformatted rgba string with alpha', 'rgb 55 55 55 55', '#37373737', 'rgba(55, 55, 55, 55)', { r: 55, g: 55, b: 55, a: 55 }, undefined],
             ['an rgba string with alpha', 'rgba(200, 200, 200, 10)', '#c8c8c80a', 'rgba(200, 200, 200, 10)', { r: 200, g: 200, b: 200, a: 10 }, undefined],
         ];
 
@@ -70,6 +70,53 @@ describe('MfColor', () => {
     test('it returns a brightness value', () => {
         const color = new MfColor('#aaff00');
         expect(color.getBrightness()).toBe(200.515);
+    });
+
+    describe('manipulations', () => {
+        describe('lightenDarken', () => {
+            test('it lightens a color by a given amount', () => {
+                const color = new MfColor('#ababab');
+                color.lighten(0.4);
+                // #ababab
+                // #efefef
+                expect(color.toHex()).toBe('#efefef');
+            });
+
+            test('it darkens a color by a given amount', () => {
+                const color = new MfColor('#ababab');
+                color.darken(0.4);
+                // #ababab
+                // #676767
+                expect(color.toHex()).toBe('#676767');
+            });
+
+            test('it throws an error if passed an an out of range percentage', () => {
+                const color = new MfColor('#ababab');
+                expect(() => color.darken(4))
+                    .toThrow(new Error('4 is not a value between 0 and 1'));
+                expect(() => color.darken(-1))
+                    .toThrow(new Error('-1 is not a value between 0 and 1'));
+                expect(() => color.lighten(5))
+                    .toThrow(new Error('5 is not a value between 0 and 1'));
+                    expect(() => color.lighten(-1))
+                    .toThrow(new Error('-1 is not a value between 0 and 1'));
+            });
+        });
+
+        test('it returns the initial color after manipulations', () => {
+            const color = new MfColor('#ababab');
+            color.darken(0.4);
+            expect(color.toHex()).toBe('#676767');
+            expect(color.getOriginalColor().toHex()).toBe('#ababab');
+        });
+
+        test('it reverts to the initial color after manipulations', () => {
+            const color = new MfColor('#ababab');
+            color.darken(0.4);
+            expect(color.toHex()).toBe('#676767');
+            color.revert();
+            expect(color.toHex()).toBe('#ababab');
+        });
     });
 
     describe('statics', () => {
