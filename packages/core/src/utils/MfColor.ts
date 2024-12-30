@@ -51,7 +51,7 @@ export default class MfColor {
                     r: parseInt(colorFromRgb.r),
                     g: parseInt(colorFromRgb.g),
                     b: parseInt(colorFromRgb.b),
-                    a: Math.round(parseFloat(colorFromRgb.a) * 255)
+                    a: parseFloat(colorFromRgb.a)
                 };
                 this._originalColor = { ...this._color };
                 return;
@@ -70,7 +70,7 @@ export default class MfColor {
     public toHex(): string {
         const { r, g, b, a } = this._color;
 
-        return `#${MfColor.decimalToHex(r)}${MfColor.decimalToHex(g)}${MfColor.decimalToHex(b)}${a !== undefined ? MfColor.decimalToHex(a) : ''}`;
+        return `#${MfColor.decimalToHex(r)}${MfColor.decimalToHex(g)}${MfColor.decimalToHex(b)}${a !== undefined ? MfColor.decimalToHex(a * 255) : ''}`;
     }
 
     public toRgba(): string {
@@ -79,7 +79,7 @@ export default class MfColor {
             // To avoid losses on multiple conversions alpha values
             // are stored as 0 - 255 values.  The rgba function requires
             // 0 - 1 so we need to use our converter.
-            return `rgba(${r}, ${g}, ${b}, ${MfColor.hexAlphaToRgbAlpha(a)})`;
+            return `rgba(${r}, ${g}, ${b}, ${a})`;
         }
         return `rgb(${r}, ${g}, ${b})`;
     }
@@ -170,7 +170,6 @@ export default class MfColor {
      */
     private isRgb(value: string): boolean {
         const colorGroups = new RegExp(RGB_NUMBER_MATCH).exec(value)?.groups;
-        console.log(value, colorGroups);
 
         if (!colorGroups || Object.keys(colorGroups).length !== 3) return false;
         ['r', 'g', 'b'].forEach(key => colorGroups[key] && testInRange(parseInt(colorGroups[key]), 0, 255));
@@ -208,24 +207,6 @@ export default class MfColor {
     }
 
     /**
-     * Converts a Hex Alpha value to a Rgba Alpha value. In hex, alpha values run
-     * between 00 and FF (0-255) but the rgba css function is built to take only
-     * 0 - 1.  So we need to find the percentage of 255 used and return it.
-     * 
-     * @returns 0 - 1 percentage of opacity
-     */
-    private static hexAlphaToRgbAlpha(hex: string | number): number {
-        let rgbA;
-        if (isString(hex)) {
-            rgbA = parseInt(this.normalizeHex(hex as string), 16); // FF -> 255
-        } else {
-            rgbA = hex as number;
-        }
-     
-        return parseFloat((rgbA / 255).toFixed(4));
-    }
-
-    /**
      * Lighten or darken a given color. Used through the public lighten or darken
      * functions.
      * 
@@ -256,10 +237,8 @@ export default class MfColor {
      * @param num any decimal number
      * @returns a decimal string with 2 or more digits
      */
-    static decimalToHex =  (num: number): string => {
-        const raw = num.toString(16);
-        return raw.length == 1 ? `0${raw}` : raw;
-    }
+    static decimalToHex =  (num: number): string => 
+        Math.round(num).toString(16).padStart(2, '0');
 
     /**
      * Converts a valid hexadecimal string color identifier with or without
@@ -283,7 +262,7 @@ export default class MfColor {
         };
 
         if (trimmedColor.length > 7) {
-            colorObj.a = parseInt(trimmedColor.substring(6, 8), 16);
+            colorObj.a = parseFloat((parseInt(trimmedColor.substring(6, 8), 16) / 255).toFixed(4));
         }
 
         return colorObj;

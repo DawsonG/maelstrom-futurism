@@ -25,17 +25,17 @@ describe('MfColor', () => {
             ['color name', 'red', '#ff0000', 'rgb(255, 0, 0)', { r: 255, g: 0, b: 0 }, 'red'],
         //  ['an abbreviated hex number', '#fff', '#ffffff', 'rgb(255, 255, 255)', { r: 255, g: 255, b: 255 }, 'white'],
         //  ['an abbreviated, unformatted hex number', 'fff', '#ffffff', 'rgb(255, 255, 255)', { r: 255, g: 255, b: 255 }, 'white'],
-            ['a hex color with full alpha', '#ffffffff', '#ffffffff', 'rgba(255, 255, 255, 1)', { r: 255, g: 255, b: 255, a: 255 }, 'white'],
+            ['a hex color with full alpha', '#ffffffff', '#ffffffff', 'rgba(255, 255, 255, 1)', { r: 255, g: 255, b: 255, a: 1 }, 'white'],
             ['a hex color with no alpha', '#ffffff00', '#ffffff00', 'rgba(255, 255, 255, 0)', { r: 255, g: 255, b: 255, a: 0 }, 'white'],
-            ['an unformatted hex color with alpha', 'ffffffaa', '#ffffffaa', 'rgba(255, 255, 255, 0.6667)', { r: 255, g: 255, b: 255, a: 170 }, 'white'],
-            ['a hex color with alpha', '#ffffffaa', '#ffffffaa', 'rgba(255, 255, 255, 0.6667)', { r: 255, g: 255, b: 255, a: 170 }, 'white'],
+            ['an unformatted hex color with alpha', 'ffffffaa', '#ffffffaa', 'rgba(255, 255, 255, 0.6667)', { r: 255, g: 255, b: 255, a: 0.6667 }, 'white'],
+            ['a hex color with alpha', '#ffffffaa', '#ffffffaa', 'rgba(255, 255, 255, 0.6667)', { r: 255, g: 255, b: 255, a: 0.6667 }, 'white'],
             ['a hex string', '#ff0000', '#ff0000', 'rgb(255, 0, 0)', { r: 255, g: 0, b: 0 }, 'red'],
             ['an unformated hex string', 'ff0000', '#ff0000', 'rgb(255, 0, 0)', { r: 255, g: 0, b: 0 }, 'red'],
             ['an rgb string', 'rgb(200, 200, 200)', '#c8c8c8', 'rgb(200, 200, 200)', { r: 200, g: 200, b: 200 }, undefined],
             ['an rgb string without punctuation', 'rgb 255 0 0', '#ff0000', 'rgb(255, 0, 0)', { r: 255, g: 0, b: 0 }, 'red'],
             ['an rgb string with mixed punctuation', 'rgb 55,55,55', '#373737', 'rgb(55, 55, 55)', { r: 55, g: 55, b: 55 }, undefined],
-            ['an unformatted rgba string with alpha', 'rgb 55 55 55 0.225', '#37373739', 'rgba(55, 55, 55, 0.2235)', { r: 55, g: 55, b: 55, a: 57 }, undefined],
-            ['an rgba string with alpha', 'rgba(200, 200, 200, 0.05)', '#c8c8c80d', 'rgba(200, 200, 200, 0.051)', { r: 200, g: 200, b: 200, a: 13 }, undefined],
+            ['an unformatted rgba string with alpha', 'rgb 55 55 55 0.225', '#37373739', 'rgba(55, 55, 55, 0.225)', { r: 55, g: 55, b: 55, a: 0.225 }, undefined],
+            ['an rgba string with alpha', 'rgba(200, 200, 200, 0.05)', '#c8c8c80d', 'rgba(200, 200, 200, 0.05)', { r: 200, g: 200, b: 200, a: 0.05 }, undefined],
         ];
 
         testCases.forEach(testCase => {
