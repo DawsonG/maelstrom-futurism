@@ -25,7 +25,7 @@
   "license": "MIT",
   "scripts": {
     "build": "lerna run build --ignore src,website --no-private --stream",
-    "test": "jest",
+    "test": "lerna run test --ignore src,website --no-private --stream",
     "bootstrap": "lerna bootstrap",
     "prepublishOnly": "npm run build"
   },
