@@ -13,14 +13,19 @@ export type RgbaColor = {
 
 const TRIM_LEFT = /^[\s#]+/; // Remove spaces and '#' from start of figure
 const TRIM_RIGHT = /\s+$/;
-const COLOR_NUMBER_MATCH = /\d{1,3}/g; // Selects between 1 and 3 digits
+const RGB_NUMBER_MATCH = /rgba?[\( ]?(?<r>[01]?\d\d?|2[0-4]\d|25[0-5])\W+(?<g>[01]?\d\d?|2[0-4]\d|25[0-5])\W+(?<b>[01]?\d\d?|2[0-4]\d|25[0-5])\)?$/g;
+const RGBA_NUMBER_MATCH = /rgba?[\( ]?(?<r>[01]?\d\d?|2[0-4]\d|25[0-5])\W+(?<g>[01]?\d\d?|2[0-4]\d|25[0-5])\W+(?<b>[01]?\d\d?|2[0-4]\d|25[0-5])\W+(?<a>0?\.\d+|[0-1])\)?$/g;
+
+// Single line utility functions
+const isString = (testValue: any): boolean => Object.prototype.toString.call(testValue) === "[object String]";
+const testInRange = (num: number, min: number, max: number) => num >= min && num <= max;
 
 export default class MfColor {
     private _color: RgbaColor;
     private readonly _originalColor: RgbaColor;
 
     constructor(colorStr: string | RgbaColor) {
-        if (Object.prototype.toString.call(colorStr) === '[object String]') {
+        if (isString(colorStr)) {
             let hexColor = '';
             const color = MfColor.normalizeHex(colorStr as string);
 
@@ -28,18 +33,26 @@ export default class MfColor {
                 hexColor = this.colorNameMap[color];
             } else if (MfColor.isValidHex(`#${color}`)) {
                 hexColor = color;
-            } else if (this.isRgb(color) || this.isRgba(color)) {
-                const colorFromRgb = [...color.matchAll(COLOR_NUMBER_MATCH)];
+            } else if (this.isRgb(color)) {
+                const colorFromRgb = new RegExp(RGB_NUMBER_MATCH).exec(color)?.groups!;
 
                 this._color = {
-                    r: parseInt(colorFromRgb[0][0]),
-                    g: parseInt(colorFromRgb[1][0]),
-                    b: parseInt(colorFromRgb[2][0]),
+                    r: parseInt(colorFromRgb.r),
+                    g: parseInt(colorFromRgb.g),
+                    b: parseInt(colorFromRgb.b),
                 };
 
-                if (colorFromRgb.length === 4) {
-                    this._color.a = parseInt(colorFromRgb[3][0]);
-                }
+                this._originalColor = { ...this._color };
+                return
+            } else if (this.isRgba(color)) {
+                const colorFromRgb = new RegExp(RGBA_NUMBER_MATCH).exec(color)?.groups!;
+
+                this._color = {
+                    r: parseInt(colorFromRgb.r),
+                    g: parseInt(colorFromRgb.g),
+                    b: parseInt(colorFromRgb.b),
+                    a: Math.round(parseFloat(colorFromRgb.a) * 255)
+                };
                 this._originalColor = { ...this._color };
                 return;
             } else {
@@ -62,8 +75,11 @@ export default class MfColor {
 
     public toRgba(): string {
         const { r, g, b, a } = this._color;
-        if (a) {
-            return `rgba(${r}, ${g}, ${b}, ${a})`;
+        if (a !== undefined) {
+            // To avoid losses on multiple conversions alpha values
+            // are stored as 0 - 255 values.  The rgba function requires
+            // 0 - 1 so we need to use our converter.
+            return `rgba(${r}, ${g}, ${b}, ${MfColor.hexAlphaToRgbAlpha(a)})`;
         }
         return `rgb(${r}, ${g}, ${b})`;
     }
@@ -73,13 +89,11 @@ export default class MfColor {
     }
 
     public toName(): string | undefined {
-        if (this.toHex().toLowerCase().length > 7) {
-            // No rgba values have a name identifier
-            return undefined;
-        }
+        // remove pound and alpha values
+        let hex = this.toHex().toLowerCase().substring(1, 7);
 
         for (const [key, value] of Object.entries(this.colorNameMap)) {
-            if (value.toLowerCase() === this.toHex().toLowerCase().substring(1)) {
+            if (value.toLowerCase() === hex) {
                 return key;
             }
         }
@@ -155,14 +169,12 @@ export default class MfColor {
      * @returns whether or not a given string is an rgb string
      */
     private isRgb(value: string): boolean {
-        const colorFromValue = [...value.matchAll(COLOR_NUMBER_MATCH)];
-        if (colorFromValue.length !== 3) return false;
-        for (const index in colorFromValue) {
-            if (parseInt(colorFromValue[index][0]) > 255 || parseInt(colorFromValue[index][0]) < 0) {
-                return false;    
-            }
-        }
+        const colorGroups = new RegExp(RGB_NUMBER_MATCH).exec(value)?.groups;
+        console.log(value, colorGroups);
 
+        if (!colorGroups || Object.keys(colorGroups).length !== 3) return false;
+        ['r', 'g', 'b'].forEach(key => colorGroups[key] && testInRange(parseInt(colorGroups[key]), 0, 255));
+        if (colorGroups.a !== undefined) return false; // this should fail this but pass isRgba
         return true;
     }
 
@@ -176,18 +188,13 @@ export default class MfColor {
      * @returns whether or not a given string is an rgba string
      */
     private isRgba(value: string): boolean {
-        const colorFromValue = [...value.matchAll(COLOR_NUMBER_MATCH)];
-        if (colorFromValue.length !== 4) return false;
-        for (const index in colorFromValue) {
-            if (parseInt(colorFromValue[index][0]) > 255 || parseInt(colorFromValue[index][0]) < 0) {
-                return false;    
-            }
-        }
-
-        return true;
+        const colorGroups = new RegExp(RGBA_NUMBER_MATCH).exec(value)?.groups;
+        if (!colorGroups || Object.keys(colorGroups).length !== 4) return false;
+        ['r', 'g', 'b'].forEach(key => colorGroups[key] && testInRange(parseInt(colorGroups[key]), 0, 255));
+        return testInRange(parseFloat(colorGroups.a), 0, 1);
     }
 
-    /**
+    /** 
      * Takes user input and removed # or spaces and converts to lowercase.
      * 
      * @param value a presumed hex color value
@@ -198,6 +205,24 @@ export default class MfColor {
             .replace(TRIM_LEFT, '')
             .replace(TRIM_RIGHT, '')
             .toLowerCase();
+    }
+
+    /**
+     * Converts a Hex Alpha value to a Rgba Alpha value. In hex, alpha values run
+     * between 00 and FF (0-255) but the rgba css function is built to take only
+     * 0 - 1.  So we need to find the percentage of 255 used and return it.
+     * 
+     * @returns 0 - 1 percentage of opacity
+     */
+    private static hexAlphaToRgbAlpha(hex: string | number): number {
+        let rgbA;
+        if (isString(hex)) {
+            rgbA = parseInt(this.normalizeHex(hex as string), 16); // FF -> 255
+        } else {
+            rgbA = hex as number;
+        }
+     
+        return parseFloat((rgbA / 255).toFixed(4));
     }
 
     /**
@@ -245,7 +270,6 @@ export default class MfColor {
      */
     static hexToRgbaColor = (color: string): RgbaColor => {
         let trimmedColor = MfColor.normalizeHex(color);
-
         const rgb = [
             trimmedColor.substring(0, 2),
             trimmedColor.substring(2, 4),
