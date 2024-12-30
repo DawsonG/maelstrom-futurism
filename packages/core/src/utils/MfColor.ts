@@ -77,12 +77,18 @@ export default class MfColor {
         this._originalColor = { ...this._color }; // copy the color this was created with
     }
 
+    /**
+     * @returns the current color as a Hex string (#000000)
+     */
     public toHex(): string {
         const { r, g, b, a } = this._color;
 
         return `#${MfColor.decimalToHex(r)}${MfColor.decimalToHex(g)}${MfColor.decimalToHex(b)}${a !== undefined ? MfColor.decimalToHex(a * 255) : ''}`;
     }
 
+    /**
+     * @returns the current color as a RGB/RGBA string (rgb(255, 255, 255), rgba(255, 255, 255, 0.2))
+     */
     public toRgba(): string {
         const { r, g, b, a } = this._color;
         if (a !== undefined) {
@@ -94,10 +100,16 @@ export default class MfColor {
         return `rgb(${r}, ${g}, ${b})`;
     }
 
+    /**
+     * @returns the raw RgbaColor stored in the MfColor object
+     */
     public toColor(): RgbaColor {
         return this._color;
     }
 
+    /**
+     * @returns a CSS color name string or undefined if the color is unnamed
+     */
     public toName(): string | undefined {
         // remove pound and alpha values
         let hex = this.toHex().toLowerCase().substring(1, 7);
@@ -112,6 +124,9 @@ export default class MfColor {
         return undefined;
     }
 
+    /**
+     * @returns the stored color as an Hsla value
+     */
     public toHsla(): HslColor {
         const r = this._color.r / 255;
         const g = this._color.g / 255;
