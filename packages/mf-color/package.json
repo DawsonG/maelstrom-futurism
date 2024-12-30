@@ -1,0 +1,25 @@
+{
+  "name": "@maelstrom-futurism/mf-color",
+  "version": "0.7.0",
+  "description": "Color handling object for improving appearance in MF apps",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -Rf ./dist",
+    "test": "vitest run --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DawsonG/maelstrom-futurism.git"
+  },
+  "keywords": [
+    "maelstrom-futurism",
+    "color"
+  ],
+  "author": "Dawson Goodell <dawsong@osmstudios.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DawsonG/maelstrom-futurism/issues"
+  },
+  "homepage": "https://github.com/DawsonG/maelstrom-futurism#readme"
+}
