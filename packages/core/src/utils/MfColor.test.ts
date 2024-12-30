@@ -4,27 +4,11 @@ import MfColor from './MfColor';
 
 describe('MfColor', () => {
     describe('constructor', () => {
-        /*
-        red ✓
-        #fff
-        fff
-      #ff0000 ✓
-        ff0000 ✓
-        ffffffaa ✓
-    #ffffffaa ✓
-    #ffffff00 
-        rgb(200, 200, 200) ✓
-        rgb(200, 200, 200) ✓
-        rgba(200, 200, 200, 0.05) ✓
-        rgb 255 0 0 ✓
-        rgb 55 55 55 55 ✓
-        rgb 55,55,55 ✓
-        */
         const testCases = [
             ['a plain color object (without alpha)', { r: 255, g: 255, b: 255 }, '#ffffff', 'rgb(255, 255, 255)', { r: 255, g: 255, b: 255 }, 'white'],
             ['color name', 'red', '#ff0000', 'rgb(255, 0, 0)', { r: 255, g: 0, b: 0 }, 'red'],
-        //  ['an abbreviated hex number', '#fff', '#ffffff', 'rgb(255, 255, 255)', { r: 255, g: 255, b: 255 }, 'white'],
-        //  ['an abbreviated, unformatted hex number', 'fff', '#ffffff', 'rgb(255, 255, 255)', { r: 255, g: 255, b: 255 }, 'white'],
+            ['an abbreviated hex number', '#faf', '#ffaaff', 'rgb(255, 170, 255)', { r: 255, g: 170, b: 255 }, undefined],
+            ['an abbreviated, unformatted hex number', 'fff', '#ffffff', 'rgb(255, 255, 255)', { r: 255, g: 255, b: 255 }, 'white'],
             ['a hex color with full alpha', '#ffffffff', '#ffffffff', 'rgba(255, 255, 255, 1)', { r: 255, g: 255, b: 255, a: 1 }, 'white'],
             ['a hex color with no alpha', '#ffffff00', '#ffffff00', 'rgba(255, 255, 255, 0)', { r: 255, g: 255, b: 255, a: 0 }, 'white'],
             ['an unformatted hex color with alpha', 'ffffffaa', '#ffffffaa', 'rgba(255, 255, 255, 0.6667)', { r: 255, g: 255, b: 255, a: 0.6667 }, 'white'],

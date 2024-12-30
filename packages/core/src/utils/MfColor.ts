@@ -27,6 +27,7 @@ export default class MfColor {
     constructor(colorStr: string | RgbaColor) {
         if (isString(colorStr)) {
             let hexColor = '';
+            // red tan
             const color = MfColor.normalizeHex(colorStr as string);
 
             if (this.colorNameMap[color]) {
@@ -200,10 +201,15 @@ export default class MfColor {
      * @returns a hex code without # or spaces
      */
     private static normalizeHex(value: string): string {
-        return value
+        let hex = value
             .replace(TRIM_LEFT, '')
             .replace(TRIM_RIGHT, '')
             .toLowerCase();
+        if (hex.length === 3 && /[0-9a-f]{3}/.test(hex)) {
+            hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+        }
+
+        return hex;
     }
 
     /**
