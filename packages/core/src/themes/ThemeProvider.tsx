@@ -8,7 +8,7 @@ import silkscreenBold from '../fonts/Silkscreen-Bold.ttf';
 import Theme from './theme';
 import { createTheme } from './createTheme';
 
-const ThemeContext = createContext(createTheme("nordDarkColors"));
+const ThemeContext = createContext(createTheme("nordDark"));
 export const useTheme = () => useContext(ThemeContext);
 
 interface ThemeProviderProps {
