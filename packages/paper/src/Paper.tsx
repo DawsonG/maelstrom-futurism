@@ -31,6 +31,7 @@ const paperStyle = (
   centered?: boolean,
   variant?: Variant | string
 ) => css`
+  color: #0e0e0e;
   background-color: #fff;
   padding: 3em;
   margin: 2em 1em;
