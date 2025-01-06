@@ -2,6 +2,8 @@
 
 > Extremely opinionated framework for super fast webapp development.
 
+[Demo & Documentation Website](https://mf.osmstudios.com/)
+
 * **Maelstrom** - for speedy development
 * **Futurism** - for sleek, post-modern design
 
@@ -12,6 +14,42 @@
 * Simple typography with BOLD colors - actually, you know what, just pick whatever color.  We let you pick colors.  Typography is still simple though.
 * Rounded edges and organic flow - there is nothing worse than stubbing your line-of-sight on the corner of a table -- or button.
 * Only take what you need - each control is in it's own package so you can grab only what you need. (You also have to take Core because the other components rely on values it provides, but you get the idea.)
+
+## Getting Started
+
+Maelstrom Futurism comes as a cluster of `@maelstrom-futurism` packages, so users can pick and choose which components they need to import.  The base package can be found in `@maelstrom-futurism/core`.  This package contains themes and theming providers.  While many components *can* function with a ThemeProvider, it isn't recommended.
+
+Alternatively, the `maelstrom-futurism` package contains core as well as all the base components. 
+
+> Packages starting with `mf-` are not imported in the `maelstrom-futurism` master package.  These packages have unique use cases and won't be helpful for most people.  As a result they are installed separately.
+
+**To start:**
+
+```
+npm i @maelstrom-futurism/core
+```
+
+Once Core is installed, you can add components you might want to use.
+
+```
+npm i @maelstrom-futurism/button @maelstrom-futurism/layout @maelstrom-futurism/input
+```
+
+a complete list of packages to install can be found in the [packages directory](https://github.com/DawsonG/maelstrom-futurism/tree/main/packages).
+
+To use components provide a Theme in the root component of your application.
+
+```
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <ThemeProvider theme={createTheme("nordDark")}>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  </StrictMode>,
+);
+```
+
+`createTheme` takes either a theme object or the name of a predefined color scheme.  The current options are `nordDark` and `nordLight`, based on [Nord theme](https://www.nordtheme.com/docs/colors-and-palettes).
 
 ## License
 
