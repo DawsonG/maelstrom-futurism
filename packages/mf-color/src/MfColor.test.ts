@@ -58,6 +58,14 @@ describe('MfColor', () => {
         expect(color.getBrightness()).toBe(200.515);
     });
 
+    test('it gets the correct contrast ratio between itself and other colors', () => {
+        const color = new MfColor({ r: 255, g: 0, b: 255 });
+
+        expect(color.getContrastWith('ff00ff')).toEqual(1);
+        expect(color.getContrastWith({ r: 255, g: 255, b: 0 })).toEqual(2.92);
+        expect(color.getContrastWith({ r: 255, g: 255, b: 255 })).toEqual(3.14);
+    });
+
     describe('manipulations', () => {
         describe('lightenDarken', () => {
             test('it lightens a color by a given amount', () => {
@@ -117,17 +125,16 @@ describe('MfColor', () => {
                 expect(MfColor.isValidHex(value)).toBe(false);
             });
         });
-/*
-        describe('formatStringAsHexColor', () => {
-            test('it formats colors correctly', () => {
-                const testScenarios = ['#000', 'fff', 'ffffff', 'ffffffff'];
-                expect(formatStringAsHexColor('#000')).toEqual('#000');
-            });
-    
-            test('it throws an error for invalid colors', () => {
-    
-            });
+
+        test('formatHex - it formats color hex correctly', () => {
+            expect(MfColor.formatHex('#000')).toEqual('#000');
+            expect(MfColor.formatHex('ffffff')).toEqual('#ffffff');
         });
-*/
+
+        test('it gets the correct contrast ratio between two colors', () => {
+            expect(MfColor.getContrastBetween(new MfColor('rgb(255, 0, 255)'), '#ff00ff')).toEqual(1);
+            expect(MfColor.getContrastBetween('00ff00', { r: 255, g: 0, b: 0 })).toEqual(2.91);
+            expect(MfColor.getContrastBetween('#000', '#fff')).toEqual(21);
+        });
     });
 });

@@ -29,6 +29,7 @@ const RGBA_NUMBER_MATCH = /rgba?[\( ]?(?<r>[01]?\d\d?|2[0-4]\d|25[0-5])\W+(?<g>[
 // Single line utility functions
 const isString = (testValue: any): boolean => Object.prototype.toString.call(testValue) === "[object String]";
 const testInRange = (num: number, min: number, max: number) => num >= min && num <= max;
+const round = (num: number) => Math.round((num + Number.EPSILON) * 100) / 100;
 
 export default class MfColor {
     private _color: RgbaColor;
@@ -185,6 +186,49 @@ export default class MfColor {
     }
 
     /**
+     * Returns the perceived luminance of our color. Useful for determining 
+     * contrast between colors.
+     * 
+     * Taken from
+     * https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-procedure
+     * 
+     * @returns relative luminance
+     */
+    public getLuminance(): number {
+        const { r, g, b } = this._color;
+        const a = [r, g, b].map(value => {
+            // we're currently using 0-255.  Get a percentage value instead
+            const p = value / 255;
+            return p < 0.03928 ? p / 12.92 : Math.pow((p + 0.055) / 1.055, 2.4)
+        });
+
+        return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+    }
+
+    /**
+     * For people with visual impairments, and people without, it's important for the color
+     * of text to stand out against the color of its background.  The algorithm is taken from
+     * https://www.accessibility-developer-guide.com/knowledge/colours-and-contrast/how-to-calculate/
+     * 
+     * First, we find the relative luminance of each color (accounting for how r,g,b each weigh differently
+     * in luminance calculations) and compare them together to retrieve a contrast ratio.  This value will be
+     * between 1 and 21.
+     * 
+     * Any value greater than 4.5 is considered legible.  For large text, a value of 3 may be acceptable.
+     * 
+     * @param colorStr a color string, Rgba object, of MfColor object to compare against
+     * @returns a contrast ratio between itself and another color
+     */
+    public getContrastWith(colorStr: string | RgbaColor | MfColor): number {
+        // Get a color object we can work with
+        const color = MfColor.makeMfColor(colorStr);
+    
+        const brightest = Math.max(this.getLuminance(), color.getLuminance());
+        const darkest = Math.min(this.getLuminance(), color.getLuminance());
+        return round((brightest + 0.05) / (darkest + 0.05));
+    }
+
+    /**
      * Darken the base MfColor
      * 
      * @param amount value between 0 and 1 
@@ -273,6 +317,16 @@ export default class MfColor {
     }
 
     /**
+     * takes a color-ish string or object and makes an MfColor
+     * 
+     * @param colorStr a string, RgbaColor, or MfColor
+     * @returns an MfColor
+     */
+    private static makeMfColor(colorStr: string | RgbaColor | MfColor): MfColor {
+        return (colorStr instanceof MfColor) ? colorStr : new MfColor(colorStr);
+    }
+
+    /**
      * Lighten or darken a given color. Used through the public lighten or darken
      * functions.
      * 
@@ -335,6 +389,32 @@ export default class MfColor {
     }
 
     /**
+     * Gets a 1 - 21 contrast ratio between two colors.
+     * 
+     * For people with visual impairments, and people without, it's important for the color
+     * of text to stand out against the color of its background.  The algorithm is taken from
+     * https://www.accessibility-developer-guide.com/knowledge/colours-and-contrast/how-to-calculate/
+     * 
+     * First, we find the relative luminance of each color (accounting for how r,g,b each weigh differently
+     * in luminance calculations) and compare them together to retrieve a contrast ratio.  This value will be
+     * between 1 and 21.
+     * 
+     * Any value greater than 4.5 is considered legible.  For large text, a value of 3 may be acceptable.
+     * 
+     * @param firstColor a color string, Rgba object, of MfColor object to compare
+     * @param secondColor a color string, Rgba object, of MfColor object to compare
+     * @returns a contrast ratio between the two given colors
+     */
+    static getContrastBetween = (firstColor: string | RgbaColor | MfColor, secondColor: string | RgbaColor | MfColor): number => {
+        const color1 = MfColor.makeMfColor(firstColor);
+        const color2 = MfColor.makeMfColor(secondColor);
+
+        const brightest = Math.max(color1.getLuminance(), color2.getLuminance());
+        const darkest = Math.min(color1.getLuminance(), color2.getLuminance());
+        return round((brightest + 0.05) / (darkest + 0.05));
+    }
+
+    /**
      * Checks to see if a given string is a valid hex color.
      * 
      * Valid: #ff0000, #e0e0e0ff
@@ -345,6 +425,16 @@ export default class MfColor {
      */
     static isValidHex = (hex: string): boolean => 
         /^#(([0-9A-Fa-f]{2}){3,4}|[0-9A-Fa-f]{3})$/.test(hex);
+
+    /**
+     * Assumes a given string is a valid hex value and attempts to format it as
+     * #ffffff
+     * 
+     * @param str a string to format 
+     * @returns a formatted string
+     */
+    static formatHex = (str: string): string =>
+        str.startsWith('#') ? str : `#${str}`;
 
     /**
      * Big List of Colors from w3
