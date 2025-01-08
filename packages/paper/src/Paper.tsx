@@ -4,12 +4,13 @@ import { lighten } from "polished";
 
 import { Theme, useTheme } from "@maelstrom-futurism/core";
 
-export enum Variant {
+export enum StackType {
   SINGLE = "single",
   STACK = "stack",
   RANDOM_STACK = "random_stack",
   NONE = "none",
 }
+type Variant = "single" | "stack" | "random_stack" | "none" | StackType;
 
 export enum HDirection {
   RIGHT = "right",
@@ -29,13 +30,13 @@ const paperStyle = (
   theme: Theme,
   width?: string,
   centered?: boolean,
-  variant?: Variant | string
+  variant?: Variant
 ) => css`
   color: #0e0e0e;
   background-color: #fff;
   padding: 3em;
   margin: 2em 1em;
-  ${variant === Variant.NONE
+  ${variant === StackType.NONE
     ? ""
     : `border: solid 1px ${theme.color("secondary")};`}
   position: relative;
@@ -65,21 +66,21 @@ const paperStyle = (
 
 const getBoxShadow = (
   theme: Theme,
-  variant: Variant | string = Variant.SINGLE,
+  variant: Variant | string = StackType.SINGLE,
   // hDirection = HDirection.LEFT,
   vDirection = VDirection.BOTTOM,
 ) => {
-  if (variant == Variant.NONE) {
+  if (variant == StackType.NONE) {
     return "";
   }
 
-  if (variant == Variant.SINGLE) {
+  if (variant == StackType.SINGLE) {
     return css`
       box-shadow: 0px 1px 4px ${lighten(0.1, theme.color("secondary"))};
     `;
   }
 
-  if (variant == Variant.STACK) {
+  if (variant == StackType.STACK) {
     if (vDirection == VDirection.TOP) {
       return css`
         box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.15), 0 -10px 0 -5px #eee,
@@ -95,7 +96,7 @@ const getBoxShadow = (
     }
   }
 
-  if (variant == Variant.RANDOM_STACK) {
+  if (variant == StackType.RANDOM_STACK) {
     return css`
       &::before,
       &::after {
@@ -133,7 +134,7 @@ export default function Paper({
   width,
   centered,
 }: {
-  variant?: Variant | string;
+  variant?: Variant;
   children: ReactNode;
   width?: string;
   centered?: boolean;
