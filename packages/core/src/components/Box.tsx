@@ -27,6 +27,8 @@ const Box = ({
         width: ${w || '100%'};
         ${h && `height: ${h};`}
         ${m && `margin: ${m};`}
+        ${bg && `background-color: ${bg};`}
+        ${border && `border: ${border};`}
         border-radius: ${theme.borderRadius()};
     `;
    
