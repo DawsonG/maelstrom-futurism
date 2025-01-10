@@ -1,15 +1,14 @@
-import { Box, useTheme, formatStringAsHexColor } from "@maelstrom-futurism/core";
+import { useState } from "react";
+import Button from "@maelstrom-futurism/button";
+import { Box, useTheme } from "@maelstrom-futurism/core";
 import { Column, Container, Grid } from "@maelstrom-futurism/layout";
-import { darken } from 'polished';
+import MfColor from '@maelstrom-futurism/mf-color';
 
 import CodeView from "../components/CodeView";
-import { useState } from "react";
 
 const ColorTool = () => {
     const { colors } = useTheme();
-
-    const [baseColor, setBaseColor] = useState('ffffff');
-    const [currentColor, setCurrentColor] = useState('ffffff');
+    const [baseColor, setBaseColor] = useState<MfColor>(new MfColor('ffffff'));
 
     return (
         <Container width='800px'>
@@ -19,7 +18,6 @@ const ColorTool = () => {
                 <Grid direction='row'>
                     <Column>
                         <b>Color Selector</b>
-                        <SliderPicker />
                     </Column>
                     <Column>
                         <Grid
@@ -30,16 +28,25 @@ const ColorTool = () => {
                                 Custom Color
                             </Column>
                             <Column>
-                                <Box w='200px' h='200px' bg={`#${baseColor}`} />
+                                <Box w='200px' h='200px' bg={`${baseColor.toHex()}`} />
                             </Column>
                             <Column>
-                                Base Color - {formatStringAsHexColor(baseColor)}<br/>
-                                Current Color - {formatStringAsHexColor(currentColor)}
+                                Base Color - {baseColor.getOriginalColor().toHex()}<br/>
+                                Current Color - {baseColor.toHex()}
                             </Column>
                         </Grid>
                     </Column>
                     <Column>
-                        <b>Color Modifier</b>
+                        <b>Color Modifier</b><br/>
+                        <br/>
+                        <Button onClick={() => {
+                            baseColor.lighten(0.1);
+                            setBaseColor(prev => new MfColor(prev.toColor()));
+                        }}>Lighten</Button>
+                        <Button onClick={() => {
+                            baseColor.darken(0.1);
+                            setBaseColor(prev => new MfColor(prev.toColor()));
+                        }}>Darken</Button>
                     </Column>
                 </Grid>
             </Box>
@@ -53,7 +60,13 @@ const ColorTool = () => {
                         {colors[key as keyof typeof colors]}
                     </Column>
                     <Column>
-                        <Box w='60px' h='60px' bg={colors[key as keyof typeof colors]} />
+                        <Box
+                            w='60px'
+                            h='60px'
+                            bg={colors[key as keyof typeof colors]}
+                            onClick={() => {
+                                setBaseColor(new MfColor(colors[key as keyof typeof colors]));
+                            }} />
                     </Column>
                 </Grid>
             ))}
