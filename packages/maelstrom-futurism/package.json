@@ -1,0 +1,32 @@
+{
+  "name": "maelstrom-futurism",
+  "version": "0.7.0",
+  "description": "Quick import of all major @maelstrom-futurism/* packages",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -Rf ./dist",
+    "test": "vitest run --coverage",
+    "test:dev": "vitest"
+  },
+  "dependencies": {
+    "@maelstrom-futurism/button": "../button",
+    "@maelstrom-futurism/core": "../core",
+    "@maelstrom-futurism/input": "../input",
+    "@maelstrom-futurism/layout": "../layout",
+    "@maelstrom-futurism/paper": "../paper"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DawsonG/maelstrom-futurism.git"
+  },
+  "author": "Dawson Goodell <dawsong@osmstudios.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DawsonG/maelstrom-futurism/issues"
+  },
+  "homepage": "https://github.com/DawsonG/maelstrom-futurism#readme"
+}
