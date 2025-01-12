@@ -27,7 +27,8 @@
     "build": "lerna run build --ignore src,website --no-private --stream",
     "test": "lerna run test --ignore src,website --no-private --stream",
     "bootstrap": "lerna bootstrap",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "create-package": "node ./bin/createPackage.js"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
