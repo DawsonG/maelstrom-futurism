@@ -55,19 +55,17 @@ const tsconfigJson = `{
     }
 }`;
 
-const dir = path.join('packages', name)
+const dir = path.join('packages', name);
+const src = path.join(dir, 'src');
 if (!fs.existsSync(dir)){
     fs.mkdirSync(dir);
+    fs.mkdirSync(src);
 }
 
 fs.writeFile(path.join(dir, 'package.json'), packageJson, (err) => {
-
-    // In case of a error throw err.
     if (err) throw err;
 });
 
 fs.writeFile(path.join(dir, 'tsconfig.json'), tsconfigJson, (err) => {
-
-    // In case of a error throw err.
     if (err) throw err;
 });
