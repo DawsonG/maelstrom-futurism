@@ -1,6 +1,15 @@
+// typescript stuff
 export * from './enums';
 export * from './interfaces';
+
+// styling
 export * from './themes';
+
+// components
 export { default as Box, BoxProps } from './components/Box';
 export { default as ContentBox, ContentBoxProps } from './components/ContentBox';
-export { default as debounce } from './utils/debounce';
+
+// utils
+export * from './utils/words';
+export * from './utils/typeof';
+export * from './utils/debounce';
