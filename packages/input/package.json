@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/input",
-  "version": "1.0.0",
+  "version": "0.7.0",
   "description": "Re-usable input components of MF",
   "main": "dist/index.js",
   "module": "dist/index.js",
