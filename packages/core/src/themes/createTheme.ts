@@ -11,6 +11,8 @@ export type ColorSetName = 'nordDark' | 'nordLight';
 
 const nordDarkColors = {
     background: '#242933',
+    borderMuted: '#303744',
+    border: '#2e3440',
     content: '#2e3440',
     textColor: '#eceff4',
     linkColor: '#88c0d0',
@@ -49,6 +51,8 @@ Aurora
 
 const nordLightColors = {
     background: '#242933',
+    borderMuted: '#303744',
+    border: '#2e3440',
     content: '#2e3440',
     textColor: '#eceff4',
     linkColor: '#88c0d0',

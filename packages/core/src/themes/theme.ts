@@ -2,19 +2,6 @@ import { ColorSet, ThemeInterface } from "../interfaces";
 
 export type ColorMode = "Light" | "Dark" | "User";
 
-const defaultColors: ColorSet = {
-  background: "#FFFFFF",
-  content: "#FFFFFF",
-  textColor: "#16191F",
-  linkColor: "#16191F",
-  primary: "#88c0d0",
-  secondary: "#B4B4B4",
-  alert: "red",
-  warning: "orange",
-  success: "green",
-  info: "lightblue"
-}
-
 class Theme {
   readonly colors: ColorSet;
 
@@ -36,20 +23,6 @@ class Theme {
   };
 
   space = [0, 4, 8, 16, 24, 32, 40, 48, 64];
-
-  colorsDark = {
-    background: "#2e3440",
-    backgroundPanel: "#3b4252",
-    text: "#eceff4",
-    interactable: "#3b4252",
-
-    // temporary
-    border: "#d8dee9",
-    muted: "#707070",
-    active: "#2196F3",
-
-    primary: "#88c0d0",
-  };
 
   heights = {
     "very low": "-1000",
@@ -74,7 +47,7 @@ class Theme {
   height = (name: string): string => this.heights[name as keyof typeof this.heights];
 
   constructor(themeConfig: ThemeInterface) {
-    this.colors = themeConfig.colorSet || defaultColors;
+    this.colors = themeConfig.colorSet;
   }
 }
 

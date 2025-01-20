@@ -2,6 +2,8 @@ import { CardinalDirection, Intensity } from "./enums";
 
 export interface ColorSet {
     background: string;
+    borderMuted: string;
+    border: string;
     content: string;
     textColor: string;
     linkColor: string;
@@ -14,7 +16,7 @@ export interface ColorSet {
 }
 
 export interface ThemeInterface {
-    colorSet?: ColorSet;
+    colorSet: ColorSet;
     roundednessIntensity?: Intensity;
     shadowIntensity?: Intensity;
     shadowDirection?: CardinalDirection;
