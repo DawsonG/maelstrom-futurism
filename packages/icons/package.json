@@ -1,7 +1,7 @@
 {
-  "name": "@maelstrom-futurism/paper",
+  "name": "@maelstrom-futurism/icons",
   "version": "0.7.0",
-  "description": "Stacks of paper",
+  "description": "An icon set for use with maelstrom-futurism components",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,7 +17,8 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run --coverage",
+    "test:dev": "vitest"
   },
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
   "homepage": "https://osmstudios.com",
@@ -25,7 +26,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
-    "directory": "packages/paper"
+    "directory": "packages/icons"
   },
   "dependencies": {
     "@maelstrom-futurism/core": "../core"

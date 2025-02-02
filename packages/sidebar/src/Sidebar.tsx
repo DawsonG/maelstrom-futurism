@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+import Heading from './Heading';
+>>>>>>> 1fd1082 (additional init commit)
 /**
  * Styling ideas: https://freefrontend.com/css-sidebar-menus/
  * 
@@ -33,7 +37,30 @@ const Sidebar = ({
         overflow-x: hidden;
         overflow-y: auto;
         position: sticky;
+<<<<<<< HEAD
         border-right: solid 1px ${theme.color('textColor')};
+=======
+        border-right: solid 1px ${theme.color('borderMuted')};
+
+        ul {
+            list-style: none;
+        }
+        
+        hr {
+            border: 0;
+            border-top: solid 1px ${theme.color('borderMuted')};
+        }
+
+        a {
+            color: ${theme.color('textColor')};
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: ${theme.color('linkColor')};
+            text-decoration: underline;
+        }
+>>>>>>> 1fd1082 (additional init commit)
     `;
 
     return (
@@ -43,4 +70,9 @@ const Sidebar = ({
     );
 };
 
+<<<<<<< HEAD
+=======
+Sidebar.Heading = Heading;
+
+>>>>>>> 1fd1082 (additional init commit)
 export default Sidebar;

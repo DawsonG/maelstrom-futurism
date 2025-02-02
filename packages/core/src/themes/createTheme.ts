@@ -15,7 +15,7 @@ const nordDarkColors = {
     border: '#2e3440',
     content: '#2e3440',
     textColor: '#eceff4',
-    linkColor: '#88c0d0',
+    linkColor: '#5e81ac',
     primary: '#5e81ac',
     secondary: '#81a1c1',
     alert: '#bf616a',

@@ -1,16 +1,15 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { css } from "@emotion/react";
 import { lighten } from "polished";
 
-import { Theme, useTheme } from "@maelstrom-futurism/core";
+import theme from "../theme";
 
-export enum StackType {
+export enum Variant {
   SINGLE = "single",
   STACK = "stack",
   RANDOM_STACK = "random_stack",
   NONE = "none",
 }
-type Variant = "single" | "stack" | "random_stack" | "none" | StackType;
 
 export enum HDirection {
   RIGHT = "right",
@@ -23,29 +22,20 @@ export enum VDirection {
   BOTTOM = "bottom",
 }
 
-export enum Background {
-  NONE = "none",
-  GRAPH = "graph",
-  DOT = "dot"
-}
-type BackgroundOptions = "none" | "graph" | "dot" | Background;
-
 /*
  * https://css-tricks.com/snippets/css/stack-of-paper/
  */
 const paperStyle = (
-  theme: Theme,
   width?: string,
   centered?: boolean,
-  variant?: Variant
+  variant?: Variant | string
 ) => css`
-  color: #0e0e0e;
-  background-color: #fff;
+  background-color: ${theme.color("trueWhite")};
   padding: 3em;
   margin: 2em 1em;
-  ${variant === StackType.NONE
+  ${variant === Variant.NONE
     ? ""
-    : `border: solid 1px ${theme.color("secondary")};`}
+    : `border: solid 1px ${theme.color("border")};`}
   position: relative;
   width: ${width};
 
@@ -72,22 +62,21 @@ const paperStyle = (
 `;
 
 const getBoxShadow = (
-  theme: Theme,
-  variant: Variant | string = StackType.SINGLE,
+  variant: Variant | string = Variant.SINGLE,
   // hDirection = HDirection.LEFT,
-  vDirection = VDirection.BOTTOM,
+  vDirection = VDirection.BOTTOM
 ) => {
-  if (variant == StackType.NONE) {
+  if (variant == Variant.NONE) {
     return "";
   }
 
-  if (variant == StackType.SINGLE) {
+  if (variant == Variant.SINGLE) {
     return css`
-      box-shadow: 0px 1px 4px ${lighten(0.1, theme.color("secondary"))};
+      box-shadow: 0px 1px 4px ${lighten(0.1, theme.color("border"))};
     `;
   }
 
-  if (variant == StackType.STACK) {
+  if (variant == Variant.STACK) {
     if (vDirection == VDirection.TOP) {
       return css`
         box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.15), 0 -10px 0 -5px #eee,
@@ -103,7 +92,7 @@ const getBoxShadow = (
     }
   }
 
-  if (variant == StackType.RANDOM_STACK) {
+  if (variant == Variant.RANDOM_STACK) {
     return css`
       &::before,
       &::after {
@@ -135,52 +124,20 @@ const getBoxShadow = (
   return '';
 };
 
-const backgroundDotted = css`
-  background-image: radial-gradient(circle at 1px 1px,rgb(210, 210, 210) 1px, transparent 0);
-  background-size: 1.1rem 1.1rem;
-`;
-
-const backgroundGraph = css`
-  background-size: 40px 40px;
-  background-image:
-    linear-gradient(to right, rgb(210, 210, 210) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(210, 210, 210) 1px, transparent 1px);
-`;
-
-interface PaperProps {
-  children: ReactNode;
-  variant?: Variant;
-  background?: BackgroundOptions;
-  width?: string;
-  centered?: boolean;
-}
-
 export default function Paper({
-  children,
   variant,
-  background,
+  children,
   width,
   centered,
-}: PaperProps) {
-  const theme = useTheme();
-
-  let innerStyles = [];
-  if (background) {
-    switch (background) {
-      case Background.DOT:
-        innerStyles.push(backgroundDotted);
-        break;
-      case Background.GRAPH:
-        innerStyles.push(backgroundGraph);
-        break;
-    }
-  } 
-
+}: {
+  variant?: Variant | string;
+  children: ReactNode;
+  width?: string;
+  centered?: boolean;
+}) {
   return (
-    <div css={[paperStyle(theme, width, centered, variant), getBoxShadow(theme, variant)]}>
-      <div css={innerStyles}>
-        {children}
-      </div>
+    <div css={[paperStyle(width, centered, variant), getBoxShadow(variant)]}>
+      {children}
     </div>
   );
 }

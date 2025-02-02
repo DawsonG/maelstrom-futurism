@@ -19,10 +19,10 @@ const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
-      {
-        path: '/',
+      ...['/', '/getting_started'].map(path => ({
+        path,
         element: <App />
-      },
+      })),
       {
         path: '/theming',
         element: <Theming />
