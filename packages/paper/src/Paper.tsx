@@ -153,6 +153,8 @@ interface PaperProps {
   background?: BackgroundOptions;
   width?: string;
   centered?: boolean;
+  pre?: boolean;
+  font?: string;
 }
 
 export default function Paper({
@@ -161,6 +163,8 @@ export default function Paper({
   background,
   width,
   centered,
+  pre,
+  font,
 }: PaperProps) {
   const theme = useTheme();
 
@@ -174,7 +178,15 @@ export default function Paper({
         innerStyles.push(backgroundGraph);
         break;
     }
-  } 
+  }
+
+  if (pre) {
+    innerStyles.push(css`white-space: pre;text-wrap: wrap;`);
+  }
+
+  if (font) {
+    innerStyles.push(css`font-family: ${font};`);
+  }
 
   return (
     <div css={[paperStyle(theme, width, centered, variant), getBoxShadow(theme, variant)]}>
