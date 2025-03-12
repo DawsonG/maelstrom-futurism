@@ -23,6 +23,7 @@ describe("userAgent", () => {
     ];
 
     const fakeAgents = [
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 HeadlessFirefox/135.0",
         "libcurl",
         "Mozilla",
         "BIZCO EasyScraping Studio 2.0",
@@ -30,8 +31,19 @@ describe("userAgent", () => {
         "Mozilla/153.0 (OpenAI scraper)"
     ];
 
-    test("should match / not match the test scenarios", () => {
-        realAgents.forEach(agent => expect(isRealUserAgent(agent)).toBe(true));
-        fakeAgents.forEach(agent => expect(isRealUserAgent(agent)).toBe(false));
+    describe("real agents", () => {
+        realAgents.forEach(agent => {
+            test(`should return true for real browser user agents - ${agent}`, () => {
+                expect(isRealUserAgent(agent)).toBe(true);
+            });
+        });
+    });
+
+    describe("headless/fake agents", () => {
+        fakeAgents.forEach(agent => {
+            test(`should return false for headless/fake user agents - ${agent}`, () => {
+                expect(isRealUserAgent(agent)).toBe(false);
+            });
+        });
     });
 });
