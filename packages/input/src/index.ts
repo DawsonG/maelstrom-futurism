@@ -1,1 +1,2 @@
-export { default } from "./InputWrapper";
+export { default as Input } from "./Input";
+export { default as TextArea } from "./Textarea";

@@ -1,101 +1,79 @@
-import React from "react";
-import { css } from "@emotion/react";
-import { lighten } from 'polished';
+import React, { HTMLInputTypeAttribute } from "react";
 
-import { useTheme } from "@maelstrom-futurism/core";
+import MaterialInput from "./MaterialInput";
+import NormalInput from "./NormalInput";
 
-interface InputProps {
-  /**
-   * A valid HTML5 type. (Required)
-   */
-  type: string;
+export type Variant =
+    | "normal"
+    | "material";
 
-  /**
-   * A unique (in form) field name (Required)
-   */
-  name: string;
+export interface InputProps {
+    
+    /**
+     * Normal or Material variant
+     */
+    variant?: Variant;
 
-  /**
-   * The label to display above the input.  Leave blank to hide.
-   */
-  label?: string;
+    /**
+     * A valid HTML5 type. (Required)
+     */
+    type: HTMLInputTypeAttribute;
 
-  /**
-   * Text to use as a placeholder
-   */
-  placeholder?: string;
+    /**
+     * A unique (in form) field name (Required)
+     */
+    name: string;
 
-  /**
-   * Use textarea?
-   */
-  multiline?: boolean;
+    /**
+     * The label to display above the input.  Leave blank to hide.
+     */
+    label?: string;
 
-  /**
-   * Literal input value for use outside traditional form
-   */
-  value?: string;
+    /**
+     * Text to use as a placeholder
+     */
+    placeholder?: string;
 
-  /**
-   * Value used for preloaded state
-   */
-  defaultValue?: string;
+    /**
+     * Use textarea?
+     */
+    multiline?: boolean;
 
-  forwardedRef?: any;
+    /**
+     * Literal input value for use outside traditional form
+     */
+    value?: string;
+
+    /**
+     * Is this input required? Used by FormValidator
+     */
+    required?: boolean;
+
+    /**
+     * Value used for preloaded state
+     */
+    defaultValue?: string;
+
+    /**
+     * Called whenever the value changes. For use of Inputs outside traditional forms
+     */
+    onChange?: (e: React.FormEvent<HTMLInputElement>) => void;
+
+    forwardedRef?: any;
 }
 
-const Input = ({label, name, type, forwardedRef, ...restProps}: InputProps): JSX.Element => {
-  const theme = useTheme();
-
-  const fcContainer = css`
-    margin-top: 0.5em;
-  `;
-
-  const styledInput = css`
-    border: solid 1px ${theme.color("content")};
-    border-radius: ${theme.inputRadius()};
-    padding: 0.5em 1em;
-    width: 100%;
-    font-size: 1em;
-    color: ${theme.color("textColor")};
-    background-color: ${theme.color("primary")};
-
-    ::-webkit-input-placeholder {
-      /* Chrome/Opera/Safari */
-      color: ${theme.color("secondary")};
+const Input = React.forwardRef(
+  ({ variant = "normal", type, name, ...rest }: InputProps, ref?: any) => {
+    switch (variant) {
+      case "material":
+        return (
+          <MaterialInput type={type} name={name} forwardedRef={ref} {...rest} />
+        );
+      case "normal":
+      default:
+        return <NormalInput type={type} name={name} forwardedRef={ref} {...rest} />;
     }
-    ::-moz-placeholder {
-      /* Firefox 19+ */
-      color: ${theme.color("secondary")};
-    }
-    :-ms-input-placeholder {
-      /* IE 10+ */
-      color: ${theme.color("secondary")};
-    }
-    :-moz-placeholder {
-      /* Firefox 18- */
-      color: ${theme.color("secondary")};
-    }
-
-    :focus {
-      outline: none !important;
-      border: solid 1px ${lighten(0.1, theme.color("secondary"))};
-    }
-  `;
-
-
-  return (
-    <div css={fcContainer}>
-      {label && <label htmlFor={name}>{label}</label>}
-      <input
-        id={name}
-        name={name}
-        type={type}
-        ref={forwardedRef}
-        css={styledInput}
-        {...restProps}
-      />
-    </div>
-  );
-};
+  }
+);
 
 export default Input;

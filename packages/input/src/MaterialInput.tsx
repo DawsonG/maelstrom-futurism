@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import { css } from "@emotion/react";
 
 import { useTheme } from "@maelstrom-futurism/core";
+import { InputProps } from "./Input";
 
 const fcContainer = css`
   position: relative;
@@ -18,40 +19,6 @@ const labelCss = css`
   transition: 0.3s ease all;
 `;
 
-interface InputProps {
-  /**
-   * A valid HTML5 type. (Required)
-   */
-  type: string;
-
-  /**
-   * A unique (in form) field name (Required)
-   */
-  name: string;
-
-  /**
-   * The label to display above the input.  Leave blank to hide.
-   */
-  label?: string;
-
-  /**
-   * Text to use as a placeholder
-   */
-  placeholder?: string;
-
-  /**
-   * Is this form field required to postback
-   */
-  required?: boolean;
-
-  /**
-   * Use textarea?
-   */
-  multiline?: boolean;
-
-  forwardedRef?: any;
-}
-
 const MaterialInput = ({ type, name, label, forwardedRef, ...restProps }: InputProps): JSX.Element => {
   const theme = useTheme();
   const styledInput = css`
@@ -60,13 +27,14 @@ const MaterialInput = ({ type, name, label, forwardedRef, ...restProps }: InputP
     padding: 0.5em 0.25em;
     width: 100%;
     font-size: 1em;
+    background-color: transparent;
+    color: ${theme.color("primary")};
 
     :focus ~ label,
     :valid ~ label {
       top: -14px;
       font-size: 0.75em;
       opacity: 1;
-      color: ${theme.color("primary")};
     }
 
     :active,
