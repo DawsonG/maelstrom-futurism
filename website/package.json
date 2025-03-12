@@ -15,6 +15,7 @@
     "@maelstrom-futurism/input": "../packages/input",
     "@maelstrom-futurism/layout": "../packages/layout",
     "@maelstrom-futurism/mf-color": "../packages/mf-color",
+    "@maelstrom-futurism/mf-basilisk": "../packages/mf-basilisk",
     "@maelstrom-futurism/paper": "../packages/paper",
     "@maelstrom-futurism/sidebar": "../packages/sidebar",
     "polished": "^4.3.1",

@@ -13,6 +13,7 @@ import ColorTool from './pages/ColorTool.tsx';
 import Inputs from './pages/Inputs.tsx';
 import PageGrid from './pages/Grid.tsx';
 import PagePaper from './pages/Paper.tsx';
+import ContentBoxPage from './pages/ContentBox.tsx';
 
 
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         path,
         element: <App />
       })),
+      {
+        path: '/content_box',
+        element: <ContentBoxPage />
+      },
       {
         path: '/theming',
         element: <Theming />

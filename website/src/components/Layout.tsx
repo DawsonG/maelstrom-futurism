@@ -4,7 +4,7 @@ import { Link, Outlet } from 'react-router-dom';
 
 function Layout() {
     return (
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', maxWidth: 'calc(100vw - 20px)' }}>
             <Sidebar>
                 <Sidebar.Heading title='Maelstrom Futurism' />
                 <ul>
@@ -25,11 +25,18 @@ function Layout() {
                     </li>
                     <li><Link to='/inputs'>Inputs</Link></li>
                     <li><Link to='/paper'>Paper</Link></li>
-                    <li><Link to='/color_tool'>Color Tool</Link></li>
+                    <li>
+                        Tooling
+                        <ul>
+                            <li><Link to='/color_tool'>Color Tool</Link></li>
+                            <li><Link to='/basilisk'>Basilisk Room</Link></li>
+                        </ul>
+                    </li>
+                    
                 </ul>
             </Sidebar>
 
-            <Container>
+            <Container maxWidth='980px'>
                 <Outlet />
             </Container>
         </div>
