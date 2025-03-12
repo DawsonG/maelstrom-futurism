@@ -3,13 +3,13 @@ import { css as emotionCss, SerializedStyles } from '@emotion/react';
 import Box, { BoxProps } from "./Box";
 import { Theme, useTheme } from '../themes';
 
-type Variant = 'alert' | 'info' | 'error' | 'warning' | 'normal';
+type Variant = 'alert' | 'info' | 'error' | 'warning' | 'normal' | 'success';
 
 export interface ContentBoxProps extends BoxProps{
     variant?: Variant;
 }
 
-const getColors = (theme: Theme, bg?: string, border?: string, variant?: Variant): SerializedStyles => {
+const getColors = (theme: Theme, bg?: string, border?: string, variant?: Variant) => {
     if (bg || border) {
         return emotionCss`
             background-color: ${bg || theme.color('content')};
@@ -26,12 +26,18 @@ const getColors = (theme: Theme, bg?: string, border?: string, variant?: Variant
             `;
         case 'warning':
             return emotionCss`
-                background-color: ${theme.color('alert')};
+                color: black;
+                background-color: ${theme.color('warning')};
                 border: solid 1px ${theme.color('secondary')};
             `;
         case 'info':
             return emotionCss`
                 background-color: ${theme.color('info')};
+                border: solid 1px ${theme.color('secondary')};
+            `;
+        case 'success':
+            return emotionCss`
+                background-color: ${theme.color('success')};
                 border: solid 1px ${theme.color('secondary')};
             `;
         case 'normal':
@@ -53,9 +59,13 @@ const ContentBox = ({
     const theme = useTheme();
     // map each variant to a set of colors
     const bgColors = getColors(theme, bg, border, variant);
+    const styles = emotionCss`
+        padding: 0.75rem;
+        margin-bottom: 0.25rem;
+    `;
     
 
-    return <Box css={bgColors} {...rest}>{children}</Box>
+    return <Box css={[bgColors, styles]} {...rest}>{children}</Box>
 };
 
 export default ContentBox;

@@ -9,7 +9,7 @@ export interface BoxProps extends HTMLAttributes<HTMLDivElement> {
     w?: string;
     h?: string;
     m?: string;
-    css?: SerializedStyles;
+    css?: SerializedStyles | SerializedStyles[];
 }
 
 const Box = ({
