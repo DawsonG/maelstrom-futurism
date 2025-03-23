@@ -10,6 +10,8 @@ export const defaultMethodFlags: ProtectionMethodFlags = {
     imageResolver: false,
 }
 
+// 
+
 const isBot = (methodFlags: ProtectionMethodFlags) => {
     return false;
 }

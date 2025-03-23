@@ -1,2 +1,1 @@
-export { default } from './Basilisk';
-export { default as obfuscate } from './stringManipulation';
+export { default } from './BotLockedContent';

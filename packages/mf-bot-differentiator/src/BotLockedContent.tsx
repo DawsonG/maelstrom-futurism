@@ -3,13 +3,13 @@ import Paper from '@maelstrom-futurism/paper';
 
 import isBot, { ProtectionMethodFlags, defaultMethodFlags } from './isBot';
 
-interface BasiliskProps {
+interface BotLockedContentProps {
     children: ReactNode; // the content to display if we believe the viewer is human
     botChildren: ReactNode; // the content to display if we do not believe the viewer is human
     methodFlags?: ProtectionMethodFlags;
 }
 
-const Basilisk = ({ children, botChildren, methodFlags = defaultMethodFlags }: BasiliskProps): JSX.Element => {
+const BotLockedContent = ({ children, botChildren, methodFlags = defaultMethodFlags }: BotLockedContentProps): JSX.Element => {
 
     return <Paper
         pre={true}
@@ -18,4 +18,4 @@ const Basilisk = ({ children, botChildren, methodFlags = defaultMethodFlags }: B
         </Paper>;
 };
 
-export default Basilisk;
+export default BotLockedContent;
