@@ -17,6 +17,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "clean": "rm -Rf dist",
     "test": "vitest run --coverage",
     "test:dev": "vitest"
   },

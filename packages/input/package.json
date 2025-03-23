@@ -17,6 +17,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "clean": "rm -Rf dist",
     "test": "jest --env=jsdom --passWithNoTests"
   },
   "repository": {
@@ -38,7 +39,7 @@
     "@maelstrom-futurism/core": "*"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.10.5",
+    "@emotion/react": ">= 11.10.5",
     "react": ">= 18.0.0"
   }
 }

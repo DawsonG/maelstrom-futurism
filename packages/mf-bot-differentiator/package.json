@@ -1,5 +1,5 @@
 {
-  "name": "@maelstrom-futurism/mf-basilisk",
+  "name": "@maelstrom-futurism/mf-bot-differentiator",
   "version": "0.7.0",
   "description": "Make a human readable text problematic for scraping",
   "main": "dist/index.js",
@@ -29,10 +29,7 @@
     "directory": "packages/{name}"
   },
   "dependencies": {
-    "@maelstrom-futurism/core": "../core"
-  },
-  "peerDependences": {
-    "react": ">= 18.0.0",
-    "react-dom": ">= 18.0.0"
+    "@maelstrom-futurism/core": "../core",
+    "@maelstrom-futurism/paper": "../paper"
   }
 }

@@ -12,7 +12,7 @@
     "test": "vitest run --coverage",
     "test:dev": "vitest"
   },
-  "dependencies": {
+  "devDependencies": {
     "@maelstrom-futurism/button": "../button",
     "@maelstrom-futurism/core": "../core",
     "@maelstrom-futurism/input": "../input",
