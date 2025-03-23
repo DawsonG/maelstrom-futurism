@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from 'react';
-import { ArrayInterpolation, css as emotionCss, SerializedStyles, Theme } from '@emotion/react';
+import { css as emotionCss, SerializedStyles, Theme } from '@emotion/react';
 import { useTheme } from '../themes';
 
 // TODO: Expand this to be a reusable styled class that accepts theme parameters
