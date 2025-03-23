@@ -55,7 +55,7 @@
     "@maelstrom-futurism/theme": "0.7.0"
   },
   "peerDependences": {
-    "@emotion/react": ">= 11",
+    "@emotion/react": ">= 11.1.4",
     "react": ">= 17.0.2"
   },
   "devDependencies": {
