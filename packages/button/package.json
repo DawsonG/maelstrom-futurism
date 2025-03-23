@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
+    "clean": "rm -Rf dist",
     "build": "tsc"
   },
   "repository": {
@@ -33,7 +34,7 @@
     "@maelstrom-futurism/core": "*"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.10.5",
-    "react": ">= 18.0.0"
+    "@emotion/react": ">= 11.10.5",
+    "react": ">= 18.3.1"
   }
 }
