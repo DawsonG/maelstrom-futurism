@@ -1,8 +1,8 @@
 import React, { ReactNode, useRef } from "react";
 
 import { buttonStyle } from "./Button.styles";
-import { useTheme, debounce } from "@maelstrom-futurism/core";
-import { css } from "@emotion/react";
+import { useTheme, debounce, Theme } from "@maelstrom-futurism/core";
+import { css, SerializedStyles } from "@emotion/react";
 
 const scales = {
   small: {
@@ -19,22 +19,6 @@ const scales = {
   },
 };
 
-const kind = (outline: boolean) => (bg: string, color: string) => {
-  const boxShadowColor = outline ? bg : "transparent";
-  const backgroundColor = outline ? "transparent" : bg;
-
-  return {
-    background: backgroundColor,
-    boxShadow: `inset 0 0 0 1px ${boxShadowColor}`,
-    color: `${outline ? bg : color}`,
-    transition: "all .3s",
-    "&:hover": {
-      boxShadow: `inset 0 0 0 1000px ${boxShadowColor}`,
-      color,
-    },
-  };
-};
-
 export type ButtonVariant =
   | "primary"
   | "secondary"
@@ -44,18 +28,38 @@ export type ButtonVariant =
 export type ButtonType = "button" | "submit";
 export type Scale = "small" | "normal" | "big";
 
-const kinds = (variant: ButtonVariant, outline: boolean) => {
-  const get = kind(outline);
+const getVariantColor = (theme: Theme, variant: ButtonVariant): [string, string] => {
+  switch (variant) {
+    case "secondary":
+      return [theme.color("secondary"), "white"];
+    case "cancel":
+      return [theme.color("alert"), "white"];
+    case "dark":
+      return [theme.color("background"), "white"];
+    case "gray":
+      return [theme.color("background"), "white"];
+    case "primary":
+    default: 
+      return [theme.color("primary"), "white"];
+  }
+}
 
-  const rtns = {
-    primary: get("#88c0d0", "white"),
-    secondary: get("#5352ED", "white"),
-    cancel: get("#FF4949", "white"),
-    dark: get("#273444", "white"),
-    gray: get("#8492A6", "white"),
+const getVariantStyle = (theme: Theme, variant: ButtonVariant, outline: boolean) => {
+  const colors = getVariantColor(theme, variant);
+  
+  const boxShadowColor = outline ? colors[0] : "transparent";
+  const backgroundColor = outline ? "transparent" : colors[0];
+
+  return {
+    background: backgroundColor,
+    boxShadow: `inset 0 0 0 1px ${boxShadowColor}`,
+    color: `${outline ? colors[0] : colors[1]}`,
+    transition: "all .3s",
+    "&:hover": {
+      boxShadow: `inset 0 0 0 1000px ${boxShadowColor}`,
+      color: colors[1],
+    },
   };
-
-  return rtns[variant];
 };
 
 export interface ButtonProps {
@@ -120,7 +124,7 @@ const Button = ({
 
   return (
     <button
-      css={[buttonStyle, buttonStyleByTheme, kinds(variant, !!outline), scales[scale]]}
+      css={[buttonStyle, buttonStyleByTheme, getVariantStyle(theme, variant, !!outline), scales[scale]]}
       onClick={onClick}
       ref={buttonRef}
       onMouseDown={addRipple}
