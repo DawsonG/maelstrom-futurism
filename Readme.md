@@ -17,7 +17,7 @@
 
 ## Getting Started
 
-Maelstrom Futurism comes as a cluster of `@maelstrom-futurism` packages, so users can pick and choose which components they need to import.  The base package can be found in `@maelstrom-futurism/core`.  This package contains themes and theming providers.  While many components *can* function with a ThemeProvider, it isn't recommended.
+Maelstrom Futurism comes as a cluster of `@maelstrom-futurism` packages, so users can pick and choose which components they need to import.  The base package can be found in `@maelstrom-futurism/core`.  This package contains themes and theming providers.  While many components *can* function without a ThemeProvider, it isn't recommended.
 
 Alternatively, the `maelstrom-futurism` package contains core as well as all the base components. 
 
