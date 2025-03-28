@@ -22,9 +22,7 @@ const scales = {
 export type ButtonVariant =
   | "primary"
   | "secondary"
-  | "cancel"
-  | "dark"
-  | "gray";
+  | "cancel";
 export type ButtonType = "button" | "submit";
 export type Scale = "small" | "normal" | "big";
 
@@ -34,10 +32,6 @@ const getVariantColor = (theme: Theme, variant: ButtonVariant): [string, string]
       return [theme.color("secondary"), "white"];
     case "cancel":
       return [theme.color("alert"), "white"];
-    case "dark":
-      return [theme.color("background"), "white"];
-    case "gray":
-      return [theme.color("background"), "white"];
     case "primary":
     default: 
       return [theme.color("primary"), "white"];
