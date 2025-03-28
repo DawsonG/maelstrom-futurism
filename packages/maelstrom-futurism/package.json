@@ -17,7 +17,8 @@
     "@maelstrom-futurism/core": "../core",
     "@maelstrom-futurism/input": "../input",
     "@maelstrom-futurism/layout": "../layout",
-    "@maelstrom-futurism/paper": "../paper"
+    "@maelstrom-futurism/paper": "../paper",
+    "@maelstrom-futurism/sidebar": "../sidebar"
   },
   "repository": {
     "type": "git",
