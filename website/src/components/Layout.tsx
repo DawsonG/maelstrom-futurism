@@ -13,7 +13,10 @@ function Layout() {
                     <li>
                         Components
                         <ul>
-                            <li></li>
+                            <li><Link to='/box_and_contentbox'>Box and ContentBox</Link></li>
+                            <li><Link to='/paper'>Paper</Link></li>
+                            <li><Link to='/inputs'>Inputs</Link></li>
+                            <li><Link to='/buttons'>Buttons</Link></li>
                         </ul>
                     </li>
                     <li>
@@ -23,13 +26,10 @@ function Layout() {
                             <li><Link to='/layout/grid'>Grids &amp; Columns</Link></li>
                         </ul>
                     </li>
-                    <li><Link to='/inputs'>Inputs</Link></li>
-                    <li><Link to='/paper'>Paper</Link></li>
                     <li>
                         Tooling
                         <ul>
                             <li><Link to='/color_tool'>Color Tool</Link></li>
-                            <li><Link to='/basilisk'>Basilisk Room</Link></li>
                         </ul>
                     </li>
                     

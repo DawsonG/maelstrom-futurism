@@ -14,6 +14,7 @@ import Inputs from './pages/Inputs.tsx';
 import PageGrid from './pages/Grid.tsx';
 import PagePaper from './pages/Paper.tsx';
 import ContentBoxPage from './pages/ContentBox.tsx';
+import Buttons from './pages/Buttons.tsx';
 
 
 const router = createBrowserRouter([
@@ -25,7 +26,11 @@ const router = createBrowserRouter([
         element: <App />
       })),
       {
-        path: '/content_box',
+        path: '/buttons',
+        element: <Buttons />
+      },
+      {
+        path: '/box_and_contentbox',
         element: <ContentBoxPage />
       },
       {
@@ -50,12 +55,7 @@ const router = createBrowserRouter([
       }
     ]
   }
-], {
-  future: {
-    v7_partialHydration: true,
-    v7_skipActionStatusRevalidation: true,
-  }
-})
+]);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

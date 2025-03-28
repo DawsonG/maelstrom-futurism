@@ -11,7 +11,7 @@ const Inputs = (): JSX.Element => {
 
             <Input variant="normal" name="test 2" label="Test Inputs 2" type="text" />
 
-            <TextArea />
+            <TextArea name="textarea" label="Test Textarea" onChange={() => null} />
         </Container>
     );
 }

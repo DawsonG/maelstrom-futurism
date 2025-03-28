@@ -12,6 +12,8 @@ function PagePaper() {
 
       <p>Paper is a legability first component with a few fun tricks (like looking like an actual stack of paper) up its sleeves.</p>
       
+      <p>Found in <code>@maelstrom-futurism/paper</code> and <code>maelstrom-futurism</code>.</p>
+
       <CodeView>
 {`<Paper variant={PaperVariant.NONE} background={Background.DOT}>
   {text}
