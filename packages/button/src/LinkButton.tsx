@@ -24,10 +24,19 @@ const LinkButton = ({
     onClick,
     disabled,
 }: LinkButtonProps): JSX.Element => {
+    const linkStyles = css`
+        color: ${theme.color("textColor")};
+
+        &:hover {
+            color: ${theme.color('linkColor')};
+            text-decoration: underline;
+        }
+    `;
+
     return <button
         onClick={onClick}
         disabled={disabled}
-        css={[linkButtonStyles, css`color: ${theme.color("textColor")}`]}>{children}</button>;
+        css={[linkButtonStyles, linkStyles]}>{children}</button>;
 }
 
 export default LinkButton;
