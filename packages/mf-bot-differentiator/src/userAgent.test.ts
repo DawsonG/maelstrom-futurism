@@ -28,7 +28,11 @@ describe("userAgent", () => {
         "Mozilla",
         "BIZCO EasyScraping Studio 2.0",
         "Java stuff/143.15",
-        "Mozilla/153.0 (OpenAI scraper)"
+        "Mozilla/153.0 (OpenAI scraper)",
+        undefined,
+        null,
+        "",
+        " ",
     ];
 
     describe("real agents", () => {
