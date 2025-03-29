@@ -1,4 +1,3 @@
-import React, { PureComponent } from "react";
 import { css } from "@emotion/react";
 
 import { useTheme } from "@maelstrom-futurism/core";

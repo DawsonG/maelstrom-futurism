@@ -2,7 +2,8 @@ import React, { ReactNode, useRef } from "react";
 
 import { buttonStyle } from "./Button.styles";
 import { useTheme, debounce, Theme } from "@maelstrom-futurism/core";
-import { css, SerializedStyles } from "@emotion/react";
+import { css } from "@emotion/react";
+import LinkButton from "./LinkButton";
 
 const scales = {
   small: {
@@ -22,19 +23,23 @@ const scales = {
 export type ButtonVariant =
   | "primary"
   | "secondary"
-  | "cancel";
+  | "cancel"
+  | "ghost"
+  | "link";
 export type ButtonType = "button" | "submit";
 export type Scale = "small" | "normal" | "big";
 
 const getVariantColor = (theme: Theme, variant: ButtonVariant): [string, string] => {
   switch (variant) {
     case "secondary":
-      return [theme.color("secondary"), "white"];
+      return [theme.color("secondary"), theme.color("textColor")];
     case "cancel":
-      return [theme.color("alert"), "white"];
+      return [theme.color("alert"), theme.color("textColor")];
+    case "ghost":
+      return ["transparent", theme.color("textColor")];
     case "primary":
     default: 
-      return [theme.color("primary"), "white"];
+      return [theme.color("primary"), theme.color("textColor")];
   }
 }
 
@@ -71,17 +76,24 @@ export interface ButtonProps {
   disabled?: boolean;
 }
 
-const Button = ({
-  children,
-  onClick,
-  scale = "normal",
-  variant = "secondary",
-  outline,
-  type = "button",
-  disabled = false,
-  ...rest
-}: ButtonProps): JSX.Element => {
+const Button = (props: ButtonProps): JSX.Element => {
   const theme = useTheme();
+  
+  if (props.variant === "link") {
+    return <LinkButton theme={theme} {...props}/>
+  }
+
+  const {
+    children,
+    onClick,
+    scale = "normal",
+    variant = "secondary",
+    outline,
+    type = "button",
+    disabled = false,
+    ...rest
+  } = props;
+
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const buttonStyleByTheme = css`

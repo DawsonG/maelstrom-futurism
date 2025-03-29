@@ -1,6 +1,4 @@
-import React from "react";
 import { css } from "@emotion/react";
-import { lighten } from 'polished';
 
 import { useTheme } from "@maelstrom-futurism/core";
 import { InputProps } from "./Input";

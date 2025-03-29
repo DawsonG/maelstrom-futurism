@@ -1,5 +1,6 @@
 import Button from "@maelstrom-futurism/button";
 import { Container } from "@maelstrom-futurism/layout";
+import CodeView from "../components/CodeView";
 
 const Buttons = () => (
     <Container>
@@ -12,17 +13,33 @@ const Buttons = () => (
         <p>Found in <code>@maelstrom-futurism/button</code> and <code>maelstrom-futurism</code>.</p>
 
         <h2>Variants</h2>
+        <CodeView>
+{`<Button variant="primary">Primary</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="cancel">Cancel</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="link">Link</Button>`}
+        </CodeView>
+
         <div>
             <Button variant="primary">Primary</Button>
             <Button variant="secondary">Secondary</Button>
             <Button variant="cancel">Cancel</Button>
+            <Button variant="ghost">Ghost</Button>
+            <Button variant="link">Link</Button>
         </div>
 
         <h2>Sizes</h2>
+        <CodeView>
+{`<Button scale="small">Small</Button>
+<Button scale="normal">Normal</Button>
+<Button scale="big">Large</Button>`}
+        </CodeView>
+
         <div>
-            <Button variant="primary" scale="small">Small</Button>
-            <Button variant="primary" scale="normal">Normal</Button>
-            <Button variant="primary" scale="big">Large</Button>
+            <Button scale="small">Small</Button>
+            <Button scale="normal">Normal</Button>
+            <Button scale="big">Large</Button>
         </div>
     </Container>
 );
