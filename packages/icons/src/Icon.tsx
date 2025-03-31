@@ -1,7 +1,7 @@
-import { HTMLAttributes, useMemo } from "react";
-import { Suspense } from "react";
+import { HTMLAttributes, Suspense, useMemo } from "react";
 
 import { icons } from "./icons";
+import { useTheme } from "@maelstrom-futurism/core";
 
 export type IconName = keyof typeof icons;
 
@@ -20,6 +20,7 @@ interface IconProps extends HTMLAttributes<HTMLDivElement> {
  * @returns Icon react component
  */
 export const Icon = ({ icon, className, rotate, color, ...rest }: IconProps) => {
+  const theme = useTheme();
   const SvgIcon = useMemo(() => icons[icon], [icon]);
 
   if (!SvgIcon) return null;
@@ -30,7 +31,11 @@ export const Icon = ({ icon, className, rotate, color, ...rest }: IconProps) => 
       aria-label={icon}
       role="img"
       style={{
-        display: "flex",
+        height: "1.5em",
+        maxWidth: "1.5em",
+        padding: "2px",
+        color: theme.color("textColor"),
+        display: "inline-flex",
         justifyContent: "center",
         alignItems: "center",
         transform: rotate ? `rotate(${rotate}deg)` : undefined,

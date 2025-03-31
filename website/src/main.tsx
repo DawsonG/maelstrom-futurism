@@ -15,6 +15,7 @@ import PageGrid from './pages/Grid.tsx';
 import PagePaper from './pages/Paper.tsx';
 import ContentBoxPage from './pages/ContentBox.tsx';
 import Buttons from './pages/Buttons.tsx';
+import Icons from './pages/Icons.tsx';
 
 
 const router = createBrowserRouter([
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: '/paper',
         element: <PagePaper />
+      },
+      {
+        path: '/icons',
+        element: <Icons />
       }
     ]
   }

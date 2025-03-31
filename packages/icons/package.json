@@ -2,21 +2,14 @@
   "name": "@maelstrom-futurism/icons",
   "version": "0.7.0",
   "description": "An icon set for use with maelstrom-futurism components",
-  "main": "dist/index.js",
+  "source": "src/index.ts",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "default": "./dist/index.js"
-    }
-  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "parcel build",
     "clean": "rm -Rf dist",
     "test": "vitest run --coverage",
     "test:dev": "vitest"
@@ -30,6 +23,8 @@
     "directory": "packages/icons"
   },
   "dependencies": {
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
     "@maelstrom-futurism/core": "../core"
   },
   "peerDependences": {
