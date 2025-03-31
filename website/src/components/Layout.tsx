@@ -22,7 +22,7 @@ function Layout() {
                     <li>
                         Layouts
                         <ul>
-                            <li><Link to='/layout/container'>Container</Link></li>
+                            <li><Link to='/layout/containers'>Container</Link></li>
                             <li><Link to='/layout/grid'>Grids &amp; Columns</Link></li>
                         </ul>
                     </li>

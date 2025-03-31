@@ -12,6 +12,7 @@ import Theming from './pages/Theming.tsx';
 import ColorTool from './pages/ColorTool.tsx';
 import Inputs from './pages/Inputs.tsx';
 import PageGrid from './pages/Grid.tsx';
+import PageContainers from './pages/Containers.tsx';
 import PagePaper from './pages/Paper.tsx';
 import ContentBoxPage from './pages/ContentBox.tsx';
 import Buttons from './pages/Buttons.tsx';
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: '/inputs',
         element: <Inputs />
+      },
+      {
+        path: '/layout/containers',
+        element: <PageContainers />
       },
       {
         path: '/layout/grid',
