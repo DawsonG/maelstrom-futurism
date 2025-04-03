@@ -103,7 +103,7 @@ const Button = (props: ButtonProps): JSX.Element => {
   const addRipple = (e: React.MouseEvent) => {
     if (!buttonRef || !buttonRef.current) return;
     
-    const rippleContainer = buttonRef.current.querySelector("div");
+    const rippleContainer = buttonRef.current.querySelector("div.rippleContainer");
     if (!rippleContainer) return;
     
     const size = buttonRef.current.offsetWidth;
