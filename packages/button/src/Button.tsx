@@ -121,7 +121,7 @@ const Button = (props: ButtonProps): JSX.Element => {
 
   const cleanUp = () => {
     if (!buttonRef || !buttonRef.current) return;
-    const rippleContainer = buttonRef.current.querySelector("div");
+    const rippleContainer = buttonRef.current.querySelector("div.rippleContainer");
     if (!rippleContainer) return;
     
     rippleContainer.innerHTML = "";
