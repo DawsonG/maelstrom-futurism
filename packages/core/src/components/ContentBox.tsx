@@ -5,7 +5,7 @@ import { Theme, useTheme } from '../themes';
 
 type Variant = 'alert' | 'info' | 'error' | 'warning' | 'normal' | 'success';
 
-export interface ContentBoxProps extends BoxProps{
+export type ContentBoxProps = BoxProps & {
     variant?: Variant;
 }
 
@@ -50,7 +50,7 @@ const getColors = (theme: Theme, bg?: string, border?: string, variant?: Variant
 }
 
 const ContentBox = ({
-    bg,
+    background,
     border,
     children,
     variant,
@@ -58,7 +58,7 @@ const ContentBox = ({
 }: ContentBoxProps): JSX.Element => {
     const theme = useTheme();
     // map each variant to a set of colors
-    const bgColors = getColors(theme, bg, border, variant);
+    const bgColors = getColors(theme, background, border, variant);
     const styles = emotionCss`
         padding: 0.75rem;
         margin-bottom: 0.25rem;
