@@ -29,7 +29,9 @@
       "directory": "packages/paper"
     },
     "dependencies": {
-      "@maelstrom-futurism/core": "../core"
+      "@maelstrom-futurism/button": "../button",
+      "@maelstrom-futurism/core": "../core",
+      "@maelstrom-futurism/icons": "../icons"
     },
     "peerDependences": {
       "react": ">= 18.0.0",
