@@ -29,8 +29,8 @@ export const Icon = ({ icon, className, rotate, color, ...rest }: IconProps) => 
       aria-label={icon}
       role="img"
       style={{
-        height: "1.5em",
-        maxWidth: "1.5em",
+        height: "24px",
+        width: "24px",
         padding: "2px",
         display: "inline-flex",
         justifyContent: "center",

@@ -5,7 +5,7 @@ import { Link, Outlet } from 'react-router-dom';
 function Layout() {
     return (
         <div style={{ display: 'flex', maxWidth: 'calc(100vw - 20px)' }}>
-            <Sidebar>
+            <Sidebar isClosable={true}>
                 <Sidebar.Heading title='Maelstrom Futurism' />
                 <ul>
                     <li><Link to='/getting_started'>Getting Started</Link></li>

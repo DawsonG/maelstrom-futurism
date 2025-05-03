@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { css } from "@emotion/react";
 import { Button } from "@maelstrom-futurism/button";
 import { useTheme } from "@maelstrom-futurism/core";
 import { Icon } from "@maelstrom-futurism/icons";
+
+import { SidebarContext } from "./SidebarContext";
 
 export interface HeadingProps {
     title: string;
@@ -9,22 +12,34 @@ export interface HeadingProps {
 
 const Heading = ({ title }: HeadingProps): JSX.Element => {
     const theme = useTheme();
+    const sidebarContext = useContext(SidebarContext);
 
     const headingStyle = css`
         padding: 0.5rem 1rem;
-        border-bottom: inset 2px ${theme.color('borderMuted')};
+        ${sidebarContext.isOpen ? `border-bottom: inset 2px ${theme.color('borderMuted')}` : "border-bottom: none"};
+
     `;
 
     return (
         <div css={headingStyle}>
             <h2>
-                {title}
-                <Button variant="ghost">
-                    <Icon icon="AngleLeft"/>
-                </Button>    
+                {sidebarContext.isOpen && title}
+
+                {sidebarContext.isClosable && (
+                    <Button variant="ghost" onClick={() => sidebarContext.setIsOpen(!sidebarContext.isOpen)}>
+                        {sidebarContext.isOpen ? (
+                            <Icon icon="AngleLeft"/>
+                        ) : (
+                            <Icon icon="MenuBurger"/>
+                        )}
+                    </Button>
+                )}
+                 
             </h2>
         </div>
     );
 };
+
+Heading.displayName = "Heading";
 
 export default Heading;

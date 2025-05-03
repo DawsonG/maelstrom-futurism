@@ -1,4 +1,3 @@
-import Heading from './Heading';
 /**
  * Styling ideas: https://freefrontend.com/css-sidebar-menus/
  * 
@@ -11,6 +10,9 @@ import { ReactNode, useState } from 'react';
 import { css } from '@emotion/react';
 import { useTheme } from '@maelstrom-futurism/core';
 
+import Heading from './Heading';
+import { SidebarContext } from './SidebarContext';
+
 interface SidebarProps {
     name?: string; // the title at the top of the sidebar
     isClosable?: boolean;
@@ -19,21 +21,33 @@ interface SidebarProps {
 }
 
 const Sidebar = ({
-    name,
-    isClosable = true,
+    isClosable = false,
     isOpen = true,
     children
 }: SidebarProps): JSX.Element => {
     const theme = useTheme();
     const [isOpenState, setIsOpenState] = useState(isOpen);
     
-    const sidebarContainer = css`
-        min-width: 300px;
-        max-width: 100%;
+    const openStyle = css`
         overflow-x: hidden;
         overflow-y: auto;
-        position: sticky;
+        min-width: 300px;
+        max-width: 100%;
+
         border-right: solid 1px ${theme.color('borderMuted')};
+    `;
+
+    const closedStyle = css`
+        width: 65px;
+        height: 44px;
+        
+        ul, hr, a {
+            display: none;
+        }
+    `;
+
+    const sidebarContainer = css`
+        position: sticky;
 
         ul {
             list-style: none;
@@ -53,11 +67,13 @@ const Sidebar = ({
             color: ${theme.color('linkColor')};
             text-decoration: underline;
         }
-    `;
+    `;    
 
     return (
-        <aside css={sidebarContainer}>
-            {children}
+        <aside css={[sidebarContainer, isOpenState ? openStyle : closedStyle]}>
+            <SidebarContext.Provider value={{ isOpen: isOpenState, setIsOpen: setIsOpenState, isClosable }}>
+                {children}
+            </SidebarContext.Provider>
         </aside>
     );
 };
