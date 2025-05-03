@@ -21,7 +21,7 @@ const createPackage = (name, options) => {
   const src = path.join(dir, 'src');
   
   const packageJson = `{
-    "name": "${name}",
+    "name": "@maelstrom-futurism/${name}",
     "version": "${packageVersion}",
     "description": "${description}",
     "main": "dist/index.js",
