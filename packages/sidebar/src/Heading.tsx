@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import Button from "@maelstrom-futurism/button";
+import { Button } from "@maelstrom-futurism/button";
 import { useTheme } from "@maelstrom-futurism/core";
 import { Icon } from "@maelstrom-futurism/icons";
 
