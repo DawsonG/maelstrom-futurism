@@ -63,7 +63,6 @@ const ContentBox = ({
         padding: 0.75rem;
         margin-bottom: 0.25rem;
     `;
-    
 
     return <Box css={[bgColors, styles]} {...rest}>{children}</Box>
 };

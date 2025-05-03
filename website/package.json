@@ -18,7 +18,8 @@
     "@maelstrom-futurism/mf-bot-differentiator": "../packages/mf-basilisk",
     "@maelstrom-futurism/mf-color": "../packages/mf-color",
     "@maelstrom-futurism/paper": "../packages/paper",
-    "@maelstrom-futurism/sidebar": "../packages/sidebar"
+    "@maelstrom-futurism/sidebar": "../packages/sidebar",
+    "@maelstrom-futurism/tooltip": "../packages/tooltip"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

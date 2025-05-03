@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "@maelstrom-futurism/button";
+import { Button } from "@maelstrom-futurism/button";
 import { Box, useTheme } from "@maelstrom-futurism/core";
 import { Column, Container, Grid } from "@maelstrom-futurism/layout";
 import MfColor from '@maelstrom-futurism/mf-color';

@@ -17,6 +17,7 @@ function Layout() {
                             <li><Link to='/paper'>Paper</Link></li>
                             <li><Link to='/inputs'>Inputs</Link></li>
                             <li><Link to='/buttons'>Buttons</Link></li>
+                            <li><Link to='/tooltip'>Tooltip</Link></li>
                         </ul>
                     </li>
                     <li>

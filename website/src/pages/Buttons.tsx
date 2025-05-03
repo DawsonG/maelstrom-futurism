@@ -1,4 +1,4 @@
-import Button from "@maelstrom-futurism/button";
+import { Button } from "@maelstrom-futurism/button";
 import { Container } from "@maelstrom-futurism/layout";
 import CodeView from "../components/CodeView";
 
