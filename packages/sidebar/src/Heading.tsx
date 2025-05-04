@@ -18,12 +18,17 @@ const Heading = ({ title }: HeadingProps): JSX.Element => {
         padding: 0.5rem 1rem;
         ${sidebarContext.isOpen ? `border-bottom: inset 2px ${theme.color('borderMuted')}` : "border-bottom: none"};
 
+        ${sidebarContext.isOpen && `h2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }`}
     `;
 
     return (
         <div css={headingStyle}>
             <h2>
-                {sidebarContext.isOpen && title}
+                {sidebarContext.isOpen && (<div>{title}</div>)}
 
                 {sidebarContext.isClosable && (
                     <Button variant="ghost" onClick={() => sidebarContext.setIsOpen(!sidebarContext.isOpen)}>
