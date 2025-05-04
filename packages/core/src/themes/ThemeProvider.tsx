@@ -51,7 +51,7 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): JSX.Elem
             src: url(${silkscreenBold}) format('truetype');
         }
 
-        html, body {
+        html, body, #root {
             min-height: 100vh;
         }
         body {
