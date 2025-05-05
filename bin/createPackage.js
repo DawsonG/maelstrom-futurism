@@ -63,7 +63,7 @@ const createPackage = (name, options) => {
   
   console.log(`Creating a new package with the following properties:
 {
-  "name": "${name}",
+  "name": "@maelstrom-futurism/${name}",
   "version": "${packageVersion}",
   "description": "${description}",
   ...
