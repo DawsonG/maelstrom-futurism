@@ -4,7 +4,7 @@ import { useTheme } from '../themes';
 import { constructStyles, BaseStyles } from '../styleSystem';
 
 export type BoxProps = {
-    children: ReactNode;
+    children?: ReactNode;
 } & BaseStyles & HTMLAttributes<HTMLDivElement>;
 
 const Box = (props: BoxProps) => {
