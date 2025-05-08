@@ -136,6 +136,7 @@ const Button = (props: ButtonProps): JSX.Element => {
       onMouseDown={addRipple}
       onMouseUp={debounce(cleanUp, 2000)}
       type={type}
+      disabled={disabled}
       {...rest}
     >
       {children}
