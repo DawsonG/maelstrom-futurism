@@ -2,7 +2,7 @@ import React, { ReactNode, useRef } from "react";
 
 import { buttonStyle } from "./Button.styles";
 import { useTheme, debounce, Theme } from "@maelstrom-futurism/core";
-import { css } from "@emotion/react";
+import { css as emotionCss, SerializedStyles } from "@emotion/react";
 import LinkButton from "./LinkButton";
 
 const scales = {
@@ -69,6 +69,11 @@ export interface ButtonProps {
    */
   type?: ButtonType;
 
+  /**
+   * Allow the user to pass in custom styles
+   */
+  css?: SerializedStyles | SerializedStyles[];
+
   scale?: Scale;
   variant?: ButtonVariant;
   outline?: boolean;
@@ -91,12 +96,13 @@ const Button = (props: ButtonProps): JSX.Element => {
     outline,
     type = "button",
     disabled = false,
+    css,
     ...rest
   } = props;
 
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const buttonStyleByTheme = css`
+  const buttonStyleByTheme = emotionCss`
     border-radius: ${theme.buttonRadius()};
   `;
 
@@ -130,7 +136,7 @@ const Button = (props: ButtonProps): JSX.Element => {
 
   return (
     <button
-      css={[buttonStyle, buttonStyleByTheme, getVariantStyle(theme, variant, !!outline), scales[scale]]}
+      css={[buttonStyle, buttonStyleByTheme, getVariantStyle(theme, variant, !!outline), scales[scale], css]}
       onClick={onClick}
       ref={buttonRef}
       onMouseDown={addRipple}
