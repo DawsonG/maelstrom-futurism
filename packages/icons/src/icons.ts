@@ -5,6 +5,7 @@ import AngleRight from "jsx:../assets/angle-right.svg";
 import AngleUp from "jsx:../assets/angle-up.svg";
 import Copy from "jsx:../assets/copy.svg";
 import MenuBurger from "jsx:../assets/menu-burger.svg";
+import Upload from "jsx:../assets/upload.svg";
 
 export const icons = {
     Add,
@@ -14,4 +15,5 @@ export const icons = {
     AngleUp,
     Copy,
     MenuBurger,
+    Upload,
 };
