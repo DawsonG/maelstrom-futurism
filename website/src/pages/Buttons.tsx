@@ -1,4 +1,4 @@
-import { Button } from "@maelstrom-futurism/button";
+import { Button, ButtonGroup } from "@maelstrom-futurism/button";
 import { Container } from "@maelstrom-futurism/layout";
 import CodeView from "../components/CodeView";
 
@@ -40,6 +40,23 @@ const Buttons = () => (
             <Button scale="small">Small</Button>
             <Button scale="normal">Normal</Button>
             <Button scale="big">Large</Button>
+        </div>
+
+        <h2>Button Groups</h2>
+        <CodeView>
+{`<ButtonGroup>
+    <Button>One</Button>
+    <Button>2</Button>
+    <Button>| | |</Button>
+</ButtonGroup>`}
+        </CodeView>
+
+        <div>
+            <ButtonGroup>
+                <Button>One</Button>
+                <Button>2</Button>
+                <Button>| | |</Button>
+            </ButtonGroup>
         </div>
     </Container>
 );

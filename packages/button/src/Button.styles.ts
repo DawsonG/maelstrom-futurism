@@ -32,3 +32,23 @@ export const buttonStyle = css`
     }
   }
 `;
+
+export const buttonGroupStyle = css`
+  & button:first-of-type {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin-right: 0;
+  }
+
+  & button:not(:first-child):not(:last-child) {
+    border-radius: 0px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  & button:last-of-type {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    margin-left: 0;
+  }
+`;
