@@ -2,8 +2,9 @@ import React, { ReactNode, useRef } from "react";
 
 import { buttonStyle } from "./Button.styles";
 import { useTheme, debounce, Theme } from "@maelstrom-futurism/core";
-import { css as emotionCss, SerializedStyles } from "@emotion/react";
+import { css as emotionCss } from "@emotion/react";
 import LinkButton from "./LinkButton";
+import { ButtonProps, ButtonVariant } from "./types";
 
 const scales = {
   small: {
@@ -20,14 +21,7 @@ const scales = {
   },
 };
 
-export type ButtonVariant =
-  | "primary"
-  | "secondary"
-  | "cancel"
-  | "ghost"
-  | "link";
-export type ButtonType = "button" | "submit";
-export type Scale = "small" | "normal" | "big";
+
 
 const getVariantColor = (theme: Theme, variant: ButtonVariant): [string, string] => {
   switch (variant) {
@@ -60,26 +54,6 @@ const getVariantStyle = (theme: Theme, variant: ButtonVariant, outline: boolean)
     },
   };
 };
-
-export interface ButtonProps {
-  children?: ReactNode;
-
-  /**
-   * Either type="submit" or type="button"
-   */
-  type?: ButtonType;
-
-  /**
-   * Allow the user to pass in custom styles
-   */
-  css?: SerializedStyles | SerializedStyles[];
-
-  scale?: Scale;
-  variant?: ButtonVariant;
-  outline?: boolean;
-  onClick?: React.MouseEventHandler;
-  disabled?: boolean;
-}
 
 const Button = (props: ButtonProps): JSX.Element => {
   const theme = useTheme();

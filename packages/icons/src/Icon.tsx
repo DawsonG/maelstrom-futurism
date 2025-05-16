@@ -6,6 +6,7 @@ export type IconName = keyof typeof icons;
 
 interface IconProps extends HTMLAttributes<HTMLDivElement> {
   icon: IconName;
+  size?: number;
   className?: string;
   // These props make styling component easier than creating new classes
   rotate?: number;
@@ -18,7 +19,7 @@ interface IconProps extends HTMLAttributes<HTMLDivElement> {
  * @param rotate optional number rotation of the icon
  * @returns Icon react component
  */
-export const Icon = ({ icon, className, rotate, color, ...rest }: IconProps) => {
+export const Icon = ({ icon, size = 24, className, rotate, color, ...rest }: IconProps) => {
   const SvgIcon = useMemo(() => icons[icon], [icon]);
 
   if (!SvgIcon) return null;
@@ -29,8 +30,8 @@ export const Icon = ({ icon, className, rotate, color, ...rest }: IconProps) => 
       aria-label={icon}
       role="img"
       style={{
-        height: "24px",
-        width: "24px",
+        height: `${size}px`,
+        width: `${size}px`,
         padding: "2px",
         display: "inline-flex",
         justifyContent: "center",

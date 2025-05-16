@@ -1,4 +1,4 @@
-import { Button, ButtonGroup } from "@maelstrom-futurism/button";
+import { Button, ButtonGroup, DropdownButton } from "@maelstrom-futurism/button";
 import { Container } from "@maelstrom-futurism/layout";
 import CodeView from "../components/CodeView";
 
@@ -58,6 +58,42 @@ const Buttons = () => (
                 <Button>| | |</Button>
             </ButtonGroup>
         </div>
+
+        <h2>Dropdown Buttons</h2>
+        <CodeView>
+{`<DropdownButton
+    items={[
+        {
+            label: "First Option",
+            onClick: () => alert("First Option clicked")
+        },
+        {
+            label: "Second Option",
+            onClick: () => alert("Second Option clicked")
+        }
+    ]}
+>Button with Dropdown</DropdownButton>
+`}
+        </CodeView>
+
+        <div>
+            <DropdownButton items={[
+                {
+                    label: "First Option",
+                    onClick: () => alert("First Option clicked")
+                },
+                {
+                    label: "Second Option",
+                    onClick: () => alert("Second Option clicked")
+                },
+                {
+                    label: "Third Option",
+                    onClick: () => alert("Third Option clicked")
+                }
+            ]}>Button with Dropdown</DropdownButton>
+        </div>
+
+        <div style={{ marginBottom: "160px" }} />
     </Container>
 );
 
