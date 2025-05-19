@@ -21,12 +21,12 @@ export const modalWrapper = css`
 export const modal = css`
   z-index: 1060;
   background: white;
+  color: black;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 1.75rem auto;
-  border-radius: 3px;
   max-width: 500px;
   min-width: 300px;
   min-height: 200px;
@@ -49,8 +49,13 @@ export const modalCloseButton = css`
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1;
+  background-color: transparent;
   color: #000;
   opacity: 0.3;
   cursor: pointer;
   border: none;
+
+  &:hover {
+    opacity: 1;
+  }
 `;

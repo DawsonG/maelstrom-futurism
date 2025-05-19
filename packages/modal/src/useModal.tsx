@@ -1,14 +1,14 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import Modal from "./Modal";
 
-interface IRenderModal {
+interface RenderModalProps {
   title?: string;
   children: React.ReactChild;
 }
 
-const useModal = (): [
+export const useModal = (): [
   (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
-  React.FC<IRenderModal>,
+  (props: RenderModalProps) => JSX.Element,
   boolean
 ] => {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,17 +17,15 @@ const useModal = (): [
     setIsVisible(!isVisible);
   }
 
-  const RenderModal: React.FC<IRenderModal> = ({ title, children }) => (
-    <Fragment>
+  const RenderModal= ({ title, children }: RenderModalProps): JSX.Element => (
+    <>
       {isVisible && (
         <Modal title={title} hide={toggle} isShowing={isVisible}>
           {children}
         </Modal>
       )}
-    </Fragment>
+    </>
   );
 
   return [toggle, RenderModal, isVisible];
 };
-
-export default useModal;

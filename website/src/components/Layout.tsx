@@ -33,6 +33,7 @@ function Layout() {
                             <li><Link to='/color_tool'>Color Tool</Link></li>
                         </ul>
                     </li>
+                    <li><Link to="/modal">Modal</Link></li>
                     <li><Link to="/icons">Icons</Link></li>
                 </ul>
             </Sidebar>

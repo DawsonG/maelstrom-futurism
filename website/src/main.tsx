@@ -17,7 +17,8 @@ import PagePaper from './pages/Paper.tsx';
 import ContentBoxPage from './pages/ContentBox.tsx';
 import Buttons from './pages/Buttons.tsx';
 import Icons from './pages/Icons.tsx';
-import TooltipPage from './pages/Tooltip.tsx';
+import PageTooltip from './pages/Tooltip.tsx';
+import PageModal from './pages/Modal.tsx';
 
 
 const router = createBrowserRouter([
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/tooltip',
-        element: <TooltipPage />
+        element: <PageTooltip />
       },
       {
         path: '/layout/containers',
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: '/layout/grid',
         element: <PageGrid />
+      },
+      {
+        path: '/modal',
+        element: <PageModal />
       },
       {
         path: '/paper',
