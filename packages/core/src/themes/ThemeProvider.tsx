@@ -4,6 +4,8 @@ import poppinsLight from '../fonts/Poppins-Light.ttf';
 import poppinsMedium from '../fonts/Poppins-Medium.ttf';
 import silkscreenMedium from '../fonts/Silkscreen-Regular.ttf';
 import silkscreenBold from '../fonts/Silkscreen-Bold.ttf';
+import jetbrainsMonoLight from '../fonts/JetBrainsMono-Light.ttf';
+import jetbrainsMonoMedium from '../fonts/JetBrainsMono-Medium.ttf';
 
 import Theme from './theme';
 import { createTheme } from './createTheme';
@@ -49,6 +51,18 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): JSX.Elem
             font-family: "Silkscreen";
             font-weight: 600;
             src: url(${silkscreenBold}) format('truetype');
+        }
+
+        @font-face {
+            font-family: "JetBrainsMono";
+            font-weight: 400;
+            src: url(${jetbrainsMonoLight}) format('truetype');
+        }
+        
+        @font-face {
+            font-family: "JetBrainsMono";
+            font-weight: 600;
+            src: url(${jetbrainsMonoMedium}) format('truetype');
         }
 
         html, body, #root {
