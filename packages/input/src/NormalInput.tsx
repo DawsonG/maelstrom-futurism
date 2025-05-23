@@ -27,6 +27,7 @@ const NormalInput = ({
                 name={name}
                 type={type}
                 ref={forwardedRef}
+                value={value}
                 css={normalStyledInput(theme)}
                 {...restProps}
             />

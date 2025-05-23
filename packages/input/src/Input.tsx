@@ -7,7 +7,7 @@ export type Variant =
     | "normal"
     | "material";
 
-export interface InputProps {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     
     /**
      * Normal or Material variant
