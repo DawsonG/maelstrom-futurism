@@ -5,3 +5,4 @@ export * from '@maelstrom-futurism/layout';
 export * from '@maelstrom-futurism/paper';
 export * from '@maelstrom-futurism/sidebar';
 export * from '@maelstrom-futurism/tooltip';
+export * from '@maelstrom-futurism/modal';
