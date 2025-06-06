@@ -7,7 +7,7 @@ interface TextAreaProps extends React.ClassAttributes<HTMLTextAreaElement> {
     label: string;
     rows?: number;
     value?: string;
-    onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const TextArea = ({ name, label, value, ...rest }: TextAreaProps) => {

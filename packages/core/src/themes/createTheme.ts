@@ -9,19 +9,6 @@ import Theme from './theme';
 // Animations may also be a good candidate for creating these.
 export type ColorSetName = 'nordDark' | 'nordLight';
 
-const nordDarkColors = {
-    background: '#242933',
-    borderMuted: '#303744',
-    border: '#2e3440',
-    content: '#2e3440',
-    textColor: '#eceff4',
-    linkColor: '#5e81ac',
-    primary: '#5e81ac',
-    secondary: '#81a1c1',
-    alert: '#bf616a',
-    warning: '#ebcb8b',
-    success: '#a3be8c',
-    info: '#5e81ac'
 /*
 PolarNight
 #2e3440
@@ -47,6 +34,20 @@ Aurora
 #a3be8c
 #b48ead
 */
+
+const nordDarkColors = {
+    background: '#242933',
+    borderMuted: '#303744',
+    border: '#2e3440',
+    content: '#2e3440',
+    textColor: '#eceff4',
+    linkColor: '#88c0d0',
+    primary: '#5e81ac',
+    secondary: '#81a1c1',
+    alert: '#bf616a',
+    warning: '#ebcb8b',
+    success: '#a3be8c',
+    info: '#5e81ac'
 };
 
 const nordLightColors = {

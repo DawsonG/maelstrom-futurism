@@ -56,6 +56,10 @@ const paperStyle = (
     margin-top: 0px;
   }
 
+  a, a:hover {
+    color: #5e81ac;
+  } 
+
   ${centered &&
   `
     position: absolute;
