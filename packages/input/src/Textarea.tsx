@@ -1,6 +1,5 @@
 import { css } from "@emotion/react";
 import { useTheme } from "@maelstrom-futurism/core";
-import { normalStyledInput } from "./NormalStyles";
 
 interface TextAreaProps extends React.ClassAttributes<HTMLTextAreaElement> {
     name: string;
@@ -10,6 +9,8 @@ interface TextAreaProps extends React.ClassAttributes<HTMLTextAreaElement> {
     onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
+
+
 const TextArea = ({ name, label, value, ...rest }: TextAreaProps) => {
     const theme = useTheme();
     
@@ -17,10 +18,21 @@ const TextArea = ({ name, label, value, ...rest }: TextAreaProps) => {
         margin-top: 0.5em;
     `;
     
+    const textAreaStyles = css`
+        border: solid 1px ${theme.color("content")};
+        border-radius: ${theme.inputRadius()};
+        padding: 0.5em 1em;
+        width: 100%;
+        font-size: 1em;
+        color: ${theme.color("textColor")};
+        background-color: ${theme.color("content")};
+        outline: 1px solid ${theme.color("secondary")};
+    `;
+
     return (
         <div css={fcContainer}>
             {label && <label htmlFor={name}>{label}</label>}
-            <textarea css={normalStyledInput(theme)} {...rest}></textarea>
+            <textarea css={textAreaStyles} {...rest}></textarea>
         </div>
     );
 };

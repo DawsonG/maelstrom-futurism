@@ -1,7 +1,8 @@
 import React, { HTMLInputTypeAttribute } from "react";
+import { useTheme } from "@maelstrom-futurism/core";
 
-import MaterialInput from "./MaterialInput";
-import NormalInput from "./NormalInput";
+import { fcContainer, materialStyledInput, normalStyledInput } from "./styles";
+
 
 export type Variant =
     | "normal"
@@ -62,18 +63,28 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
     forwardedRef?: any;
 }
 
-const Input = React.forwardRef(
-  ({ variant = "normal", type, name, ...rest }: InputProps, ref?: any) => {
-    switch (variant) {
-      case "material":
-        return (
-          <MaterialInput type={type} name={name} forwardedRef={ref} {...rest} />
-        );
-      case "normal":
-      default:
-        return <NormalInput type={type} name={name} forwardedRef={ref} {...rest} />;
-    }
-  }
-);
+const Input = React.forwardRef(({ variant = "normal", type, name, label, ...rest }: InputProps, ref?: any) => {
+    const theme = useTheme();
+    const isMaterial = variant === "material";
+    
+    const additionalStyles = isMaterial ? materialStyledInput(theme) : normalStyledInput(theme)
+
+    return (
+      <div css={[fcContainer, additionalStyles]}>
+          <input
+                id={name}
+                name={name}
+                type={type}
+                ref={ref}
+                placeholder=" "
+                {...rest}
+          />
+          {label && <label htmlFor={name}>{label}</label>}
+          {isMaterial && <span className="underline" />}
+      </div>
+    );
+});
+
+
 
 export default Input;
