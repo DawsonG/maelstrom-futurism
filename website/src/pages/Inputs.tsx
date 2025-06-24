@@ -1,6 +1,7 @@
 import { Input, TextArea } from "@maelstrom-futurism/input";
 import { Container } from "@maelstrom-futurism/layout";
 import CodeView from "../components/CodeView";
+import { ContentBox } from "@maelstrom-futurism/core";
 
 const Inputs = (): JSX.Element => {
     return (
@@ -39,6 +40,23 @@ const FormControl = () => (
 `}</CodeView>
             <TextArea name="textarea" label="Normal Textarea" onChange={() => null} />
 
+            <p>
+                Inputs can also be used inside of content boxes and other elements with set
+                background colors.
+            </p>
+
+            <CodeView>{`import { Input } from "@maelstrom-futurism/input";
+import { ContentBox } from "@maelstrom-futurism/core";
+
+<ContentBox>
+    <h2>I'm a ContentBox</h2>
+    <Input variant="normal" name="test 2" label="Normal Input in Content Box" type="text" />
+</ContentBox>`}</CodeView>
+
+            <ContentBox>
+                <h2>I'm a ContentBox</h2>
+                <Input variant="normal" name="test 2" label="Normal Input in Content Box" type="text" />
+            </ContentBox>
         </Container>
     );
 }

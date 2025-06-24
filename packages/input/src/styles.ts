@@ -67,6 +67,8 @@ export const materialStyledInput = (theme: Theme) => css`
 `;
 
 export const normalStyledInput = (theme: Theme) => css`
+    background-color: inherit;
+
     input {
         color: ${theme.color("textColor")};
         height: 3rem;
@@ -77,6 +79,7 @@ export const normalStyledInput = (theme: Theme) => css`
         font-size: ${theme.size("base")};
         transition: .1s ${EASE_FUNCTION};
         background: transparent;
+        width: 100%;
     }
 
     label {
@@ -85,7 +88,7 @@ export const normalStyledInput = (theme: Theme) => css`
         left: 10px;
         transform: translateY(-50%);
         color: rgba(255, 255, 255, 0.5);
-        background-color: ${theme.color("background")};
+        background-color: inherit;
         text-align: center;
         transition: .2s ${EASE_FUNCTION};
         font-size: 1.2rem;

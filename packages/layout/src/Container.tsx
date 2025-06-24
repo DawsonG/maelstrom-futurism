@@ -24,6 +24,8 @@ const Container = ({ fluid, children, margin, maxWidth, ...rest }: ContainerProp
         <div css={css`
             margin: ${margin ? margin : '0 auto'};
             width: ${fWidth};
+            // Necessary for some of the background calculations done in child components
+            background-color: ${theme.color("background")};
 
             padding-left: 1rem;
             padding-right: 1rem;
