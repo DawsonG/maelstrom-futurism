@@ -1,4 +1,4 @@
-import Paper from "@maelstrom-futurism/paper";
+import { Paper } from "@maelstrom-futurism/paper";
 import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
 

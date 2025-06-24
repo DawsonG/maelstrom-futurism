@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import Paper from '@maelstrom-futurism/paper';
+import { Paper } from '@maelstrom-futurism/paper';
 
 import isBot, { ProtectionMethodFlags, defaultMethodFlags } from './isBot';
 
