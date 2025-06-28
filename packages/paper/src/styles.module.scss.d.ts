@@ -1,0 +1,10 @@
+export declare const backgroundDotted: string;
+export declare const backgroundGraph: string;
+export declare const centered: string;
+export declare const paper: string;
+export declare const pre: string;
+export declare const stackTypeBottom: string;
+export declare const stackTypeNone: string;
+export declare const stackTypeRandom: string;
+export declare const stackTypeSingle: string;
+export declare const stackTypeTop: string;

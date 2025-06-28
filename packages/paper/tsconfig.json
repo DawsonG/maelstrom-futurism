@@ -1,13 +1,13 @@
 {
     "extends": "../../tsconfig.json",
-    "include": ["src"],
+    "include": ["src", "typings.d.ts"],
     "compilerOptions": {
         "outDir": "dist",
         "jsxImportSource": "@emotion/react",
         "jsx": "react-jsx",
         "sourceMap": true,
         "declaration": true,
-        "declarationDir": "dist"
+        "types": ["vite/client"]
     },
     "references": [
         { "@maelstrom-futurism/theme": "../theme" }

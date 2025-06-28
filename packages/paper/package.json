@@ -2,7 +2,7 @@
   "name": "@maelstrom-futurism/paper",
   "version": "0.7.0",
   "description": "Stacks of paper",
-  "main": "dist/index.js",
+  "source": "src/index.ts",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
@@ -16,9 +16,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "parcel build",
     "clean": "rm -Rf dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run --coverage",
+    "test:dev": "vitest"
   },
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
   "homepage": "https://osmstudios.com",
@@ -29,6 +30,8 @@
     "directory": "packages/paper"
   },
   "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "@maelstrom-futurism/core": "../core"
   },
   "peerDependences": {

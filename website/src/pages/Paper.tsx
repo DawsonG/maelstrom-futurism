@@ -1,4 +1,4 @@
-import Paper, { PaperVariant, PaperBackground } from '@maelstrom-futurism/paper';
+import { Paper, PaperVariant, PaperBackground } from '@maelstrom-futurism/paper';
 import { Container } from '@maelstrom-futurism/layout';
 
 import CodeView from '../components/CodeView';
