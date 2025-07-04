@@ -104,9 +104,11 @@ export default function Paper({
   }
 
   return (
-    <div className={outerStyles.join(' ')} style={{ width }}>
-      <div className={innerStyles.join(' ')} style={{ fontFamily }}>
-        {children}
+    <div className={styles.parent}>
+      <div className={outerStyles.join(' ')} style={{ width }}>
+        <div className={innerStyles.join(' ')} style={{ fontFamily }}>
+          {children}
+        </div>
       </div>
     </div>
   );

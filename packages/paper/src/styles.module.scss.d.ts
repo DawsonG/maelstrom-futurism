@@ -2,6 +2,7 @@ export declare const backgroundDotted: string;
 export declare const backgroundGraph: string;
 export declare const centered: string;
 export declare const paper: string;
+export declare const parent: string;
 export declare const pre: string;
 export declare const stackTypeBottom: string;
 export declare const stackTypeNone: string;
