@@ -8,6 +8,7 @@ import CaretLeft from "jsx:../assets/caret-left.svg";
 import CaretRight from "jsx:../assets/caret-right.svg";
 import CaretUp from "jsx:../assets/caret-up.svg";
 import Copy from "jsx:../assets/copy.svg";
+import Home from "jsx:../assets/home.svg";
 import MenuBurger from "jsx:../assets/menu-burger.svg";
 import Upload from "jsx:../assets/upload.svg";
 
@@ -22,6 +23,7 @@ export const icons = {
     CaretRight,
     CaretUp,
     Copy,
+    Home,
     MenuBurger,
     Upload,
 };
