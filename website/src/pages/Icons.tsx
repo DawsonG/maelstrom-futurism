@@ -16,6 +16,7 @@ const Icons = () => (
         <Icon icon="CaretDown" />
         <Icon icon="CaretLeft" />
         <Icon icon="Copy" />
+        <Icon icon="Home" />
         <Icon icon="MenuBurger" />
 
     </Container>
