@@ -10,7 +10,9 @@ import CaretUp from "jsx:../assets/caret-up.svg";
 import Copy from "jsx:../assets/copy.svg";
 import Home from "jsx:../assets/home.svg";
 import MenuBurger from "jsx:../assets/menu-burger.svg";
+import Moon from "jsx:../assets/moon.svg";
 import Upload from "jsx:../assets/upload.svg";
+import Sun from "jsx:../assets/sun.svg";
 
 export const icons = {
     Add,
@@ -25,5 +27,7 @@ export const icons = {
     Copy,
     Home,
     MenuBurger,
+    Moon,
     Upload,
+    Sun
 };
