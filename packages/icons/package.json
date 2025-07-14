@@ -11,6 +11,7 @@
   "scripts": {
     "build": "parcel build",
     "clean": "rm -Rf dist",
+    "prepublish": "npm run build",
     "test": "vitest run --coverage",
     "test:dev": "vitest"
   },
@@ -30,5 +31,5 @@
     "react": ">= 18.0.0",
     "react-dom": ">= 18.0.0"
   },
-  "gitHead": "e66f91fb9f34d44bb71b7cfada7bd45236f0959c"
+  "gitHead": "45623e427b95a09e33fd2ded3b3747f6e3217be2"
 }
