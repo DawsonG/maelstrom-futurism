@@ -1,8 +1,9 @@
 {
-  "name": "@maelstrom-futurism/paper",
+  "name": "@maelstrom-futurism/navbar",
   "version": "0.7.1-alpha.0",
-  "description": "Stacks of paper",
-  "source": "src/index.ts",
+  "description": "",
+  "private": true,
+  "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
@@ -16,8 +17,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "parcel build",
-    "clean": "rm -Rf dist",
+    "build": "tsc",
     "test": "vitest run --coverage",
     "test:dev": "vitest"
   },
@@ -27,12 +27,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
-    "directory": "packages/paper"
+    "directory": "packages/{name}"
   },
   "dependencies": {
-    "@maelstrom-futurism/core": "../core",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "@maelstrom-futurism/core": "../core"
   },
   "peerDependences": {
     "react": ">= 18.0.0",

@@ -1,42 +1,41 @@
 {
-    "name": "@maelstrom-futurism/sidebar",
-    "version": "0.7.0",
-    "description": "A flexible sidebar component for navigation",
-    "private": true,
-    "main": "dist/index.js",
-    "module": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "typings": "dist/index.d.ts",
-    "exports": {
-      ".": {
-        "require": "./dist/index.js",
-        "default": "./dist/index.js"
-      }
-    },
-    "files": [
-      "dist"
-    ],
-    "scripts": {
-      "build": "tsc",
-      "test": "vitest run --coverage",
-      "test:dev": "vitest"
-    },
-    "author": "Dawson Goodell <dawsong@osmstudios.com>",
-    "homepage": "https://osmstudios.com",
-    "license": "SEE LICENSE IN LICENSE.txt",
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
-      "directory": "packages/paper"
-    },
-    "dependencies": {
-      "@maelstrom-futurism/button": "../button",
-      "@maelstrom-futurism/core": "../core",
-      "@maelstrom-futurism/icons": "../icons"
-    },
-    "peerDependences": {
-      "react": ">= 18.0.0",
-      "react-dom": ">= 18.0.0"
+  "name": "@maelstrom-futurism/sidebar",
+  "version": "0.7.1-alpha.0",
+  "description": "A flexible sidebar component for navigation",
+  "private": true,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
     }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run --coverage",
+    "test:dev": "vitest"
+  },
+  "author": "Dawson Goodell <dawsong@osmstudios.com>",
+  "homepage": "https://osmstudios.com",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
+    "directory": "packages/paper"
+  },
+  "dependencies": {
+    "@maelstrom-futurism/button": "../button",
+    "@maelstrom-futurism/core": "../core",
+    "@maelstrom-futurism/icons": "../icons"
+  },
+  "peerDependences": {
+    "react": ">= 18.0.0",
+    "react-dom": ">= 18.0.0"
   }
-  
+}
