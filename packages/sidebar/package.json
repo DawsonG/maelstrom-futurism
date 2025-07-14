@@ -2,6 +2,7 @@
     "name": "@maelstrom-futurism/sidebar",
     "version": "0.7.0",
     "description": "A flexible sidebar component for navigation",
+    "private": true,
     "main": "dist/index.js",
     "module": "dist/index.js",
     "types": "dist/index.d.ts",

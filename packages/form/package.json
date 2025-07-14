@@ -2,6 +2,7 @@
   "name": "@maelstrom-futurism/form",
   "version": "0.7.0",
   "description": "Form and Input components",
+  "private": true,
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",

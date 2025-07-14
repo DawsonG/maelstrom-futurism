@@ -2,6 +2,7 @@
   "name": "@maelstrom-futurism/button",
   "version": "0.7.0",
   "description": "A button (with very cool ripples!) for MF",
+  "private": true,
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",

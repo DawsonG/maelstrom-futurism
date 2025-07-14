@@ -30,7 +30,8 @@
     "clean": "lerna run clean --ignore src,website --no-private --stream && rm -Rf node_modules && rm package-lock.json",
     "bootstrap": "lerna bootstrap",
     "prepublishOnly": "npm run build",
-    "create-documentation-website": "cd ./website && npm run build"
+    "create-documentation-website": "cd ./website && npm run build",
+    "publish": "lerna publish"
   },
   "devDependencies": {
     "@parcel/config-default": "^2.14.4",
