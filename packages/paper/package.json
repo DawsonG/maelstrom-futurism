@@ -30,12 +30,13 @@
     "directory": "packages/paper"
   },
   "dependencies": {
-    "@maelstrom-futurism/core": "../core",
+    "@maelstrom-futurism/core": "^0.7.1-alpha.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "peerDependences": {
     "react": ">= 18.0.0",
     "react-dom": ">= 18.0.0"
-  }
+  },
+  "gitHead": "3bf9aa5d3510b42208ab7d70d347a8645ff0c8c8"
 }
