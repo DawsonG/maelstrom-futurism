@@ -3,9 +3,14 @@
 > Extremely opinionated framework for super fast webapp development.
 
 [Demo & Documentation Website](https://mf.osmstudios.com/)
+[DawsonGoodell.com](https://dawsongoodell.com/)
 
 * **Maelstrom** - for speedy development
 * **Futurism** - for sleek, post-modern design
+
+## Should I use this?
+
+Probably **not**.  This is hardly production ready.  MF is a personal project to determine if I still have any web development skills.  It is designed to be used by me and is mostly styled via [emotion](https://emotion.sh).
 
 ## Rules / Tenets (mostly for ignoring)
 
@@ -24,6 +29,8 @@ Alternatively, the `maelstrom-futurism` package contains core as well as all the
 > Packages starting with `mf-` are not imported in the `maelstrom-futurism` master package.  These packages have unique use cases and won't be helpful for most people.  As a result they are installed separately.
 
 **To start:**
+
+**Ignore this section. I haven't published this to npm since I don't want to encourage its use.**
 
 ```
 npm i @maelstrom-futurism/core
