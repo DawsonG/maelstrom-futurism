@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/paper",
-  "version": "0.7.1-alpha.0",
+  "version": "0.7.1-alpha.1",
   "description": "Stacks of paper",
   "source": "src/index.ts",
   "module": "dist/index.js",
