@@ -4,7 +4,9 @@
   "description": "An icon set for use with maelstrom-futurism components",
   "source": "./src/index.ts",
   "main": "./dist/index.js",
+  "module": "./dist/module.js",
   "types": "./dist/index.d.ts",
+  "type": "module",
   "files": [
     "dist"
   ],
