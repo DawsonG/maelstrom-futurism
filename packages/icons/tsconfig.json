@@ -4,7 +4,7 @@
     "compilerOptions": {
         "outDir": "dist",
         "jsx": "react-jsx",
-        "sourceMap": true,
+        "sourceMap": false,
         "declaration": true,
         "types": ["vite/client"]
     }
