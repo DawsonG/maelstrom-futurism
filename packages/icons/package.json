@@ -18,8 +18,8 @@
     "test:dev": "vitest"
   },
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
-  "homepage": "https://osmstudios.com",
-  "license": "SEE LICENSE IN LICENSE.txt",
+  "homepage": "https://mf.osmstudios.com",
+  "license": "SEE LICENSE IN LICENSE.md",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
