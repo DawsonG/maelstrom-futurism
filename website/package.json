@@ -15,9 +15,9 @@
     "@maelstrom-futurism/icons": "../packages/icons",
     "@maelstrom-futurism/input": "../packages/input",
     "@maelstrom-futurism/layout": "../packages/layout",
-    "@maelstrom-futurism/modal": "../packages/modal",
     "@maelstrom-futurism/mf-bot-differentiator": "../packages/mf-bot-differentiator",
     "@maelstrom-futurism/mf-color": "../packages/mf-color",
+    "@maelstrom-futurism/modal": "../packages/modal",
     "@maelstrom-futurism/paper": "../packages/paper",
     "@maelstrom-futurism/sidebar": "../packages/sidebar",
     "@maelstrom-futurism/tooltip": "../packages/tooltip"
@@ -37,7 +37,7 @@
     "react-dom": "^18.3.1",
     "react-markdown": "^9.0.3",
     "react-router-dom": "^7.0.2",
-    "react-syntax-highlighter": "^15.6.1",
+    "react-syntax-highlighter": "^15.6.6",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^6.2.2"
