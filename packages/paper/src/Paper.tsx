@@ -1,33 +1,34 @@
-import { ReactNode } from "react";
-import { useTheme } from "@maelstrom-futurism/core";
+import { ReactNode } from 'react';
+import { useTheme } from '@maelstrom-futurism/core';
 
 import * as styles from './styles.module.scss';
+import ReadabilityBar from './Readability/ReadabilityBar';
 
 export enum StackType {
-  SINGLE = "single",
-  STACK = "stack",
-  RANDOM_STACK = "random_stack",
-  NONE = "none",
+  SINGLE = 'single',
+  STACK = 'stack',
+  RANDOM_STACK = 'random_stack',
+  NONE = 'none',
 }
-type Variant = "single" | "stack" | "random_stack" | "none" | StackType;
+type Variant = 'single' | 'stack' | 'random_stack' | 'none' | StackType;
 
 export enum HDirection {
-  RIGHT = "right",
-  CENTER = "center",
-  LEFT = "left",
+  RIGHT = 'right',
+  CENTER = 'center',
+  LEFT = 'left',
 }
 
 export enum VDirection {
-  TOP = "top",
-  BOTTOM = "bottom",
+  TOP = 'top',
+  BOTTOM = 'bottom',
 }
 
 export enum Background {
-  NONE = "none",
-  GRAPH = "graph",
-  DOT = "dot"
+  NONE = 'none',
+  GRAPH = 'graph',
+  DOT = 'dot'
 }
-type BackgroundOptions = "none" | "graph" | "dot" | Background;
+type BackgroundOptions = 'none' | 'graph' | 'dot' | Background;
 
 interface PaperProps {
   children: ReactNode;
@@ -38,6 +39,7 @@ interface PaperProps {
   centered?: boolean;
   pre?: boolean;
   font?: string;
+  showReadabilityControls: boolean;
 }
 
 export default function Paper({
@@ -49,6 +51,7 @@ export default function Paper({
   centered,
   pre,
   font,
+  showReadabilityControls = false,
 }: PaperProps) {
   const theme = useTheme();
   // outerStyles
@@ -84,7 +87,7 @@ export default function Paper({
   let innerStyles = [];
   if (background) {
     switch (background) {
-      case "dot":
+      case 'dot':
       case Background.DOT:
         innerStyles.push(styles.backgroundDotted);
         break;
@@ -106,6 +109,10 @@ export default function Paper({
   return (
     <div className={styles.parent}>
       <div className={outerStyles.join(' ')} style={{ width }}>
+        {showReadabilityControls && (
+          <ReadabilityBar />
+        )}
+
         <div className={innerStyles.join(' ')} style={{ fontFamily }}>
           {children}
         </div>

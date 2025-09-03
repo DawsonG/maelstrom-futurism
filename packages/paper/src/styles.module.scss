@@ -20,6 +20,10 @@
         padding: 1.5em;
         margin: 0;
     }
+
+    @supports (font-size-adjust: 1) {
+        font-size-adjust: 0.5;
+    }
 }
 
 .parent {

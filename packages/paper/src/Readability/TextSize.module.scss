@@ -1,0 +1,32 @@
+.textSize {
+    display: flex;
+    flex-direction: column;
+}
+
+.textSizeBar {
+    display: flex;
+    height: 22px;
+
+    align-items: center;
+}
+
+.stylelessButton {
+    border: 0;
+    border-radius: 3px;
+    background: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #ccc;
+    }
+}
+
+.smallerButton {
+    @extend .stylelessButton;
+    font-size: 0.85em;
+}
+
+.largerButton {
+    @extend .stylelessButton;
+    font-size: 1.4em;
+}
