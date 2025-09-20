@@ -39,7 +39,7 @@ interface PaperProps {
   centered?: boolean;
   pre?: boolean;
   font?: string;
-  showReadabilityControls: boolean;
+  showReadabilityControls?: boolean;
 }
 
 export default function Paper({

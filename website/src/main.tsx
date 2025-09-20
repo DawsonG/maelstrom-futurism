@@ -19,6 +19,7 @@ import Buttons from './pages/Buttons.tsx';
 import Icons from './pages/Icons.tsx';
 import PageTooltip from './pages/Tooltip.tsx';
 import PageModal from './pages/Modal.tsx';
+import PagePaperReadability from './pages/PaperReadability.tsx';
 
 
 const router = createBrowserRouter([
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: '/paper',
         element: <PagePaper />
+      },
+      {
+        path: '/paper_readability',
+        element: <PagePaperReadability />
       },
       {
         path: '/icons',

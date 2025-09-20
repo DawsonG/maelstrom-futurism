@@ -1,15 +1,17 @@
-import { isRealUserAgent } from "./userAgent";
+import { evaluateRealUserAgent } from "./userAgent";
 
 export interface ProtectionMethodFlags {
     userAgent?: boolean;
     resolutionCheck?: boolean;
     imageResolver?: boolean;
+    cssSupported?: boolean;
 }
 
 export const defaultMethodFlags: ProtectionMethodFlags = {
     userAgent: true,
     resolutionCheck: false,
     imageResolver: false,
+    cssSupported: false,
 }
 
 /**
@@ -24,28 +26,66 @@ export const defaultMethodFlags: ProtectionMethodFlags = {
  * Next we'll see if we have a resolution and if that resolution makes sense. Finally
  * we'll look at whether or not it requests resources like CSS and images.
  * 
- * Of course, we want to make these checks configurable since they can trip up disability
+ * Of course, we want to make these checks configurable since they can trip up accessibility
  * aids such as screenreaders.
  */
 
-const isBot = (methodFlags: ProtectionMethodFlags) => {
-    let rtn = false;
+const isBot = async (methodFlags: ProtectionMethodFlags) => {
+    let score = 0;
+    let thresholdScore = 0; // Each method we use raises the threshold score for surity of "bot"
     const getValueOrDefault = (key: keyof ProtectionMethodFlags): boolean =>
         methodFlags[key] === undefined ? defaultMethodFlags[key]! : methodFlags[key];
 
     if (getValueOrDefault('userAgent')) {
-        rtn = isRealUserAgent(navigator.userAgent);
+        score += evaluateRealUserAgent(navigator.userAgent);
+        thresholdScore += 2;
     }
 
     if (getValueOrDefault('resolutionCheck')) {
-        // noop
+        score += evaluateResolution(window.innerWidth, window.innerHeight);
+        thresholdScore += 1;
     }
 
     if (getValueOrDefault('imageResolver')) {
-        // noop
+        score += await evaluateImageLoading();
+        thresholdScore += 1;
     }
 
-    return rtn;
+    if (getValueOrDefault('cssSupported')) {
+        score += evaluateCssSupported();
+        thresholdScore += 1;
+    }
+
+    return score >= thresholdScore;
 }
+
+const evaluateResolution = (w: number, h: number): number => {
+    return w * h > 4400 ? 0 : 1;
+}
+
+const evaluateImageLoading = (): Promise<number> => new Promise((resolve) => {
+    const img = new Image();
+
+    img.onload = function() {
+        if (img.naturalWidth === 0 && img.naturalHeight === 0) {
+            resolve(1);
+        }
+
+        resolve(0);
+    };
+
+    img.onerror = function() {
+        resolve(1);
+    };
+
+    // a png of 1px by 1px
+    img.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAD0lEQVR4AQEEAPv/AIQfFQHjALmSOz/DAAAAAElFTkSuQmCC';
+});
+
+const evaluateCssSupported = () => {
+    if (!CSS.supports('display: block')) return 1; // no way
+
+    return 0;
+};
 
 export default isBot;

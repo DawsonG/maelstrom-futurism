@@ -15,6 +15,7 @@ function Layout() {
                         <ul>
                             <li><Link to='/box_and_contentbox'>Box and ContentBox</Link></li>
                             <li><Link to='/paper'>Paper</Link></li>
+                            <li><Link to='/paper_readability'>Paper with Readability Controls</Link></li>
                             <li><Link to='/inputs'>Inputs</Link></li>
                             <li><Link to='/buttons'>Buttons</Link></li>
                             <li><Link to='/tooltip'>Tooltip</Link></li>

@@ -32,5 +32,10 @@
   "dependencies": {
     "@maelstrom-futurism/core": "../core",
     "@maelstrom-futurism/paper": "../paper"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^8.20.1",
+    "@testing-library/react": "^13.4.0",
+    "jsdom": "^26.1.0"
   }
 }

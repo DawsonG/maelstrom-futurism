@@ -1,5 +1,6 @@
 import { describe, expect, test } from "vitest";
-import { isRealUserAgent } from "./userAgent";
+import { evaluateRealUserAgent, isRealUserAgent } from "./userAgent";
+import { Confidence } from "./types";
 
 describe("userAgent", () => {
     const realAgents = [
@@ -29,6 +30,7 @@ describe("userAgent", () => {
         "BIZCO EasyScraping Studio 2.0",
         "Java stuff/143.15",
         "Mozilla/153.0 (OpenAI scraper)",
+        "Mozilla/5.0",
         undefined,
         null,
         "",
@@ -48,6 +50,23 @@ describe("userAgent", () => {
             test(`should return false for headless/fake user agents - ${agent}`, () => {
                 expect(isRealUserAgent(agent)).toBe(false);
             });
+        });
+    });
+
+    describe('evaluateRealUserAgent', () => {
+        test("should return Confidence.NO when the userAgent doesn't start with " +
+            "Mozilla/5.0 and doesn't contain a valid rendering engine", () => {
+            const userAgent = 'Fakezilla/5.0; and nothing else';
+            expect(evaluateRealUserAgent(userAgent)).toBe(Confidence.NO);
+        });
+
+        test("should return Confidence.PROBABLY_NO when the userAgent is " +
+            "missing Mozilla/5.0 or missing valid rendering engine", () => {
+
+            expect(evaluateRealUserAgent('Mozilla/5.0 but no rendering engine'))
+                .toBe(Confidence.PROBABLY_NO);
+            expect(evaluateRealUserAgent('Fakezilla/5.0 Blink 05.44.55'))
+                .toBe(Confidence.PROBABLY_NO);
         });
     });
 });
