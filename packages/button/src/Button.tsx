@@ -1,4 +1,4 @@
-import React, { ReactNode, useRef } from "react";
+import React, { useRef } from "react";
 
 import { buttonStyle } from "./Button.styles";
 import { useTheme, debounce, Theme } from "@maelstrom-futurism/core";

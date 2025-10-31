@@ -27,7 +27,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
-    "directory": "packages/paper"
+    "directory": "packages/sidebar"
   },
   "dependencies": {
     "@maelstrom-futurism/button": "../button",
