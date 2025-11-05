@@ -1,18 +1,21 @@
 import { ColorSet, ThemeInterface } from "../interfaces";
+import * as variables from '../../styles/_variables.scss';
 
 export type ColorMode = "Light" | "Dark" | "User";
+
+console.log(variables);
 
 class Theme {
   readonly colors: ColorSet;
 
   sizes = {
-    base: "16px",
+    base: variables.sizesBase,
     sm: "0.707em",
     normal: "1em",
     md: "1.414em",
     lg: "2em",
     xl: "2.827em",
-    xxl: "4em",
+    xxl: variables.sizesXxl,
   };
 
   breakpoints = {
@@ -39,6 +42,7 @@ class Theme {
   buttonRadius = (): string => `${this.space[2]}px`;
 
   size(name: string): string {
+    console.log(variables)
     return this.sizes[name as keyof typeof this.sizes];
   }
 

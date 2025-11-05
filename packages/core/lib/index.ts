@@ -6,8 +6,8 @@ export * from './interfaces';
 export * from './themes';
 
 // components
-export { default as Box, BoxProps } from './components/Box';
-export { default as ContentBox, ContentBoxProps } from './components/ContentBox';
+export { default as Box, type BoxProps } from './components/Box';
+export { default as ContentBox, type ContentBoxProps } from './components/ContentBox';
 
 // utils
 export * from './utils/words';
