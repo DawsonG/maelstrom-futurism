@@ -7,5 +7,4 @@ coverage
 yarn-error.log
 yarn.lock # somehow yarn keeps reappearing...
 storybook-static
-lib
 .parcel-cache
