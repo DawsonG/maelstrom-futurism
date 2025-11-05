@@ -1,0 +1,44 @@
+{
+    "name": "@maelstrom-futurism/mf-image-comparerator",
+    "version": "0.7.0",
+    "description": "",
+    "main": "dist/mf-image-comparerator.cjs.js",
+    "module": "dist/mf-image-comparerator.es.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc -b && vite build",
+        "test": "vitest run --coverage",
+        "test:dev": "vitest"
+    },
+    "author": "Dawson Goodell <dawsong@osmstudios.com>",
+    "homepage": "https://mf.osmstudios.com",
+    "license": "SEE LICENSE IN LICENSE.txt",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
+        "directory": "packages/{name}"
+    },
+    "dependencies": {
+        "@maelstrom-futurism/core": "../core"
+    },
+    "peerDependences": {
+        "react": ">= 18.0.0",
+        "react-dom": ">= 18.0.0"
+    },
+    "devDependencies": {
+        "@types/css-modules": "^1.0.5",
+        "@types/react": "^19.2.0",
+        "@types/react-dom": "^19.2.0",
+        "@vitejs/plugin-react": "^5.0.4",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "sass": "^1.93.2",
+        "sass-loader": "^16.0.5",
+        "vite": "^7.1.7",
+        "vite-plugin-dts": "^4.5.4"
+    }
+}
