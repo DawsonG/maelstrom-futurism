@@ -18,6 +18,8 @@ function Layout() {
                             <li><Link to='/paper_readability'>Paper with Readability Controls</Link></li>
                             <li><Link to='/inputs'>Inputs</Link></li>
                             <li><Link to='/buttons'>Buttons</Link></li>
+                            <li><Link to="/modal">Modal</Link></li>
+                            <li><Link to='/table'>Table</Link></li>
                             <li><Link to='/tooltip'>Tooltip</Link></li>
                         </ul>
                     </li>
@@ -34,7 +36,6 @@ function Layout() {
                             <li><Link to='/color_tool'>Color Tool</Link></li>
                         </ul>
                     </li>
-                    <li><Link to="/modal">Modal</Link></li>
                     <li><Link to="/icons">Icons</Link></li>
                 </ul>
             </Sidebar>

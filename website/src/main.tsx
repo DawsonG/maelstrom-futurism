@@ -20,7 +20,7 @@ import Icons from './pages/Icons.tsx';
 import PageTooltip from './pages/Tooltip.tsx';
 import PageModal from './pages/Modal.tsx';
 import PagePaperReadability from './pages/PaperReadability.tsx';
-
+import PageTable from './pages/Table.tsx';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: '/box_and_contentbox',
         element: <ContentBoxPage />
+      },
+      {
+        path: '/table',
+        element: <PageTable />
       },
       {
         path: '/theming',
