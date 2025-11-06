@@ -30,7 +30,7 @@
     "directory": "packages/paper"
   },
   "dependencies": {
-    "@maelstrom-futurism/core": "^0.7.1-alpha.0",
+    "@maelstrom-futurism/core": "*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

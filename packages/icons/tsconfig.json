@@ -1,6 +1,6 @@
 {
     "extends": "../../tsconfig.json",
-    "include": ["src", "assets"],
+    "include": ["lib", "assets"],
     "compilerOptions": {
         "outDir": "dist",
         "jsx": "react-jsx",

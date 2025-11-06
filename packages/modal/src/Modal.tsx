@@ -26,7 +26,7 @@ const Modal = ({
   const theme = useTheme();
   const modalModStyle = css`
     color: black;
-    border-radius: ${theme.borderRadius()};
+    border-radius: ${theme.borderRadius};
   `;
 
   return isShowing ? ReactDOM.createPortal(

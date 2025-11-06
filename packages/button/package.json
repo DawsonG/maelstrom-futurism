@@ -32,8 +32,8 @@
   },
   "homepage": "https://github.com/DawsonG/maelstrom-futurism#readme",
   "dependencies": {
-    "@maelstrom-futurism/core": "^0.7.1-alpha.0",
-    "@maelstrom-futurism/icons": "^0.7.1-alpha.9"
+    "@maelstrom-futurism/core": "*",
+    "@maelstrom-futurism/icons": "*"
   },
   "peerDependencies": {
     "@emotion/react": ">= 11.10.5",

@@ -77,7 +77,7 @@ const Button = (props: ButtonProps): JSX.Element => {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const buttonStyleByTheme = emotionCss`
-    border-radius: ${theme.buttonRadius()};
+    border-radius: ${theme.buttonRadius};
   `;
 
   const addRipple = (e: React.MouseEvent) => {

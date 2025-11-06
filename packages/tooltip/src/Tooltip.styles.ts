@@ -7,7 +7,7 @@ export const getBase = (theme: Theme) => css`
     color: ${theme.color("textColor")};
     padding: 12px;
     border: 1px solid ${theme.color("borderMuted")};
-    border-radius: ${theme.borderRadius()};
+    border-radius: ${theme.borderRadius};
     z-index: 1000;
     min-width: 200px;
 `;

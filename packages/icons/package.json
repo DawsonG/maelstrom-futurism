@@ -2,16 +2,13 @@
   "name": "@maelstrom-futurism/icons",
   "version": "0.7.1-alpha.9",
   "description": "An icon set for use with maelstrom-futurism components",
-  "source": "./src/index.ts",
   "main": "./dist/index.js",
-  "module": "./dist/module.js",
   "types": "./dist/index.d.ts",
-  "type": "module",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "parcel build",
+    "build": "vite build",
     "clean": "rm -Rf dist",
     "prepublish": "npm run build",
     "test": "vitest run --coverage",

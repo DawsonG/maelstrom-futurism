@@ -30,9 +30,9 @@
     "directory": "packages/sidebar"
   },
   "dependencies": {
-    "@maelstrom-futurism/button": "../button",
-    "@maelstrom-futurism/core": "../core",
-    "@maelstrom-futurism/icons": "../icons"
+    "@maelstrom-futurism/button": "*",
+    "@maelstrom-futurism/core": "*",
+    "@maelstrom-futurism/icons": "*"
   },
   "peerDependences": {
     "react": ">= 18.0.0",

@@ -3,8 +3,6 @@ import sass from '../../styles/_exports.module.scss';
 
 export type ColorMode = "Light" | "Dark" | "User";
 
-console.log(sass);
-
 class Theme {
   readonly colors: ColorSet;
 
