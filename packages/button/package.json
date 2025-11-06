@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/button",
-  "version": "0.7.1-alpha.9",
+  "version": "0.7.2",
   "description": "A button (with very cool ripples!) for MF",
   "main": "dist/index.js",
   "module": "dist/index.js",
