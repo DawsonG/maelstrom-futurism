@@ -13,11 +13,6 @@ export default defineConfig({
         dts({ include: ['lib'] })
     ],
     css: {
-        preprocessorOptions: {
-            scss: {
-                // additionalData: `@import "./styles/_variables.scss";`
-            }
-        },
         modules: {
             localsConvention: 'camelCaseOnly',
         }

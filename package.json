@@ -36,6 +36,7 @@
     "@parcel/transformer-inline-string": "^2.14.4",
     "@parcel/transformer-sass": "^2.14.4",
     "@parcel/transformer-typescript-types": "^2.14.4",
+    "@svgr/plugin-svgo": "^8.1.0",
     "@testing-library/react": "^13.4.0",
     "@vitejs/plugin-react-swc": "^4.2.1",
     "@vitest/coverage-v8": "^3.2.4",
