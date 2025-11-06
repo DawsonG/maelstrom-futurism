@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-import * as styles from './Table.module.scss';
+import styles from './Table.module.scss';
 
 interface ColumnProps {
     name: string;
