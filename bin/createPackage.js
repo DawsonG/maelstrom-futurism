@@ -24,6 +24,7 @@ const createPackage = (name, options) => {
     "name": "@maelstrom-futurism/${name}",
     "version": "${packageVersion}",
     "description": "${description}",
+    "private": true,
     "main": "dist/index.js",
     "module": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -48,10 +49,10 @@ const createPackage = (name, options) => {
     "repository": {
       "type": "git",
       "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
-      "directory": "packages/{name}"
+      "directory": "packages/${name}"
     },
     "dependencies": {
-      "@maelstrom-futurism/core": "../core"
+      "@maelstrom-futurism/core": "*"
     },
     "peerDependences": {
       "react": ">= 18.0.0",

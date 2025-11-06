@@ -20,7 +20,7 @@ const TextArea = ({ name, label, value, ...rest }: TextAreaProps) => {
     
     const textAreaStyles = css`
         border: solid 1px ${theme.color("content")};
-        border-radius: ${theme.inputRadius()};
+        border-radius: ${theme.inputRadius};
         padding: 0.5em 1em;
         width: 100%;
         font-size: 1em;
