@@ -6,7 +6,9 @@ import dts from 'vite-plugin-dts';
 
 export default defineConfig({
     plugins: [
-        react(),
+        react({
+            jsxImportSource: '@emotion/react', // Important for Emotion's CSS prop
+        }),
         sassDts(),
         dts({ include: ['lib'] })
     ],
@@ -36,7 +38,14 @@ export default defineConfig({
                     'react-dom': 'ReactDOM',
                     'react/jsx-runtime': 'jsxRuntime',
                 },
-            }
+                manualChunks(id) {
+                    if (id.includes('node_modules')) {
+                        return id.toString().split('node_modules/')[1].split('/')[0].toString();
+                    }
+                }
+            },
+            
         },
+        
     },
 });
