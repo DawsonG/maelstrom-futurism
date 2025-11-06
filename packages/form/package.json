@@ -30,7 +30,7 @@
     "directory": "packages/form"
   },
   "dependencies": {
-    "@maelstrom-futurism/core": "../core"
+    "@maelstrom-futurism/core": "*"
   },
   "peerDependences": {
     "react": ">= 18.0.0",

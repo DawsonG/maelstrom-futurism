@@ -2,7 +2,6 @@
   "name": "maelstrom-futurism",
   "version": "0.7.1-alpha.9",
   "description": "Quick import of all major @maelstrom-futurism/* packages",
-  "private": true,
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
