@@ -1,48 +1,47 @@
 import { ColorSet, ThemeInterface } from "../interfaces";
-import * as variables from '../../styles/_variables.scss';
+import sass from '../../styles/_exports.module.scss';
 
 export type ColorMode = "Light" | "Dark" | "User";
 
-console.log(variables);
+console.log(sass);
 
 class Theme {
   readonly colors: ColorSet;
 
   sizes = {
-    base: variables.sizesBase,
-    sm: "0.707em",
-    normal: "1em",
-    md: "1.414em",
-    lg: "2em",
-    xl: "2.827em",
-    xxl: variables.sizesXxl,
+    base: sass.sizesBase,
+    sm: sass.sizesSm,
+    normal: sass.sizesNormal,
+    md: sass.sizesMd,
+    lg: sass.sizesLg,
+    xl: sass.sizesXl,
+    xxl: sass.sizesXxl,
   };
 
   breakpoints = {
-    xs: "0px",
-    sm: "576px",
-    md: "992px",
-    lg: "1200px",
+    xs: sass.bpXs,
+    sm: sass.bpSm,
+    md: sass.bpMd,
+    lg: sass.bpLg,
   };
 
-  space = [0, 4, 8, 16, 24, 32, 40, 48, 64];
+  space = sass.spaces.split(', ');
 
   heights = {
-    "very low": "-1000",
-    low: "-100",
-    sunk: "-10",
-    normal: "0",
-    raised: "10",
-    high: "100",
-    "very high": "1000",
+    bottom: sass.heightBottom,
+    low: sass.heightLow,
+    sunk: sass.heightSunk,
+    normal: sass.heightNormal,
+    raised: sass.heightRaised,
+    high: sass.heightHigh,
+    top: sass.heightTop,
   };
 
-  borderRadius = (): string => `${this.space[3]}px`;
-  inputRadius = (): string => `${this.space[2]}px`;
-  buttonRadius = (): string => `${this.space[2]}px`;
+  borderRadius = sass.borderRadius;
+  inputRadius = sass.inputRadius;
+  buttonRadius = sass.buttonRadius;
 
   size(name: string): string {
-    console.log(variables)
     return this.sizes[name as keyof typeof this.sizes];
   }
 

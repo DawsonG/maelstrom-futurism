@@ -18,7 +18,7 @@ const Box = (props: BoxProps) => {
         ${styles.margin && `margin: ${styles.margin};`}
         ${styles.background && `background: ${styles.background};`}
         ${styles.border && `border: ${styles.border};`}
-        border-radius: ${theme.borderRadius()};
+        border-radius: ${theme.borderRadius};
     `;
    
     return <div css={[boxStyle, css]} {...rest}>{children}</div>;

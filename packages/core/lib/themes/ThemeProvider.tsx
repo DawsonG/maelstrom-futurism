@@ -73,7 +73,7 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): JSX.Elem
             color: ${themeValue.color("textColor")};
             background-color: ${themeValue.color("background")};
             font-family: Poppins;
-            font-size: ${themeValue.size('xxl')};
+            font-size: ${themeValue.size('base')};
         }
 
         h1, h2, h3, h4 {

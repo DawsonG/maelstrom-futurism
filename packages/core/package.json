@@ -1,8 +1,7 @@
 {
   "name": "@maelstrom-futurism/core",
-  "version": "0.7.2",
+  "version": "0.7.1-alpha.9",
   "description": "Core package for shared resources in Maelstrom Futurism",
-  "private": true,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
