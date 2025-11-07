@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/modal",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -29,7 +29,7 @@
     "directory": "packages/{name}"
   },
   "dependencies": {
-    "@maelstrom-futurism/core": "*"
+    "@maelstrom-futurism/core": "^0.7.3"
   },
   "peerDependences": {
     "react": ">= 18.0.0",

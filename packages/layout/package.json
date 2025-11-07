@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/layout",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Basic layout components of MF",
   "keywords": [
     "layout",
@@ -38,7 +38,7 @@
     "url": "https://github.com/DawsonG/maelstrom-futurism/issues"
   },
   "dependencies": {
-    "@maelstrom-futurism/core": "*"
+    "@maelstrom-futurism/core": "^0.7.3"
   },
   "peerDependencies": {
     "@emotion/react": ">= 11.10.5",
