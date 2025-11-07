@@ -1,5 +1,5 @@
 import { ColorSet, ThemeInterface } from "../interfaces";
-import sass from '../../styles/_exports.module.scss';
+import sass from '../styles/_exports.module.scss';
 
 export type ColorMode = "Light" | "Dark" | "User";
 
