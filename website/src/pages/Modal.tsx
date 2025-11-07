@@ -1,8 +1,9 @@
 import { Button } from "@maelstrom-futurism/button";
 import { Container } from "@maelstrom-futurism/layout";
 import { useModal } from "@maelstrom-futurism/modal";
+import { ReactNode } from "react";
 
-const ModalPage = (): JSX.Element => {
+const ModalPage = (): ReactNode => {
     const [toggle, Modal] = useModal();
 
     return (
