@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { useTheme } from '@maelstrom-futurism/core';
 
-import * as styles from './styles.module.scss';
+import styles from './styles.module.scss';
 import ReadabilityBar from './Readability/ReadabilityBar';
 
 export enum StackType {
@@ -87,7 +87,6 @@ export default function Paper({
   let innerStyles = [];
   if (background) {
     switch (background) {
-      case 'dot':
       case Background.DOT:
         innerStyles.push(styles.backgroundDotted);
         break;

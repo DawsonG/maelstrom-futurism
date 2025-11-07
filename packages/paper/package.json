@@ -1,22 +1,15 @@
 {
   "name": "@maelstrom-futurism/paper",
-  "version": "0.7.1-alpha.2",
+  "version": "0.7.2",
   "description": "Stacks of paper",
-  "source": "src/index.ts",
+  "source": "lib/index.ts",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "default": "./dist/index.js"
-    }
-  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "parcel build",
+    "build": "vite build",
     "clean": "rm -Rf dist",
     "test": "vitest run --coverage",
     "test:dev": "vitest"

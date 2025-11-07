@@ -1,4 +1,4 @@
-import * as styles from './TextSize.module.scss';
+import styles from './TextSize.module.scss';
 
 // interface TextSizeProps {}
 

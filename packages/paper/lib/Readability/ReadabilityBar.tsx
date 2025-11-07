@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-import * as styles from './ReadabilityBar.module.scss';
+import styles from './ReadabilityBar.module.scss';
 import TextSize from './TextSize';
 
 const ReadabilityBar = (): ReactElement => {

@@ -13,12 +13,12 @@
     "test:dev": "vitest"
   },
   "devDependencies": {
-    "@maelstrom-futurism/button": "../button",
-    "@maelstrom-futurism/core": "../core",
-    "@maelstrom-futurism/input": "../input",
-    "@maelstrom-futurism/layout": "../layout",
-    "@maelstrom-futurism/paper": "../paper",
-    "@maelstrom-futurism/sidebar": "../sidebar"
+    "@maelstrom-futurism/button": "*",
+    "@maelstrom-futurism/core": "*",
+    "@maelstrom-futurism/input": "*",
+    "@maelstrom-futurism/layout": "*",
+    "@maelstrom-futurism/paper": "*",
+    "@maelstrom-futurism/sidebar": "*"
   },
   "repository": {
     "type": "git",
