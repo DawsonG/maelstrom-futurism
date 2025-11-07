@@ -1,5 +1,5 @@
 import { HTMLAttributes, ReactNode } from 'react';
-import { css as emotionCss, SerializedStyles, Theme } from '@emotion/react';
+import { css as emotionCss } from '@emotion/react';
 import { useTheme } from '../themes';
 import { constructStyles, BaseStyles } from '../styleSystem';
 
@@ -7,7 +7,7 @@ export type BoxProps = {
     children?: ReactNode;
 } & BaseStyles & HTMLAttributes<HTMLDivElement>;
 
-const Box = (props: BoxProps) => {
+const Box = (props: BoxProps): ReactNode => {
     const theme = useTheme();
 
     const styles = constructStyles(props);

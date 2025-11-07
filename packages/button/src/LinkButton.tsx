@@ -23,7 +23,7 @@ const LinkButton = ({
     children,
     onClick,
     disabled,
-}: LinkButtonProps): JSX.Element => {
+}: LinkButtonProps): ReactNode => {
     const linkStyles = css`
         color: ${theme.color("textColor")};
 

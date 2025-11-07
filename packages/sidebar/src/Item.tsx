@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { css } from "@emotion/react";
 
 const menuItemContainer = css`
@@ -9,4 +10,4 @@ export interface ItemProps {
 
 }
 
-const Item = ({}: ItemProps): JSX.Element => <div css={menuItemContainer} />
+const Item = ({}: ItemProps): ReactNode => <div css={menuItemContainer} />

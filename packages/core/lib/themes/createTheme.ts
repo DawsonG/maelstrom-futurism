@@ -70,6 +70,5 @@ const NameToColorSetMap: Record<ColorSetName, ColorSet> = {
     nordLight: nordLightColors,
 };
 
-export const createTheme = (colorSetName: ColorSetName) => {
-    return new Theme({ colorSet: NameToColorSetMap[colorSetName] });
-};
+export const createTheme = (colorSetName: ColorSetName) => 
+    new Theme({ colorSet: NameToColorSetMap[colorSetName] });

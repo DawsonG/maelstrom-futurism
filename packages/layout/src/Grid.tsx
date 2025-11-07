@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import { Box, BoxProps } from "@maelstrom-futurism/core";
-import { Children, ReactElement } from "react";
+import { ReactNode, ReactElement } from "react";
 import Column, { ColumnProps } from "./Column";
 
 export type JustifyContent = 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly';
@@ -12,7 +12,7 @@ export interface GridProps extends Omit<BoxProps, 'css' | 'children' | 'primativ
     children: ReactElement<ColumnProps>[]
 }
 
-const Grid = ({ children, direction, justifyContent, ...rest }: GridProps): JSX.Element => {
+const Grid = ({ children, direction, justifyContent, ...rest }: GridProps): ReactNode => {
     /**
      * Test to make sure this layout is following the rules
      * 1) Only Columns can be children

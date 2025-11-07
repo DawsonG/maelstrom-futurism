@@ -1,9 +1,11 @@
+import { ReactNode } from "react";
 import { Input, TextArea } from "@maelstrom-futurism/input";
 import { Container } from "@maelstrom-futurism/layout";
-import CodeView from "../components/CodeView";
 import { ContentBox } from "@maelstrom-futurism/core";
 
-const Inputs = (): JSX.Element => {
+import CodeView from "../components/CodeView";
+
+const Inputs = (): ReactNode => {
     return (
         <Container>
             <h1>Inputs</h1>

@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 import { css } from "@emotion/react";
 import { useTheme } from "@maelstrom-futurism/core";
 
@@ -35,7 +35,7 @@ const Column = ({
     leftBorder,
     rightBorder,
     ...rest
-}: ColumnProps): JSX.Element  => {
+}: ColumnProps): ReactNode => {
     const theme = useTheme();
     const baseWidth = 8.33333333;
 

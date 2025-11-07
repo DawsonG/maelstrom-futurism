@@ -18,7 +18,7 @@ interface ThemeProviderProps {
     children: ReactNode;
 }
 
-export const ThemeProvider = ({ theme, children }: ThemeProviderProps): JSX.Element => {
+export const ThemeProvider = ({ theme, children }: ThemeProviderProps): ReactNode => {
     const themeValue = theme;
 
     const globalStyles = css`

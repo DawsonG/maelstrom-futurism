@@ -7,4 +7,7 @@ export default defineConfig({
     'jsxImportSource': '@emotion/react',
   })],
   assetsInclude: ['**/*.md'],
+  build: {
+    sourcemap: true,
+  }
 });

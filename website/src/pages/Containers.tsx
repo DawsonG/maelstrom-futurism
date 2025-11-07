@@ -1,6 +1,7 @@
+import { ReactNode } from "react";
 import { Container } from "@maelstrom-futurism/layout";
 
-const PageContainers = (): JSX.Element => (
+const PageContainers = (): ReactNode => (
     <Container>
         <h1>Containers</h1>
     </Container>

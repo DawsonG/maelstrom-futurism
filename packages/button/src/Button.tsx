@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { ReactNode, useRef } from "react";
 
 import { buttonStyle } from "./Button.styles";
 import { useTheme, debounce, Theme } from "@maelstrom-futurism/core";
@@ -55,7 +55,7 @@ const getVariantStyle = (theme: Theme, variant: ButtonVariant, outline: boolean)
   };
 };
 
-const Button = (props: ButtonProps): JSX.Element => {
+const Button = (props: ButtonProps): ReactNode => {
   const theme = useTheme();
   
   if (props.variant === "link") {

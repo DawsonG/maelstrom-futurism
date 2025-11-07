@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import ReactDOM from "react-dom";
 import { useTheme } from "@maelstrom-futurism/core";
 
@@ -14,7 +14,7 @@ import { css } from "@emotion/react";
 
 interface ModalProps {
   title?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   isShowing?: boolean | (() => void);
   hide: () => void; //(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -22,7 +22,7 @@ interface ModalProps {
 
 const Modal = ({
   title, children, isShowing, hide 
-}: ModalProps) : JSX.Element | null => {
+}: ModalProps) : ReactNode | null => {
   const theme = useTheme();
   const modalModStyle = css`
     color: black;

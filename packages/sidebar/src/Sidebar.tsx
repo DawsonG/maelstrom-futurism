@@ -24,7 +24,7 @@ const Sidebar = ({
     isClosable = false,
     isOpen = true,
     children
-}: SidebarProps): JSX.Element => {
+}: SidebarProps): ReactNode => {
     const theme = useTheme();
     const [isOpenState, setIsOpenState] = useState(isOpen);
     

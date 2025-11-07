@@ -1,5 +1,5 @@
 import { useTheme } from '@maelstrom-futurism/core';
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, ReactNode } from 'react';
 
 import * as tooltipStyles from './Tooltip.styles';
 
@@ -15,7 +15,7 @@ const Tooltip = ({
     children,
     position = 'top',
     trigger = 'hover',
-}: TooltipProps): JSX.Element => {
+}: TooltipProps): ReactNode => {
     const theme = useTheme();
 
     const containerRef = useRef<HTMLDivElement>(null);

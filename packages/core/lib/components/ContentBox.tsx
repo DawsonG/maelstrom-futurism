@@ -1,7 +1,8 @@
-import { css as emotionCss, SerializedStyles } from '@emotion/react';
+import { css as emotionCss } from '@emotion/react';
 
 import Box, { BoxProps } from "./Box";
 import { Theme, useTheme } from '../themes';
+import { ReactNode } from 'react';
 
 type Variant = 'alert' | 'info' | 'error' | 'warning' | 'normal' | 'success';
 
@@ -55,7 +56,7 @@ const ContentBox = ({
     children,
     variant,
     ...rest
-}: ContentBoxProps): JSX.Element => {
+}: ContentBoxProps): ReactNode => {
     const theme = useTheme();
     // map each variant to a set of colors
     const bgColors = getColors(theme, background, border, variant);

@@ -10,7 +10,7 @@ interface ContainerProps {
     [rest: string]: any;
 };
 
-const Container = ({ fluid, children, margin, maxWidth, ...rest }: ContainerProps): JSX.Element => {
+const Container = ({ fluid, children, margin, maxWidth, ...rest }: ContainerProps): ReactNode => {
     const theme = useTheme();
     let fWidth;
     if (fluid) {

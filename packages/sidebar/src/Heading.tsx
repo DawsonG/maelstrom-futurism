@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { ReactNode, useContext } from "react";
 import { css } from "@emotion/react";
 import { Button } from "@maelstrom-futurism/button";
 import { useTheme } from "@maelstrom-futurism/core";
@@ -10,7 +10,7 @@ export interface HeadingProps {
     title: string;
 }
 
-const Heading = ({ title }: HeadingProps): JSX.Element => {
+const Heading = ({ title }: HeadingProps): ReactNode => {
     const theme = useTheme();
     const sidebarContext = useContext(SidebarContext);
 
