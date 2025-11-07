@@ -22,15 +22,15 @@ const Table = ({ columns, data }: TableProps) => {
                 <thead>
                     <tr>
                         {columns.map(col => (
-                            <th>{col.header()}</th>    
+                            <th key={col.name}>{col.header()}</th>    
                         ))}
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map(row => (
-                        <tr>
+                    {data.map((row, i) => (
+                        <tr key={i}>
                             {columns.map(col => (
-                                <td>{col.cell(row[col.name])}</td>
+                                <td key={col.name}>{col.cell(row[col.name])}</td>
                             ))}
                         </tr>
                     ))}
