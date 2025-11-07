@@ -24,8 +24,8 @@
   },
   "dependencies": {
     "@maelstrom-futurism/core": "^0.7.3",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "peerDependences": {
     "react": ">= 18.0.0",
