@@ -8,13 +8,13 @@ interface BotLockedContentProps extends PaperProps {
     methodFlags?: ProtectionMethodFlags;
 }
 
-const BotLockedContent = ({
+const BotLockedContent = async ({
     children,
     botChildren,
     methodFlags = defaultMethodFlags,
     ...rest
-}: BotLockedContentProps): ReactElement => (<Paper {...rest}>
-        {isBot(methodFlags) ? botChildren : children}
+}: BotLockedContentProps): Promise<ReactElement> => (<Paper {...rest}>
+        {await isBot(methodFlags) ? botChildren : children}
     </Paper>
 );
 

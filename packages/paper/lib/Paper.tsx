@@ -30,7 +30,7 @@ export enum Background {
 }
 type BackgroundOptions = 'none' | 'graph' | 'dot' | Background;
 
-interface PaperProps {
+export interface PaperProps {
   children: ReactNode;
   variant?: Variant;
   direction?: VDirection;

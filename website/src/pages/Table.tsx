@@ -11,7 +11,8 @@ function PageTable() {
             <p>MF comes with a simple Table component.</p>
 
             <CodeView>
-{`<Table 
+{`<Table
+    heading="Books"
     columns={[
         {
             name: 'title',
@@ -37,7 +38,8 @@ function PageTable() {
 />`}
             </CodeView>
 
-            <Table 
+            <Table
+                heading="Books"
                 columns={[
                     {
                         name: 'title',

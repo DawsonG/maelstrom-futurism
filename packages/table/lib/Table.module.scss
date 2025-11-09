@@ -1,11 +1,29 @@
 .tableWrapper {
-    font-size: 1.414em;
     line-height: 1.6em;
 
-    padding: 2em;
+    padding: 1em;
     border: solid 1px #c0c0c0;
+    border-radius: 16px;
 
-    thead {
-        text-align: left;
+    .heading {
+        font-size: 1.414em;
+        font-weight: bold;
+        padding-bottom: 8px;
+    }
+
+    
+}
+
+table {
+    width: 100%;
+
+    border-spacing: 0;
+}
+
+thead {
+    text-align: left;
+
+    th {
+        border-bottom: solid 1px #c0c0c0;
     }
 }

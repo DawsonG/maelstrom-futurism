@@ -9,15 +9,19 @@ interface ColumnProps {
 }
 
 interface TableProps {
+    heading?: string;
     columns: ColumnProps[];
     data: Record<string, any>[];
 }
 
-const Table = ({ columns, data }: TableProps) => {
+const Table = ({ heading, columns, data }: TableProps) => {
     const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
 
     return (
         <div className={styles.tableWrapper}>
+            {heading && (
+                <div className={styles.heading}>{heading}</div>
+            )}
             <table>
                 <thead>
                     <tr>

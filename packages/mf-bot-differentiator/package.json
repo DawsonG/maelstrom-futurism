@@ -6,13 +6,6 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "default": "./dist/index.js"
-    }
-  },
   "files": [
     "dist"
   ],
@@ -34,8 +27,8 @@
     "@maelstrom-futurism/paper": "../paper"
   },
   "devDependencies": {
-    "@testing-library/dom": "^8.20.1",
-    "@testing-library/react": "^13.4.0",
-    "jsdom": "^26.1.0"
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.0",
+    "jsdom": "^27.1.0"
   }
 }
