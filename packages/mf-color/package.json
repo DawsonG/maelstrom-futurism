@@ -3,6 +3,7 @@
   "version": "0.7.4-alpha.5",
   "description": "Color handling object for improving appearance in MF apps",
   "main": "dist/index.js",
+  "private": "true",
   "scripts": {
     "build": "tsc",
     "clean": "rm -Rf ./dist",
