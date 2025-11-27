@@ -36,6 +36,5 @@
   "peerDependences": {
     "react": ">= 18.0.0",
     "react-dom": ">= 18.0.0"
-  },
-  "gitHead": "8f20d24dcd3fb7b8e97e2edba33147388a9dfcda"
+  }
 }
