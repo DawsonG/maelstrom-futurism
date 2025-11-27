@@ -1,5 +1,5 @@
 {
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "OSMstudios own React component library",
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
   "workspaces": {
