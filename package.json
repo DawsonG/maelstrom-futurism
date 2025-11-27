@@ -26,10 +26,10 @@
     "test": "lerna run test --ignore src,website --no-private --stream",
     "clean": "lerna run clean --ignore src,website --no-private --stream && rm -Rf node_modules && rm package-lock.json",
     "version": "lerna version",
-    "bootstrap": "lerna bootstrap",
     "prepublishOnly": "npm run build",
     "create-documentation-website": "cd ./website && npm run build",
-    "publish": "lerna publish"
+    "publish": "lerna publish",
+    "graph": "nx graph"
   },
   "devDependencies": {
     "@svgr/plugin-svgo": "^8.1.0",

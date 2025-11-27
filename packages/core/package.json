@@ -21,11 +21,12 @@
   "keywords": [
     "maelstrom-futurism"
   ],
+  "private": "false",
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/DawsonG/maelstrom-futurism/issues"
   },
   "homepage": "https://github.com/DawsonG/maelstrom-futurism#readme",
-  "gitHead": "6cdc19f5c023c2fee095e8f5e3069043f4e8b9e6"
+  "gitHead": "01f7b8caebb10d4d9b2df4eba9355386db64fb5b"
 }
