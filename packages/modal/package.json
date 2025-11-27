@@ -26,7 +26,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
-    "directory": "packages/{name}"
+    "directory": "packages/modal"
   },
   "dependencies": {
     "@maelstrom-futurism/core": "^0.7.4-alpha.3"

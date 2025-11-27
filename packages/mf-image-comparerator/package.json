@@ -21,7 +21,7 @@
     "repository": {
         "type": "git",
         "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
-        "directory": "packages/{name}"
+        "directory": "packages/mf-image-comparerator"
     },
     "dependencies": {
         "@maelstrom-futurism/core": "../core"

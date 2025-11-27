@@ -24,7 +24,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DawsonG/maelstrom-futurism.git"
+    "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
+    "directory": "packages/maelstrom-futurism"
   },
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
   "license": "MIT",

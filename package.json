@@ -28,7 +28,7 @@
     "version": "lerna version",
     "prepublishOnly": "npm run build",
     "create-documentation-website": "cd ./website && npm run build",
-    "publish": "lerna publish",
+    "publish": "lerna publish --no-private",
     "graph": "nx graph"
   },
   "devDependencies": {

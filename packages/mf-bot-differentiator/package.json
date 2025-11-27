@@ -20,7 +20,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
-    "directory": "packages/{name}"
+    "directory": "packages/mf-bot-differentiator"
   },
   "dependencies": {
     "@maelstrom-futurism/core": "../core",
