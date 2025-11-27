@@ -1,6 +1,6 @@
 {
     "name": "@maelstrom-futurism/mf-image-comparerator",
-    "version": "0.7.3",
+    "version": "0.7.4-alpha.1",
     "description": "Component for doing dragging bar comparison of images",
     "main": "dist/mf-image-comparerator.cjs.js",
     "module": "dist/mf-image-comparerator.es.js",

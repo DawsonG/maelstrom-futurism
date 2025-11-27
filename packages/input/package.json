@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/input",
-  "version": "0.7.4-alpha.0",
+  "version": "0.7.4-alpha.1",
   "description": "Re-usable input components of MF",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -36,10 +36,11 @@
   },
   "homepage": "https://github.com/DawsonG/maelstrom-futurism#readme",
   "dependencies": {
-    "@maelstrom-futurism/core": "^0.7.4-alpha.0"
+    "@maelstrom-futurism/core": "^0.7.4-alpha.1"
   },
   "peerDependencies": {
     "@emotion/react": ">= 11.10.5",
     "react": ">= 18.0.0"
-  }
+  },
+  "gitHead": "6cdc19f5c023c2fee095e8f5e3069043f4e8b9e6"
 }
