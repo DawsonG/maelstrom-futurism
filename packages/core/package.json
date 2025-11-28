@@ -12,7 +12,8 @@
     "clean": "rm -Rf ./dist",
     "test": "vitest run --coverage",
     "test:dev": "vitest",
-    "copy-files": "cp -r ./styles/*.css ./lib/fonts ./dist"
+    "copy-files": "cp -r ./styles/*.css ./lib/fonts ./dist",
+    "prepublishOnly": "npm run build && npm run copy-files"
   },
   "repository": {
     "type": "git",
