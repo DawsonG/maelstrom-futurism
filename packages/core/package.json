@@ -12,7 +12,7 @@
     "clean": "rm -Rf ./dist",
     "test": "vitest run --coverage",
     "test:dev": "vitest",
-    "copy-files": "cp -r ./styles/*.css ./lib/fonts ./dist",
+    "copy-files": "cp -r ./lib/styles/*.css ./lib/fonts ./dist",
     "prepublishOnly": "npm run build && npm run copy-files"
   },
   "repository": {
@@ -29,5 +29,5 @@
     "url": "https://github.com/DawsonG/maelstrom-futurism/issues"
   },
   "homepage": "https://github.com/DawsonG/maelstrom-futurism#readme",
-  "gitHead": "9c78a412b8283294e1afadc849da0ecb2f039048"
+  "gitHead": "b1c4e298077fdf46100213c5ecf16551574834af"
 }
