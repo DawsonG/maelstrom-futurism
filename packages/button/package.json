@@ -12,7 +12,8 @@
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
     "clean": "rm -Rf dist",
-    "build": "tsc"
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -38,5 +39,5 @@
     "@emotion/react": ">= 11.10.5",
     "react": ">= 18.3.1"
   },
-  "gitHead": "50be1af3b6e67e0d2ed86b0fc78914b01ddf53cd"
+  "gitHead": "8c49684db1a6002ee19db00c53ed2e9aac7e484b"
 }
