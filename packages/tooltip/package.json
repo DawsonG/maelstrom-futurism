@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/tooltip",
-  "version": "0.7.4-alpha.8",
+  "version": "0.7.4-alpha.9",
   "description": "Simple popup tooltip",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -29,7 +29,7 @@
     "directory": "packages/tooltip"
   },
   "dependencies": {
-    "@maelstrom-futurism/core": "^0.7.4-alpha.8"
+    "@maelstrom-futurism/core": "^0.7.4-alpha.9"
   },
   "peerDependences": {
     "react": ">= 18.0.0",
