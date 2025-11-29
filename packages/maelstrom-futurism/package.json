@@ -10,7 +10,8 @@
     "build": "tsc",
     "clean": "rm -Rf ./dist",
     "test": "vitest run --coverage",
-    "test:dev": "vitest"
+    "test:dev": "vitest",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@maelstrom-futurism/button": "^0.7.4-alpha.9",
