@@ -12,7 +12,8 @@
     "build": "vite build",
     "clean": "rm -Rf dist",
     "test": "vitest run --coverage",
-    "test:dev": "vitest"
+    "test:dev": "vitest",
+    "prepublishOnly": "npm run build"
   },
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
   "homepage": "https://osmstudios.com",
@@ -31,5 +32,5 @@
     "react": ">= 18.0.0",
     "react-dom": ">= 18.0.0"
   },
-  "gitHead": "b1c4e298077fdf46100213c5ecf16551574834af"
+  "gitHead": "50be1af3b6e67e0d2ed86b0fc78914b01ddf53cd"
 }
