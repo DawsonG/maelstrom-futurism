@@ -18,7 +18,8 @@
   "scripts": {
     "build": "tsc",
     "test": "vitest run --coverage",
-    "test:dev": "vitest"
+    "test:dev": "vitest",
+    "prepublishOnly": "npm run build"
   },
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
   "homepage": "https://osmstudios.com",
@@ -37,5 +38,5 @@
     "react": ">= 18.0.0",
     "react-dom": ">= 18.0.0"
   },
-  "gitHead": "8c49684db1a6002ee19db00c53ed2e9aac7e484b"
+  "gitHead": "e1ece2ae9ed8f855378d20e7a87636b3bd15a556"
 }
