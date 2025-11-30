@@ -13,7 +13,7 @@
     "test:dev": "vitest",
     "prepublishOnly": "npm run build"
   },
-  "devDependencies": {
+  "dependencies": {
     "@maelstrom-futurism/button": "^0.7.4-beta.0",
     "@maelstrom-futurism/core": "^0.7.4-beta.0",
     "@maelstrom-futurism/input": "^0.7.4-beta.0",
