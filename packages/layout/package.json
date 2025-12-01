@@ -8,7 +8,7 @@
     "flexbox"
   ],
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
-  "homepage": "http://www.osmstudios.com",
+  "homepage": "https://mf.osmstudios.com",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -45,5 +45,5 @@
     "@emotion/react": ">= 11.10.5",
     "react": ">= 18.0.0"
   },
-  "gitHead": "09d05a402ed22c9cec10177af4d8dcdc17ea864c"
+  "gitHead": "a983c5e5cbfec4d2fb1ba7ac0406ebf988794eef"
 }

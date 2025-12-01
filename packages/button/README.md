@@ -12,8 +12,16 @@
 
 Probably **not**.  This is hardly production ready.  MF is a personal project to determine if I still have any web development skills.  It is designed to be used by me and is mostly styled via [emotion](https://emotion.sh).
 
-## CORE
+## Button
 
-`@maelstrom-futurism/core` is the root package of the Maelstrom Futurism styling system required by all other packages except "maelstrom-futurism" (which is a superset of other packages) and "universe-css" (which is just stylesheets for plain HTML & JS projects).
+HTML <button/> tag with fancy ripple on click effect.
 
-This package contains interfaces, utilities, and theme tools.
+Found in @maelstrom-futurism/button and maelstrom-futurism.
+
+```jsx
+<Button variant="primary" scale="large">Primary</Button>
+<Button variant="secondary" scale="normal">Secondary</Button>
+<Button variant="cancel" scale="small">Cancel</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="link">Link</Button>
+```

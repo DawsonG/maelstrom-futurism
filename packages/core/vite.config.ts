@@ -27,7 +27,8 @@ export default defineConfig({
         }
     },
     build: {
-        sourcemap: true,
+        minify: 'terser',
+        sourcemap: false,
         copyPublicDir: false,
         lib: {
             entry: resolve(__dirname, 'lib/index.ts'),

@@ -3,16 +3,14 @@
   "version": "0.7.4-beta.3",
   "description": "A button (with very cool ripples!) for MF",
   "main": "dist/index.js",
-  "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
     "clean": "rm -Rf dist",
-    "build": "tsc",
+    "build": "vite build",
     "prepublishOnly": "npm run build"
   },
   "repository": {
@@ -39,5 +37,5 @@
     "@emotion/react": ">= 11.10.5",
     "react": ">= 18.3.1"
   },
-  "gitHead": "09d05a402ed22c9cec10177af4d8dcdc17ea864c"
+  "gitHead": "a983c5e5cbfec4d2fb1ba7ac0406ebf988794eef"
 }

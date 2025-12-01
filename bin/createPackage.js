@@ -44,7 +44,7 @@ const createPackage = (name, options) => {
       "test:dev": "vitest"
     },
     "author": "Dawson Goodell <dawsong@osmstudios.com>",
-    "homepage": "https://osmstudios.com",
+    "homepage": "https://mf.osmstudios.com",
     "license": "SEE LICENSE IN LICENSE.txt",
     "repository": {
       "type": "git",
