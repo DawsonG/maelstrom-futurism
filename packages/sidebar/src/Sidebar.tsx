@@ -32,13 +32,18 @@ const Sidebar = ({
         overflow-x: hidden;
         overflow-y: auto;
         min-width: 300px;
-        max-width: 100%;
+        width: 25vw;
+        max-width: 380px;
 
         border-right: solid 1px ${theme.color('borderMuted')};
+
+        @media (max-width: 379px) {
+            width: 100%;
+        } 
     `;
 
     const closedStyle = css`
-        width: 65px;
+        width: 5vw;
         height: 44px;
         
         ul, hr, a {
