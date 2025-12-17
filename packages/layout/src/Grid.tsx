@@ -9,7 +9,7 @@ export type Direction = 'column' | 'row';
 export interface GridProps extends Omit<BoxProps, 'css' | 'children' | 'primative'> {
     direction?: Direction;
     justifyContent?: JustifyContent;
-    children: ReactElement<ColumnProps>[]
+    children: ReactElement<ColumnProps> | ReactElement<ColumnProps>[];
 }
 
 const Grid = ({ children, direction, justifyContent, ...rest }: GridProps): ReactNode => {
