@@ -4,9 +4,21 @@ import { lighten } from 'polished';
 
 const EASE_FUNCTION = 'cubic-bezier(.65, .05, .36, 1)';
 
+export const outsideContainer = css`
+    background-color: inherit;
+`;
+
 export const fcContainer = css`
     position: relative;
     margin-top: 14px;
+`;
+
+export const helpText = css`
+    position: relative;
+    display: block;
+    padding: 2px 0 2px 12px;
+    font-size: 0.9em;
+    opacity: 0.7;
 `;
 
 export const materialStyledInput = (theme: Theme) => css`

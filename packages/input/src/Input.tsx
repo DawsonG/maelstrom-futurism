@@ -1,7 +1,7 @@
 import React, { HTMLInputTypeAttribute } from "react";
 import { useTheme } from "@maelstrom-futurism/core";
 
-import { fcContainer, materialStyledInput, normalStyledInput } from "./styles";
+import { outsideContainer, fcContainer, materialStyledInput, normalStyledInput, helpText as helpTextCss } from "./styles";
 
 
 export type Variant =
@@ -29,6 +29,11 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
      * The label to display above the input.  Leave blank to hide.
      */
     label?: string;
+
+    /**
+     * Help text is displayed below the field to help users determine how the field is used
+     */
+    helpText?: string;
 
     /**
      * Text to use as a placeholder
@@ -63,25 +68,28 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
     forwardedRef?: any;
 }
 
-const Input = React.forwardRef(({ variant = "normal", type, name, label, ...rest }: InputProps, ref?: any) => {
+const Input = React.forwardRef(({ variant = "normal", type, name, label, helpText, ...rest }: InputProps, ref?: any) => {
     const theme = useTheme();
     const isMaterial = variant === "material";
     
     const additionalStyles = isMaterial ? materialStyledInput(theme) : normalStyledInput(theme)
 
     return (
-      <div css={[fcContainer, additionalStyles]}>
-          <input
-                id={name}
-                name={name}
-                type={type}
-                ref={ref}
-                placeholder=" "
-                {...rest}
-          />
-          {label && <label htmlFor={name}>{label}</label>}
-          {isMaterial && <span className="underline" />}
-      </div>
+        <div css={outsideContainer}>
+            <div css={[fcContainer, additionalStyles]}>
+                <input
+                    id={name}
+                    name={name}
+                    type={type}
+                    ref={ref}
+                    placeholder=" "
+                    {...rest}
+                />
+                {label && <label htmlFor={name}>{label}</label>}
+                {isMaterial && <span className="underline" />}
+            </div>
+            {helpText && <span css={helpTextCss}>{helpText}</span>}
+        </div>
     );
 });
 
