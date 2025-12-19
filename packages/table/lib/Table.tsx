@@ -14,8 +14,22 @@ interface TableProps {
     data: Record<string, any>[];
 }
 
+type ColumnWidths = Record<string, number>;
+
+const useConfigurableColumnWidths = (cols: ColumnProps[]) => {
+    const widths = cols.length === 0 ? {} : cols.reduce<ColumnWidths>((acc, col) => {
+        acc[col.name] = 100 / cols.length;
+        return acc;
+    }, {});
+
+    return { widths };
+}
+
 const Table = ({ heading, columns, data }: TableProps) => {
+    const { widths } = useConfigurableColumnWidths(columns);
     const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
+
+    console.log(widths);
 
     return (
         <div className={styles.tableWrapper}>
@@ -26,7 +40,7 @@ const Table = ({ heading, columns, data }: TableProps) => {
                 <thead>
                     <tr>
                         {columns.map(col => (
-                            <th key={col.name}>{col.header()}</th>    
+                            <th style={{ width: `${widths[col.name]}%`}} scope="column" key={col.name}>{col.header()}</th>    
                         ))}
                     </tr>
                 </thead>
