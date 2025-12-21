@@ -44,7 +44,8 @@ const FormControl = () => (
 
             <p>
                 Inputs can also be used inside of content boxes and other elements with set
-                background colors.
+                background colors. Note: You may have to explicitly set the parent element's
+                background color to avoid the border line appearing through the label text.
             </p>
 
             <CodeView>{`import { Input } from "@maelstrom-futurism/input";
@@ -59,6 +60,16 @@ import { ContentBox } from "@maelstrom-futurism/core";
                 <h2>I'm a ContentBox</h2>
                 <Input variant="normal" name="test 2" label="Normal Input in Content Box" type="text" />
             </ContentBox>
+
+            <p>
+                Inputs can also have help text (<code>helpText</code>) associated with them to guide
+                users. They also accept all HTML5 <code>type</code> values.
+            </p>
+
+            <Input name="telephone" variant="normal" type="tel" label="Telephone" helpText="Only used for emergencies" />
+            <Input name="email" variant="material" type="email" label="Email" helpText="Must be able to receive emails to complete registration" />
+
+            <br/><br/><br/><br/>
         </Container>
     );
 }
