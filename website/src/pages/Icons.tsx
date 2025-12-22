@@ -7,7 +7,7 @@ const Icons = () => (
     <Container>
         <h1>Icons</h1>
 
-        <CodeView>{`<Icon icon="Add" />`}</CodeView>
+        <CodeView>{`<Icon icon="<name>" />`}</CodeView>
         <Grid>
             <Column xs={12} sm={6} md={4} lg={3}>
                 <Icon icon="Add" /> Add

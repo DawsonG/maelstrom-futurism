@@ -16,7 +16,6 @@
     "@maelstrom-futurism/input": "../packages/input",
     "@maelstrom-futurism/layout": "../packages/layout",
     "@maelstrom-futurism/mf-bot-differentiator": "../packages/mf-bot-differentiator",
-    "@maelstrom-futurism/mf-color": "../packages/mf-color",
     "@maelstrom-futurism/modal": "../packages/modal",
     "@maelstrom-futurism/paper": "../packages/paper",
     "@maelstrom-futurism/sidebar": "../packages/sidebar",

@@ -9,7 +9,7 @@ import { ThemeProvider, createTheme } from '@maelstrom-futurism/core';
 import Layout from './components/Layout.tsx';
 import App from './pages/App.tsx';
 import Theming from './pages/Theming.tsx';
-import ColorTool from './pages/ColorTool.tsx';
+// import ColorTool from './pages/ColorTool.tsx';
 import Inputs from './pages/Inputs.tsx';
 import PageGrid from './pages/Grid.tsx';
 import PageContainers from './pages/Containers.tsx';
@@ -46,10 +46,10 @@ const router = createBrowserRouter([
         path: '/theming',
         element: <Theming />
       },
-      {
-        path: '/color_tool',
-        element: <ColorTool />
-      },
+//      {
+//        path: '/color_tool',
+//        element: <ColorTool />
+//      },
       {
         path: '/inputs',
         element: <Inputs />

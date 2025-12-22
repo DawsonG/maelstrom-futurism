@@ -29,8 +29,6 @@ const Table = ({ heading, columns, data }: TableProps) => {
     const { widths } = useConfigurableColumnWidths(columns);
     const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
 
-    console.log(widths);
-
     return (
         <div className={styles.tableWrapper}>
             {heading && (

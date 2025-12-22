@@ -30,12 +30,12 @@ function Layout() {
                             <li><Link to='/layout/grid'>Grids &amp; Columns</Link></li>
                         </ul>
                     </li>
-                    <li>
+                    {/*<li>
                         Tooling
                         <ul>
                             <li><Link to='/color_tool'>Color Tool</Link></li>
                         </ul>
-                    </li>
+                    </li>*/}
                     <li><Link to="/icons">Icons</Link></li>
                 </ul>
             </Sidebar>
