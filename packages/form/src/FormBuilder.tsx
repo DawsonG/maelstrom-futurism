@@ -55,7 +55,7 @@ const FormBuilder: React.FC<IFormBuilder> = ({
       case "text":
       case "tel":
       default:
-        return <div/>; //<Input {...constantFields} />;
+        return <Input {...constantFields} />;
     }
   };
 
