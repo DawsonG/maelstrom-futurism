@@ -1,8 +1,7 @@
 import React, { useState, FormEvent } from "react";
 
-import { capitalize } from "@maelstrom-futurism/core";
-import { isFunction } from "@maelstrom-futurism/core";
-// import Input from "../Input";
+import { capitalize, isFunction } from "@maelstrom-futurism/core";
+import { Input } from "@maelstrom-futurism/input";
 // import Button from "../Button";
 
 type ModelItem = {
@@ -25,10 +24,9 @@ const FormBuilder: React.FC<IFormBuilder> = ({
   emitChange,
 }) => {
   const [internalValues, setInternalValues] = useState<Record<string, string> | undefined>(values);
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const {
-      target: { name, value },
+      currentTarget: { name, value },
     } = e;
     setInternalValues({ ...internalValues, [name]: value });
     if (emitChange && isFunction(emitChange)) emitChange(name, value);
