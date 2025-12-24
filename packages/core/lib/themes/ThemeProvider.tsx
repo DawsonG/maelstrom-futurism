@@ -83,6 +83,10 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): ReactNod
         a {
             color: ${themeValue.color("linkColor")};
         }
+
+        form {
+            background-color: inherit; /*without this, the input line cuts through the label*/
+        }
     `;
 
     return (
