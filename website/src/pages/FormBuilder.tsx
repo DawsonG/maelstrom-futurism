@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
+import { Container } from "@maelstrom-futurism/layout";
+import FormBuilder from '@maelstrom-futurism/form';
 
 import CodeView from "../components/CodeView";
-import { Container } from "@maelstrom-futurism/layout";
 
 const FormBuilderPage = (): ReactNode => {
     return (
@@ -14,8 +15,29 @@ const FormBuilderPage = (): ReactNode => {
 
             <CodeView>{`import FormBuilder from "@maelstrom-futurism/form";
 
-`}
+<FormBuilder model={[{
+    label: 'Name',
+    name: 'name',
+    contentType: 'text',
+},{
+    label: 'Address',
+    name: 'address',
+    contentType: 'text',
+}]}
+onSubmit={values => console.log(values)}
+/>`}
             </CodeView>
+
+            <FormBuilder model={[{
+                label: 'Name',
+                name: 'name',
+                contentType: 'text',
+            }, {
+                label: 'Address',
+                name: 'address',
+                contentType: 'text',
+            }]}
+            onSubmit={values => console.log(values)}/>
         </Container>
     );
 }

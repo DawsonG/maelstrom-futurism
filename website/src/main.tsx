@@ -21,6 +21,7 @@ import PageTooltip from './pages/Tooltip.tsx';
 import PageModal from './pages/Modal.tsx';
 import PagePaperReadability from './pages/PaperReadability.tsx';
 import PageTable from './pages/Table.tsx';
+import FormBuilderPage from './pages/FormBuilder.tsx';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: '/inputs',
         element: <Inputs />
+      },
+      {
+        path: '/form',
+        element: <FormBuilderPage />
       },
       {
         path: '/tooltip',
