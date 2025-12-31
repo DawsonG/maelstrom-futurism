@@ -6,6 +6,7 @@
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
+  "private": true,
   "exports": {
     ".": {
       "require": "./dist/index.js",
