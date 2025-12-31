@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/form",
-  "version": "0.7.4-beta.4",
+  "version": "0.7.4-beta.6",
   "description": "Form and Input components",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -30,9 +30,9 @@
     "directory": "packages/form"
   },
   "dependencies": {
-    "@maelstrom-futurism/core": "^0.7.4-beta.4",
-    "@maelstrom-futurism/input": "^0.7.4-beta.4",
-    "@maelstrom-futurism/button": "0.7.4-beta.4"
+    "@maelstrom-futurism/button": "0.7.4-beta.4",
+    "@maelstrom-futurism/core": "^0.7.4-beta.6",
+    "@maelstrom-futurism/input": "^0.7.4-beta.6"
   },
   "peerDependences": {
     "react": ">= 18.0.0",
