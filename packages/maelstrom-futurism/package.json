@@ -21,6 +21,7 @@
     "@maelstrom-futurism/modal": "^0.7.4-beta.8",
     "@maelstrom-futurism/paper": "^0.7.4-beta.8",
     "@maelstrom-futurism/sidebar": "^0.7.4-beta.8",
+    "@maelstrom-futurism/navbar": "^0.7.4-beta.8",
     "@maelstrom-futurism/tooltip": "^0.7.4-beta.8"
   },
   "repository": {
@@ -34,5 +35,5 @@
     "url": "https://github.com/DawsonG/maelstrom-futurism/issues"
   },
   "homepage": "https://github.com/DawsonG/maelstrom-futurism#readme",
-  "gitHead": "06a5cb6f125ef427a6812e36e5ff6db37c212359"
+  "gitHead": "8ec034fa52a53c140d6bc59276834be44998eb8c"
 }

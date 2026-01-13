@@ -22,7 +22,7 @@
     "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
     "directory": "packages/icons"
   },
-  "dependencies": {
+  "devDependencies": {
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
