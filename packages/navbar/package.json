@@ -1,0 +1,32 @@
+{
+    "name": "@maelstrom-futurism/navbar",
+    "version": "0.7.4-beta.8",
+    "description": "",
+    "private": true,
+    "source": "lib/index.ts",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+      "dist"
+    ],
+    "scripts": {
+      "build": "vite build",
+      "test": "vitest run --coverage",
+      "test:dev": "vitest"
+    },
+    "author": "Dawson Goodell <dawsong@osmstudios.com>",
+    "homepage": "https://mf.osmstudios.com",
+    "license": "SEE LICENSE IN LICENSE.txt",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
+      "directory": "packages/navbar"
+    },
+    "dependencies": {
+      "@maelstrom-futurism/core": "*"
+    },
+    "peerDependences": {
+      "react": ">= 18.0.0",
+      "react-dom": ">= 18.0.0"
+    }
+  }
