@@ -1,0 +1,79 @@
+/* load fonts */
+@font-face {
+    font-family: "Poppins";
+    font-weight: 400;
+    src: url(./fonts/Poppins-Light.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 500;
+    src: url(./fonts/Poppins-Medium.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: "Silkscreen";
+    font-weight: 400;
+    src: url(./fonts/Silkscreen-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: "Silkscreen";
+    font-weight: 600;
+    src: url(./fonts/Silkscreen-Bold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: "JetBrainsMono";
+    font-weight: 400;
+    src: url(./fonts/JetBrainsMono-Light.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: "JetBrainsMono";
+    font-weight: 600;
+    src: url(./fonts/JetBrainsMono-Medium.ttf) format('truetype');
+}
+
+/* global box-sizing from https://css-tricks.com/box-sizing/ */
+html {
+    box-sizing: border-box;
+
+    /** Taken from normalize.css
+    * 1. Correct the line height in all browsers.
+    * 2. Prevent adjustments of font size after orientation changes in iOS.
+    */
+    line-height: 1.15; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html, body, #root {
+    min-height: 100vh; /* full page height */
+}
+body {
+    margin: 0;
+    color: var(--textColor);
+    background-color: var(--background);
+    font-family: Poppins;
+    font-size: var(--sizesBase);
+}
+        
+a {
+    color: var(--linkColor);
+}
+
+/** from normalize.css
+* Add the correct font weight in Chrome, Edge, and Safari.
+*/
+b, strong {
+font-weight: bolder;
+}
+
+/*without this, the input line cuts through the label*/
+form {
+    background-color: inherit;
+}
+

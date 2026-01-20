@@ -1,0 +1,31 @@
+{
+  "name": "@maelstrom-futurism/core-v2",
+  "version": "0.7.4-beta.10",
+  "description": "Core package for shared resources in Maelstrom Futurism",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "clean": "rm -Rf ./dist",
+    "test": "vitest run --coverage",
+    "test:dev": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
+    "directory": "packages/core-v2"
+  },
+  "keywords": [
+    "maelstrom-futurism"
+  ],
+  "author": "Dawson Goodell <dawsong@osmstudios.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DawsonG/maelstrom-futurism/issues"
+  },
+  "homepage": "https://github.com/DawsonG/maelstrom-futurism#readme"
+}

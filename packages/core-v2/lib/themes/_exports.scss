@@ -1,0 +1,13 @@
+@use 'sass:meta';
+@use './colorSets/nordDark.scss' as colors;
+@use './defaultTheme' as vars;
+
+:root {
+    @each $key, $value in meta.module-variables(vars) {
+        #{$key}: $value;
+    }
+
+    @each $key, $value in meta.module-variables(colors) {
+        #{$key}: $value;
+    }
+}
