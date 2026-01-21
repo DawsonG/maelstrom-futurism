@@ -11,7 +11,8 @@
   "scripts": {
     "build": "vite build",
     "test": "vitest run --coverage",
-    "test:dev": "vitest"
+    "test:dev": "vitest",
+    "prepublishOnly": "npm run build"
   },
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
   "homepage": "https://mf.osmstudios.com",
@@ -27,5 +28,6 @@
   "peerDependences": {
     "react": ">= 18.0.0",
     "react-dom": ">= 18.0.0"
-  }
+  },
+  "gitHead": "f771636eada75d842fd65d916ab6b2a78b985c6a"
 }

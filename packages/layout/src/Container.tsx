@@ -6,11 +6,12 @@ interface ContainerProps {
     fluid?: boolean;
     children?: ReactNode;
     margin?: string;
+    padding?: string;
     maxWidth?: string;
     [rest: string]: any;
 };
 
-const Container = ({ fluid, children, margin, maxWidth, ...rest }: ContainerProps): ReactNode => {
+const Container = ({ fluid, children, margin, padding, maxWidth, ...rest }: ContainerProps): ReactNode => {
     const theme = useTheme();
     let fWidth;
     if (fluid) {
@@ -27,6 +28,7 @@ const Container = ({ fluid, children, margin, maxWidth, ...rest }: ContainerProp
             // Necessary for some of the background calculations done in child components
             background-color: ${theme.color("background")};
 
+            padding: ${padding ? padding : '0 1rem'};
             padding-left: 1rem;
             padding-right: 1rem;
 
