@@ -54,7 +54,7 @@ const nordLightColors = {
     background: '#eceff4',
     borderMuted: '#303744',
     border: '#2e3440',
-    content: '#2e3440',
+    content: '#eceff4',
     textColor: '#242933',
     linkColor: '#88c0d0',
     primary: '#5e81ac',
