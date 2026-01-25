@@ -22,7 +22,7 @@
   "repository": "https://github.com/DawsonG/maelstrom-futurism",
   "license": "MIT",
   "scripts": {
-    "build": "lerna run build --ignore src,website --stream",
+    "build": "lerna run build --ignore src,website --no-private --stream",
     "test": "lerna run test --ignore src,website --no-private --stream",
     "clean": "lerna run clean --ignore src,website --no-private --stream && rm -Rf node_modules && rm package-lock.json",
     "version": "lerna version",

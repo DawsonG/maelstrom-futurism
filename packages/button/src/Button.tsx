@@ -7,18 +7,26 @@ import LinkButton from "./LinkButton";
 import { ButtonProps, ButtonVariant } from "./types";
 
 const scales = {
-  small: {
-    padding: `5px 10px`,
-    fontSize: 14,
-  },
-  normal: {
-    padding: `10px 20px`,
-    fontSize: 16,
-  },
-  big: {
-    padding: `20px 30px`,
-    fontSize: 18,
-  },
+  xs: emotionCss`
+    padding: 2px 4px;
+    font-size: 12px;
+  `,
+  sm: emotionCss`
+    padding: 5px 10px;
+    font-size: 14px;
+  `,
+  md: emotionCss`
+    padding: 10px 20px;
+    font-size: 16px;
+  `,
+  lg: emotionCss`
+    padding: 20px 30px;
+    font-size: 18px;
+  `,
+  xl: emotionCss`
+    padding: 30px 40px;
+    font-size: 20px;
+  `,
 };
 
 
@@ -43,16 +51,16 @@ const getVariantStyle = (theme: Theme, variant: ButtonVariant, outline: boolean)
   const boxShadowColor = outline ? colors[0] : "transparent";
   const backgroundColor = outline ? "transparent" : colors[0];
 
-  return {
-    background: backgroundColor,
-    boxShadow: `inset 0 0 0 1px ${boxShadowColor}`,
-    color: `${outline ? colors[0] : colors[1]}`,
-    transition: "all .3s",
-    "&:hover": {
-      boxShadow: `inset 0 0 0 1000px ${boxShadowColor}`,
-      color: colors[1],
-    },
-  };
+  return emotionCss`
+    background: ${backgroundColor};
+    boxShadow: inset 0 0 0 1px ${boxShadowColor};
+    color: ${outline ? colors[0] : colors[1]};
+    transition: all .3s;
+    &:hover: {
+      boxShadow: inset 0 0 0 1000px ${boxShadowColor};
+      color: ${colors[1]};
+    }
+  `;
 };
 
 const Button = (props: ButtonProps): ReactNode => {
@@ -65,7 +73,7 @@ const Button = (props: ButtonProps): ReactNode => {
   const {
     children,
     onClick,
-    scale = "normal",
+    size = "md",
     variant = "secondary",
     outline,
     type = "button",
@@ -86,16 +94,16 @@ const Button = (props: ButtonProps): ReactNode => {
     const rippleContainer = buttonRef.current.querySelector("div.rippleContainer");
     if (!rippleContainer) return;
     
-    const size = buttonRef.current.offsetWidth;
+    const rippleSize = buttonRef.current.offsetWidth;
     const pos = buttonRef.current.getBoundingClientRect();
 
     const rippler = document.createElement("span");
-    const x = e.pageX - pos.left - size / 2;
-    const y = e.pageY - pos.top - size / 2;
+    const x = e.pageX - pos.left - rippleSize / 2;
+    const y = e.pageY - pos.top - rippleSize / 2;
     rippleContainer.appendChild(rippler);
     rippler.setAttribute(
       "style",
-      `top: ${y}px; left: ${x}px; height: ${size}px; width: ${size}px;`
+      `top: ${y}px; left: ${x}px; height: ${rippleSize}px; width: ${rippleSize}px;`
     );
   };
 
@@ -108,10 +116,11 @@ const Button = (props: ButtonProps): ReactNode => {
   };
 
 
+  console.log(size, scales[size]);
   return (
     <button
-      css={[buttonStyle, buttonStyleByTheme, getVariantStyle(theme, variant, !!outline), scales[scale], css]}
-      onClick={onClick}
+      css={[buttonStyle, buttonStyleByTheme, getVariantStyle(theme, variant, !!outline), scales[size]]}
+      onClick={() => console.log(size, scales[size])}
       ref={buttonRef}
       onMouseDown={addRipple}
       onMouseUp={debounce(cleanUp, 2000)}

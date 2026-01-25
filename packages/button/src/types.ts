@@ -1,20 +1,20 @@
-import { ReactNode } from "react";
-import { SerializedStyles } from "@emotion/react";
+import { ReactNode } from 'react';
+import { SerializedStyles } from '@emotion/react';
 
 export type ButtonVariant =
-  | "primary"
-  | "secondary"
-  | "cancel"
-  | "ghost"
-  | "link";
-export type ButtonType = "button" | "submit";
-export type Scale = "small" | "normal" | "big";
+  | 'primary'
+  | 'secondary'
+  | 'cancel'
+  | 'ghost'
+  | 'link';
+export type ButtonType = 'button' | 'submit';
+export type Sizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface ButtonProps {
   children?: ReactNode;
 
   /**
-   * Either type="submit" or type="button"
+   * Either type='submit' or type='button'
    */
   type?: ButtonType;
 
@@ -23,7 +23,7 @@ export interface ButtonProps {
    */
   css?: SerializedStyles | SerializedStyles[];
 
-  scale?: Scale;
+  size?: Sizes;
   variant?: ButtonVariant;
   outline?: boolean;
   onClick?: React.MouseEventHandler;
