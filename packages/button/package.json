@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/button",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "A button (with very cool ripples!) for MF",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -30,8 +30,8 @@
   },
   "homepage": "https://github.com/DawsonG/maelstrom-futurism#readme",
   "dependencies": {
-    "@maelstrom-futurism/core": "^0.7.4",
-    "@maelstrom-futurism/icons": "^0.7.4"
+    "@maelstrom-futurism/core": "^0.7.5",
+    "@maelstrom-futurism/icons": "^0.7.5"
   },
   "peerDependencies": {
     "@emotion/react": ">= 11.10.5",
