@@ -31,11 +31,11 @@ const Buttons = () => (
 
         <h2>Sizes</h2>
         <CodeView>
-{`<Button scale="xs">Very Small [xs]</Button>
-<Button scale="sm">Small [sm]</Button>
-<Button scale="md">Medium/Normal [md]</Button>
-<Button scale="lg">Large [lg]</Button>
-<Button scale="xl">Very Large [xl]</Button>`}
+{`<Button size="xs">Very Small [xs]</Button>
+<Button size="sm">Small [sm]</Button>
+<Button size="md">Medium/Normal [md]</Button>
+<Button size="lg">Large [lg]</Button>
+<Button size="xl">Very Large [xl]</Button>`}
         </CodeView>
 
         <div>

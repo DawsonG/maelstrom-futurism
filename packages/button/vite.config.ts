@@ -11,7 +11,7 @@ export default defineConfig({
         dts({ include: ['src'] })
     ],
     build: {
-        minify: 'terser',
+        // minify: 'terser',
         lib: {
             entry: resolve(__dirname, 'src/index.ts'),
             formats: ['es']

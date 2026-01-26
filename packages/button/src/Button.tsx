@@ -115,15 +115,13 @@ const Button = (props: ButtonProps): ReactNode => {
     rippleContainer.innerHTML = "";
   };
 
-
-  console.log(size, scales[size]);
   return (
     <button
-      css={[buttonStyle, buttonStyleByTheme, getVariantStyle(theme, variant, !!outline), scales[size]]}
+      css={[buttonStyle, buttonStyleByTheme, getVariantStyle(theme, variant, !!outline), scales[size], css]}
       onClick={() => console.log(size, scales[size])}
       ref={buttonRef}
       onMouseDown={addRipple}
-      onMouseUp={debounce(cleanUp, 2000)}
+      onMouseUp={debounce(cleanUp, 1000)}
       type={type}
       disabled={disabled}
       {...rest}
