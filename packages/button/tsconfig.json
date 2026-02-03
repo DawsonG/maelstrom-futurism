@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["lib", "styles"],
+  "include": ["src", "styles"],
   "exclude": ["dist"],
   "compilerOptions": {
     "outDir": "./dist",

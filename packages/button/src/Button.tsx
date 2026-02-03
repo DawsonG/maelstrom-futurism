@@ -1,8 +1,8 @@
 import React, { ReactNode, useRef } from "react";
-
-import { buttonStyle } from "./Button.styles";
 import { useTheme, debounce, Theme } from "@maelstrom-futurism/core";
 import { css as emotionCss } from "@emotion/react";
+
+import { buttonStyle } from "./Button.styles";
 import LinkButton from "./LinkButton";
 import { ButtonProps, ButtonVariant } from "./types";
 
@@ -29,36 +29,28 @@ const scales = {
   `,
 };
 
-
-
-const getVariantColor = (theme: Theme, variant: ButtonVariant): [string, string] => {
-  switch (variant) {
-    case "secondary":
-      return [theme.color("secondary"), theme.color("textColor")];
-    case "cancel":
-      return [theme.color("alert"), theme.color("textColor")];
-    case "ghost":
-      return ["transparent", theme.color("textColor")];
-    case "primary":
-    default: 
-      return [theme.color("primary"), theme.color("textColor")];
-  }
-}
+const colors = (theme: Theme) => ({
+  secondary: [theme.color("secondary"), theme.color("textColor")],
+  cancel: [theme.color("alert"), theme.color("textColor")],
+  ghost: ["transparent", theme.color("textColor")],
+  primary: [theme.color("primary"), theme.color("textColor")],
+  link: [theme.color("primary"), theme.color("textColor")],
+});
 
 const getVariantStyle = (theme: Theme, variant: ButtonVariant, outline: boolean) => {
-  const colors = getVariantColor(theme, variant);
+  const lcolors = colors(theme)[variant];
   
-  const boxShadowColor = outline ? colors[0] : "transparent";
-  const backgroundColor = outline ? "transparent" : colors[0];
+  const boxShadowColor = outline ? lcolors[0] : "transparent";
+  const backgroundColor = outline ? "transparent" : lcolors[0];
 
   return emotionCss`
     background: ${backgroundColor};
     boxShadow: inset 0 0 0 1px ${boxShadowColor};
-    color: ${outline ? colors[0] : colors[1]};
+    color: ${outline ? lcolors[0] : lcolors[1]};
     transition: all .3s;
     &:hover: {
       boxShadow: inset 0 0 0 1000px ${boxShadowColor};
-      color: ${colors[1]};
+      color: ${lcolors[1]};
     }
   `;
 };
@@ -73,7 +65,7 @@ const Button = (props: ButtonProps): ReactNode => {
   const {
     children,
     onClick,
-    size = "md",
+    size = "lg",
     variant = "secondary",
     outline,
     type = "button",
@@ -85,7 +77,12 @@ const Button = (props: ButtonProps): ReactNode => {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const buttonStyleByTheme = emotionCss`
+    ${buttonStyle}
     border-radius: ${theme.buttonRadius};
+
+    ${getVariantStyle(theme, variant, !!outline)}
+    ${scales[size]}
+    ${css ?? css}
   `;
 
   const addRipple = (e: React.MouseEvent) => {
@@ -117,11 +114,11 @@ const Button = (props: ButtonProps): ReactNode => {
 
   return (
     <button
-      css={[buttonStyle, buttonStyleByTheme, getVariantStyle(theme, variant, !!outline), scales[size], css]}
-      onClick={() => console.log(size, scales[size])}
+      css={buttonStyleByTheme}
+      onClick={onClick}
       ref={buttonRef}
       onMouseDown={addRipple}
-      onMouseUp={debounce(cleanUp, 1000)}
+      onMouseUp={debounce(cleanUp, 1500)}
       type={type}
       disabled={disabled}
       {...rest}
