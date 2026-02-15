@@ -1,6 +1,6 @@
 {
     "name": "@maelstrom-futurism/table",
-    "version": "0.7.6-alpha.0",
+    "version": "0.7.6-alpha.1",
     "description": "Simple table component",
     "main": "dist/table.mjs",
     "types": "dist/index.d.ts",
@@ -21,7 +21,7 @@
         "directory": "packages/table"
     },
     "dependencies": {
-        "@maelstrom-futurism/core": "^0.7.6-alpha.0"
+        "@maelstrom-futurism/core": "^0.7.6-alpha.1"
     },
     "peerDependences": {
         "react": ">= 18.0.0",
