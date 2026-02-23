@@ -99,7 +99,7 @@ export const normalStyledInput = (theme: Theme) => css`
         top: 50%;
         left: 10px;
         transform: translateY(-50%);
-        color: rgba(255, 255, 255, 0.5);
+        color: ${theme.color("textColor")}80;
         background-color: inherit;
         text-align: center;
         transition: .2s ${EASE_FUNCTION};
