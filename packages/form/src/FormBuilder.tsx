@@ -10,19 +10,19 @@ type ModelItem = {
   contentType: string;
 };
 
-interface IFormBuilder {
+interface FormBuilderProps {
   model: ModelItem[];
   values?: Record<string, string>;
   emitChange?: (name: string, value: string) => void;
   onSubmit?: (values: Record<string, string>) => void;
 }
 
-const FormBuilder: React.FC<IFormBuilder> = ({
+const FormBuilder = ({
   model,
   values,
   onSubmit,
   emitChange,
-}) => {
+}: FormBuilderProps) => {
   const [internalValues, setInternalValues] = useState<Record<string, string> | undefined>(values);
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const {
