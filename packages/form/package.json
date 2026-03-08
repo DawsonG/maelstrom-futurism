@@ -30,8 +30,8 @@
     "directory": "packages/form"
   },
   "dependencies": {
-    "@maelstrom-futurism/button": "0.7.4-beta.4",
-    "@maelstrom-futurism/core": "^0.7.4-beta.6"
+    "@maelstrom-futurism/button": "^0.8.1",
+    "@maelstrom-futurism/core": "../core"
   },
   "peerDependences": {
     "react": ">= 18.0.0",
