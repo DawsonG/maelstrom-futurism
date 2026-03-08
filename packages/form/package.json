@@ -6,7 +6,6 @@
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
-  "private": true,
   "exports": {
     ".": {
       "require": "./dist/index.js",
@@ -32,8 +31,7 @@
   },
   "dependencies": {
     "@maelstrom-futurism/button": "0.7.4-beta.4",
-    "@maelstrom-futurism/core": "^0.7.4-beta.6",
-    "@maelstrom-futurism/input": "^0.7.4-beta.6"
+    "@maelstrom-futurism/core": "^0.7.4-beta.6"
   },
   "peerDependences": {
     "react": ">= 18.0.0",

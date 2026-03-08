@@ -28,11 +28,18 @@ const Form = ({ children }: FormProps): ReactNode => {
         return matchingChildren;
     }
 
-    const keyValueInternal = {};
+    const keyValueInternal: Record<string, string> = {};
     const formElements = getAllChildrenByTypeRecursive(children, typeof Input);
     formElements.forEach((element: ReactNode) => {
-        keyValueInternal[element.props.name] = element.props.value;
+        if (React.isValidElement(element)) {
+            const props = element.props as { name?: string; value?: string };
+            if (props.name) {
+                keyValueInternal[props.name] = props.value ?? "";
+            }
+        }
     });
+
+    return <>{children}</>;
 };
 
 export default Form;

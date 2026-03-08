@@ -22,6 +22,8 @@ import PageModal from './pages/Modal.tsx';
 import PagePaperReadability from './pages/PaperReadability.tsx';
 import PageTable from './pages/Table.tsx';
 import FormBuilderPage from './pages/FormBuilder.tsx';
+import RadioPage from './pages/Radio.tsx';
+import CheckboxPage from './pages/Checkbox.tsx';
 
 const router = createBrowserRouter([
   {
@@ -82,6 +84,14 @@ const router = createBrowserRouter([
       {
         path: '/paper_readability',
         element: <PagePaperReadability />
+      },
+      {
+        path: '/radio',
+        element: <RadioPage />
+      },
+      {
+        path: '/checkbox',
+        element: <CheckboxPage />
       },
       {
         path: '/icons',

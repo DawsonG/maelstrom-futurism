@@ -13,7 +13,6 @@
     "@maelstrom-futurism/button": "../packages/button",
     "@maelstrom-futurism/core": "../packages/core",
     "@maelstrom-futurism/icons": "../packages/icons",
-    "@maelstrom-futurism/input": "../packages/input",
     "@maelstrom-futurism/form": "../packages/form",
     "@maelstrom-futurism/layout": "../packages/layout",
     "@maelstrom-futurism/mf-bot-differentiator": "../packages/mf-bot-differentiator",

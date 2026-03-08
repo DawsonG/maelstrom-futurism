@@ -17,6 +17,8 @@ function Layout() {
                             <li><Link to='/paper'>Paper</Link></li>
                             <li><Link to='/paper_readability'>Paper with Readability Controls</Link></li>
                             <li><Link to='/inputs'>Inputs</Link></li>
+                            <li><Link to='/radio'>Radio &amp; RadioGroup</Link></li>
+                            <li><Link to='/checkbox'>Checkbox &amp; CheckboxGroup</Link></li>
                             <li><Link to='/buttons'>Buttons</Link></li>
                             <li><Link to="/modal">Modal</Link></li>
                             <li><Link to='/table'>Table</Link></li>

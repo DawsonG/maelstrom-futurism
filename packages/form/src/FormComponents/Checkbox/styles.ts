@@ -1,0 +1,179 @@
+import { css } from '@emotion/react';
+import { Theme } from '@maelstrom-futurism/core';
+
+const EASE_FUNCTION = 'cubic-bezier(.65, .05, .36, 1)';
+
+export const checkboxGroupContainer = css`
+    background-color: inherit;
+    margin-top: 14px;
+`;
+
+export const groupLabel = (theme: Theme) => css`
+    display: block;
+    font-size: 1rem;
+    color: ${theme.color("textColor")}80;
+    margin-bottom: 8px;
+`;
+
+export const helpText = css`
+    position: relative;
+    display: block;
+    padding: 2px 0 2px 12px;
+    font-size: 0.9em;
+    opacity: 0.7;
+`;
+
+export const optionsContainer = css`
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+`;
+
+export const normalStyledCheckbox = (theme: Theme) => css`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+
+    input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        border: 2px solid ${theme.color("secondary")};
+        border-radius: 3px;
+        position: relative;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: border-color .1s ${EASE_FUNCTION}, background .1s ${EASE_FUNCTION};
+        background: transparent;
+        outline: none;
+    }
+
+    input[type="checkbox"]::after {
+        content: '';
+        position: absolute;
+        left: 3px;
+        top: 0px;
+        width: 5px;
+        height: 9px;
+        border: 2px solid ${theme.color("content")};
+        border-top: none;
+        border-left: none;
+        transform: rotate(45deg) scale(0);
+        transition: transform .15s ${EASE_FUNCTION};
+    }
+
+    input[type="checkbox"]:checked {
+        background: ${theme.color("primary")};
+        border-color: ${theme.color("primary")};
+    }
+
+    input[type="checkbox"]:checked::after {
+        transform: rotate(45deg) scale(1);
+    }
+
+    input[type="checkbox"]:hover {
+        border-color: ${theme.color("textColor")};
+    }
+
+    input[type="checkbox"]:focus {
+        box-shadow: 0 0 0 3px ${theme.color("primary")}40;
+    }
+
+    input[type="checkbox"]:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+    label {
+        font-size: ${theme.size("base")};
+        color: ${theme.color("textColor")};
+        cursor: pointer;
+        transition: color .1s ${EASE_FUNCTION};
+    }
+
+    input[type="checkbox"]:disabled ~ label {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+`;
+
+export const materialStyledCheckbox = (theme: Theme) => css`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    padding: 4px 0;
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s ${EASE_FUNCTION};
+
+    input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid ${theme.color("secondary")};
+        border-radius: 3px;
+        position: relative;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: border-color .2s ${EASE_FUNCTION}, background .2s ${EASE_FUNCTION};
+        background: transparent;
+        outline: none;
+    }
+
+    input[type="checkbox"]::after {
+        content: '';
+        position: absolute;
+        left: 4px;
+        top: 1px;
+        width: 5px;
+        height: 9px;
+        border: 2px solid ${theme.color("content")};
+        border-top: none;
+        border-left: none;
+        transform: rotate(45deg) scale(0);
+        transition: transform .2s ${EASE_FUNCTION};
+    }
+
+    input[type="checkbox"]:checked {
+        background: ${theme.color("primary")};
+        border-color: ${theme.color("primary")};
+    }
+
+    input[type="checkbox"]:checked::after {
+        transform: rotate(45deg) scale(1);
+    }
+
+    input[type="checkbox"]:hover {
+        border-color: ${theme.color("textColor")};
+    }
+
+    input[type="checkbox"]:focus {
+        border-color: ${theme.color("primary")};
+    }
+
+    input[type="checkbox"]:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+    label {
+        font-size: ${theme.size("base")};
+        color: ${theme.color("textColor")};
+        cursor: pointer;
+        transition: color .2s ${EASE_FUNCTION};
+    }
+
+    &:has(input[type="checkbox"]:checked) label {
+        color: ${theme.color("primary")};
+    }
+
+    input[type="checkbox"]:disabled ~ label {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+`;

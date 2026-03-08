@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Input, TextArea } from "@maelstrom-futurism/input";
+import { Input, TextArea } from "@maelstrom-futurism/form";
 import { Container } from "@maelstrom-futurism/layout";
 import { ContentBox } from "@maelstrom-futurism/core";
 
