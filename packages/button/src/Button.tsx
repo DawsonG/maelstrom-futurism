@@ -65,7 +65,7 @@ const Button = (props: ButtonProps): ReactNode => {
   const {
     children,
     onClick,
-    size = "lg",
+    size = "md",
     variant = "secondary",
     outline,
     type = "button",
