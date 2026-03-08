@@ -16,7 +16,7 @@
   "dependencies": {
     "@maelstrom-futurism/button": "^0.7.6-alpha.1",
     "@maelstrom-futurism/core": "^0.7.6-alpha.1",
-    "@maelstrom-futurism/input": "^0.7.6-alpha.1",
+    "@maelstrom-futurism/form": "^0.7.4-beta.6",
     "@maelstrom-futurism/layout": "^0.7.6-alpha.1",
     "@maelstrom-futurism/modal": "^0.7.6-alpha.1",
     "@maelstrom-futurism/navbar": "^0.7.6-alpha.1",
