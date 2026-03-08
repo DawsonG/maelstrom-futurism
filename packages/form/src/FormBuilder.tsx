@@ -1,8 +1,8 @@
 import React, { useState, FormEvent } from "react";
-
 import { capitalize, isFunction } from "@maelstrom-futurism/core";
-import { Input } from "@maelstrom-futurism/input";
 import { Button } from "@maelstrom-futurism/button";
+
+import { Input } from "./FormComponents/Input";
 
 type ModelItem = {
   label?: string;
