@@ -4,7 +4,6 @@ import { useTheme } from "@maelstrom-futurism/core";
 import { radioGroupContainer, groupLabel, helpText as helpTextCss, optionsContainer } from "./styles";
 import Radio from "./Radio";
 
-export type Variant = "normal" | "material";
 
 export interface RadioOption {
     /** The value submitted with the form */
@@ -18,11 +17,6 @@ export interface RadioOption {
 }
 
 export interface RadioGroupProps {
-    /**
-     * Normal or Material variant
-     */
-    variant?: Variant;
-
     /**
      * A unique field name shared by all radio buttons in the group (Required)
      */
@@ -65,7 +59,6 @@ export interface RadioGroupProps {
 }
 
 const RadioGroup = ({
-    variant = "normal",
     name,
     label,
     helpText,
@@ -95,7 +88,6 @@ const RadioGroup = ({
                 {options.map((option) => (
                     <Radio
                         key={option.value}
-                        variant={variant}
                         name={name}
                         value={option.value}
                         label={option.label}

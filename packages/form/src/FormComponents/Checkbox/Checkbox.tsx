@@ -1,16 +1,9 @@
 import React from "react";
 import { useTheme } from "@maelstrom-futurism/core";
 
-import { normalStyledCheckbox, materialStyledCheckbox } from "./styles";
-
-export type Variant = "normal" | "material";
+import { materialStyledCheckbox } from "./styles";
 
 export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
-    /**
-     * Normal or Material variant
-     */
-    variant?: Variant;
-
     /**
      * A unique (in form) field name (Required)
      */
@@ -43,14 +36,12 @@ export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputE
 }
 
 const Checkbox = React.forwardRef(
-    ({ variant = "normal", name, label, value, ...rest }: CheckboxProps, ref?: any) => {
+    ({ name, label, value, ...rest }: CheckboxProps, ref?: any) => {
         const theme = useTheme();
-        const isMaterial = variant === "material";
-        const optionStyles = isMaterial ? materialStyledCheckbox(theme) : normalStyledCheckbox(theme);
         const id = value ? `${name}-${value}` : name;
 
         return (
-            <div css={optionStyles}>
+            <div css={materialStyledCheckbox(theme)}>
                 <input
                     id={id}
                     type="checkbox"

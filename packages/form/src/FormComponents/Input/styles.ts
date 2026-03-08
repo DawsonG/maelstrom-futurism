@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import { Theme } from '@maelstrom-futurism/core';
-import { lighten } from 'polished';
 
 const EASE_FUNCTION = 'cubic-bezier(.65, .05, .36, 1)';
 
@@ -85,7 +84,7 @@ export const normalStyledInput = (theme: Theme) => css`
         color: ${theme.color("textColor")};
         height: 3rem;
         outline: 1px solid ${theme.color("secondary")};
-        border-radius: 5px;
+        border-radius: ${theme.inputRadius};
         border: none;
         padding-left: 10px;
         font-size: ${theme.size("base")};

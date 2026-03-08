@@ -19,42 +19,11 @@ const RadioPage = (): ReactNode => {
                 for custom layouts.
             </p>
 
-            <h2>RadioGroup — Normal Variant</h2>
-
-            <p>The default <code>"normal"</code> variant renders outlined radio circles consistent with the normal Input style.</p>
+            <h2>RadioGroup</h2>
 
             <CodeView>{`import { RadioGroup } from "@maelstrom-futurism/form";
 
 <RadioGroup
-    name="fruit"
-    label="Favourite Fruit"
-    options={[
-        { value: "apple", label: "Apple" },
-        { value: "banana", label: "Banana" },
-        { value: "cherry", label: "Cherry" },
-    ]}
-    defaultValue="banana"
-/>`}</CodeView>
-
-            <RadioGroup
-                name="fruit"
-                label="Favourite Fruit"
-                options={[
-                    { value: "apple", label: "Apple" },
-                    { value: "banana", label: "Banana" },
-                    { value: "cherry", label: "Cherry" },
-                ]}
-                defaultValue="banana"
-            />
-
-            <h2>RadioGroup — Material Variant</h2>
-
-            <p>The <code>"material"</code> variant matches the material Input style — the selected label takes on the primary theme colour.</p>
-
-            <CodeView>{`import { RadioGroup } from "@maelstrom-futurism/form";
-
-<RadioGroup
-    variant="material"
     name="colour"
     label="Favourite Colour"
     options={[
@@ -65,7 +34,6 @@ const RadioPage = (): ReactNode => {
 />`}</CodeView>
 
             <RadioGroup
-                variant="material"
                 name="colour"
                 label="Favourite Colour"
                 options={[
@@ -246,11 +214,11 @@ import { RadioGroup } from "@maelstrom-futurism/form";
 
             <h2>Standalone Radio — Material</h2>
 
-            <CodeView>{`<Radio variant="material" name="standalone-mat" value="accept" label="Accept" />
-<Radio variant="material" name="standalone-mat" value="decline" label="Decline" />`}</CodeView>
+            <CodeView>{`<Radio name="standalone-mat" value="accept" label="Accept" />
+<Radio name="standalone-mat" value="decline" label="Decline" />`}</CodeView>
 
-            <Radio variant="material" name="standalone-mat" value="accept" label="Accept" />
-            <Radio variant="material" name="standalone-mat" value="decline" label="Decline" />
+            <Radio name="standalone-mat" value="accept" label="Accept" />
+            <Radio name="standalone-mat" value="decline" label="Decline" />
 
             <h2>onChange Callback</h2>
 
@@ -262,7 +230,6 @@ import { RadioGroup } from "@maelstrom-futurism/form";
             <CodeView>{`const [plan, setPlan] = useState("");
 
 <RadioGroup
-    variant="material"
     name="pricing"
     label="Choose a Pricing Plan"
     required
@@ -277,7 +244,6 @@ import { RadioGroup } from "@maelstrom-futurism/form";
 />`}</CodeView>
 
             <RadioGroup
-                variant="material"
                 name="pricing"
                 label="Choose a Pricing Plan"
                 required

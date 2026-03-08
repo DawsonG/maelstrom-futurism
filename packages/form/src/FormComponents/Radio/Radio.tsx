@@ -1,15 +1,9 @@
 import React from "react";
 import { useTheme } from "@maelstrom-futurism/core";
 
-import { normalStyledRadio, materialStyledRadio } from "./styles";
-import type { Variant } from "./RadioGroup";
+import { materialStyledRadio } from "./styles";
 
 export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
-    /**
-     * Normal or Material variant
-     */
-    variant?: Variant;
-
     /**
      * A unique (in form) field name (Required)
      */
@@ -42,14 +36,12 @@ export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
 }
 
 const Radio = React.forwardRef(
-    ({ variant = "normal", name, value, label, ...rest }: RadioProps, ref?: any) => {
+    ({ name, value, label, ...rest }: RadioProps, ref?: any) => {
         const theme = useTheme();
-        const isMaterial = variant === "material";
-        const optionStyles = isMaterial ? materialStyledRadio(theme) : normalStyledRadio(theme);
         const id = `${name}-${value}`;
 
         return (
-            <div css={optionStyles}>
+            <div css={materialStyledRadio(theme)}>
                 <input
                     id={id}
                     type="radio"

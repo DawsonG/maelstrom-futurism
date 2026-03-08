@@ -3,7 +3,6 @@ import { useTheme } from "@maelstrom-futurism/core";
 
 import { checkboxGroupContainer, groupLabel, helpText as helpTextCss, optionsContainer } from "./styles";
 import Checkbox from "./Checkbox";
-import type { Variant } from "./Checkbox";
 
 export interface CheckboxOption {
     /** The value submitted with the form */
@@ -17,11 +16,6 @@ export interface CheckboxOption {
 }
 
 export interface CheckboxGroupProps {
-    /**
-     * Normal or Material variant
-     */
-    variant?: Variant;
-
     /**
      * A unique field name for the group (Required)
      */
@@ -64,7 +58,6 @@ export interface CheckboxGroupProps {
 }
 
 const CheckboxGroup = ({
-    variant = "normal",
     name,
     label,
     helpText,
@@ -97,7 +90,6 @@ const CheckboxGroup = ({
                 {options.map((option) => (
                     <Checkbox
                         key={option.value}
-                        variant={variant}
                         name={name}
                         value={option.value}
                         label={option.label}

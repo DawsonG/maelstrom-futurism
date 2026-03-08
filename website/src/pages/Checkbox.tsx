@@ -20,9 +20,7 @@ const CheckboxPage = (): ReactNode => {
                 boolean fields like terms-of-service agreements.
             </p>
 
-            <h2>CheckboxGroup — Normal Variant</h2>
-
-            <p>The default <code>"normal"</code> variant renders checkboxes with outlined square boxes and an animated checkmark.</p>
+            <h2>CheckboxGroup</h2>
 
             <CodeView>{`import { CheckboxGroup } from "@maelstrom-futurism/form";
 
@@ -48,34 +46,6 @@ const CheckboxPage = (): ReactNode => {
                     { value: "design",   label: "UI / UX Design" },
                 ]}
                 defaultValue={["frontend"]}
-            />
-
-            <h2>CheckboxGroup — Material Variant</h2>
-
-            <p>The <code>"material"</code> variant matches the material Input style — checked labels take on the primary theme colour.</p>
-
-            <CodeView>{`<CheckboxGroup
-    variant="material"
-    name="features"
-    label="Enable Features"
-    options={[
-        { value: "darkMode",       label: "Dark Mode" },
-        { value: "notifications",  label: "Push Notifications" },
-        { value: "analytics",      label: "Usage Analytics" },
-    ]}
-    defaultValue={["darkMode"]}
-/>`}</CodeView>
-
-            <CheckboxGroup
-                variant="material"
-                name="features"
-                label="Enable Features"
-                options={[
-                    { value: "darkMode",      label: "Dark Mode" },
-                    { value: "notifications", label: "Push Notifications" },
-                    { value: "analytics",     label: "Usage Analytics" },
-                ]}
-                defaultValue={["darkMode"]}
             />
 
             <h2>With Help Text</h2>
@@ -204,7 +174,6 @@ import { CheckboxGroup } from "@maelstrom-futurism/form";
 <ContentBox>
     <h3>Pizza Builder</h3>
     <CheckboxGroup
-        variant="material"
         name="toppings"
         label="Choose Toppings"
         helpText="Extra toppings are $1.50 each."
@@ -223,7 +192,6 @@ import { CheckboxGroup } from "@maelstrom-futurism/form";
             <ContentBox>
                 <h3>Pizza Builder</h3>
                 <CheckboxGroup
-                    variant="material"
                     name="toppings"
                     label="Choose Toppings"
                     helpText="Extra toppings are $1.50 each."
@@ -276,11 +244,11 @@ import { CheckboxGroup } from "@maelstrom-futurism/form";
 
             <h2>Standalone Checkbox — Material</h2>
 
-            <CodeView>{`<Checkbox variant="material" name="subscribe" value="yes" label="Subscribe to the newsletter" />
-<Checkbox variant="material" name="rememberMe" value="yes" label="Remember me on this device" />`}</CodeView>
+            <CodeView>{`<Checkbox name="subscribe" value="yes" label="Subscribe to the newsletter" />
+<Checkbox name="rememberMe" value="yes" label="Remember me on this device" />`}</CodeView>
 
-            <Checkbox variant="material" name="subscribe" value="yes" label="Subscribe to the newsletter" />
-            <Checkbox variant="material" name="rememberMe" value="yes" label="Remember me on this device" />
+            <Checkbox name="subscribe" value="yes" label="Subscribe to the newsletter" />
+            <Checkbox name="rememberMe" value="yes" label="Remember me on this device" />
 
             <br /><br /><br /><br />
         </Container>
