@@ -1,5 +1,6 @@
-import { Input } from "@maelstrom-futurism/input";
-import React, { Children, ReactNode, useState } from "react";
+import React, { ReactNode, useState } from "react";
+
+import { Input } from "./FormComponents/Input";
 
 interface FormProps {
     children: ReactNode | ReactNode[];
