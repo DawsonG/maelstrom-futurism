@@ -32,7 +32,7 @@ const TextArea = ({ name, label, value, ...rest }: TextAreaProps) => {
     return (
         <div css={fcContainer}>
             {label && <label htmlFor={name}>{label}</label>}
-            <textarea css={textAreaStyles} {...rest}>{value}</textarea>
+            <textarea css={textAreaStyles} value={value} {...rest} />
         </div>
     );
 };
