@@ -55,6 +55,8 @@ const Column = ({
         padding-left: 0.5rem;
         padding-bottom: 0.5rem;
 
+        background-color: inherit;
+
         ${topBorder ? `border-top: ${topBorder}` : ""}
 
         @media only screen and (min-width: ${theme.bp("xs")}) {

@@ -40,6 +40,8 @@ const Grid = ({ children, direction, justifyContent, ...rest }: GridProps): Reac
         ${justifyContent && `justify-content: ${justifyContent};`}
         margin-right: -0.5rem;
         margin-left: -0.5rem;
+
+        background-color: inherit;
     `;
 
     return <Box css={gridStyle} {...rest}>{children}</Box>;
