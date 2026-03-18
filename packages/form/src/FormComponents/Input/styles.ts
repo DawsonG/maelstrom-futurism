@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import { Theme } from '@maelstrom-futurism/core';
+import { Variant } from './Input';
 
 const EASE_FUNCTION = 'cubic-bezier(.65, .05, .36, 1)';
 
@@ -19,6 +20,52 @@ export const helpText = css`
     font-size: 0.9em;
     opacity: 0.7;
 `;
+
+export type ValidationState = 'error' | 'warning' | 'success';
+
+export const validationStyle = (theme: Theme, state: ValidationState, variant: Variant) => {
+    const color = state === 'error'
+        ? theme.color('alert')
+        : state === 'warning'
+            ? theme.color('warning')
+            : theme.color('success');
+
+    let line = '';
+    if (variant === 'normal') {
+        line = `outline: 1px solid ${color}`;
+    } else {
+        line = `border-bottom: solid 2px ${color}`;
+    }
+    
+    
+    return css`
+        input, textarea {
+            ${line};
+        }
+        input:focus, textarea:focus {
+            ${line};
+        }
+        input:hover, textarea:hover {
+            ${line};
+        }
+    `;
+};
+
+export const validationMessage = (theme: Theme, state: ValidationState) => {
+    const color = state === 'error'
+        ? theme.color('alert')
+        : state === 'warning'
+            ? theme.color('warning')
+            : theme.color('success');
+
+    return css`
+        position: relative;
+        display: block;
+        padding: 2px 0 2px 12px;
+        font-size: 0.9em;
+        color: ${color};
+    `;
+};
 
 export const materialStyledInput = (theme: Theme) => css`
     input {

@@ -24,7 +24,7 @@ const FormBuilder = ({
   emitChange,
 }: FormBuilderProps) => {
   const [internalValues, setInternalValues] = useState<Record<string, string> | undefined>(values);
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {
       currentTarget: { name, value },
     } = e;

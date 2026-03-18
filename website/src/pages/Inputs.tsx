@@ -69,6 +69,51 @@ import { ContentBox } from "@maelstrom-futurism/core";
             <Input name="telephone" variant="normal" type="tel" label="Telephone" helpText="Only used for emergencies" />
             <Input name="email" variant="material" type="email" label="Email" helpText="Must be able to receive emails to complete registration" />
 
+            <h2>Validation States</h2>
+            <p>
+                Inputs accept a <code>validationState</code> prop (<code>"error"</code>, <code>"warning"</code>, or <code>"success"</code>)
+                and an optional <code>validationMessage</code> to display feedback below the field.
+            </p>
+
+            <CodeView>{`<Input variant="normal" name="username" type="text" label="Username"
+    validationState="error"
+    validationMessage="Username is already taken" />
+
+<Input variant="normal" name="age" type="number" label="Age"
+    validationState="warning"
+    validationMessage="You must be 18+ to proceed" />
+
+<Input variant="normal" name="email" type="email" label="Email"
+    validationState="success"
+    validationMessage="Looks good!" />`}</CodeView>
+
+            <Input variant="normal" name="v-error" type="text" label="Username"
+                validationState="error"
+                validationMessage="Username is already taken" />
+            <Input variant="normal" name="v-warning" type="number" label="Age"
+                validationState="warning"
+                validationMessage="You must be 18+ to proceed" />
+            <Input variant="normal" name="v-success" type="email" label="Email"
+                validationState="success"
+                validationMessage="Looks good!" />
+
+            <p>Validation states also work on the material variant and on <code>TextArea</code>:</p>
+
+            <CodeView>{`<Input variant="material" name="card" type="text" label="Card Number"
+    validationState="error"
+    validationMessage="Invalid card number" />
+
+<TextArea name="bio" label="Bio"
+    validationState="warning"
+    validationMessage="Keep it under 200 characters" />`}</CodeView>
+
+            <Input variant="material" name="v-material" type="text" label="Card Number"
+                validationState="error"
+                validationMessage="Invalid card number" />
+            <TextArea name="v-textarea" label="Bio"
+                validationState="warning"
+                validationMessage="Keep it under 200 characters" />
+
             <br/><br/><br/><br/>
         </Container>
     );

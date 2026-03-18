@@ -1,23 +1,23 @@
 import { css } from "@emotion/react";
 import { useTheme } from "@maelstrom-futurism/core";
 
-interface TextAreaProps extends React.ClassAttributes<HTMLTextAreaElement> {
+import { validationStyle, validationMessage as validationMessageCss, type ValidationState } from "./styles";
+
+interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
     name: string;
-    label: string;
-    rows?: number;
-    value?: string;
-    onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    label?: string;
+    validationState?: ValidationState;
+    validationMessage?: string;
+    onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
-
-
-const TextArea = ({ name, label, value, ...rest }: TextAreaProps) => {
+const TextArea = ({ name, label, value, validationState, validationMessage, ...rest }: TextAreaProps) => {
     const theme = useTheme();
-    
-    const fcContainer = css`
+
+    const containerCss = css`
         margin-top: 0.5em;
     `;
-    
+
     const textAreaStyles = css`
         border: solid 1px ${theme.color("content")};
         border-radius: ${theme.inputRadius};
@@ -30,9 +30,12 @@ const TextArea = ({ name, label, value, ...rest }: TextAreaProps) => {
     `;
 
     return (
-        <div css={fcContainer}>
+        <div css={[containerCss, validationState && validationStyle(theme, validationState, 'normal')]}>
             {label && <label htmlFor={name}>{label}</label>}
-            <textarea css={textAreaStyles} value={value} {...rest} />
+            <textarea id={name} css={textAreaStyles} value={value} {...rest} />
+            {validationMessage && validationState && (
+                <span css={validationMessageCss(theme, validationState)}>{validationMessage}</span>
+            )}
         </div>
     );
 };
