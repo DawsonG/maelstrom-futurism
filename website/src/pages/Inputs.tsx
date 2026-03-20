@@ -71,12 +71,12 @@ import { ContentBox } from "@maelstrom-futurism/core";
 
             <h2>Validation States</h2>
             <p>
-                Inputs accept a <code>validationState</code> prop (<code>"error"</code>, <code>"warning"</code>, or <code>"success"</code>)
+                Inputs accept a <code>validationState</code> prop (<code>"alert"</code>, <code>"warning"</code>, or <code>"success"</code>)
                 and an optional <code>validationMessage</code> to display feedback below the field.
             </p>
 
             <CodeView>{`<Input variant="normal" name="username" type="text" label="Username"
-    validationState="error"
+    validationState="alert"
     validationMessage="Username is already taken" />
 
 <Input variant="normal" name="age" type="number" label="Age"
@@ -88,7 +88,7 @@ import { ContentBox } from "@maelstrom-futurism/core";
     validationMessage="Looks good!" />`}</CodeView>
 
             <Input variant="normal" name="v-error" type="text" label="Username"
-                validationState="error"
+                validationState="alert"
                 validationMessage="Username is already taken" />
             <Input variant="normal" name="v-warning" type="number" label="Age"
                 validationState="warning"
@@ -100,7 +100,7 @@ import { ContentBox } from "@maelstrom-futurism/core";
             <p>Validation states also work on the material variant and on <code>TextArea</code>:</p>
 
             <CodeView>{`<Input variant="material" name="card" type="text" label="Card Number"
-    validationState="error"
+    validationState="alert"
     validationMessage="Invalid card number" />
 
 <TextArea name="bio" label="Bio"
@@ -108,7 +108,7 @@ import { ContentBox } from "@maelstrom-futurism/core";
     validationMessage="Keep it under 200 characters" />`}</CodeView>
 
             <Input variant="material" name="v-material" type="text" label="Card Number"
-                validationState="error"
+                validationState="alert"
                 validationMessage="Invalid card number" />
             <TextArea name="v-textarea" label="Bio"
                 validationState="warning"
