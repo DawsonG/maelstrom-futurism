@@ -82,7 +82,6 @@ const Button = (props: ButtonProps): ReactNode => {
 
     ${getVariantStyle(theme, variant, !!outline)}
     ${scales[size]}
-    ${css ?? css}
   `;
 
   const addRipple = (e: React.MouseEvent) => {
@@ -114,7 +113,7 @@ const Button = (props: ButtonProps): ReactNode => {
 
   return (
     <button
-      css={buttonStyleByTheme}
+      css={[buttonStyleByTheme, css]}
       onClick={onClick}
       ref={buttonRef}
       onMouseDown={addRipple}
