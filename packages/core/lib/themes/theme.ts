@@ -38,6 +38,7 @@ class Theme {
   borderRadius = sass.borderRadius;
   inputRadius = sass.inputRadius;
   buttonRadius = sass.buttonRadius;
+  pillRadius = sass.pillRadius;
 
   size(name: string): string {
     return this.sizes[name as keyof typeof this.sizes];
