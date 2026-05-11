@@ -93,6 +93,21 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): ReactNod
         form {
             background-color: inherit; /*without this, the input line cuts through the label*/
         }
+
+        .mf-display, .mf-pixel {
+            font-family: "Silkscreen", "Poppins", system-ui, sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .mf-text-sm {
+            font-size: 0.707em;
+        }
+
+        .mf-text-muted {
+            color: ${themeValue.color("textColor")}80;
+        }
     `;
 
     return (
