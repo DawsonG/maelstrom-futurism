@@ -30,7 +30,6 @@ Alternatively, the `maelstrom-futurism` package contains core as well as all the
 
 **To start:**
 
-**Ignore this section. I haven't published this to npm since I don't want to encourage its use.**
 
 ```
 npm i @maelstrom-futurism/core
