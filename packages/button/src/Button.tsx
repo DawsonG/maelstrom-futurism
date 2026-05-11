@@ -45,11 +45,11 @@ const getVariantStyle = (theme: Theme, variant: ButtonVariant, outline: boolean)
 
   return emotionCss`
     background: ${backgroundColor};
-    boxShadow: inset 0 0 0 1px ${boxShadowColor};
+    box-shadow: inset 0 0 0 1px ${boxShadowColor};
     color: ${outline ? lcolors[0] : lcolors[1]};
     transition: all .3s;
-    &:hover: {
-      boxShadow: inset 0 0 0 1000px ${boxShadowColor};
+    &:hover {
+      box-shadow: inset 0 0 0 1000px ${boxShadowColor};
       color: ${lcolors[1]};
     }
   `;

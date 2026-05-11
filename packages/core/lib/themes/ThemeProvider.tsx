@@ -32,36 +32,42 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): ReactNod
         @font-face {
             font-family: "Poppins";
             font-weight: 400;
+            font-display: swap;
             src: url(${poppinsLight}) format('truetype');
         }
-        
+
         @font-face {
             font-family: "Poppins";
             font-weight: 500;
+            font-display: swap;
             src: url(${poppinsMedium}) format('truetype');
         }
-        
+
         @font-face {
             font-family: "Silkscreen";
             font-weight: 400;
+            font-display: swap;
             src: url(${silkscreenMedium}) format('truetype');
         }
-        
+
         @font-face {
             font-family: "Silkscreen";
             font-weight: 600;
+            font-display: swap;
             src: url(${silkscreenBold}) format('truetype');
         }
 
         @font-face {
             font-family: "JetBrainsMono";
             font-weight: 400;
+            font-display: swap;
             src: url(${jetbrainsMonoLight}) format('truetype');
         }
-        
+
         @font-face {
             font-family: "JetBrainsMono";
             font-weight: 600;
+            font-display: swap;
             src: url(${jetbrainsMonoMedium}) format('truetype');
         }
 
