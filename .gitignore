@@ -9,3 +9,4 @@ yarn.lock # somehow yarn keeps reappearing...
 storybook-static
 .parcel-cache
 lerna-debug.log
+tmp/
