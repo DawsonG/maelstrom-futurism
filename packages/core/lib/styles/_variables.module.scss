@@ -24,5 +24,6 @@ $height-high: 100;
 $height-top: 1000;
 
 $border-radius: #{list.nth($spaces, 5)}px;
-$input-radius: #{list.nth($spaces, 2)}px;
-$button-radius: #{list.nth($spaces, 3)}px;
+$input-radius: #{list.nth($spaces, 3)}px;
+$button-radius: #{list.nth($spaces, 4)}px;
+$pill-radius: 9999px;
