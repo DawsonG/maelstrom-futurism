@@ -7,7 +7,10 @@ function Layout() {
     return (
         <div style={{ display: 'flex', maxWidth: 'calc(100vw - 20px)' }}>
             <Sidebar isClosable={true}>
-                <Sidebar.Heading title='Maelstrom Futurism' logo={<LogoMark width={28} height={28} />} />
+                <Sidebar.Heading title='Maelstrom Futurism' logo={<>
+                    <LogoMark width={28} height={28} />
+                    Maelstrom Futurism
+                </>} />
                 <ul>
                     <li><Link to='/getting_started'>Getting Started</Link></li>
                     <li><Link to='/theming'>Theming</Link></li>
