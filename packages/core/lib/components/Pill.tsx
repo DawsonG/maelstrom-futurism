@@ -1,10 +1,11 @@
 import { HTMLAttributes, ReactNode } from 'react';
-import { css as emotionCss } from '@emotion/react';
+import { css as emotionCss, SerializedStyles } from '@emotion/react';
 import { useTheme } from '../themes';
 
 export type PillVariant = 'success' | 'warning' | 'alert' | 'info' | 'muted';
 
 export interface PillProps extends HTMLAttributes<HTMLSpanElement> {
+    css?: SerializedStyles | SerializedStyles[];
     variant?: PillVariant;
     dot?: boolean;
     children: ReactNode;

@@ -1,8 +1,6 @@
 import { css } from '@emotion/react';
-import { ColorSet, Theme } from '@maelstrom-futurism/core';
+import { ColorSet, Theme, EASE_FUNCTION } from '@maelstrom-futurism/core';
 import { Variant } from './Input';
-
-const EASE_FUNCTION = 'cubic-bezier(.65, .05, .36, 1)';
 
 export const outsideContainer = css`
     background-color: inherit;
@@ -79,7 +77,7 @@ export const materialStyledInput = (theme: Theme) => css`
         top: 50%;
         left: 10px;
         transform: translateY(-50%);
-        color: rgba(255, 255, 255, 0.5);
+        color: ${theme.color("textColor")}80;
         text-align: center;
         transition: .2s ${EASE_FUNCTION};
         font-size: 1.2rem;

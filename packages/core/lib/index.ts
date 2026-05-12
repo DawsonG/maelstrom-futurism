@@ -14,3 +14,4 @@ export { default as Pill, type PillProps, type PillVariant } from './components/
 export * from './utils/words';
 export * from './utils/typeof';
 export * from './utils/debounce';
+export * from './motion';
