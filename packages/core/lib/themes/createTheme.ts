@@ -1,41 +1,36 @@
 import { ColorSet } from '../interfaces';
+import { RADII, SIZES } from '../tokens';
 import Theme from './theme';
 
-// This file should take a function that copies the default theme
-// and overwrites any parameter that was set in the passed parameters
-
-// Ideally, creating a theme could be done with a limited number of variables
-// like roundedness, shadow intensity, padding, and accent/base colors.
-// Animations may also be a good candidate for creating these.
 export type ColorSetName = 'nordDark' | 'nordLight';
 
+export interface ThemeOverrides {
+    colors?: Partial<ColorSet>;
+    radii?: {
+        input?: string;
+        button?: string;
+        card?: string;
+        pill?: string;
+    };
+    sizes?: {
+        base?: string;
+        sm?: string;
+        normal?: string;
+        md?: string;
+        lg?: string;
+        xl?: string;
+        xxl?: string;
+    };
+}
+
 /*
-PolarNight
-#2e3440
-#3b4252
-#434c5e
-#4c566a
-
-SnowStorm
-#d8dee9
-#e5e9f0
-#eceff4
-
-Frost
-#8fbcbb
-#88c0d0
-#81a1c1
-#5e81ac
-
-Aurora
-#bf616a
-#d08770
-#ebcb8b
-#a3be8c
-#b48ead
+PolarNight  #2e3440  #3b4252  #434c5e  #4c566a
+SnowStorm   #d8dee9  #e5e9f0  #eceff4
+Frost       #8fbcbb  #88c0d0  #81a1c1  #5e81ac
+Aurora      #bf616a  #d08770  #ebcb8b  #a3be8c  #b48ead
 */
 
-const nordDarkColors = {
+const nordDarkColors: ColorSet = {
     background: '#242933',
     borderMuted: '#303744',
     border: '#2e3440',
@@ -47,10 +42,10 @@ const nordDarkColors = {
     alert: '#bf616a',
     warning: '#ebcb8b',
     success: '#a3be8c',
-    info: '#5e81ac'
+    info: '#5e81ac',
 };
 
-const nordLightColors = {
+const nordLightColors: ColorSet = {
     background: '#eceff4',
     borderMuted: '#303744',
     border: '#2e3440',
@@ -62,7 +57,7 @@ const nordLightColors = {
     alert: '#bf616a',
     warning: '#ebcb8b',
     success: '#a3be8c',
-    info: '#5e81ac'
+    info: '#5e81ac',
 };
 
 const NameToColorSetMap: Record<ColorSetName, ColorSet> = {
@@ -70,5 +65,24 @@ const NameToColorSetMap: Record<ColorSetName, ColorSet> = {
     nordLight: nordLightColors,
 };
 
-export const createTheme = (colorSetName: ColorSetName) => 
-    new Theme({ colorSet: NameToColorSetMap[colorSetName] });
+export const createTheme = (colorSetName: ColorSetName, overrides?: ThemeOverrides): Theme => {
+    const colorSet: ColorSet = overrides?.colors
+        ? { ...NameToColorSetMap[colorSetName], ...overrides.colors }
+        : NameToColorSetMap[colorSetName];
+
+    const theme = new Theme({ colorSet });
+
+    if (overrides?.radii) {
+        const { input, button, card, pill } = overrides.radii;
+        if (input  !== undefined) theme.inputRadius  = input;
+        if (button !== undefined) theme.buttonRadius = button;
+        if (card   !== undefined) theme.borderRadius = card;
+        if (pill   !== undefined) theme.pillRadius   = pill;
+    }
+
+    if (overrides?.sizes) {
+        theme.sizes = { ...SIZES, ...overrides.sizes };
+    }
+
+    return theme;
+};
