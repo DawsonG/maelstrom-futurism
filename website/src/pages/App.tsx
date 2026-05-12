@@ -8,7 +8,7 @@ function App() {
     useEffect(() => {
         async function loadReadme() {
             // @ts-ignore
-            import('../../../Readme.md').then(async (res) => {
+            import('../../../README.md').then(async (res) => {
                 const response = await fetch(res.default);
                 const text = await response.text();
 

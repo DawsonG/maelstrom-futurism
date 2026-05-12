@@ -6,7 +6,7 @@ export type ColorMode = "Light" | "Dark" | "User";
 class Theme {
   readonly colors: ColorSet;
 
-  sizes = { ...SIZES };
+  sizes: Record<keyof typeof SIZES, string> = { ...SIZES };
 
   breakpoints = { ...BREAKPOINTS };
 
@@ -14,10 +14,10 @@ class Theme {
 
   heights = { ...HEIGHTS };
 
-  borderRadius = RADII.card;
-  inputRadius  = RADII.input;
-  buttonRadius = RADII.button;
-  pillRadius   = RADII.pill;
+  borderRadius: string = RADII.card;
+  inputRadius: string  = RADII.input;
+  buttonRadius: string = RADII.button;
+  pillRadius: string   = RADII.pill;
 
   size(name: string): string {
     return this.sizes[name as keyof typeof this.sizes];

@@ -8,9 +8,10 @@ import { SidebarContext } from "./SidebarContext";
 
 export interface HeadingProps {
     title: string;
+    logo?: ReactNode;
 }
 
-const Heading = ({ title }: HeadingProps): ReactNode => {
+const Heading = ({ title, logo }: HeadingProps): ReactNode => {
     const theme = useTheme();
     const sidebarContext = useContext(SidebarContext);
 
@@ -18,17 +19,36 @@ const Heading = ({ title }: HeadingProps): ReactNode => {
         padding: 0.5rem 1rem;
         ${sidebarContext.isOpen ? `border-bottom: inset 2px ${theme.color('borderMuted')}` : "border-bottom: none"};
 
-        ${sidebarContext.isOpen && `h2 {
+        h2 {
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }`}
+            margin: 0;
+            font-size: 1rem;
+        }
+    `;
+
+    const wordmarkStyle = css`
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        span {
+            font-family: var(--mf-font-display);
+            font-weight: 400;
+            font-size: 0.8rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
     `;
 
     return (
         <div css={headingStyle}>
             <h2>
-                {sidebarContext.isOpen && (<div>{title}</div>)}
+                <div css={wordmarkStyle}>
+                    {logo}
+                    {sidebarContext.isOpen && <span>{title}</span>}
+                </div>
 
                 {sidebarContext.isClosable && (
                     <Button variant="ghost" onClick={() => sidebarContext.setIsOpen(!sidebarContext.isOpen)}>
@@ -39,7 +59,6 @@ const Heading = ({ title }: HeadingProps): ReactNode => {
                         )}
                     </Button>
                 )}
-                 
             </h2>
         </div>
     );
