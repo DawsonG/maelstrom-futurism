@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { useTheme } from '@maelstrom-futurism/core';
 
 import styles from './styles.module.scss';
 import ReadabilityBar from './Readability/ReadabilityBar';
@@ -53,7 +52,6 @@ export default function Paper({
   font,
   showReadabilityControls = false,
 }: PaperProps) {
-  const theme = useTheme();
   // outerStyles
   let outerStyles = [
     styles.paper

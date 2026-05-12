@@ -215,7 +215,6 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): ReactNod
         }
         code {
             padding: 1px 6px;
-            background: ${bg2};
             border-radius: 6px;
         }
 
