@@ -1,31 +1,15 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import react from '@vitejs/plugin-react-swc';
-import sassDts from 'vite-plugin-sass-dts';
 import dts from 'vite-plugin-dts';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 export default defineConfig({
     plugins: [
         react({
             jsxImportSource: '@emotion/react',
         }),
-        sassDts(),
         dts({ include: ['lib'] }),
-        viteStaticCopy({
-            targets: [
-                {
-                    src: resolve(__dirname, './lib/styles') + '/*.scss',
-                    dest: './'
-                }
-            ]
-        })
     ],
-    css: {
-        modules: {
-            localsConvention: 'camelCaseOnly',
-        }
-    },
     build: {
         minify: 'terser',
         sourcemap: false,

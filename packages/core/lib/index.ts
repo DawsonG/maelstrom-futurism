@@ -15,3 +15,4 @@ export * from './utils/words';
 export * from './utils/typeof';
 export * from './utils/debounce';
 export * from './motion';
+export * from './tokens';

@@ -1,44 +1,23 @@
 import { ColorSet, ThemeInterface } from "../interfaces";
-import sass from '../styles/_exports.module.scss';
+import { SIZES, SPACES, BREAKPOINTS, HEIGHTS, RADII } from "../tokens";
 
 export type ColorMode = "Light" | "Dark" | "User";
 
 class Theme {
   readonly colors: ColorSet;
 
-  sizes = {
-    base: sass.sizesBase,
-    sm: sass.sizesSm,
-    normal: sass.sizesNormal,
-    md: sass.sizesMd,
-    lg: sass.sizesLg,
-    xl: sass.sizesXl,
-    xxl: sass.sizesXxl,
-  };
+  sizes = { ...SIZES };
 
-  breakpoints = {
-    xs: sass.bpXs,
-    sm: sass.bpSm,
-    md: sass.bpMd,
-    lg: sass.bpLg,
-  };
+  breakpoints = { ...BREAKPOINTS };
 
-  space = sass.spaces.split(', ');
+  space = [...SPACES];
 
-  heights = {
-    bottom: sass.heightBottom,
-    low: sass.heightLow,
-    sunk: sass.heightSunk,
-    normal: sass.heightNormal,
-    raised: sass.heightRaised,
-    high: sass.heightHigh,
-    top: sass.heightTop,
-  };
+  heights = { ...HEIGHTS };
 
-  borderRadius = sass.borderRadius;
-  inputRadius = sass.inputRadius;
-  buttonRadius = sass.buttonRadius;
-  pillRadius = sass.pillRadius;
+  borderRadius = RADII.card;
+  inputRadius  = RADII.input;
+  buttonRadius = RADII.button;
+  pillRadius   = RADII.pill;
 
   size(name: string): string {
     return this.sizes[name as keyof typeof this.sizes];
