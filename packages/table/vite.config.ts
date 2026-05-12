@@ -2,15 +2,11 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import react from '@vitejs/plugin-react-swc';
 import dts from 'vite-plugin-dts';
-import sassDts from 'vite-plugin-sass-dts';
-import { libInjectCss } from 'vite-plugin-lib-inject-css';
 
 export default defineConfig({
     plugins: [
-        react(),
-        libInjectCss(),
+        react({ jsxImportSource: '@emotion/react' }),
         dts({ include: ['lib'] }),
-        sassDts()
     ],
     build: {
         lib: {
@@ -18,12 +14,13 @@ export default defineConfig({
             formats: ['es']
         },
         rollupOptions: {
-            external: ['react', 'react/jsx-runtime', 'react-dom'],
+            external: ['react', 'react/jsx-runtime', 'react-dom', '@emotion/react', '@emotion/react/jsx-runtime'],
             output: {
                 globals: {
                     'react': 'React',
                     'react-dom': 'ReactDOM',
                     'react/jsx-runtime': 'jsxRuntime',
+                    '@emotion/react': 'emotionReact',
                 },
             },
         },

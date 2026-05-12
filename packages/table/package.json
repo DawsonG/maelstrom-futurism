@@ -21,7 +21,8 @@
         "directory": "packages/table"
     },
     "dependencies": {
-        "@maelstrom-futurism/core": "^0.8.2"
+        "@maelstrom-futurism/core": "^0.8.2",
+        "@maelstrom-futurism/icons": "^0.8.2"
     },
     "peerDependences": {
         "react": ">= 18.0.0",

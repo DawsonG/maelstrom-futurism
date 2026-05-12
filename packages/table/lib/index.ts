@@ -1,1 +1,1 @@
-export { default as Table } from './Table';
+export { default as Table, type ColumnProps, type TableProps, type Density } from './Table';
