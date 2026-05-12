@@ -42,12 +42,13 @@ const Heading = ({ title, logo }: HeadingProps): ReactNode => {
         }
     `;
 
+    const logoMark = logo ? logo : <span>{title}</span>;
+
     return (
         <div css={headingStyle}>
             <h2>
                 <div css={wordmarkStyle}>
-                    {logo}
-                    {sidebarContext.isOpen && <span>{title}</span>}
+                    {sidebarContext.isOpen && logoMark}
                 </div>
 
                 {sidebarContext.isClosable && (
