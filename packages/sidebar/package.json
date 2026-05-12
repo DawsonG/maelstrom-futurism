@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/sidebar",
-  "version": "0.8.2",
+  "version": "0.9.0",
   "description": "A flexible sidebar component for navigation",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -30,9 +30,9 @@
     "directory": "packages/sidebar"
   },
   "dependencies": {
-    "@maelstrom-futurism/button": "^0.8.2",
-    "@maelstrom-futurism/core": "^0.8.2",
-    "@maelstrom-futurism/icons": "^0.8.2"
+    "@maelstrom-futurism/button": "^0.9.0",
+    "@maelstrom-futurism/core": "^0.9.0",
+    "@maelstrom-futurism/icons": "^0.9.0"
   },
   "peerDependences": {
     "react": ">= 18.0.0",
