@@ -177,14 +177,46 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): ReactNod
             background-color: ${themeValue.color("background")};
             font-family: Poppins;
             font-size: ${themeValue.size('base')};
+            font-weight: 400;
+            line-height: 1.5;
         }
 
-        h1, h2, h3, h4 {
+        h1, h2, h3, h4, h5, h6 {
             margin: ${themeValue.space[1]}px 0;
+            font-family: var(--mf-font-sans);
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
         }
-        
+        h1 { font-size: ${themeValue.sizes.xxl}; }
+        h2 { font-size: ${themeValue.sizes.xl}; }
+        h3 { font-size: ${themeValue.sizes.lg}; }
+        h4 { font-size: ${themeValue.sizes.md}; }
+        h5 { font-size: ${themeValue.sizes.normal}; text-transform: uppercase; letter-spacing: 0.06em; }
+        h6 { font-size: ${themeValue.sizes.sm}; text-transform: uppercase; letter-spacing: 0.08em; }
+
+        p {
+            margin: 0 0 16px;
+            text-wrap: pretty;
+        }
+
         a {
             color: ${themeValue.color("linkColor")};
+            text-decoration: none;
+            transition: color 100ms ${EASE_FUNCTION};
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        code, pre, kbd, samp {
+            font-family: var(--mf-font-mono);
+            font-size: 0.95em;
+        }
+        code {
+            padding: 1px 6px;
+            background: ${bg2};
+            border-radius: 6px;
         }
 
         form {
