@@ -59,6 +59,14 @@ const Icons = () => (
             <Column xs={12} sm={6} md={4} lg={3}>
                 <Icon icon="MenuBurger" /> MenuBurger
             </Column>
+
+            <Column xs={12} sm={6} md={4} lg={3}>
+                <Icon icon="Search" /> Search
+            </Column>
+
+            <Column xs={12} sm={6} md={4} lg={3}>
+                <Icon icon="DotsHorizontal" /> DotsHorizontal
+            </Column>
         </Grid>
 
     </Container>
