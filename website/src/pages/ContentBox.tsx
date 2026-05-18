@@ -1,4 +1,4 @@
-import { ContentBox } from "@maelstrom-futurism/core";
+import { ContentBox, Pill } from "@maelstrom-futurism/core";
 import { Container } from "@maelstrom-futurism/layout";
 
 const ContentBoxPage = () => (
@@ -20,6 +20,12 @@ const ContentBoxPage = () => (
         <ContentBox variant='info'>This is an info.</ContentBox>
 
         <ContentBox variant='success'>This is a success.</ContentBox>
+
+        <Pill variant='alert'>Alert</Pill>
+        <Pill variant='error'>Error</Pill>
+        <Pill variant='warning'>Warning</Pill>
+        <Pill variant='info'>Info</Pill>
+        <Pill variant='success'>Success</Pill>
     </Container>
 );
 

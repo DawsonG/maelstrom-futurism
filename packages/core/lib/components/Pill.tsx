@@ -1,6 +1,5 @@
 import { HTMLAttributes, ReactNode } from 'react';
 import { css as emotionCss, SerializedStyles } from '@emotion/react';
-import { useTheme } from '../themes';
 
 export type PillVariant = 'success' | 'warning' | 'alert' | 'info' | 'muted';
 
@@ -11,26 +10,25 @@ export interface PillProps extends HTMLAttributes<HTMLSpanElement> {
     children: ReactNode;
 }
 
-const variantColor = (variant: PillVariant, theme: ReturnType<typeof useTheme>): string => {
+const variantColor = (variant: PillVariant): string => {
     const map: Record<PillVariant, string> = {
-        success: theme.color('success'),
-        warning: theme.color('warning'),
-        alert:   theme.color('alert'),
-        info:    theme.color('linkColor'),
-        muted:   `${theme.color('textColor')}80`,
+        success: 'var(--mf-success)',
+        warning: 'var(--mf-warning)',
+        alert:   'var(--mf-alert)',
+        info:    'var(--mf-info)',
+        muted:   'var(--mf-text-muted)',
     };
     return map[variant];
 };
 
 const Pill = ({ variant = 'info', dot = false, children, css, ...rest }: PillProps): ReactNode => {
-    const theme = useTheme();
-    const color = variantColor(variant, theme);
+    const color = variantColor(variant);
 
     const pillStyle = emotionCss`
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        border-radius: ${theme.pillRadius};
+        border-radius: var(--mf-radius-pill);
         padding: 2px 10px;
         font-size: 12px;
         font-weight: 500;
