@@ -8,7 +8,6 @@ interface IconProps extends HTMLAttributes<HTMLDivElement> {
   icon: IconName;
   size?: number;
   className?: string;
-  // These props make styling component easier than creating new classes
   rotate?: number;
 }
 
@@ -37,6 +36,7 @@ export const Icon = ({ icon, size = 24, className, rotate, color, ...rest }: Ico
         justifyContent: "center",
         alignItems: "center",
         transform: rotate ? `rotate(${rotate}deg)` : undefined,
+        color,
       }}
       {...rest}
     >

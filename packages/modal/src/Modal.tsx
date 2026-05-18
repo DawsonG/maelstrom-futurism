@@ -1,7 +1,5 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import ReactDOM from "react-dom";
-import { useTheme } from "@maelstrom-futurism/core";
-
 import {
   modalOverlay,
   modalWrapper,
@@ -9,8 +7,6 @@ import {
   modalHeader,
   modalCloseButton,
 } from "./Modal.styles";
-import { css } from "@emotion/react";
-
 
 interface ModalProps {
   title?: string;
@@ -23,12 +19,6 @@ interface ModalProps {
 const Modal = ({
   title, children, isShowing, hide 
 }: ModalProps) : ReactNode | null => {
-  const theme = useTheme();
-  const modalModStyle = css`
-    color: black;
-    border-radius: ${theme.borderRadius};
-  `;
-
   return isShowing ? ReactDOM.createPortal(
     <>
       <div css={modalOverlay} onClick={() => hide()} />
@@ -39,7 +29,7 @@ const Modal = ({
         tabIndex={-1}
         role="dialog"
       >
-        <div css={[modal, modalModStyle]}>
+        <div css={modal}>
           <div css={modalHeader}>
             <div className="title">{title}</div>
             <button
