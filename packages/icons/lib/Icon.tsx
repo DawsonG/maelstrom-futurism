@@ -1,6 +1,6 @@
-import { HTMLAttributes, Suspense, useMemo } from "react";
+import { HTMLAttributes, Suspense, useMemo } from 'react';
 
-import { icons } from "./icons";
+import { icons } from './icons';
 
 export type IconName = keyof typeof icons;
 
@@ -31,10 +31,10 @@ export const Icon = ({ icon, size = 24, className, rotate, color, ...rest }: Ico
       style={{
         height: `${size}px`,
         width: `${size}px`,
-        padding: "2px",
-        display: "inline-flex",
-        justifyContent: "center",
-        alignItems: "center",
+        padding: '2px',
+        display: 'inline-flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         transform: rotate ? `rotate(${rotate}deg)` : undefined,
         color,
       }}
@@ -42,7 +42,7 @@ export const Icon = ({ icon, size = 24, className, rotate, color, ...rest }: Ico
     >
       <Suspense fallback={null}>
         {/* @ts-expect-error Server Component */}
-        <SvgIcon style={{ width: "100%", height: "100%" }} />
+        <SvgIcon style={{ width: '100%', height: '100%' }} />
       </Suspense>
     </div>
   );

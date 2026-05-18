@@ -1,24 +1,24 @@
-import { css } from "@emotion/react";
-import { Box, BoxProps } from "@maelstrom-futurism/core";
-import { ReactNode, ReactElement } from "react";
-import Column, { ColumnProps } from "./Column";
+import { css } from '@emotion/react';
+import { Box, BoxProps } from '@maelstrom-futurism/core';
+import { ReactNode, ReactElement } from 'react';
+import { ColumnProps } from './Column';
 
 export type JustifyContent = 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly';
 export type Direction = 'column' | 'row';
 
 export interface GridProps extends Omit<BoxProps, 'css' | 'children' | 'primative'> {
-    direction?: Direction;
-    justifyContent?: JustifyContent;
-    children: ReactElement<ColumnProps> | ReactElement<ColumnProps>[];
+  direction?: Direction;
+  justifyContent?: JustifyContent;
+  children: ReactElement<ColumnProps> | ReactElement<ColumnProps>[];
 }
 
 const Grid = ({ children, direction, justifyContent, ...rest }: GridProps): ReactNode => {
-    /**
+  /**
      * Test to make sure this layout is following the rules
      * 1) Only Columns can be children
      * 2) There are 12 columns split between up to 12 Columns
-     */ 
-    /*
+     */
+  /*
     const arrayChildren = Children.toArray(children);
     // let columnCount = 0;
     arrayChildren.forEach(child => {
@@ -32,7 +32,7 @@ const Grid = ({ children, direction, justifyContent, ...rest }: GridProps): Reac
     });
     */
 
-    const gridStyle = css`
+  const gridStyle = css`
         display: flex;
         flex: 0 1 auto;
         flex-direction: ${direction || 'row'};
@@ -44,8 +44,7 @@ const Grid = ({ children, direction, justifyContent, ...rest }: GridProps): Reac
         background-color: inherit;
     `;
 
-    return <Box css={gridStyle} {...rest}>{children}</Box>;
-}
-  
+  return <Box css={gridStyle} {...rest}>{children}</Box>;
+};
 
 export default Grid;

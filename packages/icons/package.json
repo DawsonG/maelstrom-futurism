@@ -10,6 +10,8 @@
   "scripts": {
     "build": "vite build",
     "clean": "rm -Rf dist",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "prepublish": "npm run build",
     "test": "vitest run --coverage",
     "test:dev": "vitest"

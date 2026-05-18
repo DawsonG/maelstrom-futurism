@@ -1,41 +1,41 @@
-import Add from "../assets/add.svg";
-import AngleDown from "../assets/angle-down.svg";
-import AngleLeft from "../assets/angle-left.svg";
-import AngleRight from "../assets/angle-right.svg";
-import AngleUp from "../assets/angle-up.svg";
-import CaretDown from "../assets/caret-down.svg";
-import CaretLeft from "../assets/caret-left.svg";
-import CaretRight from "../assets/caret-right.svg";
-import CaretUp from "../assets/caret-up.svg";
-import Copy from "../assets/copy.svg";
-import DotsHorizontal from "../assets/dots-horizontal.svg";
-import Home from "../assets/home.svg";
-import Heart from "../assets/heart.svg";
-import MenuBurger from "../assets/menu-burger.svg";
-import Moon from "../assets/moon.svg";
-import Search from "../assets/search.svg";
-import Upload from "../assets/upload.svg";
-import Sun from "../assets/sun.svg";
-import ShoppingCart from "../assets/shopping-cart.svg";
+import Add from '../assets/add.svg';
+import AngleDown from '../assets/angle-down.svg';
+import AngleLeft from '../assets/angle-left.svg';
+import AngleRight from '../assets/angle-right.svg';
+import AngleUp from '../assets/angle-up.svg';
+import CaretDown from '../assets/caret-down.svg';
+import CaretLeft from '../assets/caret-left.svg';
+import CaretRight from '../assets/caret-right.svg';
+import CaretUp from '../assets/caret-up.svg';
+import Copy from '../assets/copy.svg';
+import DotsHorizontal from '../assets/dots-horizontal.svg';
+import Home from '../assets/home.svg';
+import Heart from '../assets/heart.svg';
+import MenuBurger from '../assets/menu-burger.svg';
+import Moon from '../assets/moon.svg';
+import Search from '../assets/search.svg';
+import Upload from '../assets/upload.svg';
+import Sun from '../assets/sun.svg';
+import ShoppingCart from '../assets/shopping-cart.svg';
 
 export const icons = {
-    Add,
-    AngleDown,
-    AngleLeft,
-    AngleRight,
-    AngleUp,
-    CaretDown,
-    CaretLeft,
-    CaretRight,
-    CaretUp,
-    Copy,
-    DotsHorizontal,
-    Home,
-    Heart,
-    MenuBurger,
-    Moon,
-    Search,
-    Upload,
-    Sun,
-    ShoppingCart,
+  Add,
+  AngleDown,
+  AngleLeft,
+  AngleRight,
+  AngleUp,
+  CaretDown,
+  CaretLeft,
+  CaretRight,
+  CaretUp,
+  Copy,
+  DotsHorizontal,
+  Home,
+  Heart,
+  MenuBurger,
+  Moon,
+  Search,
+  Upload,
+  Sun,
+  ShoppingCart,
 };

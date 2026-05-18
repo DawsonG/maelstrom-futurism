@@ -19,28 +19,27 @@ const contentStyle = css`
 `;
 
 interface PageLayoutProps {
-    navbar?: React.ReactNode;
-    sidebar?: React.ReactNode;
-    children: React.ReactNode;
+  navbar?: React.ReactNode;
+  sidebar?: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const PageLayout = ({
-    navbar,
-    sidebar,
-    children,
+  navbar,
+  sidebar,
+  children,
 }: PageLayoutProps): ReactNode => {
+  return (
+    <div css={pageLayoutStyle} data-testid="page-layout">
+      {navbar}
 
-    return (
-        <div css={pageLayoutStyle} data-testid="page-layout">
-            {navbar}
+      <div css={contentStyle}>
+        {sidebar}
 
-            <div css={contentStyle}>
-                {sidebar}
-                
-                {children}
-            </div>
-        </div>
-    );
+        {children}
+      </div>
+    </div>
+  );
 };
 
 export default PageLayout;
