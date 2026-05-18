@@ -13,20 +13,20 @@ import Heading from './Heading';
 import { SidebarContext } from './SidebarContext';
 
 interface SidebarProps {
-    name?: string; // the title at the top of the sidebar
-    isClosable?: boolean;
-    isOpen?: boolean;
-    children?: ReactNode;
+  name?: string; // the title at the top of the sidebar
+  isClosable?: boolean;
+  isOpen?: boolean;
+  children?: ReactNode;
 }
 
 const Sidebar = ({
-    isClosable = false,
-    isOpen = true,
-    children
+  isClosable = false,
+  isOpen = true,
+  children,
 }: SidebarProps): ReactNode => {
-    const [isOpenState, setIsOpenState] = useState(isOpen);
+  const [isOpenState, setIsOpenState] = useState(isOpen);
 
-    const openStyle = css`
+  const openStyle = css`
         overflow-x: hidden;
         overflow-y: auto;
         min-width: 300px;
@@ -40,7 +40,7 @@ const Sidebar = ({
         }
     `;
 
-    const closedStyle = css`
+  const closedStyle = css`
         width: 5vw;
         height: 44px;
 
@@ -49,7 +49,7 @@ const Sidebar = ({
         }
     `;
 
-    const sidebarContainer = css`
+  const sidebarContainer = css`
         position: sticky;
 
         ul {
@@ -72,13 +72,13 @@ const Sidebar = ({
         }
     `;
 
-    return (
-        <aside css={[sidebarContainer, isOpenState ? openStyle : closedStyle]}>
-            <SidebarContext.Provider value={{ isOpen: isOpenState, setIsOpen: setIsOpenState, isClosable }}>
-                {children}
-            </SidebarContext.Provider>
-        </aside>
-    );
+  return (
+    <aside css={[sidebarContainer, isOpenState ? openStyle : closedStyle]}>
+      <SidebarContext.Provider value={{ isOpen: isOpenState, setIsOpen: setIsOpenState, isClosable }}>
+        {children}
+      </SidebarContext.Provider>
+    </aside>
+  );
 };
 
 Sidebar.Heading = Heading;
