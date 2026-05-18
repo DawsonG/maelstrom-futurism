@@ -19,8 +19,7 @@ const ContentBoxPage = () => (
         <ContentBox>Normal ContentBox with no variant assigned.</ContentBox>
 
         <h2>Pills</h2>
-        <Pill variant='alert'>Alert</Pill>
-        <Pill variant='error'>Error</Pill>
+        <Pill variant='alert'>Alert | Error</Pill>
         <Pill variant='warning'>Warning</Pill>
         <Pill variant='info'>Info</Pill>
         <Pill variant='success'>Success</Pill>

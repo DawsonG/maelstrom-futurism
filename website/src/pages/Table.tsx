@@ -39,24 +39,24 @@ function PageTable() {
                     {
                         name: 'title',
                         header: () => 'Title',
-                        cell: (data: string) => <strong>{data}</strong>,
+                        cell: (data: string | number) => <strong>{data}</strong>,
                         sortable: true,
                     },
                     {
                         name: 'author',
                         header: () => 'Author',
-                        cell: (data: string) => <>{data}</>,
+                        cell: (data: string | number) => <>{data}</>,
                         sortable: true,
                     },
                     {
                         name: 'isbn',
                         header: () => 'ISBN',
-                        cell: (data: string) => <span style={{ fontFamily: 'var(--mf-font-mono)', fontSize: 13 }}>{data}</span>,
+                        cell: (data: string | number) => <span style={{ fontFamily: 'var(--mf-font-mono)', fontSize: 13 }}>{data}</span>,
                     },
                     {
                         name: 'status',
                         header: () => 'Status',
-                        cell: (data: string) => {
+                        cell: (data: string | number) => {
                             const s = STATUS_MAP[data] ?? { variant: 'muted' as PillVariant, label: data };
                             return <Pill variant={s.variant} dot>{s.label}</Pill>;
                         },
@@ -65,7 +65,7 @@ function PageTable() {
                     {
                         name: 'copies',
                         header: () => 'Copies',
-                        cell: (data: number) => <>{data}</>,
+                        cell: (data: string | number) => <>{data}</>,
                         sortable: true,
                         align: 'right',
                         footer: () => <>Total: {BOOKS.reduce((s, b) => s + b.copies, 0)}</>,
@@ -83,8 +83,8 @@ function PageTable() {
 {`<Table
     heading="Books"
     columns={[
-        { name: 'title',  header: () => 'Title',  cell: (d: string) => <>{d}</> },
-        { name: 'author', header: () => 'Author', cell: (d: string) => <>{d}</> },
+        { name: 'title',  header: () => 'Title',  cell: (d: string | number) => <>{d}</> },
+        { name: 'author', header: () => 'Author', cell: (d: string | number) => <>{d}</> },
     ]}
     data={data}
     showSearch={false}
@@ -96,8 +96,8 @@ function PageTable() {
             <Table
                 heading="Books"
                 columns={[
-                    { name: 'title',  header: () => 'Title',  cell: (d: string) => <>{d}</> },
-                    { name: 'author', header: () => 'Author', cell: (d: string) => <>{d}</> },
+                    { name: 'title',  header: () => 'Title',  cell: (d: string | number) => <>{d}</> },
+                    { name: 'author', header: () => 'Author', cell: (d: string | number) => <>{d}</> },
                 ]}
                 data={BOOKS.slice(0, 4)}
                 showSearch={false}
