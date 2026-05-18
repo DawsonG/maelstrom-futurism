@@ -4,29 +4,29 @@ import { resolve } from 'path';
 import dts from 'vite-plugin-dts';
 
 export default defineConfig({
-    plugins: [
-        react({
-            jsxImportSource: '@emotion/react',
-        }),
-        dts({ include: ['src'] })
-    ],
-    build: {
-        // minify: 'terser',
-        lib: {
-            entry: resolve(__dirname, 'src/index.ts'),
-            formats: ['es']
+  plugins: [
+    react({
+      jsxImportSource: '@emotion/react',
+    }),
+    dts({ include: ['src'] }),
+  ],
+  build: {
+    // minify: 'terser',
+    lib: {
+      entry: resolve(__dirname, 'src/index.ts'),
+      formats: ['es'],
+    },
+    rollupOptions: {
+      external: ['react', 'react/jsx-runtime', 'react-dom', '@maelstrom-futurism/core'],
+      output: {
+        assetFileNames: 'assets/[name][extname]',
+        entryFileNames: '[name].js',
+        globals: {
+          'react': 'React',
+          'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'jsxRuntime',
         },
-        rollupOptions: {
-            external: ['react', 'react/jsx-runtime', 'react-dom', '@maelstrom-futurism/core'],
-            output: {
-                assetFileNames: 'assets/[name][extname]',
-                entryFileNames: '[name].js',
-                globals: {
-                    'react': 'React',
-                    'react-dom': 'ReactDOM',
-                    'react/jsx-runtime': 'jsxRuntime',
-                }
-            },
-        },
-    }
+      },
+    },
+  },
 });

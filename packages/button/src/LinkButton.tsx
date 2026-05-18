@@ -1,6 +1,5 @@
-import { ReactNode } from "react";
-import { css } from "@emotion/react";
-import { Theme } from "@maelstrom-futurism/core";
+import { ReactNode } from 'react';
+import { css } from '@emotion/react';
 
 const linkButtonStyles = css`
     border: 0;
@@ -18,18 +17,23 @@ const linkButtonStyles = css`
 `;
 
 interface LinkButtonProps {
-    children?: ReactNode;
-    onClick?: React.MouseEventHandler;
-    disabled?: boolean;
+  children?: ReactNode;
+  onClick?: React.MouseEventHandler;
+  disabled?: boolean;
 }
 
 const LinkButton = ({
-    children,
-    onClick,
-    disabled,
-}: LinkButtonProps): ReactNode => <button
+  children,
+  onClick,
+  disabled,
+}: LinkButtonProps): ReactNode => (
+  <button
     onClick={onClick}
     disabled={disabled}
-    css={linkButtonStyles}>{children}</button>;
+    css={linkButtonStyles}
+  >
+    {children}
+  </button>
+);
 
 export default LinkButton;

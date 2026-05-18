@@ -10,6 +10,8 @@
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
     "clean": "rm -Rf dist",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "build": "vite build",
     "prepublishOnly": "npm run build"
   },

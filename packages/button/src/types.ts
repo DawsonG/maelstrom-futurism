@@ -1,12 +1,12 @@
 import { ReactNode } from 'react';
 import { SerializedStyles } from '@emotion/react';
 
-export type ButtonVariant =
-  | 'primary'
-  | 'secondary'
-  | 'cancel'
-  | 'ghost'
-  | 'link';
+export type ButtonVariant
+  = | 'primary'
+    | 'secondary'
+    | 'cancel'
+    | 'ghost'
+    | 'link';
 export type ButtonType = 'button' | 'submit';
 export type Sizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 

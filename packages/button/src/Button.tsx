@@ -1,10 +1,10 @@
-import React, { ReactNode, useRef } from "react";
-import { useTheme, debounce, Theme } from "@maelstrom-futurism/core";
-import { css as emotionCss } from "@emotion/react";
+import React, { ReactNode, useRef } from 'react';
+import { debounce } from '@maelstrom-futurism/core';
+import { css as emotionCss } from '@emotion/react';
 
-import { buttonStyle } from "./Button.styles";
-import LinkButton from "./LinkButton";
-import { ButtonProps, ButtonVariant } from "./types";
+import { buttonStyle } from './Button.styles';
+import LinkButton from './LinkButton';
+import { ButtonProps, ButtonVariant } from './types';
 
 const scales = {
   xs: emotionCss`
@@ -39,9 +39,9 @@ const variantMapping = {
 
 const getVariantStyle = (variant: ButtonVariant, outline: boolean) => {
   const variantColor = variantMapping[variant];
-  
-  const boxShadowColor = outline ? variantColor: "transparent";
-  const backgroundColor = outline ? "transparent" : variantColor;
+
+  const boxShadowColor = outline ? variantColor : 'transparent';
+  const backgroundColor = outline ? 'transparent' : variantColor;
 
   return emotionCss`
     background: ${backgroundColor};
@@ -56,19 +56,17 @@ const getVariantStyle = (variant: ButtonVariant, outline: boolean) => {
 };
 
 const Button = (props: ButtonProps): ReactNode => {
-  const theme = useTheme();
-  
-  if (props.variant === "link") {
-    return <LinkButton {...props}/>
+  if (props.variant === 'link') {
+    return <LinkButton {...props} />;
   }
 
   const {
     children,
     onClick,
-    size = "md",
-    variant = "secondary",
+    size = 'md',
+    variant = 'secondary',
     outline,
-    type = "button",
+    type = 'button',
     disabled = false,
     css,
     ...rest
@@ -86,29 +84,29 @@ const Button = (props: ButtonProps): ReactNode => {
 
   const addRipple = (e: React.MouseEvent) => {
     if (!buttonRef || !buttonRef.current) return;
-    
-    const rippleContainer = buttonRef.current.querySelector("div.rippleContainer");
+
+    const rippleContainer = buttonRef.current.querySelector('div.rippleContainer');
     if (!rippleContainer) return;
-    
+
     const rippleSize = buttonRef.current.offsetWidth;
     const pos = buttonRef.current.getBoundingClientRect();
 
-    const rippler = document.createElement("span");
+    const rippler = document.createElement('span');
     const x = e.pageX - pos.left - rippleSize / 2;
     const y = e.pageY - pos.top - rippleSize / 2;
     rippleContainer.appendChild(rippler);
     rippler.setAttribute(
-      "style",
-      `top: ${y}px; left: ${x}px; height: ${rippleSize}px; width: ${rippleSize}px;`
+      'style',
+      `top: ${y}px; left: ${x}px; height: ${rippleSize}px; width: ${rippleSize}px;`,
     );
   };
 
   const cleanUp = () => {
     if (!buttonRef || !buttonRef.current) return;
-    const rippleContainer = buttonRef.current.querySelector("div.rippleContainer");
+    const rippleContainer = buttonRef.current.querySelector('div.rippleContainer');
     if (!rippleContainer) return;
-    
-    rippleContainer.innerHTML = "";
+
+    rippleContainer.innerHTML = '';
   };
 
   return (

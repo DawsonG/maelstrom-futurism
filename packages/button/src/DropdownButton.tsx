@@ -1,15 +1,15 @@
-import { useEffect, useRef, useState } from "react";
-import { Icon } from "@maelstrom-futurism/icons";
-import { css as emotionCss, SerializedStyles } from "@emotion/react";
+import { useEffect, useRef, useState } from 'react';
+import { Icon } from '@maelstrom-futurism/icons';
+import { css as emotionCss, SerializedStyles } from '@emotion/react';
 
-import Button from "./Button";
-import { ButtonProps } from "./types";
+import Button from './Button';
+import { ButtonProps } from './types';
 
-interface DropdownButtonProps extends Omit<ButtonProps, "onClick"> {
-    items?: Array<{
-        label: string;
-        onClick: () => void;
-    }>;
+interface DropdownButtonProps extends Omit<ButtonProps, 'onClick'> {
+  items?: Array<{
+    label: string;
+    onClick: () => void;
+  }>;
 }
 
 const dropdownButtonStyles = emotionCss`
@@ -45,55 +45,59 @@ const buttonStyles = emotionCss`
 `;
 
 const DropdownButton = (props: DropdownButtonProps) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const dropdownRef = useRef<HTMLDivElement>(null);
-    
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleRootClick = () => setIsOpen(!isOpen);
+
+  const {
+    children,
+    css,
+    items,
+    ...rest
+  } = props;
+
+  const styles: SerializedStyles[] = [];
+  if (css) styles.concat(css);
+  styles.push(dropdownButtonStyles);
+
+  return (
+    <div css={dropdownButtonStyles} ref={dropdownRef}>
+      <Button css={styles} onClick={handleRootClick} {...rest}>
+        {children}
+        {' '}
+        <Icon icon="CaretDown" size={20} />
+      </Button>
+
+      {isOpen && (
+        <div css={dropdownStyles}>
+          {items && items.map((item, index) => (
+            <button
+              key={index}
+              css={buttonStyles}
+              onClick={() => {
+                item.onClick();
                 setIsOpen(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
-
-    const handleRootClick = () => setIsOpen(!isOpen);
-
-    const {
-        children,
-        css,
-        items,
-        ...rest
-    } = props;
-
-    const styles: SerializedStyles[] = [];
-    if (css) styles.concat(css);
-    styles.push(dropdownButtonStyles);
-
-    return (
-        <div css={dropdownButtonStyles} ref={dropdownRef}>
-            <Button css={styles} onClick={handleRootClick} {...rest}>{children} <Icon icon="CaretDown" size={20} /></Button>
-
-            {isOpen && (
-                <div css={dropdownStyles}>
-                    {items && items.map((item, index) => (
-                        <button
-                            key={index}
-                            css={buttonStyles}
-                            onClick={() => {
-                                item.onClick();
-                                setIsOpen(false);
-                            }}
-                        >
-                            {item.label}
-                        </button>
-                    ))}
-                </div>
-            )}
+              }}
+            >
+              {item.label}
+            </button>
+          ))}
         </div>
-    );
-}
+      )}
+    </div>
+  );
+};
 
 export default DropdownButton;

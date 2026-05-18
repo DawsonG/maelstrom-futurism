@@ -1,15 +1,15 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 // import Button from "./Button";
-import { buttonGroupStyle } from "./Button.styles";
+import { buttonGroupStyle } from './Button.styles';
 
 interface ButtonGroupProps {
-    children?: ReactNode
+  children?: ReactNode;
 }
 
 const ButtonGroup = ({ children }: ButtonGroupProps): ReactNode => (
-    <div css={buttonGroupStyle}>
-        {children}
-    </div>
+  <div css={buttonGroupStyle}>
+    {children}
+  </div>
 );
 
 export default ButtonGroup;

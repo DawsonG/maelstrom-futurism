@@ -1,4 +1,4 @@
-import { css, keyframes, SerializedStyles } from "@emotion/react";
+import { css, keyframes, SerializedStyles } from '@emotion/react';
 
 export const ripple: SerializedStyles = keyframes`
   to {
