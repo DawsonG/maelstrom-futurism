@@ -7,7 +7,6 @@ import CodeView from "../components/CodeView";
 
 const RadioPage = (): ReactNode => {
     const [controlledValue, setControlledValue] = useState("b");
-    const [selectedPlan, setSelectedPlan] = useState("");
 
     return (
         <Container>
@@ -211,52 +210,6 @@ import { RadioGroup } from "@maelstrom-futurism/form";
 
             <Radio name="standalone" value="yes" label="Yes, I agree to the terms" />
             <Radio name="standalone" value="no" label="No, I do not agree" />
-
-            <h2>Standalone Radio — Material</h2>
-
-            <CodeView>{`<Radio name="standalone-mat" value="accept" label="Accept" />
-<Radio name="standalone-mat" value="decline" label="Decline" />`}</CodeView>
-
-            <Radio name="standalone-mat" value="accept" label="Accept" />
-            <Radio name="standalone-mat" value="decline" label="Decline" />
-
-            <h2>onChange Callback</h2>
-
-            <p>
-                Use <code>onChange</code> on <code>RadioGroup</code> to react to selection changes. Here the
-                selected plan is echoed beneath the group.
-            </p>
-
-            <CodeView>{`const [plan, setPlan] = useState("");
-
-<RadioGroup
-    name="pricing"
-    label="Choose a Pricing Plan"
-    required
-    helpText="All plans include a 14-day free trial."
-    value={plan}
-    onChange={setPlan}
-    options={[
-        { value: "starter", label: "Starter — $9/mo" },
-        { value: "growth",  label: "Growth — $29/mo" },
-        { value: "scale",   label: "Scale — $99/mo" },
-    ]}
-/>`}</CodeView>
-
-            <RadioGroup
-                name="pricing"
-                label="Choose a Pricing Plan"
-                required
-                helpText="All plans include a 14-day free trial."
-                value={selectedPlan}
-                onChange={setSelectedPlan}
-                options={[
-                    { value: "starter", label: "Starter — $9/mo" },
-                    { value: "growth",  label: "Growth — $29/mo" },
-                    { value: "scale",   label: "Scale — $99/mo" },
-                ]}
-            />
-            {selectedPlan && <p>You selected: <code>{selectedPlan}</code></p>}
 
             <br /><br /><br /><br />
         </Container>

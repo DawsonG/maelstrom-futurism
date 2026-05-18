@@ -51,7 +51,6 @@ export const materialStyledCheckbox = (theme: Theme) => css`
         flex-shrink: 0;
         transition: border-color .2s ${EASE_FUNCTION}, background .2s ${EASE_FUNCTION};
         background: transparent;
-        outline: none;
     }
 
     input[type="checkbox"]::after {
@@ -69,8 +68,8 @@ export const materialStyledCheckbox = (theme: Theme) => css`
     }
 
     input[type="checkbox"]:checked {
-        background: ${theme.color("primary")};
-        border-color: ${theme.color("primary")};
+        background: ${theme.color("active")};
+        border-color: ${theme.color("active")};
     }
 
     input[type="checkbox"]:checked::after {
@@ -81,8 +80,10 @@ export const materialStyledCheckbox = (theme: Theme) => css`
         border-color: ${theme.color("textColor")};
     }
 
-    input[type="checkbox"]:focus {
-        border-color: ${theme.color("primary")};
+    input[type="checkbox"]:focus-visible {
+        outline: 2px solid ${theme.color("focus")};
+        outline-offset: 2px;
+        border-color: ${theme.color("focus")};
     }
 
     input[type="checkbox"]:disabled {
@@ -98,7 +99,7 @@ export const materialStyledCheckbox = (theme: Theme) => css`
     }
 
     &:has(input[type="checkbox"]:checked) label {
-        color: ${theme.color("primary")};
+        color: ${theme.color("active")};
     }
 
     input[type="checkbox"]:disabled ~ label {

@@ -15,6 +15,11 @@ export const buttonStyle = css`
   position: relative;
   overflow: hidden;
 
+  &:active {
+    filter: brightness(0.85);
+    transform: scale(0.98);
+  }
+
   div.rippleContainer {
     position: absolute;
     top: 0;

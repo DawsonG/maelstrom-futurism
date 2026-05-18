@@ -98,7 +98,7 @@ export const materialStyledInput = (theme: Theme) => css`
         bottom: 0;
         transform: scaleX(0);
         transition: transform 0.2s ${EASE_FUNCTION};
-        border-bottom: 2px solid ${theme.color("secondary")};
+        border-bottom: 2px solid ${theme.color("focus")};
     }
 
     input:focus ~ .underline {
@@ -110,7 +110,7 @@ export const materialStyledInput = (theme: Theme) => css`
     }
 
     input:focus ~ label {
-        color: ${theme.color("primary")} !important;
+        color: ${theme.color("focus")} !important;
     }
 `;
 
@@ -152,12 +152,12 @@ export const normalStyledInput = (theme: Theme) => css`
     }
 
     input:focus {
-        outline: 1px solid ${theme.color("primary")} !important;
+        outline: 1px solid ${theme.color("focus")} !important;
     }
     input:hover {
         outline: 1px solid ${theme.color("textColor")};
     }
     input:focus ~ label {
-        color: ${theme.color("primary")} !important;
+        color: ${theme.color("focus")} !important;
     }
 `;

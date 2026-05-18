@@ -10,3 +10,4 @@ storybook-static
 .parcel-cache
 lerna-debug.log
 tmp/
+devdocs/

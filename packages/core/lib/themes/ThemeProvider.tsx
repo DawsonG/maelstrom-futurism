@@ -1,4 +1,4 @@
-import React, { ReactNode, createContext, useContext } from 'react';
+import { ReactNode, createContext, useContext } from 'react';
 import { Global, css } from '@emotion/react';
 import poppinsLight from '../fonts/Poppins-Light.ttf';
 import poppinsMedium from '../fonts/Poppins-Medium.ttf';
@@ -39,6 +39,8 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): ReactNod
             --mf-link:         ${themeValue.color('linkColor')};
             --mf-primary:      ${themeValue.color('primary')};
             --mf-secondary:    ${themeValue.color('secondary')};
+            --mf-focus:        ${themeValue.color('focus')};
+            --mf-active:       ${themeValue.color('active')};
             --mf-alert:        ${themeValue.color('alert')};
             --mf-warning:      ${themeValue.color('warning')};
             --mf-success:      ${themeValue.color('success')};
@@ -117,6 +119,11 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): ReactNod
             --mf-dur-normal: 200ms;
             --mf-dur-slow:   300ms;
             --mf-dur-ripple: 1000ms;
+        }
+
+        *:focus-visible {
+            outline: 2px solid var(--mf-focus);
+            outline-offset: 2px;
         }
 
         html {

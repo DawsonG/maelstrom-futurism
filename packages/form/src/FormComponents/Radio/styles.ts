@@ -51,7 +51,6 @@ export const materialStyledRadio = (theme: Theme) => css`
         flex-shrink: 0;
         transition: border-color .2s ${EASE_FUNCTION};
         background: transparent;
-        outline: none;
     }
 
     input[type="radio"]::after {
@@ -68,11 +67,11 @@ export const materialStyledRadio = (theme: Theme) => css`
     }
 
     input[type="radio"]:checked {
-        border-color: ${theme.color("primary")};
+        border-color: ${theme.color("active")};
     }
 
     input[type="radio"]:checked::after {
-        background: ${theme.color("primary")};
+        background: ${theme.color("active")};
         transform: translate(-50%, -50%) scale(1);
     }
 
@@ -80,8 +79,10 @@ export const materialStyledRadio = (theme: Theme) => css`
         border-color: ${theme.color("textColor")};
     }
 
-    input[type="radio"]:focus {
-        border-color: ${theme.color("primary")};
+    input[type="radio"]:focus-visible {
+        outline: 2px solid ${theme.color("focus")};
+        outline-offset: 2px;
+        border-color: ${theme.color("focus")};
     }
 
     input[type="radio"]:disabled {
@@ -97,7 +98,7 @@ export const materialStyledRadio = (theme: Theme) => css`
     }
 
     &:has(input[type="radio"]:checked) label {
-        color: ${theme.color("primary")};
+        color: ${theme.color("active")};
     }
 
     input[type="radio"]:disabled ~ label {

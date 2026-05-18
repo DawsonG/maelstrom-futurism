@@ -9,6 +9,8 @@ export interface ColorSet {
     linkColor: string;
     primary: string;
     secondary: string;
+    focus: string;
+    active: string;
     alert: string;
     warning: string;
     success: string;

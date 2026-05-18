@@ -1,5 +1,5 @@
 import { ColorSet } from '../interfaces';
-import { RADII, SIZES } from '../tokens';
+import { SIZES } from '../tokens';
 import Theme from './theme';
 
 export type ColorSetName = 'nordDark' | 'nordLight';
@@ -39,6 +39,8 @@ const nordDarkColors: ColorSet = {
     linkColor: '#88c0d0',
     primary: '#5e81ac',
     secondary: '#81a1c1',
+    focus: '#5e81ac',
+    active: '#5e81ac',
     alert: '#bf616a',
     warning: '#ebcb8b',
     success: '#a3be8c',
@@ -54,6 +56,8 @@ const nordLightColors: ColorSet = {
     linkColor: '#88c0d0',
     primary: '#5e81ac',
     secondary: '#81a1c1',
+    focus: '#5e81ac',
+    active: '#5e81ac',
     alert: '#bf616a',
     warning: '#ebcb8b',
     success: '#a3be8c',
