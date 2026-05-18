@@ -29,28 +29,28 @@ const scales = {
   `,
 };
 
-const colors = (theme: Theme) => ({
-  secondary: [theme.color("secondary"), theme.color("textColor")],
-  cancel: [theme.color("alert"), theme.color("textColor")],
-  ghost: ["transparent", theme.color("textColor")],
-  primary: [theme.color("primary"), theme.color("textColor")],
-  link: [theme.color("primary"), theme.color("textColor")],
-});
+const variantMapping = {
+  secondary: 'var(--mf-secondary)',
+  cancel: 'var(--mf-alert)',
+  ghost: 'transparent',
+  primary: 'var(--mf-primary)',
+  link: 'var(--mf-primary)',
+};
 
-const getVariantStyle = (theme: Theme, variant: ButtonVariant, outline: boolean) => {
-  const lcolors = colors(theme)[variant];
+const getVariantStyle = (variant: ButtonVariant, outline: boolean) => {
+  const variantColor = variantMapping[variant];
   
-  const boxShadowColor = outline ? lcolors[0] : "transparent";
-  const backgroundColor = outline ? "transparent" : lcolors[0];
+  const boxShadowColor = outline ? variantColor: "transparent";
+  const backgroundColor = outline ? "transparent" : variantColor;
 
   return emotionCss`
     background: ${backgroundColor};
     box-shadow: inset 0 0 0 1px ${boxShadowColor};
-    color: ${outline ? lcolors[0] : lcolors[1]};
+    color: ${outline ? variantColor : 'var(--mf-text)'};
     transition: all var(--mf-dur-slow);
     &:hover {
       box-shadow: inset 0 0 0 1000px ${boxShadowColor};
-      color: ${lcolors[1]};
+      color: var(--mf-text);
     }
   `;
 };
@@ -78,9 +78,9 @@ const Button = (props: ButtonProps): ReactNode => {
 
   const buttonStyleByTheme = emotionCss`
     ${buttonStyle}
-    border-radius: ${theme.buttonRadius};
+    border-radius: var(--mf-radius-button);
 
-    ${getVariantStyle(theme, variant, !!outline)}
+    ${getVariantStyle(variant, !!outline)}
     ${scales[size]}
   `;
 

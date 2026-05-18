@@ -10,6 +10,8 @@
   "scripts": {
     "build": "vite build",
     "clean": "rm -Rf ./dist",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "test": "vitest run --coverage",
     "test:dev": "vitest",
     "copy-files": "cp -r ./lib/styles/*.css ./lib/fonts ./dist",

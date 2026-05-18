@@ -24,6 +24,7 @@
   "scripts": {
     "build": "lerna run build --ignore src,website --no-private --stream",
     "test": "lerna run test --ignore src,website --no-private --stream",
+    "lint": "lerna run lint --ignore src --stream",
     "clean": "lerna run clean --ignore src,website --no-private --stream && rm -Rf node_modules && rm package-lock.json",
     "version": "lerna version",
     "prepublishOnly": "npm run build",
@@ -32,6 +33,7 @@
     "graph": "nx graph"
   },
   "devDependencies": {
+    "@stylistic/eslint-plugin": "^5.10.0",
     "@svgr/plugin-svgo": "^8.1.0",
     "@testing-library/react": "^16.3.0",
     "@vitejs/plugin-react-swc": "^4.2.1",
