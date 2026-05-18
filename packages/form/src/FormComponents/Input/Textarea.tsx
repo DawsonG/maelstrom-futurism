@@ -16,6 +16,10 @@ const TextArea = ({ name, label, value, validationState, validationMessage, ...r
 
     const containerCss = css`
         margin-top: 0.5em;
+
+        label {
+            color: ${theme.color("focus")};
+        }
     `;
 
     const textAreaStyles = css`
