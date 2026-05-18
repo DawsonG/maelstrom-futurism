@@ -1,46 +1,44 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode } from 'react';
 
-import { Input } from "./FormComponents/Input";
+import { Input } from './FormComponents/Input';
 
 interface FormProps {
-    children: ReactNode | ReactNode[];
+  children?: ReactNode;
 }
 
 const Form = ({ children }: FormProps): ReactNode => {
-    const [keyValueMap, setKeyValueMap] = useState<Record<string, string>>({});
+  function getAllChildrenByTypeRecursive(
+    nodes: ReactNode,
+    targetType: React.ElementType,
+  ): React.ReactElement[] {
+    let matches: React.ReactElement[] = [];
 
-    function getAllChildrenByTypeRecursive(children: ReactNode | ReactNode[], targetType: any) {
-        let matchingChildren: ReactNode[] = [];
+    React.Children.forEach(nodes, (child) => {
+      if (!React.isValidElement(child)) return;
 
-        React.Children.forEach(children, child => {
-            if (React.isValidElement(child)) {
-                if (child.type === targetType) {
-                    matchingChildren.push(child);
-                }
+      if (child.type === targetType) {
+        matches.push(child);
+      }
 
-                if ((child.props as unknown as any).children) {
-                    matchingChildren = matchingChildren.concat(
-                        getAllChildrenByTypeRecursive((child.props as any).children, targetType)
-                    );
-                }
-            }
-        });
-
-        return matchingChildren;
-    }
-
-    const keyValueInternal: Record<string, string> = {};
-    const formElements = getAllChildrenByTypeRecursive(children, typeof Input);
-    formElements.forEach((element: ReactNode) => {
-        if (React.isValidElement(element)) {
-            const props = element.props as { name?: string; value?: string };
-            if (props.name) {
-                keyValueInternal[props.name] = props.value ?? "";
-            }
-        }
+      const childProps = child.props as { children?: ReactNode };
+      if (childProps.children) {
+        matches = matches.concat(getAllChildrenByTypeRecursive(childProps.children, targetType));
+      }
     });
 
-    return <>{children}</>;
+    return matches;
+  }
+
+  const keyValueInternal: Record<string, string> = {};
+  const formElements = getAllChildrenByTypeRecursive(children, Input);
+  formElements.forEach((element) => {
+    const props = element.props as { name?: string; value?: string };
+    if (props.name) {
+      keyValueInternal[props.name] = props.value ?? '';
+    }
+  });
+
+  return <>{children}</>;
 };
 
 export default Form;

@@ -1,14 +1,14 @@
-import { css } from "@emotion/react";
-import { EASE_FUNCTION } from "@maelstrom-futurism/core";
+import { css } from '@emotion/react';
+import { EASE_FUNCTION } from '@maelstrom-futurism/core';
 
-import { validationStyle, validationMessage as validationMessageCss, type ValidationState } from "./styles";
+import { validationStyle, validationMessage as validationMessageCss, type ValidationState } from './styles';
 
 interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-    name: string;
-    label?: string;
-    validationState?: ValidationState;
-    validationMessage?: string;
-    onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  name: string;
+  label?: string;
+  validationState?: ValidationState;
+  validationMessage?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
 const containerCss = css`
@@ -44,15 +44,15 @@ const textAreaStyles = css`
 `;
 
 const TextArea = ({ name, label, value, validationState, validationMessage, ...rest }: TextAreaProps) => {
-    return (
-        <div css={[containerCss, validationState && validationStyle(validationState, 'normal')]}>
-            {label && <label htmlFor={name}>{label}</label>}
-            <textarea id={name} css={textAreaStyles} value={value} {...rest} />
-            {validationMessage && validationState && (
-                <span css={validationMessageCss(validationState)}>{validationMessage}</span>
-            )}
-        </div>
-    );
+  return (
+    <div css={[containerCss, validationState && validationStyle(validationState, 'normal')]}>
+      {label && <label htmlFor={name}>{label}</label>}
+      <textarea id={name} css={textAreaStyles} value={value} {...rest} />
+      {validationMessage && validationState && (
+        <span css={validationMessageCss(validationState)}>{validationMessage}</span>
+      )}
+    </div>
+  );
 };
 
 export default TextArea;

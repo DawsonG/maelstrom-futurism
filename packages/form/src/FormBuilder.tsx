@@ -1,8 +1,8 @@
-import React, { useState, FormEvent } from "react";
-import { capitalize, isFunction } from "@maelstrom-futurism/core";
-import { Button } from "@maelstrom-futurism/button";
+import React, { useState, FormEvent } from 'react';
+import { capitalize, isFunction } from '@maelstrom-futurism/core';
+import { Button } from '@maelstrom-futurism/button';
 
-import { Input } from "./FormComponents/Input";
+import { Input } from './FormComponents/Input';
 
 type ModelItem = {
   label?: string;
@@ -50,8 +50,8 @@ const FormBuilder = ({
     };
 
     switch (m.contentType) {
-      case "text":
-      case "tel":
+      case 'text':
+      case 'tel':
       default:
         return <Input key={constantFields.name} {...constantFields} />;
     }

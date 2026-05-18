@@ -1,109 +1,109 @@
-import React from "react";
+import React from 'react';
 
-import { checkboxGroupContainer, groupLabel, helpText as helpTextCss, optionsContainer } from "./styles";
-import Checkbox from "./Checkbox";
+import { checkboxGroupContainer, groupLabel, helpText as helpTextCss, optionsContainer } from './styles';
+import Checkbox from './Checkbox';
 
 export interface CheckboxOption {
-    /** The value submitted with the form */
-    value: string;
+  /** The value submitted with the form */
+  value: string;
 
-    /** The label displayed next to the checkbox */
-    label: string;
+  /** The label displayed next to the checkbox */
+  label: string;
 
-    /** Whether this option is disabled */
-    disabled?: boolean;
+  /** Whether this option is disabled */
+  disabled?: boolean;
 }
 
 export interface CheckboxGroupProps {
-    /**
+  /**
      * A unique field name for the group (Required)
      */
-    name: string;
+  name: string;
 
-    /**
+  /**
      * The label displayed above the group
      */
-    label?: string;
+  label?: string;
 
-    /**
+  /**
      * Help text displayed below the group
      */
-    helpText?: string;
+  helpText?: string;
 
-    /**
+  /**
      * Array of checkbox options to render
      */
-    options: CheckboxOption[];
+  options: CheckboxOption[];
 
-    /**
+  /**
      * The currently checked values (controlled)
      */
-    value?: string[];
+  value?: string[];
 
-    /**
+  /**
      * The initially checked values (uncontrolled)
      */
-    defaultValue?: string[];
+  defaultValue?: string[];
 
-    /**
+  /**
      * Called when the set of checked values changes
      */
-    onChange?: (values: string[]) => void;
+  onChange?: (values: string[]) => void;
 
-    /**
+  /**
      * Is at least one selection required? Used by FormValidator
      */
-    required?: boolean;
+  required?: boolean;
 }
 
 const CheckboxGroup = ({
-    name,
-    label,
-    helpText,
-    options,
-    value,
-    defaultValue,
-    onChange,
-    required,
+  name,
+  label,
+  helpText,
+  options,
+  value,
+  defaultValue,
+  onChange,
+  required,
 }: CheckboxGroupProps) => {
-    const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-        if (!onChange || !value) return;
-        const target = e.target as HTMLInputElement;
-        const next = target.checked
-            ? [...value, target.value]
-            : value.filter((v) => v !== target.value);
-        onChange(next);
-    };
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    if (!onChange || !value) return;
+    const target = e.target as HTMLInputElement;
+    const next = target.checked
+      ? [...value, target.value]
+      : value.filter((v) => v !== target.value);
+    onChange(next);
+  };
 
-    return (
-        <div css={checkboxGroupContainer}>
-            {label && (
-                <span css={groupLabel}>
-                    {label}
-                    {required && " *"}
-                </span>
-            )}
-            <div css={optionsContainer}>
-                {options.map((option) => (
-                    <Checkbox
-                        key={option.value}
-                        name={name}
-                        value={option.value}
-                        label={option.label}
-                        disabled={option.disabled}
-                        checked={value !== undefined ? value.includes(option.value) : undefined}
-                        defaultChecked={
-                            value === undefined && defaultValue !== undefined
-                                ? defaultValue.includes(option.value)
-                                : undefined
-                        }
-                        onChange={handleChange}
-                    />
-                ))}
-            </div>
-            {helpText && <span css={helpTextCss}>{helpText}</span>}
-        </div>
-    );
+  return (
+    <div css={checkboxGroupContainer}>
+      {label && (
+        <span css={groupLabel}>
+          {label}
+          {required && ' *'}
+        </span>
+      )}
+      <div css={optionsContainer}>
+        {options.map((option) => (
+          <Checkbox
+            key={option.value}
+            name={name}
+            value={option.value}
+            label={option.label}
+            disabled={option.disabled}
+            checked={value !== undefined ? value.includes(option.value) : undefined}
+            defaultChecked={
+              value === undefined && defaultValue !== undefined
+                ? defaultValue.includes(option.value)
+                : undefined
+            }
+            onChange={handleChange}
+          />
+        ))}
+      </div>
+      {helpText && <span css={helpTextCss}>{helpText}</span>}
+    </div>
+  );
 };
 
 export default CheckboxGroup;

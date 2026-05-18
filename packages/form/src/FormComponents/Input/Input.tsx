@@ -1,110 +1,110 @@
-import React, { HTMLInputTypeAttribute } from "react";
+import React, { HTMLInputTypeAttribute } from 'react';
 
 import {
-    outsideContainer,
-    fcContainer,
-    materialStyledInput,
-    normalStyledInput,
-    helpText as helpTextCss,
-    validationStyle,
-    validationMessage as validationMessageCss,
-    type ValidationState,
-} from "./styles";
-import TextArea from "./Textarea";
+  outsideContainer,
+  fcContainer,
+  materialStyledInput,
+  normalStyledInput,
+  helpText as helpTextCss,
+  validationStyle,
+  validationMessage as validationMessageCss,
+  type ValidationState,
+} from './styles';
+import TextArea from './Textarea';
 
-export type Variant = "normal" | "material";
+export type Variant = 'normal' | 'material';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    /** Normal or Material variant */
-    variant?: Variant;
+  /** Normal or Material variant */
+  variant?: Variant;
 
-    /** A valid HTML5 type. (Required) */
-    type: HTMLInputTypeAttribute;
+  /** A valid HTML5 type. (Required) */
+  type: HTMLInputTypeAttribute;
 
-    /** A unique (in form) field name (Required) */
-    name: string;
+  /** A unique (in form) field name (Required) */
+  name: string;
 
-    /** The label to display above the input. Leave blank to hide. */
-    label?: string;
+  /** The label to display above the input. Leave blank to hide. */
+  label?: string;
 
-    /** Help text displayed below the field */
-    helpText?: string;
+  /** Help text displayed below the field */
+  helpText?: string;
 
-    /** Text to use as a placeholder */
-    placeholder?: string;
+  /** Text to use as a placeholder */
+  placeholder?: string;
 
-    /** Literal input value for use outside traditional form */
-    value?: string;
+  /** Literal input value for use outside traditional form */
+  value?: string;
 
-    /** Is this input required? Used by FormValidator */
-    required?: boolean;
+  /** Is this input required? Used by FormValidator */
+  required?: boolean;
 
-    /** Value used for preloaded state */
-    defaultValue?: string;
+  /** Value used for preloaded state */
+  defaultValue?: string;
 
-    /** Use textarea? */
-    multiline?: boolean;
+  /** Use textarea? */
+  multiline?: boolean;
 
-    /** Validation state: error, warning, or success */
-    validationState?: ValidationState;
+  /** Validation state: error, warning, or success */
+  validationState?: ValidationState;
 
-    /** Message displayed below the field when a validationState is set */
-    validationMessage?: string;
+  /** Message displayed below the field when a validationState is set */
+  validationMessage?: string;
 
-    /** Called whenever the value changes. For use of Inputs outside traditional forms. */
-    onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  /** Called whenever the value changes. For use of Inputs outside traditional forms. */
+  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
-    forwardedRef?: any;
+  forwardedRef?: React.Ref<HTMLInputElement>;
 }
 
 const Input = React.forwardRef(({
-    variant = "normal",
-    type,
-    name,
-    label,
-    helpText,
-    multiline,
-    validationState,
-    validationMessage,
-    ...rest
-}: InputProps, ref?: any) => {
-    if (multiline) {
-        return (
-            <TextArea
-                name={name}
-                label={label || ''}
-                validationState={validationState}
-                validationMessage={validationMessage}
-                {...rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>}
-            />
-        );
-    }
-
-    const isMaterial = variant === "material";
-    const additionalStyles = isMaterial ? materialStyledInput : normalStyledInput;
-
+  variant = 'normal',
+  type,
+  name,
+  label,
+  helpText,
+  multiline,
+  validationState,
+  validationMessage,
+  ...rest
+}: InputProps, ref?: React.Ref<HTMLInputElement>) => {
+  if (multiline) {
     return (
-        <div css={outsideContainer}>
-            <div css={[fcContainer, additionalStyles, validationState && validationStyle(validationState, variant)]}>
-                <input
-                    id={name}
-                    name={name}
-                    type={type}
-                    ref={ref}
-                    placeholder=" "
-                    {...rest}
-                />
-                {label && <label htmlFor={name}>{label}</label>}
-                {isMaterial && <span className="underline" />}
-            </div>
-            {validationMessage && validationState && (
-                <span css={validationMessageCss(validationState)}>{validationMessage}</span>
-            )}
-            {helpText && !validationMessage && (
-                <span css={helpTextCss}>{helpText}</span>
-            )}
-        </div>
+      <TextArea
+        name={name}
+        label={label || ''}
+        validationState={validationState}
+        validationMessage={validationMessage}
+        {...rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>}
+      />
     );
+  }
+
+  const isMaterial = variant === 'material';
+  const additionalStyles = isMaterial ? materialStyledInput : normalStyledInput;
+
+  return (
+    <div css={outsideContainer}>
+      <div css={[fcContainer, additionalStyles, validationState && validationStyle(validationState, variant)]}>
+        <input
+          id={name}
+          name={name}
+          type={type}
+          ref={ref}
+          placeholder=" "
+          {...rest}
+        />
+        {label && <label htmlFor={name}>{label}</label>}
+        {isMaterial && <span className="underline" />}
+      </div>
+      {validationMessage && validationState && (
+        <span css={validationMessageCss(validationState)}>{validationMessage}</span>
+      )}
+      {helpText && !validationMessage && (
+        <span css={helpTextCss}>{helpText}</span>
+      )}
+    </div>
+  );
 });
 
 export default Input;

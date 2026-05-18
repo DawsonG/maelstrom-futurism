@@ -22,16 +22,16 @@ export const helpText = css`
 export type ValidationState = 'alert' | 'warning' | 'success';
 
 export const validationStyle = (state: ValidationState, variant: Variant) => {
-    const color = `var(--mf-${state})`;
+  const color = `var(--mf-${state})`;
 
-    let line = '';
-    if (variant === 'normal') {
-        line = `outline: 1px solid ${color}`;
-    } else {
-        line = `border-bottom: solid 2px ${color}`;
-    }
+  let line = '';
+  if (variant === 'normal') {
+    line = `outline: 1px solid ${color}`;
+  } else {
+    line = `border-bottom: solid 2px ${color}`;
+  }
 
-    return css`
+  return css`
         input, textarea {
             ${line};
         }

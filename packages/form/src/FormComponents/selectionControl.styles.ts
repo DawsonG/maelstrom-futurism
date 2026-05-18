@@ -28,10 +28,10 @@ export const optionsContainer = css`
 `;
 
 const materialStyledControl = (inputType: 'checkbox' | 'radio') => {
-    const isRadio = inputType === 'radio';
-    const sel = `input[type="${inputType}"]`;
+  const isRadio = inputType === 'radio';
+  const sel = `input[type="${inputType}"]`;
 
-    return css`
+  return css`
         display: flex;
         align-items: center;
         gap: 10px;
@@ -58,7 +58,8 @@ const materialStyledControl = (inputType: 'checkbox' | 'radio') => {
         ${sel}::after {
             content: '';
             position: absolute;
-            ${isRadio ? `
+            ${isRadio
+              ? `
                 width: 10px;
                 height: 10px;
                 background: var(--mf-secondary);
@@ -67,7 +68,8 @@ const materialStyledControl = (inputType: 'checkbox' | 'radio') => {
                 left: 50%;
                 transform: translate(-50%, -50%) scale(0);
                 transition: transform var(--mf-dur-normal) ${EASE_FUNCTION}, background var(--mf-dur-normal) ${EASE_FUNCTION};
-            ` : `
+            `
+              : `
                 left: 4px;
                 top: 1px;
                 width: 5px;

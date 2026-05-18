@@ -1,57 +1,57 @@
-import React from "react";
+import React from 'react';
 
-import { materialStyledCheckbox } from "./styles";
+import { materialStyledCheckbox } from './styles';
 
-export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
-    /**
+export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+  /**
      * A unique (in form) field name (Required)
      */
-    name: string;
+  name: string;
 
-    /**
+  /**
      * The label to display next to the checkbox
      */
-    label?: string;
+  label?: string;
 
-    /**
+  /**
      * The value submitted with the form when checked
      */
-    value?: string;
+  value?: string;
 
-    /**
+  /**
      * Whether the checkbox is checked (controlled)
      */
-    checked?: boolean;
+  checked?: boolean;
 
-    /**
+  /**
      * Whether the checkbox is checked by default (uncontrolled)
      */
-    defaultChecked?: boolean;
+  defaultChecked?: boolean;
 
-    /**
+  /**
      * Called when the checked state changes
      */
-    onChange?: (e: React.FormEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.FormEvent<HTMLInputElement>) => void;
 }
 
 const Checkbox = React.forwardRef(
-    ({ name, label, value, ...rest }: CheckboxProps, ref?: any) => {
-        const id = value ? `${name}-${value}` : name;
+  ({ name, label, value, ...rest }: CheckboxProps, ref?: React.Ref<HTMLInputElement>) => {
+    const id = value ? `${name}-${value}` : name;
 
-        return (
-            <div css={materialStyledCheckbox}>
-                <input
-                    id={id}
-                    type="checkbox"
-                    name={name}
-                    value={value}
-                    ref={ref}
-                    {...rest}
-                />
-                {label && <label htmlFor={id}>{label}</label>}
-            </div>
-        );
-    }
+    return (
+      <div css={materialStyledCheckbox}>
+        <input
+          id={id}
+          type="checkbox"
+          name={name}
+          value={value}
+          ref={ref}
+          {...rest}
+        />
+        {label && <label htmlFor={id}>{label}</label>}
+      </div>
+    );
+  },
 );
 
 export default Checkbox;

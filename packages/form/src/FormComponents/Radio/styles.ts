@@ -1,7 +1,7 @@
 export {
-    groupContainer as radioGroupContainer,
-    groupLabel,
-    helpText,
-    optionsContainer,
-    materialStyledRadio,
+  groupContainer as radioGroupContainer,
+  groupLabel,
+  helpText,
+  optionsContainer,
+  materialStyledRadio,
 } from '../selectionControl.styles';
