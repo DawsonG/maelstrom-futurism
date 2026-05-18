@@ -103,7 +103,7 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ThemeProvider theme={createTheme('nordDark')}>
+    <ThemeProvider theme={createTheme('nordLight')} darkTheme={createTheme('nordDark')}>
       <RouterProvider router={router} />
     </ThemeProvider>
   </StrictMode>,

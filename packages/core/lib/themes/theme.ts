@@ -30,11 +30,14 @@ class Theme {
 
   letterSpacings: { tight: string; normal: string; wide: string; display: string } = { ...LETTER_SPACINGS };
 
+  customColors: Record<string, string> = {};
+
   size(name: string): string {
     return this.sizes[name as keyof typeof this.sizes];
   }
 
   color = (name: keyof typeof this.colors): string => this.colors[name];
+  custom = (name: string): string => this.customColors[name] ?? '';
   bp = (name: keyof typeof this.breakpoints): string => this.breakpoints[name];
   height = (name: string): string => this.heights[name as keyof typeof this.heights];
 

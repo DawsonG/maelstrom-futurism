@@ -5,10 +5,13 @@ export interface ColorSet {
     borderMuted: string;
     border: string;
     content: string;
+    surfaceHover: string;
+    surfacePress: string;
     textColor: string;
     linkColor: string;
     primary: string;
     secondary: string;
+    accent: string;
     focus: string;
     active: string;
     alert: string;

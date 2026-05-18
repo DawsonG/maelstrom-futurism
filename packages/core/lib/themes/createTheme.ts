@@ -38,6 +38,7 @@ export interface ThemeOverrides {
         wide?: string;
         display?: string;
     };
+    customColors?: Record<string, string>;
 }
 
 /*
@@ -52,10 +53,13 @@ const nordDarkColors: ColorSet = {
     borderMuted: '#303744',
     border: '#2e3440',
     content: '#2e3440',
+    surfaceHover: '#3b4252',
+    surfacePress: '#434c5e',
     textColor: '#eceff4',
     linkColor: '#88c0d0',
     primary: '#5e81ac',
     secondary: '#81a1c1',
+    accent: '#5e81ac',
     focus: '#5e81ac',
     active: '#5e81ac',
     alert: '#bf616a',
@@ -69,10 +73,13 @@ const nordLightColors: ColorSet = {
     borderMuted: '#303744',
     border: '#2e3440',
     content: '#eceff4',
+    surfaceHover: '#e5e9f0',
+    surfacePress: '#d8dee9',
     textColor: '#242933',
     linkColor: '#88c0d0',
     primary: '#5e81ac',
     secondary: '#81a1c1',
+    accent: '#5e81ac',
     focus: '#5e81ac',
     active: '#5e81ac',
     alert: '#bf616a',
@@ -115,6 +122,10 @@ export const createTheme = (colorSetName: ColorSetName, overrides?: ThemeOverrid
 
     if (overrides?.letterSpacings) {
         theme.letterSpacings = { ...theme.letterSpacings, ...overrides.letterSpacings };
+    }
+
+    if (overrides?.customColors) {
+        theme.customColors = overrides.customColors;
     }
 
     return theme;

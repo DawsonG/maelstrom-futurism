@@ -1,6 +1,6 @@
 import { ReactNode, useState, useMemo } from 'react';
 import { css } from '@emotion/react';
-import { useTheme, EASE_FUNCTION } from '@maelstrom-futurism/core';
+import { EASE_FUNCTION } from '@maelstrom-futurism/core';
 import { Icon } from '@maelstrom-futurism/icons';
 
 export type Density = 'compact' | 'comfortable' | 'spacious';
@@ -65,7 +65,6 @@ const Table = ({
     onRowAction,
     rowActionIcon,
 }: TableProps) => {
-    const theme = useTheme();
     const ease = EASE_FUNCTION;
 
     const [sortCol, setSortCol] = useState<string | null>(null);
@@ -132,16 +131,14 @@ const Table = ({
 
     const tdPadding = DENSITY_PADDING[density];
     const tdFontSize = DENSITY_FONT_SIZE[density];
-    const muted = `${theme.color('textColor')}80`;
-
     // ── Styles ──────────────────────────────────────────────────────────────
 
     const wrapperStyle = css`
         border: 1px solid var(--nord-polar-3);
         border-radius: var(--mf-radius-card);
         overflow: hidden;
-        background: ${theme.color('content')};
-        color: ${theme.color('textColor')};
+        background: var(--mf-content);
+        color: var(--mf-text);
         line-height: 1.6;
     `;
 
@@ -158,7 +155,7 @@ const Table = ({
         align-items: baseline;
         gap: 8px;
         margin: 0;
-        font-size: ${theme.sizes.md};
+        font-size: var(--mf-size-md);
         font-weight: 500;
         line-height: 1.2;
         letter-spacing: -0.01em;
@@ -167,7 +164,7 @@ const Table = ({
     const countStyle = css`
         font-family: var(--mf-font-mono);
         font-size: 11px;
-        color: ${muted};
+        color: var(--mf-text-muted);
         text-transform: uppercase;
         letter-spacing: 0.06em;
         font-weight: 400;
@@ -184,19 +181,19 @@ const Table = ({
             width: 100%;
             height: 36px;
             background: transparent;
-            color: ${theme.color('textColor')};
+            color: var(--mf-text);
             border: none;
-            outline: 1px solid ${theme.color('secondary')};
-            border-radius: ${theme.inputRadius};
+            outline: 1px solid var(--mf-secondary);
+            border-radius: var(--mf-radius-input);
             padding: 0 12px 0 34px;
             font-size: 14px;
             font-family: inherit;
             box-sizing: border-box;
             transition: outline-color var(--mf-dur-fast) ${ease};
 
-            &::placeholder { color: ${theme.color('textColor')}70; }
-            &:hover { outline-color: ${theme.color('textColor')}; }
-            &:focus { outline-color: ${theme.color('focus')}; }
+            &::placeholder { color: color-mix(in srgb, var(--mf-text) 44%, transparent); }
+            &:hover { outline-color: var(--mf-text); }
+            &:focus { outline-color: var(--mf-focus); }
         }
     `;
 
@@ -205,7 +202,7 @@ const Table = ({
         left: 8px;
         top: 50%;
         transform: translateY(-50%);
-        color: ${muted};
+        color: var(--mf-text-muted);
         pointer-events: none;
         display: flex;
     `;
@@ -213,14 +210,14 @@ const Table = ({
     const densityGroupStyle = css`
         display: inline-flex;
         border-radius: 9999px;
-        background: ${theme.color('background')};
+        background: var(--mf-background);
         padding: 3px;
         gap: 2px;
 
         button {
             background: transparent;
             border: none;
-            color: ${theme.color('textColor')}a0;
+            color: color-mix(in srgb, var(--mf-text) 63%, transparent);
             font-family: inherit;
             font-size: 12px;
             padding: 5px 12px;
@@ -229,8 +226,8 @@ const Table = ({
             transition: background var(--mf-dur-fast), color var(--mf-dur-fast);
 
             &[aria-pressed="true"] {
-                background: ${theme.color('primary')};
-                color: ${theme.color('textColor')};
+                background: var(--mf-primary);
+                color: var(--mf-text);
             }
         }
     `;
@@ -247,8 +244,8 @@ const Table = ({
         border-bottom: 1px solid var(--nord-polar-3);
         border-right: 1px solid var(--nord-polar-3);
         font-weight: 500;
-        background: ${theme.color('content')};
-        color: ${theme.color('textColor')};
+        background: var(--mf-content);
+        color: var(--mf-text);
         user-select: none;
         white-space: nowrap;
 
@@ -264,14 +261,14 @@ const Table = ({
 
     const thSortableStyle = css`
         cursor: pointer;
-        &:hover > span { color: ${theme.color('linkColor')}; }
+        &:hover > span { color: var(--mf-link); }
     `;
 
     const sortArrow = (colName: string) => css`
         display: inline-flex;
         width: 12px;
         height: 12px;
-        color: ${sortCol === colName ? theme.color('linkColor') : `${theme.color('textColor')}40`};
+        color: ${sortCol === colName ? 'var(--mf-link)' : 'color-mix(in srgb, var(--mf-text) 25%, transparent)'};
         transition: color var(--mf-dur-fast) ${ease}, transform var(--mf-dur-fast) ${ease};
         transform: ${sortCol === colName && sortDir === 'asc' ? 'rotate(180deg)' : 'none'};
     `;
@@ -280,18 +277,18 @@ const Table = ({
         width: 44px;
         border-bottom: 1px solid var(--nord-polar-3);
         border-right: none;
-        background: ${theme.color('content')};
+        background: var(--mf-content);
     `;
 
     const rowStyle = css`
         transition: background var(--mf-dur-fast) ${ease};
-        &:hover td { background: var(--mf-bg-2); }
+        &:hover td { background: var(--mf-surface-hover); }
     `;
 
     const tdBaseStyle = css`
         padding: ${tdPadding};
         font-size: ${tdFontSize};
-        border-bottom: 1px solid ${theme.color('borderMuted')};
+        border-bottom: 1px solid var(--mf-border-muted);
         vertical-align: middle;
         transition: background var(--mf-dur-fast) ${ease};
     `;
@@ -302,7 +299,7 @@ const Table = ({
 
     const actionTdStyle = css`
         padding: 0 8px;
-        border-bottom: 1px solid ${theme.color('borderMuted')};
+        border-bottom: 1px solid var(--mf-border-muted);
         text-align: center;
         vertical-align: middle;
         transition: background var(--mf-dur-fast) ${ease};
@@ -314,7 +311,7 @@ const Table = ({
         cursor: pointer;
         width: 28px;
         height: 28px;
-        color: ${muted};
+        color: var(--mf-text-muted);
         border-radius: 9999px;
         display: inline-flex;
         align-items: center;
@@ -322,15 +319,15 @@ const Table = ({
         transition: background var(--mf-dur-fast) ${ease}, color var(--mf-dur-fast) ${ease};
 
         &:hover {
-            background: var(--mf-bg-3);
-            color: ${theme.color('textColor')};
+            background: var(--mf-surface-press);
+            color: var(--mf-text);
         }
     `;
 
     const tfootTdStyle = css`
         padding: 10px 16px;
         border-top: 1px solid var(--nord-polar-3);
-        color: ${muted};
+        color: var(--mf-text-muted);
         font-size: 13px;
     `;
 
@@ -344,7 +341,7 @@ const Table = ({
     `;
 
     const rangeStyle = css`
-        color: ${theme.color('textColor')}a0;
+        color: color-mix(in srgb, var(--mf-text) 63%, transparent);
         font-family: var(--mf-font-mono);
         font-size: 12px;
         white-space: nowrap;
@@ -354,14 +351,14 @@ const Table = ({
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        color: ${theme.color('textColor')}a0;
+        color: color-mix(in srgb, var(--mf-text) 63%, transparent);
         white-space: nowrap;
 
         select {
-            background: ${theme.color('background')};
-            color: ${theme.color('textColor')};
+            background: var(--mf-background);
+            color: var(--mf-text);
             border: 1px solid var(--nord-polar-3);
-            border-radius: ${theme.inputRadius};
+            border-radius: var(--mf-radius-input);
             padding: 4px 8px;
             font: inherit;
             font-size: 13px;
@@ -381,7 +378,7 @@ const Table = ({
             height: 32px;
             padding: 0 10px;
             background: transparent;
-            color: ${theme.color('textColor')};
+            color: var(--mf-text);
             border: none;
             border-radius: 9999px;
             cursor: pointer;
@@ -389,13 +386,13 @@ const Table = ({
             font-size: 13px;
             transition: background var(--mf-dur-fast) ${ease}, color var(--mf-dur-fast) ${ease};
 
-            &:hover:not(:disabled) { background: var(--mf-bg-3); }
-            &[aria-current="page"] { background: ${theme.color('primary')}; }
+            &:hover:not(:disabled) { background: var(--mf-surface-press); }
+            &[aria-current="page"] { background: var(--mf-primary); }
             &:disabled { opacity: 0.35; cursor: not-allowed; }
         }
 
         .ellipsis {
-            color: ${theme.color('textColor')}70;
+            color: color-mix(in srgb, var(--mf-text) 44%, transparent);
             padding: 0 4px;
         }
     `;
@@ -404,7 +401,7 @@ const Table = ({
         padding: 12px 20px;
         border-top: 1px solid var(--nord-polar-3);
         font-size: 12px;
-        color: ${muted};
+        color: var(--mf-text-muted);
         font-family: var(--mf-font-mono);
     `;
 

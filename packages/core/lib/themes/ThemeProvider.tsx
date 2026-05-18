@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useContext } from 'react';
+import { ReactNode, createContext, useContext, useState, useEffect } from 'react';
 import { Global, css } from '@emotion/react';
 import poppinsLight from '../fonts/Poppins-Light.ttf';
 import poppinsMedium from '../fonts/Poppins-Medium.ttf';
@@ -11,21 +11,43 @@ import Theme from './theme';
 import { createTheme } from './createTheme';
 import { EASE_FUNCTION } from '../motion';
 
-const ThemeContext = createContext(createTheme("nordDark"));
+const ThemeContext = createContext(createTheme("nordLight"));
 export const useTheme = () => useContext(ThemeContext);
 
 interface ThemeProviderProps {
     theme: Theme;
+    darkTheme?: Theme;
+    colorScheme?: 'light' | 'dark' | 'auto';
     children: ReactNode;
 }
 
-export const ThemeProvider = ({ theme, children }: ThemeProviderProps): ReactNode => {
-    const themeValue = theme;
+export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children }: ThemeProviderProps): ReactNode => {
+    const [colorSchemeActual, setColorSchemeActual] = useState<'dark' | 'light'>('light');
+    const [systemPrefersDark, setSystemPrefersDark] = useState(false);
 
-    const isDark = themeValue.color('background') === '#242933';
-    const fg2 = isDark ? '#d8dee9' : '#3b4252';
-    const bg2 = isDark ? '#3b4252' : '#e5e9f0';
-    const bg3 = isDark ? '#434c5e' : '#d8dee9';
+    useEffect(() => {
+        if (!darkTheme) {
+            // no dark theme is available so we'll have to use the light theme
+            setColorSchemeActual('light');
+            return;
+        }
+        
+        if (colorScheme !== 'auto') {
+            // color scheme has been manaully set, pass it on
+            setColorSchemeActual(colorScheme);
+            return;
+        }
+
+        // calculate based on browser settings
+        const mq = window.matchMedia('(prefers-color-scheme: dark)');
+        const handler = (e: MediaQueryListEvent) => setSystemPrefersDark(e.matches);
+
+        mq.addEventListener('change', handler);
+        setColorSchemeActual(mq.matches ? 'dark' : 'light');
+        return () => mq.removeEventListener('change', handler);
+    }, [darkTheme, colorScheme]);
+
+    const themeValue = colorSchemeActual === 'dark' ? darkTheme! : theme;
 
     const globalStyles = css`
         :root {
@@ -39,21 +61,17 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): ReactNod
             --mf-link:         ${themeValue.color('linkColor')};
             --mf-primary:      ${themeValue.color('primary')};
             --mf-secondary:    ${themeValue.color('secondary')};
+            --mf-accent:       ${themeValue.color('accent')};
             --mf-focus:        ${themeValue.color('focus')};
+            ${Object.entries(themeValue.customColors).map(([name, value]) => `--mf-color-${name}: ${value};`).join('\n            ')}
             --mf-active:       ${themeValue.color('active')};
             --mf-alert:        ${themeValue.color('alert')};
             --mf-warning:      ${themeValue.color('warning')};
             --mf-success:      ${themeValue.color('success')};
             --mf-info:         ${themeValue.color('info')};
 
-            /* Convenience surface / foreground scale */
-            --mf-fg-1: ${themeValue.color('textColor')};
-            --mf-fg-2: ${fg2};
-            --mf-fg-3: ${themeValue.color('textColor')}99;
-            --mf-bg-0: ${themeValue.color('background')};
-            --mf-bg-1: ${themeValue.color('content')};
-            --mf-bg-2: ${bg2};
-            --mf-bg-3: ${bg3};
+            --mf-surface-hover: ${themeValue.color('surfaceHover')};
+            --mf-surface-press: ${themeValue.color('surfacePress')};
 
             /* Raw Nord palette */
             --nord-polar-0: #2e3440;
