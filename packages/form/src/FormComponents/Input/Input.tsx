@@ -1,5 +1,4 @@
 import React, { HTMLInputTypeAttribute } from "react";
-import { useTheme } from "@maelstrom-futurism/core";
 
 import {
     outsideContainer,
@@ -69,8 +68,6 @@ const Input = React.forwardRef(({
     validationMessage,
     ...rest
 }: InputProps, ref?: any) => {
-    const theme = useTheme();
-
     if (multiline) {
         return (
             <TextArea
@@ -84,11 +81,11 @@ const Input = React.forwardRef(({
     }
 
     const isMaterial = variant === "material";
-    const additionalStyles = isMaterial ? materialStyledInput(theme) : normalStyledInput(theme);
+    const additionalStyles = isMaterial ? materialStyledInput : normalStyledInput;
 
     return (
         <div css={outsideContainer}>
-            <div css={[fcContainer, additionalStyles, validationState && validationStyle(theme, validationState, variant)]}>
+            <div css={[fcContainer, additionalStyles, validationState && validationStyle(validationState, variant)]}>
                 <input
                     id={name}
                     name={name}
@@ -101,7 +98,7 @@ const Input = React.forwardRef(({
                 {isMaterial && <span className="underline" />}
             </div>
             {validationMessage && validationState && (
-                <span css={validationMessageCss(theme, validationState)}>{validationMessage}</span>
+                <span css={validationMessageCss(validationState)}>{validationMessage}</span>
             )}
             {helpText && !validationMessage && (
                 <span css={helpTextCss}>{helpText}</span>

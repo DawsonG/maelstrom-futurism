@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { ColorSet, Theme, EASE_FUNCTION } from '@maelstrom-futurism/core';
+import { EASE_FUNCTION } from '@maelstrom-futurism/core';
 import { Variant } from './Input';
 
 export const outsideContainer = css`
@@ -21,17 +21,16 @@ export const helpText = css`
 
 export type ValidationState = 'alert' | 'warning' | 'success';
 
-export const validationStyle = (theme: Theme, state: ValidationState, variant: Variant) => {
-    const color = theme.color(state as keyof ColorSet);
-    
+export const validationStyle = (state: ValidationState, variant: Variant) => {
+    const color = `var(--mf-${state})`;
+
     let line = '';
     if (variant === 'normal') {
         line = `outline: 1px solid ${color}`;
     } else {
         line = `border-bottom: solid 2px ${color}`;
     }
-    
-    
+
     return css`
         input, textarea {
             ${line};
@@ -45,28 +44,24 @@ export const validationStyle = (theme: Theme, state: ValidationState, variant: V
     `;
 };
 
-export const validationMessage = (theme: Theme, state: ValidationState) => {
-    const color = theme.color(state as keyof ColorSet);
+export const validationMessage = (state: ValidationState) => css`
+    position: relative;
+    display: block;
+    padding: 2px 0 2px 12px;
+    font-size: 0.9em;
+    color: var(--mf-${state});
+`;
 
-    return css`
-        position: relative;
-        display: block;
-        padding: 2px 0 2px 12px;
-        font-size: 0.9em;
-        color: ${color};
-    `;
-};
-
-export const materialStyledInput = (theme: Theme) => css`
+export const materialStyledInput = css`
     input {
-        color: ${theme.color("textColor")};
+        color: var(--mf-text);
         width: 100%;
         height: 3rem;
         border: none;
-        border-bottom: solid 2px ${theme.color("secondary")};
+        border-bottom: solid 2px var(--mf-secondary);
         background-color: transparent;
         padding-left: 10px;
-        font-size: ${theme.size("base")};
+        font-size: var(--mf-size-base);
         transition: var(--mf-dur-fast) ${EASE_FUNCTION};
         outline: none;
         box-sizing: border-box;
@@ -77,7 +72,7 @@ export const materialStyledInput = (theme: Theme) => css`
         top: 50%;
         left: 10px;
         transform: translateY(-50%);
-        color: ${theme.color("textColor")}80;
+        color: var(--mf-text-muted);
         text-align: center;
         transition: var(--mf-dur-normal) ${EASE_FUNCTION};
         font-size: 1.2rem;
@@ -98,7 +93,7 @@ export const materialStyledInput = (theme: Theme) => css`
         bottom: 0;
         transform: scaleX(0);
         transition: transform var(--mf-dur-normal) ${EASE_FUNCTION};
-        border-bottom: 2px solid ${theme.color("focus")};
+        border-bottom: 2px solid var(--mf-focus);
     }
 
     input:focus ~ .underline {
@@ -106,25 +101,25 @@ export const materialStyledInput = (theme: Theme) => css`
     }
 
     input:hover {
-        border-bottom: 2px solid ${theme.color("textColor")};
+        border-bottom: 2px solid var(--mf-text);
     }
 
     input:focus ~ label {
-        color: ${theme.color("focus")} !important;
+        color: var(--mf-focus) !important;
     }
 `;
 
-export const normalStyledInput = (theme: Theme) => css`
+export const normalStyledInput = css`
     background-color: inherit;
 
     input {
-        color: ${theme.color("textColor")};
+        color: var(--mf-text);
         height: 3rem;
-        outline: 1px solid ${theme.color("secondary")};
-        border-radius: ${theme.inputRadius};
+        outline: 1px solid var(--mf-secondary);
+        border-radius: var(--mf-radius-input);
         border: none;
         padding-left: 10px;
-        font-size: ${theme.size("base")};
+        font-size: var(--mf-size-base);
         transition: var(--mf-dur-fast) ${EASE_FUNCTION};
         background: transparent;
         width: 100%;
@@ -135,7 +130,7 @@ export const normalStyledInput = (theme: Theme) => css`
         top: 50%;
         left: 10px;
         transform: translateY(-50%);
-        color: ${theme.color("textColor")}80;
+        color: var(--mf-text-muted);
         background-color: inherit;
         text-align: center;
         transition: var(--mf-dur-normal) ${EASE_FUNCTION};
@@ -152,12 +147,12 @@ export const normalStyledInput = (theme: Theme) => css`
     }
 
     input:focus {
-        outline: 1px solid ${theme.color("focus")} !important;
+        outline: 1px solid var(--mf-focus) !important;
     }
     input:hover {
-        outline: 1px solid ${theme.color("textColor")};
+        outline: 1px solid var(--mf-text);
     }
     input:focus ~ label {
-        color: ${theme.color("focus")} !important;
+        color: var(--mf-focus) !important;
     }
 `;
