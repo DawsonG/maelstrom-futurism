@@ -9,6 +9,8 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -Rf ./dist",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "test": "vitest run --coverage",
     "test:dev": "vitest",
     "prepublishOnly": "npm run build"

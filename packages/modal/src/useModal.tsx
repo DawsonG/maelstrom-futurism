@@ -1,5 +1,5 @@
-import React, { ReactNode, useState } from "react";
-import Modal from "./Modal";
+import React, { ReactNode, useState } from 'react';
+import Modal from './Modal';
 
 interface RenderModalProps {
   title?: string;
@@ -9,7 +9,7 @@ interface RenderModalProps {
 export const useModal = (): [
   (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
   (props: RenderModalProps) => ReactNode,
-  boolean
+  boolean,
 ] => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -17,7 +17,7 @@ export const useModal = (): [
     setIsVisible(!isVisible);
   }
 
-  const RenderModal= ({ title, children }: RenderModalProps): ReactNode => (
+  const RenderModal = ({ title, children }: RenderModalProps): ReactNode => (
     <>
       {isVisible && (
         <Modal title={title} hide={toggle} isShowing={isVisible}>
