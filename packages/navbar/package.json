@@ -12,6 +12,8 @@
     "build": "vite build",
     "test": "vitest run --coverage",
     "test:dev": "vitest",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "prepublishOnly": "npm run build"
   },
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
