@@ -1,13 +1,12 @@
 import { css } from '@emotion/react';
-import { Theme } from '@maelstrom-futurism/core';
 
-export const getBase = (theme: Theme) => css`
+export const base = css`
     position: absolute;
-    background-color: ${theme.color("content")};
-    color: ${theme.color("textColor")};
+    background-color: var(--mf-content);
+    color: var(--mf-text);
     padding: 12px;
-    border: 1px solid ${theme.color("borderMuted")};
-    border-radius: ${theme.borderRadius};
+    border: 1px solid var(--mf-border-muted);
+    border-radius: var(--mf-radius-card);
     z-index: 1000;
     min-width: 200px;
 `;

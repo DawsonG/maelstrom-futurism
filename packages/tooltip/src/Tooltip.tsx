@@ -1,11 +1,10 @@
-import { useTheme } from '@maelstrom-futurism/core';
-import React, { useRef, useEffect, ReactNode } from 'react';
+import { ReactNode, useRef, useEffect } from 'react';
 
 import * as tooltipStyles from './Tooltip.styles';
 
 interface TooltipProps {
-    content: React.ReactNode;
-    children: React.ReactNode;
+    content: ReactNode;
+    children: ReactNode;
     position?: 'top' | 'bottom' | 'left' | 'right';
     trigger?: 'hover' | 'click';
 }
@@ -16,8 +15,6 @@ const Tooltip = ({
     position = 'top',
     trigger = 'hover',
 }: TooltipProps): ReactNode => {
-    const theme = useTheme();
-
     const containerRef = useRef<HTMLDivElement>(null);
     const toggleTooltip = (visible: boolean) => {
         if (visible) {
@@ -47,8 +44,8 @@ const Tooltip = ({
             onMouseLeave={() => trigger === 'hover' && toggleTooltip(false)}
         >
             {children}
-            
-            <div ref={containerRef} style={{ display: "none" }} css={[tooltipStyles.getBase(theme), tooltipStyles[position]]}>
+
+            <div ref={containerRef} style={{ display: "none" }} css={[tooltipStyles.base, tooltipStyles[position]]}>
                 {content}
             </div>
         </div>

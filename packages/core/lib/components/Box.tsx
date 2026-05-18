@@ -1,6 +1,5 @@
 import { HTMLAttributes, ReactNode } from 'react';
 import { css as emotionCss } from '@emotion/react';
-import { useTheme } from '../themes';
 import { constructStyles, BaseStyles } from '../styleSystem';
 
 export type BoxProps = {
@@ -8,8 +7,6 @@ export type BoxProps = {
 } & BaseStyles & HTMLAttributes<HTMLDivElement>;
 
 const Box = (props: BoxProps): ReactNode => {
-    const theme = useTheme();
-
     const styles = constructStyles(props);
     const { css, children, ...rest } = props;
     const boxStyle = emotionCss`
@@ -18,7 +15,7 @@ const Box = (props: BoxProps): ReactNode => {
         ${styles.margin && `margin: ${styles.margin};`}
         ${styles.background && `background: ${styles.background};`}
         ${styles.border && `border: ${styles.border};`}
-        border-radius: ${theme.borderRadius};
+        border-radius: var(--mf-radius-card);
     `;
    
     return <div css={[boxStyle, css]} {...rest}>{children}</div>;

@@ -1,14 +1,13 @@
 /**
  * Styling ideas: https://freefrontend.com/css-sidebar-menus/
- * 
+ *
  * https://cloudscape.design/get-started/integration/global-styles/ <- i like this
  *
- * Sidebar > Item > Item (A sidebar has items and those items have items) 
+ * Sidebar > Item > Item (A sidebar has items and those items have items)
  */
 
 import { ReactNode, useState } from 'react';
 import { css } from '@emotion/react';
-import { useTheme } from '@maelstrom-futurism/core';
 
 import Heading from './Heading';
 import { SidebarContext } from './SidebarContext';
@@ -25,9 +24,8 @@ const Sidebar = ({
     isOpen = true,
     children
 }: SidebarProps): ReactNode => {
-    const theme = useTheme();
     const [isOpenState, setIsOpenState] = useState(isOpen);
-    
+
     const openStyle = css`
         overflow-x: hidden;
         overflow-y: auto;
@@ -35,17 +33,17 @@ const Sidebar = ({
         width: 25vw;
         max-width: 380px;
 
-        border-right: solid 1px ${theme.color('borderMuted')};
+        border-right: solid 1px var(--mf-border-muted);
 
         @media (max-width: 379px) {
             width: 100%;
-        } 
+        }
     `;
 
     const closedStyle = css`
         width: 5vw;
         height: 44px;
-        
+
         ul, hr, a {
             display: none;
         }
@@ -57,22 +55,22 @@ const Sidebar = ({
         ul {
             list-style: none;
         }
-        
+
         hr {
             border: 0;
-            border-top: solid 1px ${theme.color('borderMuted')};
+            border-top: solid 1px var(--mf-border-muted);
         }
 
         a {
-            color: ${theme.color('textColor')};
+            color: var(--mf-text);
             text-decoration: none;
         }
 
         a:hover {
-            color: ${theme.color('linkColor')};
+            color: var(--mf-link);
             text-decoration: underline;
         }
-    `;    
+    `;
 
     return (
         <aside css={[sidebarContainer, isOpenState ? openStyle : closedStyle]}>

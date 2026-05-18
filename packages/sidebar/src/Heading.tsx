@@ -1,7 +1,6 @@
 import { ReactNode, useContext } from "react";
 import { css } from "@emotion/react";
 import { Button } from "@maelstrom-futurism/button";
-import { useTheme } from "@maelstrom-futurism/core";
 import { Icon } from "@maelstrom-futurism/icons";
 
 import { SidebarContext } from "./SidebarContext";
@@ -12,12 +11,11 @@ export interface HeadingProps {
 }
 
 const Heading = ({ title, logo }: HeadingProps): ReactNode => {
-    const theme = useTheme();
     const sidebarContext = useContext(SidebarContext);
 
     const headingStyle = css`
         padding: 0.5rem 1rem;
-        ${sidebarContext.isOpen ? `border-bottom: inset 2px ${theme.color('borderMuted')}` : "border-bottom: none"};
+        ${sidebarContext.isOpen ? `border-bottom: inset 2px var(--mf-border-muted)` : "border-bottom: none"};
 
         h2 {
             display: flex;
