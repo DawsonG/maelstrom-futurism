@@ -11,16 +11,14 @@ const ContentBoxPage = () => (
 
         <p>Found in <code>@maelstrom-futurism/core</code> and <code>maelstrom-futurism</code>.</p>
 
-        <ContentBox variant='alert'>This is an alert.</ContentBox>
-
-        <ContentBox variant='error'>This is an error.</ContentBox>
-
+        <h2>ContentBox</h2>
+        <ContentBox variant='alert'>This is an alert or error.</ContentBox>
         <ContentBox variant='warning'>This is a warning.</ContentBox>
-
         <ContentBox variant='info'>This is an info.</ContentBox>
-
         <ContentBox variant='success'>This is a success.</ContentBox>
+        <ContentBox>Normal ContentBox with no variant assigned.</ContentBox>
 
+        <h2>Pills</h2>
         <Pill variant='alert'>Alert</Pill>
         <Pill variant='error'>Error</Pill>
         <Pill variant='warning'>Warning</Pill>

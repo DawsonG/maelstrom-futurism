@@ -1,7 +1,6 @@
 import { css as emotionCss } from '@emotion/react';
 
 import Box, { BoxProps } from "./Box";
-import { Theme, useTheme } from '../themes';
 import { ReactNode } from 'react';
 
 type Variant = 'alert' | 'info' | 'error' | 'warning' | 'normal' | 'success';
@@ -10,11 +9,11 @@ export type ContentBoxProps = BoxProps & {
     variant?: Variant;
 }
 
-const getColors = (theme: Theme, bg?: string, border?: string, variant?: Variant) => {
+const getColors = (bg?: string, border?: string, variant?: Variant) => {
     if (bg || border) {
         return emotionCss`
-            background-color: ${bg || theme.color('content')};
-            border: ${border || theme.color('secondary')};
+            background-color: ${bg || 'var(--mf-content)'};
+            border: ${border || 'var(--mf-border)'};
         `;
     }
     
@@ -22,30 +21,29 @@ const getColors = (theme: Theme, bg?: string, border?: string, variant?: Variant
         case 'alert':
         case 'error':
             return emotionCss`
-                background-color: ${theme.color('alert')};
-                border: solid 1px ${theme.color('secondary')};
+                background-color: color-mix(in srgb, var(--mf-alert) 40%, transparent);
+                border: solid 1px var(--mf-alert);
             `;
         case 'warning':
             return emotionCss`
-                color: black;
-                background-color: ${theme.color('warning')};
-                border: solid 1px ${theme.color('secondary')};
+                background-color: color-mix(in srgb, var(--mf-warning) 40%, transparent);
+                border: solid 1px var(--mf-warning);
             `;
         case 'info':
             return emotionCss`
-                background-color: ${theme.color('info')};
-                border: solid 1px ${theme.color('secondary')};
+                background-color: color-mix(in srgb, var(--mf-info) 40%, transparent);
+                border: solid 1px var(--mf-info);
             `;
         case 'success':
             return emotionCss`
-                background-color: ${theme.color('success')};
-                border: solid 1px ${theme.color('secondary')};
+                background-color: color-mix(in srgb, var(--mf-success) 40%, transparent);
+                border: solid 1px var(--mf-success);
             `;
         case 'normal':
         default:
             return emotionCss`
-                background-color: ${bg || theme.color('content')};
-                border: ${border || theme.color('secondary')};
+                background-color: ${bg || 'var(--mf-content)'};
+                border: ${border || 'var(--mf-content)'};
             `;
     }
 }
@@ -57,9 +55,8 @@ const ContentBox = ({
     variant,
     ...rest
 }: ContentBoxProps): ReactNode => {
-    const theme = useTheme();
     // map each variant to a set of colors
-    const bgColors = getColors(theme, background, border, variant);
+    const bgColors = getColors(background, border, variant);
     const styles = emotionCss`
         padding: 0.75rem;
         margin-bottom: 0.25rem;
