@@ -9,34 +9,27 @@ const linkButtonStyles = css`
     background: transparent;
     cursor: pointer;
     font-size: 16px;
+    color: var(--mf-text);
+
+    &:hover {
+        color: var(--mf-link);
+        text-decoration: underline;
+    }
 `;
 
 interface LinkButtonProps {
-    theme: Theme;
     children?: ReactNode;
     onClick?: React.MouseEventHandler;
     disabled?: boolean;
 }
 
 const LinkButton = ({
-    theme,
     children,
     onClick,
     disabled,
-}: LinkButtonProps): ReactNode => {
-    const linkStyles = css`
-        color: ${theme.color("textColor")};
-
-        &:hover {
-            color: ${theme.color('linkColor')};
-            text-decoration: underline;
-        }
-    `;
-
-    return <button
-        onClick={onClick}
-        disabled={disabled}
-        css={[linkButtonStyles, linkStyles]}>{children}</button>;
-}
+}: LinkButtonProps): ReactNode => <button
+    onClick={onClick}
+    disabled={disabled}
+    css={linkButtonStyles}>{children}</button>;
 
 export default LinkButton;

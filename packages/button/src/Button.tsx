@@ -59,7 +59,7 @@ const Button = (props: ButtonProps): ReactNode => {
   const theme = useTheme();
   
   if (props.variant === "link") {
-    return <LinkButton theme={theme} {...props}/>
+    return <LinkButton {...props}/>
   }
 
   const {
