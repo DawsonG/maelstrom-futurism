@@ -25,7 +25,6 @@ export const bottom = css`
     margin-top: 8px;
 `;
 
-
 export const left = css`
     right: 100%;
     top: 50%;
