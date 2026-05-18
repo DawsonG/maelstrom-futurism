@@ -192,11 +192,11 @@ const Table = ({
             font-size: 14px;
             font-family: inherit;
             box-sizing: border-box;
-            transition: outline-color 150ms ${ease};
+            transition: outline-color var(--mf-dur-fast) ${ease};
 
             &::placeholder { color: ${theme.color('textColor')}70; }
             &:hover { outline-color: ${theme.color('textColor')}; }
-            &:focus { outline-color: ${theme.color('primary')}; }
+            &:focus { outline-color: ${theme.color('focus')}; }
         }
     `;
 
@@ -226,7 +226,7 @@ const Table = ({
             padding: 5px 12px;
             border-radius: 9999px;
             cursor: pointer;
-            transition: background 150ms, color 150ms;
+            transition: background var(--mf-dur-fast), color var(--mf-dur-fast);
 
             &[aria-pressed="true"] {
                 background: ${theme.color('primary')};
@@ -258,7 +258,7 @@ const Table = ({
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            transition: color 150ms ${ease};
+            transition: color var(--mf-dur-fast) ${ease};
         }
     `;
 
@@ -272,7 +272,7 @@ const Table = ({
         width: 12px;
         height: 12px;
         color: ${sortCol === colName ? theme.color('linkColor') : `${theme.color('textColor')}40`};
-        transition: color 150ms ${ease}, transform 150ms ${ease};
+        transition: color var(--mf-dur-fast) ${ease}, transform var(--mf-dur-fast) ${ease};
         transform: ${sortCol === colName && sortDir === 'asc' ? 'rotate(180deg)' : 'none'};
     `;
 
@@ -284,7 +284,7 @@ const Table = ({
     `;
 
     const rowStyle = css`
-        transition: background 150ms ${ease};
+        transition: background var(--mf-dur-fast) ${ease};
         &:hover td { background: var(--mf-bg-2); }
     `;
 
@@ -293,7 +293,7 @@ const Table = ({
         font-size: ${tdFontSize};
         border-bottom: 1px solid ${theme.color('borderMuted')};
         vertical-align: middle;
-        transition: background 150ms ${ease};
+        transition: background var(--mf-dur-fast) ${ease};
     `;
 
     const lastRowTdStyle = css`
@@ -305,7 +305,7 @@ const Table = ({
         border-bottom: 1px solid ${theme.color('borderMuted')};
         text-align: center;
         vertical-align: middle;
-        transition: background 150ms ${ease};
+        transition: background var(--mf-dur-fast) ${ease};
     `;
 
     const actionBtnStyle = css`
@@ -319,7 +319,7 @@ const Table = ({
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        transition: background 150ms ${ease}, color 150ms ${ease};
+        transition: background var(--mf-dur-fast) ${ease}, color var(--mf-dur-fast) ${ease};
 
         &:hover {
             background: var(--mf-bg-3);
@@ -387,7 +387,7 @@ const Table = ({
             cursor: pointer;
             font: inherit;
             font-size: 13px;
-            transition: background 150ms ${ease}, color 150ms ${ease};
+            transition: background var(--mf-dur-fast) ${ease}, color var(--mf-dur-fast) ${ease};
 
             &:hover:not(:disabled) { background: var(--mf-bg-3); }
             &[aria-current="page"] { background: ${theme.color('primary')}; }

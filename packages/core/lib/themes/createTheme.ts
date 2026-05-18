@@ -21,6 +21,23 @@ export interface ThemeOverrides {
         xl?: string;
         xxl?: string;
     };
+    durations?: {
+        fast?: string;
+        normal?: string;
+        slow?: string;
+        ripple?: string;
+    };
+    lineHeights?: {
+        tight?: string;
+        normal?: string;
+        relaxed?: string;
+    };
+    letterSpacings?: {
+        tight?: string;
+        normal?: string;
+        wide?: string;
+        display?: string;
+    };
 }
 
 /*
@@ -86,6 +103,18 @@ export const createTheme = (colorSetName: ColorSetName, overrides?: ThemeOverrid
 
     if (overrides?.sizes) {
         theme.sizes = { ...SIZES, ...overrides.sizes };
+    }
+
+    if (overrides?.durations) {
+        theme.durations = { ...theme.durations, ...overrides.durations };
+    }
+
+    if (overrides?.lineHeights) {
+        theme.lineHeights = { ...theme.lineHeights, ...overrides.lineHeights };
+    }
+
+    if (overrides?.letterSpacings) {
+        theme.letterSpacings = { ...theme.letterSpacings, ...overrides.letterSpacings };
     }
 
     return theme;

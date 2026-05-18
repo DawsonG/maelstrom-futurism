@@ -33,7 +33,7 @@ export const buttonStyle = css`
       position: absolute;
       opacity: 0.75;
       background-color: #fff;
-      animation: ${ripple} 1000ms;
+      animation: ${ripple} var(--mf-dur-ripple);
     }
   }
 `;

@@ -113,12 +113,32 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): ReactNod
             --mf-z-high:   ${themeValue.heights.high};
             --mf-z-top:    ${themeValue.heights.top};
 
+            /* Line heights */
+            --mf-lh-tight:   ${themeValue.lineHeights.tight};
+            --mf-lh-normal:  ${themeValue.lineHeights.normal};
+            --mf-lh-relaxed: ${themeValue.lineHeights.relaxed};
+
+            /* Letter spacings */
+            --mf-ls-tight:   ${themeValue.letterSpacings.tight};
+            --mf-ls-normal:  ${themeValue.letterSpacings.normal};
+            --mf-ls-wide:    ${themeValue.letterSpacings.wide};
+            --mf-ls-display: ${themeValue.letterSpacings.display};
+
             /* Motion */
             --mf-ease:       ${EASE_FUNCTION};
-            --mf-dur-fast:   100ms;
-            --mf-dur-normal: 200ms;
-            --mf-dur-slow:   300ms;
-            --mf-dur-ripple: 1000ms;
+            --mf-dur-fast:   ${themeValue.durations.fast};
+            --mf-dur-normal: ${themeValue.durations.normal};
+            --mf-dur-slow:   ${themeValue.durations.slow};
+            --mf-dur-ripple: ${themeValue.durations.ripple};
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            :root {
+                --mf-dur-fast:   1ms;
+                --mf-dur-normal: 1ms;
+                --mf-dur-slow:   1ms;
+                --mf-dur-ripple: 1ms;
+            }
         }
 
         *:focus-visible {
@@ -185,22 +205,22 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): ReactNod
             font-family: Poppins;
             font-size: ${themeValue.size('base')};
             font-weight: 400;
-            line-height: 1.5;
+            line-height: var(--mf-lh-normal);
         }
 
         h1, h2, h3, h4, h5, h6 {
             margin: ${themeValue.space[1]}px 0;
             font-family: var(--mf-font-sans);
             font-weight: 500;
-            line-height: 1.2;
-            letter-spacing: -0.01em;
+            line-height: var(--mf-lh-tight);
+            letter-spacing: var(--mf-ls-tight);
         }
         h1 { font-size: ${themeValue.sizes.xxl}; }
         h2 { font-size: ${themeValue.sizes.xl}; }
         h3 { font-size: ${themeValue.sizes.lg}; }
         h4 { font-size: ${themeValue.sizes.md}; }
-        h5 { font-size: ${themeValue.sizes.normal}; text-transform: uppercase; letter-spacing: 0.06em; }
-        h6 { font-size: ${themeValue.sizes.sm}; text-transform: uppercase; letter-spacing: 0.08em; }
+        h5 { font-size: ${themeValue.sizes.normal}; text-transform: uppercase; letter-spacing: var(--mf-ls-display); }
+        h6 { font-size: ${themeValue.sizes.sm}; text-transform: uppercase; letter-spacing: var(--mf-ls-display); }
 
         p {
             margin: 0 0 16px;
@@ -210,7 +230,7 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): ReactNod
         a {
             color: ${themeValue.color("linkColor")};
             text-decoration: none;
-            transition: color 100ms ${EASE_FUNCTION};
+            transition: color var(--mf-dur-fast) ${EASE_FUNCTION};
         }
         a:hover {
             text-decoration: underline;
@@ -232,7 +252,7 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps): ReactNod
         .mf-display, .mf-pixel {
             font-family: "Silkscreen", "Poppins", system-ui, sans-serif;
             font-weight: 400;
-            letter-spacing: 0.04em;
+            letter-spacing: var(--mf-ls-wide);
             text-transform: uppercase;
         }
 

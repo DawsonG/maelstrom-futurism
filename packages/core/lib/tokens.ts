@@ -33,3 +33,16 @@ export const RADII = {
     card:   '24px',
     pill:   '9999px',
 } as const;
+
+export const LINE_HEIGHTS = {
+    tight:   '1.2',
+    normal:  '1.5',
+    relaxed: '1.6',
+} as const;
+
+export const LETTER_SPACINGS = {
+    tight:   '-0.01em',
+    normal:  '0',
+    wide:    '0.04em',
+    display: '0.06em',
+} as const;

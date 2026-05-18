@@ -67,7 +67,7 @@ export const materialStyledInput = (theme: Theme) => css`
         background-color: transparent;
         padding-left: 10px;
         font-size: ${theme.size("base")};
-        transition: .1s ${EASE_FUNCTION};
+        transition: var(--mf-dur-fast) ${EASE_FUNCTION};
         outline: none;
         box-sizing: border-box;
     }
@@ -79,7 +79,7 @@ export const materialStyledInput = (theme: Theme) => css`
         transform: translateY(-50%);
         color: ${theme.color("textColor")}80;
         text-align: center;
-        transition: .2s ${EASE_FUNCTION};
+        transition: var(--mf-dur-normal) ${EASE_FUNCTION};
         font-size: 1.2rem;
         pointer-events: none;
     }
@@ -97,7 +97,7 @@ export const materialStyledInput = (theme: Theme) => css`
         right: 0;
         bottom: 0;
         transform: scaleX(0);
-        transition: transform 0.2s ${EASE_FUNCTION};
+        transition: transform var(--mf-dur-normal) ${EASE_FUNCTION};
         border-bottom: 2px solid ${theme.color("focus")};
     }
 
@@ -125,7 +125,7 @@ export const normalStyledInput = (theme: Theme) => css`
         border: none;
         padding-left: 10px;
         font-size: ${theme.size("base")};
-        transition: .1s ${EASE_FUNCTION};
+        transition: var(--mf-dur-fast) ${EASE_FUNCTION};
         background: transparent;
         width: 100%;
     }
@@ -138,7 +138,7 @@ export const normalStyledInput = (theme: Theme) => css`
         color: ${theme.color("textColor")}80;
         background-color: inherit;
         text-align: center;
-        transition: .2s ${EASE_FUNCTION};
+        transition: var(--mf-dur-normal) ${EASE_FUNCTION};
         font-size: 1.2rem;
         pointer-events: none;
         padding: 0 5px;

@@ -37,7 +37,7 @@ export const materialStyledCheckbox = (theme: Theme) => css`
     user-select: none;
     padding: 4px 0;
     border-bottom: 1px solid transparent;
-    transition: border-color .2s ${EASE_FUNCTION};
+    transition: border-color var(--mf-dur-normal) ${EASE_FUNCTION};
 
     input[type="checkbox"] {
         appearance: none;
@@ -49,7 +49,7 @@ export const materialStyledCheckbox = (theme: Theme) => css`
         position: relative;
         cursor: pointer;
         flex-shrink: 0;
-        transition: border-color .2s ${EASE_FUNCTION}, background .2s ${EASE_FUNCTION};
+        transition: border-color var(--mf-dur-normal) ${EASE_FUNCTION}, background var(--mf-dur-normal) ${EASE_FUNCTION};
         background: transparent;
     }
 
@@ -64,7 +64,7 @@ export const materialStyledCheckbox = (theme: Theme) => css`
         border-top: none;
         border-left: none;
         transform: rotate(45deg) scale(0);
-        transition: transform .2s ${EASE_FUNCTION};
+        transition: transform var(--mf-dur-normal) ${EASE_FUNCTION};
     }
 
     input[type="checkbox"]:checked {
@@ -95,7 +95,7 @@ export const materialStyledCheckbox = (theme: Theme) => css`
         font-size: ${theme.size("base")};
         color: ${theme.color("textColor")};
         cursor: pointer;
-        transition: color .2s ${EASE_FUNCTION};
+        transition: color var(--mf-dur-normal) ${EASE_FUNCTION};
     }
 
     &:has(input[type="checkbox"]:checked) label {

@@ -1,5 +1,5 @@
 import { ColorSet, ThemeInterface } from "../interfaces";
-import { SIZES, SPACES, BREAKPOINTS, HEIGHTS, RADII } from "../tokens";
+import { SIZES, SPACES, BREAKPOINTS, HEIGHTS, RADII, LINE_HEIGHTS, LETTER_SPACINGS } from "../tokens";
 
 export type ColorMode = "Light" | "Dark" | "User";
 
@@ -18,6 +18,17 @@ class Theme {
   inputRadius: string  = RADII.input;
   buttonRadius: string = RADII.button;
   pillRadius: string   = RADII.pill;
+
+  durations = {
+    fast:   '100ms',
+    normal: '200ms',
+    slow:   '300ms',
+    ripple: '1000ms',
+  };
+
+  lineHeights: { tight: string; normal: string; relaxed: string } = { ...LINE_HEIGHTS };
+
+  letterSpacings: { tight: string; normal: string; wide: string; display: string } = { ...LETTER_SPACINGS };
 
   size(name: string): string {
     return this.sizes[name as keyof typeof this.sizes];

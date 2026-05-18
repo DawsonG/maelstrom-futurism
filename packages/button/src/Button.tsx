@@ -47,7 +47,7 @@ const getVariantStyle = (theme: Theme, variant: ButtonVariant, outline: boolean)
     background: ${backgroundColor};
     box-shadow: inset 0 0 0 1px ${boxShadowColor};
     color: ${outline ? lcolors[0] : lcolors[1]};
-    transition: all .3s;
+    transition: all var(--mf-dur-slow);
     &:hover {
       box-shadow: inset 0 0 0 1000px ${boxShadowColor};
       color: ${lcolors[1]};
