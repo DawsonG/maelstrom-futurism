@@ -1,5 +1,4 @@
 import React from "react";
-import { useTheme } from "@maelstrom-futurism/core";
 
 import { materialStyledRadio } from "./styles";
 
@@ -37,11 +36,10 @@ export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
 
 const Radio = React.forwardRef(
     ({ name, value, label, ...rest }: RadioProps, ref?: any) => {
-        const theme = useTheme();
         const id = `${name}-${value}`;
 
         return (
-            <div css={materialStyledRadio(theme)}>
+            <div css={materialStyledRadio}>
                 <input
                     id={id}
                     type="radio"

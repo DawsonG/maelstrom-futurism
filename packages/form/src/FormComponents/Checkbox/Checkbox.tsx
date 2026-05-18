@@ -1,5 +1,4 @@
 import React from "react";
-import { useTheme } from "@maelstrom-futurism/core";
 
 import { materialStyledCheckbox } from "./styles";
 
@@ -37,11 +36,10 @@ export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputE
 
 const Checkbox = React.forwardRef(
     ({ name, label, value, ...rest }: CheckboxProps, ref?: any) => {
-        const theme = useTheme();
         const id = value ? `${name}-${value}` : name;
 
         return (
-            <div css={materialStyledCheckbox(theme)}>
+            <div css={materialStyledCheckbox}>
                 <input
                     id={id}
                     type="checkbox"

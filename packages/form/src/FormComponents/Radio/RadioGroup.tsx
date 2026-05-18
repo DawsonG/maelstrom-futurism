@@ -1,5 +1,4 @@
 import React from "react";
-import { useTheme } from "@maelstrom-futurism/core";
 
 import { radioGroupContainer, groupLabel, helpText as helpTextCss, optionsContainer } from "./styles";
 import Radio from "./Radio";
@@ -68,8 +67,6 @@ const RadioGroup = ({
     onChange,
     required,
 }: RadioGroupProps) => {
-    const theme = useTheme();
-
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
         if (onChange) {
             onChange((e.target as HTMLInputElement).value);
@@ -79,7 +76,7 @@ const RadioGroup = ({
     return (
         <div css={radioGroupContainer}>
             {label && (
-                <span css={groupLabel(theme)}>
+                <span css={groupLabel}>
                     {label}
                     {required && " *"}
                 </span>

@@ -1,5 +1,4 @@
 import React from "react";
-import { useTheme } from "@maelstrom-futurism/core";
 
 import { checkboxGroupContainer, groupLabel, helpText as helpTextCss, optionsContainer } from "./styles";
 import Checkbox from "./Checkbox";
@@ -67,8 +66,6 @@ const CheckboxGroup = ({
     onChange,
     required,
 }: CheckboxGroupProps) => {
-    const theme = useTheme();
-
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
         if (!onChange || !value) return;
         const target = e.target as HTMLInputElement;
@@ -81,7 +78,7 @@ const CheckboxGroup = ({
     return (
         <div css={checkboxGroupContainer}>
             {label && (
-                <span css={groupLabel(theme)}>
+                <span css={groupLabel}>
                     {label}
                     {required && " *"}
                 </span>
