@@ -26,7 +26,7 @@ const Container = ({ fluid, children, margin, padding, maxWidth, ...rest }: Cont
             margin: ${margin ? margin : '0 auto'};
             width: ${fWidth};
             // Necessary for some of the background calculations done in child components
-            background-color: ${theme.color("background")};
+            background-color: var(--mf-background);
 
             padding: ${padding ? padding : '0 1rem'};
             padding-left: 1rem;

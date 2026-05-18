@@ -14,11 +14,11 @@ export interface ColumnProps extends HTMLAttributes<HTMLDivElement> {
     rightBorder?: boolean | string;
 }
 
-function borderWrite(bName: string, color: string, bVar?: boolean | string) {
+function borderWrite(bName: string, bVar?: boolean | string) {
     if (!bVar) return;
 
     if (typeof bVar === "boolean" && bVar) {
-        return `${bName}: solid 1px ${color};`;
+        return `${bName}: solid 1px var(--mf-secondary);`;
     }
 
     return `${bName}: ${bVar};`;
@@ -81,10 +81,10 @@ const Column = ({
 
         ${!xsWidth && !smWidth && !mdWidth && !lgWidth && "flex: 1 0 0;"}
 
-        ${borderWrite("border-top", theme.color("secondary"), topBorder)}
-        ${borderWrite("border-right", theme.color("secondary"), rightBorder)}
-        ${borderWrite("border-bottom", theme.color("secondary"), bottomBorder)}
-        ${borderWrite("border-left", theme.color("secondary"), leftBorder)}
+        ${borderWrite("border-top", topBorder)}
+        ${borderWrite("border-right", rightBorder)}
+        ${borderWrite("border-bottom", bottomBorder)}
+        ${borderWrite("border-left", leftBorder)}
     `;
 
     return (
