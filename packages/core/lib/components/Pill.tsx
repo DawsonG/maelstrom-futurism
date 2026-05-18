@@ -4,27 +4,27 @@ import { css as emotionCss, SerializedStyles } from '@emotion/react';
 export type PillVariant = 'success' | 'warning' | 'alert' | 'info' | 'muted';
 
 export interface PillProps extends HTMLAttributes<HTMLSpanElement> {
-    css?: SerializedStyles | SerializedStyles[];
-    variant?: PillVariant;
-    dot?: boolean;
-    children: ReactNode;
+  css?: SerializedStyles | SerializedStyles[];
+  variant?: PillVariant;
+  dot?: boolean;
+  children: ReactNode;
 }
 
 const variantColor = (variant: PillVariant): string => {
-    const map: Record<PillVariant, string> = {
-        success: 'var(--mf-success)',
-        warning: 'var(--mf-warning)',
-        alert:   'var(--mf-alert)',
-        info:    'var(--mf-info)',
-        muted:   'var(--mf-text-muted)',
-    };
-    return map[variant];
+  const map: Record<PillVariant, string> = {
+    success: 'var(--mf-success)',
+    warning: 'var(--mf-warning)',
+    alert: 'var(--mf-alert)',
+    info: 'var(--mf-info)',
+    muted: 'var(--mf-text-muted)',
+  };
+  return map[variant];
 };
 
 const Pill = ({ variant = 'info', dot = false, children, css, ...rest }: PillProps): ReactNode => {
-    const color = variantColor(variant);
+  const color = variantColor(variant);
 
-    const pillStyle = emotionCss`
+  const pillStyle = emotionCss`
         display: inline-flex;
         align-items: center;
         gap: 6px;
@@ -37,7 +37,7 @@ const Pill = ({ variant = 'info', dot = false, children, css, ...rest }: PillPro
         color: ${color};
     `;
 
-    const dotStyle = emotionCss`
+  const dotStyle = emotionCss`
         width: 6px;
         height: 6px;
         border-radius: 50%;
@@ -45,12 +45,12 @@ const Pill = ({ variant = 'info', dot = false, children, css, ...rest }: PillPro
         flex-shrink: 0;
     `;
 
-    return (
-        <span css={[pillStyle, css]} {...rest}>
-            {dot && <span css={dotStyle} aria-hidden="true" />}
-            {children}
-        </span>
-    );
+  return (
+    <span css={[pillStyle, css]} {...rest}>
+      {dot && <span css={dotStyle} aria-hidden="true" />}
+      {children}
+    </span>
+  );
 };
 
 export default Pill;

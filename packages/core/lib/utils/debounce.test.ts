@@ -1,29 +1,29 @@
-import { afterAll, beforeAll, describe, expect, Mock, test, vi, vitest } from "vitest";
-import { debounce } from "./debounce";
+import { afterAll, beforeAll, describe, expect, Mock, test, vi, vitest } from 'vitest';
+import { debounce } from './debounce';
 
 describe('debounce', () => {
-    beforeAll(() => {
-        vi.useFakeTimers();
-    });
+  beforeAll(() => {
+    vi.useFakeTimers();
+  });
 
-    afterAll(() => {
-        vi.useRealTimers();
-    });
+  afterAll(() => {
+    vi.useRealTimers();
+  });
 
-    let func: Mock;
-    let debouncedFunc: Function;
+  let func: Mock;
+  let debouncedFunc: () => void;
 
-    test('it executes a given function just once in 1000ms', () => {
-        func = vitest.fn();
-        debouncedFunc = debounce(func, 1000);
+  test('it executes a given function just once in 1000ms', () => {
+    func = vitest.fn();
+    debouncedFunc = debounce(func, 1000);
 
-        for (let i = 0; i < 100; i++) {
-            debouncedFunc();
-        }
+    for (let i = 0; i < 100; i++) {
+      debouncedFunc();
+    }
 
-        // Fast-forward time
-        vi.runAllTimers();
+    // Fast-forward time
+    vi.runAllTimers();
 
-        expect(func).toBeCalledTimes(1);
-    });
+    expect(func).toBeCalledTimes(1);
+  });
 });

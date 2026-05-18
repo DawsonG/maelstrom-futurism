@@ -2,6 +2,7 @@
   "version": "0.9.0",
   "description": "OSMstudios own React component library",
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
+  "type": "module",
   "workspaces": {
     "packages": [
       "packages/*",
@@ -25,6 +26,7 @@
     "build": "lerna run build --ignore src,website --no-private --stream",
     "test": "lerna run test --ignore src,website --no-private --stream",
     "lint": "lerna run lint --ignore src --stream",
+    "lint:fix": "lerna run lint:fix --ignore src --stream",
     "clean": "lerna run clean --ignore src,website --no-private --stream && rm -Rf node_modules && rm package-lock.json",
     "version": "lerna version",
     "prepublishOnly": "npm run build",

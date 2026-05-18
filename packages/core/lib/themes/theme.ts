@@ -1,7 +1,7 @@
-import { ColorSet, ThemeInterface } from "../interfaces";
-import { SIZES, SPACES, BREAKPOINTS, HEIGHTS, RADII, LINE_HEIGHTS, LETTER_SPACINGS } from "../tokens";
+import { ColorSet, ThemeInterface } from '../interfaces';
+import { SIZES, SPACES, BREAKPOINTS, HEIGHTS, RADII, LINE_HEIGHTS, LETTER_SPACINGS } from '../tokens';
 
-export type ColorMode = "Light" | "Dark" | "User";
+export type ColorMode = 'Light' | 'Dark' | 'User';
 
 class Theme {
   readonly colors: ColorSet;
@@ -15,14 +15,14 @@ class Theme {
   heights = { ...HEIGHTS };
 
   borderRadius: string = RADII.card;
-  inputRadius: string  = RADII.input;
+  inputRadius: string = RADII.input;
   buttonRadius: string = RADII.button;
-  pillRadius: string   = RADII.pill;
+  pillRadius: string = RADII.pill;
 
   durations = {
-    fast:   '100ms',
+    fast: '100ms',
     normal: '200ms',
-    slow:   '300ms',
+    slow: '300ms',
     ripple: '1000ms',
   };
 

@@ -11,45 +11,45 @@ import Theme from './theme';
 import { createTheme } from './createTheme';
 import { EASE_FUNCTION } from '../motion';
 
-const ThemeContext = createContext(createTheme("nordLight"));
+const ThemeContext = createContext(createTheme('nordLight'));
 export const useTheme = () => useContext(ThemeContext);
 
 interface ThemeProviderProps {
-    theme: Theme;
-    darkTheme?: Theme;
-    colorScheme?: 'light' | 'dark' | 'auto';
-    children: ReactNode;
+  theme: Theme;
+  darkTheme?: Theme;
+  colorScheme?: 'light' | 'dark' | 'auto';
+  children: ReactNode;
 }
 
 export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children }: ThemeProviderProps): ReactNode => {
-    const [colorSchemeActual, setColorSchemeActual] = useState<'dark' | 'light'>('light');
-    const [systemPrefersDark, setSystemPrefersDark] = useState(false);
+  const [colorSchemeActual, setColorSchemeActual] = useState<'dark' | 'light'>('light');
+  const [_systemPrefersDark, setSystemPrefersDark] = useState(false);
 
-    useEffect(() => {
-        if (!darkTheme) {
-            // no dark theme is available so we'll have to use the light theme
-            setColorSchemeActual('light');
-            return;
-        }
-        
-        if (colorScheme !== 'auto') {
-            // color scheme has been manaully set, pass it on
-            setColorSchemeActual(colorScheme);
-            return;
-        }
+  useEffect(() => {
+    if (!darkTheme) {
+      // no dark theme is available so we'll have to use the light theme
+      setColorSchemeActual('light');
+      return;
+    }
 
-        // calculate based on browser settings
-        const mq = window.matchMedia('(prefers-color-scheme: dark)');
-        const handler = (e: MediaQueryListEvent) => setSystemPrefersDark(e.matches);
+    if (colorScheme !== 'auto') {
+      // color scheme has been manaully set, pass it on
+      setColorSchemeActual(colorScheme);
+      return;
+    }
 
-        mq.addEventListener('change', handler);
-        setColorSchemeActual(mq.matches ? 'dark' : 'light');
-        return () => mq.removeEventListener('change', handler);
-    }, [darkTheme, colorScheme]);
+    // calculate based on browser settings
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const handler = (e: MediaQueryListEvent) => setSystemPrefersDark(e.matches);
 
-    const themeValue = colorSchemeActual === 'dark' ? darkTheme! : theme;
+    mq.addEventListener('change', handler);
+    setColorSchemeActual(mq.matches ? 'dark' : 'light');
+    return () => mq.removeEventListener('change', handler);
+  }, [darkTheme, colorScheme]);
 
-    const globalStyles = css`
+  const themeValue = colorSchemeActual === 'dark' ? darkTheme! : theme;
+
+  const globalStyles = css`
         :root {
             /* Semantic colors */
             --mf-background:   ${themeValue.color('background')};
@@ -218,8 +218,8 @@ export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children
         }
         body {
             margin: 0;
-            color: ${themeValue.color("textColor")};
-            background-color: ${themeValue.color("background")};
+            color: ${themeValue.color('textColor')};
+            background-color: ${themeValue.color('background')};
             font-family: Poppins;
             font-size: ${themeValue.size('base')};
             font-weight: 400;
@@ -246,7 +246,7 @@ export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children
         }
 
         a {
-            color: ${themeValue.color("linkColor")};
+            color: ${themeValue.color('linkColor')};
             text-decoration: none;
             transition: color var(--mf-dur-fast) ${EASE_FUNCTION};
         }
@@ -279,14 +279,14 @@ export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children
         }
 
         .mf-text-muted {
-            color: ${themeValue.color("textColor")}80;
+            color: ${themeValue.color('textColor')}80;
         }
     `;
 
-    return (
-        <ThemeContext.Provider value={themeValue}>
-            <Global styles={globalStyles} />
-            {children}
-        </ThemeContext.Provider>
-    );
+  return (
+    <ThemeContext.Provider value={themeValue}>
+      <Global styles={globalStyles} />
+      {children}
+    </ThemeContext.Provider>
+  );
 };

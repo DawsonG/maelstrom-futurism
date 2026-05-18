@@ -5,7 +5,7 @@ const stylisticCustomized = stylistic.configs.customize({
   indent: 2,
   quotes: 'single',
   semi: true,
-  jsx: false,
+  jsx: true,
   commaDangle: 'always-multiline',
   arrowParens: 'as-needed',
   braceStyle: '1tbs',
@@ -14,15 +14,15 @@ const stylisticCustomized = stylistic.configs.customize({
 export default [
   {
     ignores: [
-      'node_modules/**/*',
-      'dist/**',
+      '**/node_modules/**',
+      '**/dist/**',
     ],
   },
   {
     plugins: {
       ...stylisticCustomized.plugins,
     },
-    files: ['**/*.{js,ts}'],
+    files: ['**/*.{js,jsx,ts,tsx}'],
     rules: {
       ...stylisticCustomized.rules,
       '@typescript-eslint/no-explicit-any': 'warn',

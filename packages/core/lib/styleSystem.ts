@@ -1,5 +1,5 @@
 import { SerializedStyles } from '@emotion/react';
-//import { RequireOneOrNone } from 'type-fest';
+// import { RequireOneOrNone } from 'type-fest';
 // The world (well mostly this project) just isn't ready for the crazy
 // type weirdness I'm trying to implement here.
 /*
@@ -33,38 +33,39 @@ export type BaseStyles = {
 */
 
 export interface BaseStyles {
-    border?: string;
-    css?: SerializedStyles | SerializedStyles[];
-    bg?: string;
-    background?: string;
-    p?: string;
-    padding?: string;
-    m?: string;
-    margin?: string;
-    w?: string;
-    width?: string;
-    h?: string;
-    height?: string;
+  border?: string;
+  css?: SerializedStyles | SerializedStyles[];
+  bg?: string;
+  background?: string;
+  p?: string;
+  padding?: string;
+  m?: string;
+  margin?: string;
+  w?: string;
+  width?: string;
+  h?: string;
+  height?: string;
 }
 
-const keyMap: Record<string, string> = {
-    bg: "background",
-    w: "width",
-    h: "height",
-    m: "margin",
-    p: "padding"
+const keyMap: Record<'bg' | 'w' | 'h' | 'm' | 'p', keyof BaseStyles> = {
+  bg: 'background',
+  w: 'width',
+  h: 'height',
+  m: 'margin',
+  p: 'padding',
 };
 
 export const constructStyles = (styles: BaseStyles) => {
-    const boxStyle = {} as any;
+  const boxStyle = {} as Partial<BaseStyles>;
 
-    // TODO: Edit this style component so that it can take compound keys
-    // for instance bgColor -> backgroundColor.
-    // TODO: fix this to warn on duplicate keys, for instance if `bg` and `background`
-    // both exist
-    for (const [key, value] of Object.entries(styles)) {
-        boxStyle[keyMap[key] || key] = value;
-    }
+  // TODO: Edit this style component so that it can take compound keys
+  // for instance bgColor -> backgroundColor.
+  // TODO: fix this to warn on duplicate keys, for instance if `bg` and `background`
+  // both exist
+  for (const [key, value] of Object.entries(styles) as [keyof BaseStyles, BaseStyles[keyof BaseStyles]][]) {
+    const mappedKey = (key in keyMap ? keyMap[key as keyof typeof keyMap] : key) as keyof BaseStyles;
+    boxStyle[mappedKey] = value as never;
+  }
 
-    return boxStyle;
+  return boxStyle;
 };
