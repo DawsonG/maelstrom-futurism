@@ -25,7 +25,7 @@ export enum VDirection {
 export enum Background {
   NONE = 'none',
   GRAPH = 'graph',
-  DOT = 'dot'
+  DOT = 'dot',
 }
 type BackgroundOptions = 'none' | 'graph' | 'dot' | Background;
 
@@ -53,15 +53,15 @@ export default function Paper({
   showReadabilityControls = false,
 }: PaperProps) {
   // outerStyles
-  let outerStyles = [
-    styles.paper
+  const outerStyles = [
+    styles.paper,
   ];
   if (centered) {
     outerStyles.push(styles.centered);
   }
 
   if (variant) {
-    switch(variant) {
+    switch (variant) {
       case StackType.NONE:
         outerStyles.push(styles.stackTypeNone);
         break;
@@ -73,16 +73,16 @@ export default function Paper({
         break;
       case StackType.STACK:
         if (direction === VDirection.TOP) {
-          outerStyles.push(styles.stackTypeTop)
+          outerStyles.push(styles.stackTypeTop);
         } else {
-          outerStyles.push(styles.stackTypeBottom)
+          outerStyles.push(styles.stackTypeBottom);
         }
         break;
     }
   }
 
   // Build inner styles
-  let innerStyles = [];
+  const innerStyles = [];
   if (background) {
     switch (background) {
       case Background.DOT:

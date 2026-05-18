@@ -4,12 +4,12 @@ import styles from './ReadabilityBar.module.scss';
 import TextSize from './TextSize';
 
 const ReadabilityBar = (): ReactElement => {
-    return (
-        <div className={styles.readabilityBar}>
+  return (
+    <div className={styles.readabilityBar}>
 
-            <TextSize />
-        </div>
-    );
+      <TextSize />
+    </div>
+  );
 };
 
 export default ReadabilityBar;
