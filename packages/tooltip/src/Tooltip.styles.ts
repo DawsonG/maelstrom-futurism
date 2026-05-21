@@ -7,7 +7,7 @@ export const base = css`
     padding: 12px;
     border: 1px solid var(--mf-border-muted);
     border-radius: var(--mf-radius-card);
-    z-index: 1000;
+    z-index: var(--mf-z-high);
     min-width: 200px;
 `;
 
