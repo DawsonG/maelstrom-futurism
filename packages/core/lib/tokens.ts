@@ -46,3 +46,9 @@ export const LETTER_SPACINGS = {
   wide: '0.04em',
   display: '0.06em',
 } as const;
+
+export const FONTS = {
+  sans:    '"Poppins", system-ui, -apple-system, "Segoe UI", sans-serif',
+  display: '"Silkscreen", "Poppins", system-ui, sans-serif',
+  mono:    '"JetBrainsMono", ui-monospace, "SF Mono", Menlo, monospace',
+} as const;

@@ -1,5 +1,5 @@
 import { ColorSet, ThemeInterface } from '../interfaces';
-import { SIZES, SPACES, BREAKPOINTS, HEIGHTS, RADII, LINE_HEIGHTS, LETTER_SPACINGS } from '../tokens';
+import { SIZES, SPACES, BREAKPOINTS, HEIGHTS, RADII, LINE_HEIGHTS, LETTER_SPACINGS, FONTS } from '../tokens';
 
 export type ColorMode = 'Light' | 'Dark' | 'User';
 
@@ -29,6 +29,8 @@ class Theme {
   lineHeights: { tight: string; normal: string; relaxed: string } = { ...LINE_HEIGHTS };
 
   letterSpacings: { tight: string; normal: string; wide: string; display: string } = { ...LETTER_SPACINGS };
+
+  fonts: { sans: string; display: string; mono: string } = { ...FONTS };
 
   customColors: Record<string, string> = {};
 

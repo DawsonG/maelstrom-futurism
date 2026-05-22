@@ -38,6 +38,11 @@ export interface ThemeOverrides {
     wide?: string;
     display?: string;
   };
+  fonts?: {
+    sans?: string;
+    display?: string;
+    mono?: string;
+  };
   customColors?: Record<string, string>;
 }
 
@@ -122,6 +127,10 @@ export const createTheme = (colorSetName: ColorSetName, overrides?: ThemeOverrid
 
   if (overrides?.letterSpacings) {
     theme.letterSpacings = { ...theme.letterSpacings, ...overrides.letterSpacings };
+  }
+
+  if (overrides?.fonts) {
+    theme.fonts = { ...theme.fonts, ...overrides.fonts };
   }
 
   if (overrides?.customColors) {

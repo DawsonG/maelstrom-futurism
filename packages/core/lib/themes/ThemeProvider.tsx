@@ -92,9 +92,9 @@ export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children
             --nord-aurora-purple: #b48ead;
 
             /* Type families */
-            --mf-font-sans:    "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
-            --mf-font-display: "Silkscreen", "Poppins", system-ui, sans-serif;
-            --mf-font-mono:    "JetBrainsMono", ui-monospace, "SF Mono", Menlo, monospace;
+            --mf-font-sans:    ${themeValue.fonts.sans};
+            --mf-font-display: ${themeValue.fonts.display};
+            --mf-font-mono:    ${themeValue.fonts.mono};
 
             /* Type scale */
             --mf-size-base:   ${themeValue.sizes.base};
