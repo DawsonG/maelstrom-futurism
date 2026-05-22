@@ -1,4 +1,5 @@
 import { ReactNode, useRef, useEffect } from 'react';
+import { SerializedStyles } from '@emotion/react';
 
 import * as tooltipStyles from './Tooltip.styles';
 
@@ -7,6 +8,8 @@ interface TooltipProps {
   children: ReactNode;
   position?: 'top' | 'bottom' | 'left' | 'right';
   trigger?: 'hover' | 'click';
+  css?: SerializedStyles | SerializedStyles[];
+  className?: string;
 }
 
 const Tooltip = ({
@@ -14,6 +17,8 @@ const Tooltip = ({
   children,
   position = 'top',
   trigger = 'hover',
+  css,
+  className,
 }: TooltipProps): ReactNode => {
   const containerRef = useRef<HTMLDivElement>(null);
   const toggleTooltip = (visible: boolean) => {
@@ -44,7 +49,12 @@ const Tooltip = ({
     >
       {children}
 
-      <div ref={containerRef} style={{ display: 'none' }} css={[tooltipStyles.base, tooltipStyles[position]]}>
+      <div
+        ref={containerRef}
+        style={{ display: 'none' }}
+        css={[tooltipStyles.base, tooltipStyles[position], css]}
+        className={className}
+      >
         {content}
       </div>
     </div>

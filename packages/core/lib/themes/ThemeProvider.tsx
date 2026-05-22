@@ -279,6 +279,10 @@ export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children
         code {
             padding: 1px 6px;
             border-radius: 6px;
+
+            &.language-jsx {
+                padding: 0;
+            }
         }
 
         form {

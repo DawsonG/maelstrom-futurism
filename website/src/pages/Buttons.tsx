@@ -13,11 +13,11 @@ const Buttons = () => (
         <p>Found in <code>@maelstrom-futurism/button</code> and <code>maelstrom-futurism</code>.</p>
 
         <h2>Variants</h2>
-        <CodeView>
-{`<Button variant="primary">Primary</Button>
+        <CodeView>{`<Button variant="primary">Primary</Button>
 <Button variant="secondary">Secondary</Button>
 <Button variant="cancel">Cancel</Button>
 <Button variant="ghost">Ghost</Button>
+<Button variant="outline">Outline</Button>
 <Button variant="link">Link</Button>`}
         </CodeView>
 
@@ -26,12 +26,13 @@ const Buttons = () => (
             <Button variant="secondary">Secondary</Button>
             <Button variant="cancel">Cancel</Button>
             <Button variant="ghost">Ghost</Button>
+            <Button variant="outline">Outline</Button>
             <Button variant="link">Link</Button>
+            
         </div>
 
         <h2>Sizes</h2>
-        <CodeView>
-{`<Button size="xs">Very Small [xs]</Button>
+        <CodeView>{`<Button size="xs">Very Small [xs]</Button>
 <Button size="sm">Small [sm]</Button>
 <Button size="md">Medium/Normal [md]</Button>
 <Button size="lg">Large [lg]</Button>

@@ -6,9 +6,7 @@ import nightOwl from 'react-syntax-highlighter/dist/esm/styles/prism/night-owl';
 SyntaxHighlighter.registerLanguage('jsx', jsx);
 
 const CodeView = ({ children }: { children: string | string[]}): ReactNode => (
-    <SyntaxHighlighter language="jsx" style={nightOwl}>
-        {children}
-    </SyntaxHighlighter>
+    <SyntaxHighlighter language="jsx" style={nightOwl}>{children}</SyntaxHighlighter>
 );
 
 export default CodeView;

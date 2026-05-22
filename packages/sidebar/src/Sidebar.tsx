@@ -7,21 +7,25 @@
  */
 
 import { ReactNode, useState } from 'react';
-import { css } from '@emotion/react';
+import { css, SerializedStyles } from '@emotion/react';
 
 import Heading from './Heading';
 import { SidebarContext } from './SidebarContext';
 
 interface SidebarProps {
-  name?: string; // the title at the top of the sidebar
+  name?: string;
   isClosable?: boolean;
   isOpen?: boolean;
+  css?: SerializedStyles | SerializedStyles[];
+  className?: string;
   children?: ReactNode;
 }
 
 const Sidebar = ({
   isClosable = false,
   isOpen = true,
+  css: cssProp,
+  className,
   children,
 }: SidebarProps): ReactNode => {
   const [isOpenState, setIsOpenState] = useState(isOpen);
@@ -73,7 +77,7 @@ const Sidebar = ({
     `;
 
   return (
-    <aside css={[sidebarContainer, isOpenState ? openStyle : closedStyle]}>
+    <aside css={[sidebarContainer, isOpenState ? openStyle : closedStyle, cssProp]} className={className}>
       <SidebarContext.Provider value={{ isOpen: isOpenState, setIsOpen: setIsOpenState, isClosable }}>
         {children}
       </SidebarContext.Provider>

@@ -1,4 +1,5 @@
 import React, { HTMLInputTypeAttribute } from 'react';
+import { SerializedStyles } from '@emotion/react';
 
 import {
   outsideContainer,
@@ -55,6 +56,12 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
   forwardedRef?: React.Ref<HTMLInputElement>;
+
+  /** Emotion css override applied to the outer container */
+  css?: SerializedStyles | SerializedStyles[];
+
+  /** className applied to the outer container */
+  className?: string;
 }
 
 const Input = React.forwardRef(({
@@ -66,6 +73,8 @@ const Input = React.forwardRef(({
   multiline,
   validationState,
   validationMessage,
+  css,
+  className,
   ...rest
 }: InputProps, ref?: React.Ref<HTMLInputElement>) => {
   if (multiline) {
@@ -84,7 +93,7 @@ const Input = React.forwardRef(({
   const additionalStyles = isMaterial ? materialStyledInput : normalStyledInput;
 
   return (
-    <div css={outsideContainer}>
+    <div css={[outsideContainer, css]} className={className}>
       <div css={[fcContainer, additionalStyles, validationState && validationStyle(validationState, variant)]}>
         <input
           id={name}

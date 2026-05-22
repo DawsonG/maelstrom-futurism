@@ -8,6 +8,7 @@ interface ContainerProps {
   margin?: string;
   padding?: string;
   maxWidth?: string;
+  className?: string;
 };
 
 const Container = ({ fluid, children, margin, padding, maxWidth, ...rest }: ContainerProps): ReactNode => {

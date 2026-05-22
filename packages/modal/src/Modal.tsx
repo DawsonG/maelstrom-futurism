@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { SerializedStyles } from '@emotion/react';
 import ReactDOM from 'react-dom';
 import {
   modalOverlay,
@@ -11,13 +12,14 @@ import {
 interface ModalProps {
   title?: string;
   children?: ReactNode;
-
+  css?: SerializedStyles | SerializedStyles[];
+  className?: string;
   isShowing?: boolean | (() => void);
-  hide: () => void; // (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  hide: () => void;
 }
 
 const Modal = ({
-  title, children, isShowing, hide,
+  title, children, isShowing, hide, css, className,
 }: ModalProps): ReactNode | null => {
   return isShowing
     ? ReactDOM.createPortal(
@@ -30,7 +32,7 @@ const Modal = ({
             tabIndex={-1}
             role="dialog"
           >
-            <div css={modal}>
+            <div css={[modal, css]} className={className}>
               <div css={modalHeader}>
                 <div className="title">{title}</div>
                 <button
