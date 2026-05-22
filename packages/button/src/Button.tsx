@@ -20,18 +20,20 @@ const variantMapping = {
   ghost: 'transparent',
   primary: 'var(--mf-primary)',
   link: 'var(--mf-primary)',
+  outline: 'var(--mf-primary)',
 };
 
-const getVariantStyle = (variant: ButtonVariant, outline: boolean) => {
+const getVariantStyle = (variant: ButtonVariant, outlineProp: boolean) => {
+  const isOutline = outlineProp || variant === 'outline';
   const variantColor = variantMapping[variant];
 
-  const boxShadowColor = outline ? variantColor : 'transparent';
-  const backgroundColor = outline ? 'transparent' : variantColor;
+  const boxShadowColor = isOutline ? variantColor : 'transparent';
+  const backgroundColor = isOutline ? 'transparent' : variantColor;
 
   return emotionCss`
     background: ${backgroundColor};
     box-shadow: inset 0 0 0 1px ${boxShadowColor};
-    color: ${outline ? variantColor : 'var(--mf-text)'};
+    color: ${isOutline ? variantColor : 'var(--mf-text)'};
     transition: all var(--mf-dur-slow);
     &:hover {
       box-shadow: inset 0 0 0 1000px ${boxShadowColor};

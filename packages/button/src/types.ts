@@ -6,7 +6,8 @@ export type ButtonVariant
     | 'secondary'
     | 'cancel'
     | 'ghost'
-    | 'link';
+    | 'link'
+    | 'outline';
 export type ButtonType = 'button' | 'submit';
 export type Sizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
@@ -28,4 +29,5 @@ export interface ButtonProps {
   outline?: boolean;
   onClick?: React.MouseEventHandler;
   disabled?: boolean;
+  className?: string;
 }
