@@ -34,6 +34,8 @@ class Theme {
 
   fonts: { sans: string; display: string; mono: string } = { ...FONTS };
 
+  navbarHeight: string = '60px';
+
   customColors: Record<string, string> = {};
 
   size(name: string): string {

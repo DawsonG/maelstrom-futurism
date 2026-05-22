@@ -48,6 +48,11 @@ export interface ThemeOverrides {
     display?: string;
     mono?: string;
   };
+  components?: {
+    navbar?: {
+      height?: string;
+    };
+  };
   customColors?: Record<string, string>;
 }
 
@@ -140,6 +145,10 @@ export const createTheme = (colorSetName: ColorSetName, overrides?: ThemeOverrid
 
   if (overrides?.fonts) {
     theme.fonts = { ...theme.fonts, ...overrides.fonts };
+  }
+
+  if (overrides?.components?.navbar?.height !== undefined) {
+    theme.navbarHeight = overrides.components.navbar.height;
   }
 
   if (overrides?.customColors) {

@@ -116,6 +116,9 @@ export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children
             --mf-space-7: ${themeValue.space[7]}px;
             --mf-space-8: ${themeValue.space[8]}px;
 
+            /* Component dimensions */
+            --mf-navbar-height: ${themeValue.navbarHeight};
+
             /* Border widths */
             --mf-border-width-thin:   ${themeValue.borderWidths.thin};
             --mf-border-width-medium: ${themeValue.borderWidths.medium};

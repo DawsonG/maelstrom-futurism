@@ -15,7 +15,7 @@ const pageLayoutStyle = css`
 const contentStyle = css`
     display: flex;
     width: 100vw;
-    height: calc(100vh - 60px);
+    height: calc(100vh - var(--mf-navbar-height));
 `;
 
 interface PageLayoutProps {
