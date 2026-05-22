@@ -18,7 +18,7 @@ function borderWrite(bName: string, bVar?: boolean | string) {
   if (!bVar) return;
 
   if (typeof bVar === 'boolean' && bVar) {
-    return `${bName}: solid 1px var(--mf-secondary);`;
+    return `${bName}: solid var(--mf-border-width-thin) var(--mf-secondary);`;
   }
 
   return `${bName}: ${bVar};`;

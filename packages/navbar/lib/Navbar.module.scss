@@ -1,6 +1,6 @@
 .navbarRow {
     border-radius: 0;
-    border-bottom: 1px solid var(--mf-border-muted);
+    border-bottom: var(--mf-border-width-thin) solid var(--mf-border-muted);
 }
 
 .navbarWrapper {

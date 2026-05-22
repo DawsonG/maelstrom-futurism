@@ -38,6 +38,11 @@ export interface ThemeOverrides {
     wide?: string;
     display?: string;
   };
+  borderWidths?: {
+    thin?: string;
+    medium?: string;
+    thick?: string;
+  };
   fonts?: {
     sans?: string;
     display?: string;
@@ -127,6 +132,10 @@ export const createTheme = (colorSetName: ColorSetName, overrides?: ThemeOverrid
 
   if (overrides?.letterSpacings) {
     theme.letterSpacings = { ...theme.letterSpacings, ...overrides.letterSpacings };
+  }
+
+  if (overrides?.borderWidths) {
+    theme.borderWidths = { ...theme.borderWidths, ...overrides.borderWidths };
   }
 
   if (overrides?.fonts) {

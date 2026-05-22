@@ -33,7 +33,7 @@ const Sidebar = ({
         width: 25vw;
         max-width: 380px;
 
-        border-right: solid 1px var(--mf-border-muted);
+        border-right: solid var(--mf-border-width-thin) var(--mf-border-muted);
 
         @media (max-width: 379px) {
             width: 100%;
@@ -58,7 +58,7 @@ const Sidebar = ({
 
         hr {
             border: 0;
-            border-top: solid 1px var(--mf-border-muted);
+            border-top: solid var(--mf-border-width-thin) var(--mf-border-muted);
         }
 
         a {

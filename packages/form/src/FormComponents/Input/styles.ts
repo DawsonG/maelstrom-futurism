@@ -26,9 +26,9 @@ export const validationStyle = (state: ValidationState, variant: Variant) => {
 
   let line = '';
   if (variant === 'normal') {
-    line = `outline: 1px solid ${color}`;
+    line = `outline: var(--mf-border-width-thin) solid ${color}`;
   } else {
-    line = `border-bottom: solid 2px ${color}`;
+    line = `border-bottom: solid var(--mf-border-width-medium) ${color}`;
   }
 
   return css`
@@ -58,7 +58,7 @@ export const materialStyledInput = css`
         width: 100%;
         height: 3rem;
         border: none;
-        border-bottom: solid 2px var(--mf-secondary);
+        border-bottom: solid var(--mf-border-width-medium) var(--mf-secondary);
         background-color: transparent;
         padding-left: 10px;
         font-size: var(--mf-size-base);
@@ -93,7 +93,7 @@ export const materialStyledInput = css`
         bottom: 0;
         transform: scaleX(0);
         transition: transform var(--mf-dur-normal) ${EASE_FUNCTION};
-        border-bottom: 2px solid var(--mf-focus);
+        border-bottom: var(--mf-border-width-medium) solid var(--mf-focus);
     }
 
     input:focus ~ .underline {
@@ -101,7 +101,7 @@ export const materialStyledInput = css`
     }
 
     input:hover {
-        border-bottom: 2px solid var(--mf-text);
+        border-bottom: var(--mf-border-width-medium) solid var(--mf-text);
     }
 
     input:focus ~ label {
@@ -115,7 +115,7 @@ export const normalStyledInput = css`
     input {
         color: var(--mf-text);
         height: 3rem;
-        outline: 1px solid var(--mf-secondary);
+        outline: var(--mf-border-width-thin) solid var(--mf-secondary);
         border-radius: var(--mf-radius-input);
         border: none;
         padding-left: 10px;
@@ -147,10 +147,10 @@ export const normalStyledInput = css`
     }
 
     input:focus {
-        outline: 1px solid var(--mf-focus) !important;
+        outline: var(--mf-border-width-thin) solid var(--mf-focus) !important;
     }
     input:hover {
-        outline: 1px solid var(--mf-text);
+        outline: var(--mf-border-width-thin) solid var(--mf-text);
     }
     input:focus ~ label {
         color: var(--mf-focus) !important;

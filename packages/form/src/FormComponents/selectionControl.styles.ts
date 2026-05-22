@@ -38,7 +38,7 @@ const materialStyledControl = (inputType: 'checkbox' | 'radio') => {
         cursor: pointer;
         user-select: none;
         padding: 4px 0;
-        border-bottom: 1px solid transparent;
+        border-bottom: var(--mf-border-width-thin) solid transparent;
         transition: border-color var(--mf-dur-normal) ${EASE_FUNCTION};
 
         ${sel} {
@@ -46,7 +46,7 @@ const materialStyledControl = (inputType: 'checkbox' | 'radio') => {
             -webkit-appearance: none;
             width: 20px;
             height: 20px;
-            border: 2px solid var(--mf-secondary);
+            border: var(--mf-border-width-medium) solid var(--mf-secondary);
             border-radius: ${isRadio ? '50%' : '3px'};
             position: relative;
             cursor: pointer;
@@ -74,7 +74,7 @@ const materialStyledControl = (inputType: 'checkbox' | 'radio') => {
                 top: 1px;
                 width: 5px;
                 height: 9px;
-                border: 2px solid var(--mf-content);
+                border: var(--mf-border-width-medium) solid var(--mf-content);
                 border-top: none;
                 border-left: none;
                 transform: rotate(45deg) scale(0);
@@ -99,7 +99,7 @@ const materialStyledControl = (inputType: 'checkbox' | 'radio') => {
         }
 
         ${sel}:focus-visible {
-            outline: 2px solid var(--mf-focus);
+            outline: var(--mf-border-width-medium) solid var(--mf-focus);
             outline-offset: 2px;
             border-color: var(--mf-focus);
         }

@@ -116,6 +116,11 @@ export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children
             --mf-space-7: ${themeValue.space[7]}px;
             --mf-space-8: ${themeValue.space[8]}px;
 
+            /* Border widths */
+            --mf-border-width-thin:   ${themeValue.borderWidths.thin};
+            --mf-border-width-medium: ${themeValue.borderWidths.medium};
+            --mf-border-width-thick:  ${themeValue.borderWidths.thick};
+
             /* Radii */
             --mf-radius-input:  ${themeValue.inputRadius};
             --mf-radius-button: ${themeValue.buttonRadius};

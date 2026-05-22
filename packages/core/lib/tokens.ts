@@ -47,6 +47,12 @@ export const LETTER_SPACINGS = {
   display: '0.06em',
 } as const;
 
+export const BORDER_WIDTHS = {
+  thin:   '1px',
+  medium: '2px',
+  thick:  '3px',
+} as const;
+
 export const FONTS = {
   sans:    '"Poppins", system-ui, -apple-system, "Segoe UI", sans-serif',
   display: '"Silkscreen", "Poppins", system-ui, sans-serif',
