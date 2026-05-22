@@ -7,26 +7,11 @@ import LinkButton from './LinkButton';
 import { ButtonProps, ButtonVariant } from './types';
 
 const scales = {
-  xs: emotionCss`
-    padding: 2px 4px;
-    font-size: 12px;
-  `,
-  sm: emotionCss`
-    padding: 5px 10px;
-    font-size: 14px;
-  `,
-  md: emotionCss`
-    padding: 10px 20px;
-    font-size: 16px;
-  `,
-  lg: emotionCss`
-    padding: 20px 30px;
-    font-size: 18px;
-  `,
-  xl: emotionCss`
-    padding: 30px 40px;
-    font-size: 20px;
-  `,
+  xs: emotionCss`padding: var(--mf-button-xs-padding); font-size: var(--mf-button-xs-font-size);`,
+  sm: emotionCss`padding: var(--mf-button-sm-padding); font-size: var(--mf-button-sm-font-size);`,
+  md: emotionCss`padding: var(--mf-button-md-padding); font-size: var(--mf-button-md-font-size);`,
+  lg: emotionCss`padding: var(--mf-button-lg-padding); font-size: var(--mf-button-lg-font-size);`,
+  xl: emotionCss`padding: var(--mf-button-xl-padding); font-size: var(--mf-button-xl-font-size);`,
 };
 
 const variantMapping = {

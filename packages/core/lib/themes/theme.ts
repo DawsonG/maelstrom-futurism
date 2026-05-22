@@ -36,6 +36,14 @@ class Theme {
 
   navbarHeight: string = '60px';
 
+  buttonSizes: Record<'xs' | 'sm' | 'md' | 'lg' | 'xl', { padding: string; fontSize: string }> = {
+    xs: { padding: '2px 4px',    fontSize: '12px' },
+    sm: { padding: '5px 10px',   fontSize: '14px' },
+    md: { padding: '10px 20px',  fontSize: '16px' },
+    lg: { padding: '20px 30px',  fontSize: '18px' },
+    xl: { padding: '30px 40px',  fontSize: '20px' },
+  };
+
   customColors: Record<string, string> = {};
 
   size(name: string): string {

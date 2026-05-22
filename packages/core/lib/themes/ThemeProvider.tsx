@@ -118,6 +118,16 @@ export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children
 
             /* Component dimensions */
             --mf-navbar-height: ${themeValue.navbarHeight};
+            --mf-button-xs-padding:   ${themeValue.buttonSizes.xs.padding};
+            --mf-button-xs-font-size: ${themeValue.buttonSizes.xs.fontSize};
+            --mf-button-sm-padding:   ${themeValue.buttonSizes.sm.padding};
+            --mf-button-sm-font-size: ${themeValue.buttonSizes.sm.fontSize};
+            --mf-button-md-padding:   ${themeValue.buttonSizes.md.padding};
+            --mf-button-md-font-size: ${themeValue.buttonSizes.md.fontSize};
+            --mf-button-lg-padding:   ${themeValue.buttonSizes.lg.padding};
+            --mf-button-lg-font-size: ${themeValue.buttonSizes.lg.fontSize};
+            --mf-button-xl-padding:   ${themeValue.buttonSizes.xl.padding};
+            --mf-button-xl-font-size: ${themeValue.buttonSizes.xl.fontSize};
 
             /* Border widths */
             --mf-border-width-thin:   ${themeValue.borderWidths.thin};

@@ -52,6 +52,9 @@ export interface ThemeOverrides {
     navbar?: {
       height?: string;
     };
+    button?: {
+      sizes?: Partial<Record<'xs' | 'sm' | 'md' | 'lg' | 'xl', { padding?: string; fontSize?: string }>>;
+    };
   };
   customColors?: Record<string, string>;
 }
@@ -149,6 +152,15 @@ export const createTheme = (colorSetName: ColorSetName, overrides?: ThemeOverrid
 
   if (overrides?.components?.navbar?.height !== undefined) {
     theme.navbarHeight = overrides.components.navbar.height;
+  }
+
+  if (overrides?.components?.button?.sizes) {
+    const overrideSizes = overrides.components.button.sizes;
+    for (const size of ['xs', 'sm', 'md', 'lg', 'xl'] as const) {
+      if (overrideSizes[size]) {
+        theme.buttonSizes[size] = { ...theme.buttonSizes[size], ...overrideSizes[size] };
+      }
+    }
   }
 
   if (overrides?.customColors) {
