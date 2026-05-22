@@ -1,4 +1,4 @@
-import { ReactNode, useRef, useEffect } from 'react';
+import { ReactNode, useRef, useEffect, useState } from 'react';
 import { SerializedStyles } from '@emotion/react';
 
 import * as tooltipStyles from './Tooltip.styles';
@@ -20,39 +20,33 @@ const Tooltip = ({
   css,
   className,
 }: TooltipProps): ReactNode => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const toggleTooltip = (visible: boolean) => {
-    if (visible) {
-      containerRef.current!.style.display = 'block';
-    } else {
-      containerRef.current!.style.display = 'none';
-    }
-  };
+  const [isVisible, setIsVisible] = useState(false);
+  const tooltipRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (trigger === 'click') {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-          toggleTooltip(false);
-        }
-      };
-      document.addEventListener('click', handleClickOutside);
-      return () => document.removeEventListener('click', handleClickOutside);
-    }
+    if (trigger !== 'click') return;
+    const handleClickOutside = (event: MouseEvent) => {
+      if (tooltipRef.current && !tooltipRef.current.contains(event.target as Node)) {
+        setIsVisible(false);
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
   }, [trigger]);
 
   return (
     <div
       style={{ position: 'relative', display: 'inline-block' }}
-      onMouseEnter={() => trigger === 'hover' && toggleTooltip(true)}
-      onMouseLeave={() => trigger === 'hover' && toggleTooltip(false)}
+      onMouseEnter={() => trigger === 'hover' && setIsVisible(true)}
+      onMouseLeave={() => trigger === 'hover' && setIsVisible(false)}
+      onClick={() => trigger === 'click' && setIsVisible(v => !v)}
     >
       {children}
 
       <div
-        ref={containerRef}
-        style={{ display: 'none' }}
-        css={[tooltipStyles.base, tooltipStyles[position], css]}
+        ref={tooltipRef}
+        onClick={e => e.stopPropagation()}
+        css={[tooltipStyles.base, tooltipStyles[position], isVisible && tooltipStyles.visible, css]}
         className={className}
       >
         {content}
