@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/paper",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "Stacks of paper",
   "source": "lib/index.ts",
   "main": "dist/index.js",
@@ -26,7 +26,7 @@
     "directory": "packages/paper"
   },
   "dependencies": {
-    "@maelstrom-futurism/core": "^0.10.0",
+    "@maelstrom-futurism/core": "^0.10.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

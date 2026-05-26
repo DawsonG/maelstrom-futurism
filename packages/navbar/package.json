@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/navbar",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "Simple navbar for MF",
   "source": "lib/index.ts",
   "main": "dist/index.js",
@@ -25,7 +25,7 @@
     "directory": "packages/navbar"
   },
   "dependencies": {
-    "@maelstrom-futurism/core": "^0.10.0"
+    "@maelstrom-futurism/core": "^0.10.1"
   },
   "peerDependences": {
     "react": ">= 18.0.0",
