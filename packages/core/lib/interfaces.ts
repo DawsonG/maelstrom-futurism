@@ -3,6 +3,7 @@ import { CardinalDirection, Intensity } from './enums';
 export interface ColorSet {
   background: string;
   borderMuted: string;
+  borderAccent: string;
   border: string;
   content: string;
   surfaceHover: string;

@@ -69,6 +69,7 @@ Aurora      #bf616a  #d08770  #ebcb8b  #a3be8c  #b48ead
 const nordDarkColors: ColorSet = {
   background: '#242933',
   borderMuted: '#303744',
+  borderAccent: '#4c566a',
   border: '#2e3440',
   content: '#2e3440',
   surfaceHover: '#3b4252',
@@ -89,6 +90,7 @@ const nordDarkColors: ColorSet = {
 const nordLightColors: ColorSet = {
   background: '#eceff4',
   borderMuted: '#303744',
+  borderAccent: '#4c566a',
   border: '#2e3440',
   content: '#eceff4',
   surfaceHover: '#e5e9f0',

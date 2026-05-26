@@ -52,23 +52,24 @@ export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children
   const globalStyles = css`
         :root {
             /* Semantic colors */
-            --mf-background:   ${themeValue.color('background')};
-            --mf-content:      ${themeValue.color('content')};
-            --mf-border:       ${themeValue.color('border')};
-            --mf-border-muted: ${themeValue.color('borderMuted')};
-            --mf-text:         ${themeValue.color('textColor')};
-            --mf-text-muted:   ${themeValue.color('textColor')}80;
-            --mf-link:         ${themeValue.color('linkColor')};
-            --mf-primary:      ${themeValue.color('primary')};
-            --mf-secondary:    ${themeValue.color('secondary')};
-            --mf-accent:       ${themeValue.color('accent')};
-            --mf-focus:        ${themeValue.color('focus')};
+            --mf-background:    ${themeValue.color('background')};
+            --mf-content:       ${themeValue.color('content')};
+            --mf-border:        ${themeValue.color('border')};
+            --mf-border-muted:  ${themeValue.color('borderMuted')};
+            --mf-border-accent: ${themeValue.color('borderAccent')};
+            --mf-text:          ${themeValue.color('textColor')};
+            --mf-text-muted:    ${themeValue.color('textColor')}80;
+            --mf-link:          ${themeValue.color('linkColor')};
+            --mf-primary:       ${themeValue.color('primary')};
+            --mf-secondary:     ${themeValue.color('secondary')};
+            --mf-accent:        ${themeValue.color('accent')};
+            --mf-focus:         ${themeValue.color('focus')};
             ${Object.entries(themeValue.customColors).map(([name, value]) => `--mf-color-${name}: ${value};`).join('\n            ')}
-            --mf-active:       ${themeValue.color('active')};
-            --mf-alert:        ${themeValue.color('alert')};
-            --mf-warning:      ${themeValue.color('warning')};
-            --mf-success:      ${themeValue.color('success')};
-            --mf-info:         ${themeValue.color('info')};
+            --mf-active:        ${themeValue.color('active')};
+            --mf-alert:         ${themeValue.color('alert')};
+            --mf-warning:       ${themeValue.color('warning')};
+            --mf-success:       ${themeValue.color('success')};
+            --mf-info:          ${themeValue.color('info')};
 
             --mf-surface-hover: ${themeValue.color('surfaceHover')};
             --mf-surface-press: ${themeValue.color('surfacePress')};

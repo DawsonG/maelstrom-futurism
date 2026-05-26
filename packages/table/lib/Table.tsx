@@ -133,7 +133,7 @@ const Table = ({
   // ── Styles ──────────────────────────────────────────────────────────────
 
   const wrapperStyle = css`
-        border: 1px solid var(--nord-polar-3);
+        border: 1px solid var(--mf-border-accent);
         border-radius: var(--mf-radius-card);
         overflow: hidden;
         background: var(--mf-content);
@@ -146,7 +146,7 @@ const Table = ({
         align-items: center;
         gap: 16px;
         padding: 16px 20px;
-        border-bottom: 1px solid var(--nord-polar-3);
+        border-bottom: 1px solid var(--mf-border-accent);
     `;
 
   const headingGroupStyle = css`
@@ -240,8 +240,8 @@ const Table = ({
   const thBaseStyle = css`
         text-align: left;
         padding: 10px 16px;
-        border-bottom: 1px solid var(--nord-polar-3);
-        border-right: 1px solid var(--nord-polar-3);
+        border-bottom: 1px solid var(--mf-border-accent);
+        border-right: 1px solid var(--mf-border-accent);
         font-weight: 500;
         background: var(--mf-content);
         color: var(--mf-text);
@@ -274,7 +274,7 @@ const Table = ({
 
   const actionThStyle = css`
         width: 44px;
-        border-bottom: 1px solid var(--nord-polar-3);
+        border-bottom: 1px solid var(--mf-border-accent);
         border-right: none;
         background: var(--mf-content);
     `;
@@ -325,7 +325,7 @@ const Table = ({
 
   const tfootTdStyle = css`
         padding: 10px 16px;
-        border-top: 1px solid var(--nord-polar-3);
+        border-top: 1px solid var(--mf-border-accent);
         color: var(--mf-text-muted);
         font-size: 13px;
     `;
@@ -335,7 +335,7 @@ const Table = ({
         align-items: center;
         gap: 16px;
         padding: 12px 20px;
-        border-top: 1px solid var(--nord-polar-3);
+        border-top: 1px solid var(--mf-border-accent);
         font-size: 13px;
     `;
 
@@ -356,7 +356,7 @@ const Table = ({
         select {
             background: var(--mf-background);
             color: var(--mf-text);
-            border: 1px solid var(--nord-polar-3);
+            border: 1px solid var(--mf-border-accent);
             border-radius: var(--mf-radius-input);
             padding: 4px 8px;
             font: inherit;
@@ -398,7 +398,7 @@ const Table = ({
 
   const tableFooterStyle = css`
         padding: 12px 20px;
-        border-top: 1px solid var(--nord-polar-3);
+        border-top: 1px solid var(--mf-border-accent);
         font-size: 12px;
         color: var(--mf-text-muted);
         font-family: var(--mf-font-mono);
