@@ -1,5 +1,6 @@
 import { HTMLAttributes, ReactNode } from 'react';
 import { css as emotionCss, SerializedStyles } from '@emotion/react';
+import { composeStyles } from '../utils/composeStyles';
 
 export type PillVariant = 'success' | 'warning' | 'alert' | 'info' | 'muted';
 
@@ -36,6 +37,8 @@ const Pill = ({ variant = 'info', dot = false, children, css, ...rest }: PillPro
         background: transparent;
         color: ${color};
     `;
+  
+  const composed = composeStyles(pillStyle, css);
 
   const dotStyle = emotionCss`
         width: 6px;
@@ -46,7 +49,7 @@ const Pill = ({ variant = 'info', dot = false, children, css, ...rest }: PillPro
     `;
 
   return (
-    <span css={[pillStyle, css]} {...rest}>
+    <span css={composed} {...rest}>
       {dot && <span css={dotStyle} aria-hidden="true" />}
       {children}
     </span>
