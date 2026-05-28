@@ -6,8 +6,9 @@
  * Sidebar > Item > Item (A sidebar has items and those items have items)
  */
 
-import { ReactNode, useState } from 'react';
-import { css, SerializedStyles } from '@emotion/react';
+import { CSSProperties, ReactNode, useState } from 'react';
+import { css } from '@emotion/react';
+import { composeStyles, isSerializedStyles, StyleOverride } from '@maelstrom-futurism/core';
 
 import Heading from './Heading';
 import { SidebarContext } from './SidebarContext';
@@ -16,7 +17,8 @@ interface SidebarProps {
   name?: string;
   isClosable?: boolean;
   isOpen?: boolean;
-  css?: SerializedStyles | SerializedStyles[];
+  /** Style override targeting the sidebar container. */
+  styles?: StyleOverride;
   className?: string;
   children?: ReactNode;
 }
@@ -24,7 +26,7 @@ interface SidebarProps {
 const Sidebar = ({
   isClosable = false,
   isOpen = true,
-  css: cssProp,
+  styles,
   className,
   children,
 }: SidebarProps): ReactNode => {
@@ -76,8 +78,19 @@ const Sidebar = ({
         }
     `;
 
+  // Compose all internal layers: base → open/closed state → consumer override
+  const internalBase = composeStyles(sidebarContainer, isOpenState ? openStyle : closedStyle);
+
+  const emotionStyle = styles && isSerializedStyles(styles)
+    ? composeStyles(internalBase, styles)
+    : internalBase;
+
+  const inlineStyle = styles && !isSerializedStyles(styles)
+    ? styles as CSSProperties
+    : undefined;
+
   return (
-    <aside css={[sidebarContainer, isOpenState ? openStyle : closedStyle, cssProp]} className={className}>
+    <aside css={emotionStyle} style={inlineStyle} className={className}>
       <SidebarContext.Provider value={{ isOpen: isOpenState, setIsOpen: setIsOpenState, isClosable }}>
         {children}
       </SidebarContext.Provider>

@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { SerializedStyles } from '@emotion/react';
+import { CSSProperties, ReactNode } from 'react';
+import { composeStyles, isSerializedStyles, StyleOverride } from '@maelstrom-futurism/core';
 import ReactDOM from 'react-dom';
 import {
   modalOverlay,
@@ -12,15 +12,24 @@ import {
 interface ModalProps {
   title?: string;
   children?: ReactNode;
-  css?: SerializedStyles | SerializedStyles[];
+  /** Style override targeting the modal panel. */
+  styles?: StyleOverride;
   className?: string;
   isShowing?: boolean | (() => void);
   hide: () => void;
 }
 
 const Modal = ({
-  title, children, isShowing, hide, css, className,
+  title, children, isShowing, hide, styles, className,
 }: ModalProps): ReactNode | null => {
+  const emotionStyle = styles && isSerializedStyles(styles)
+    ? composeStyles(modal, styles)
+    : modal;
+
+  const inlineStyle = styles && !isSerializedStyles(styles)
+    ? styles as CSSProperties
+    : undefined;
+
   return isShowing
     ? ReactDOM.createPortal(
         <>
@@ -32,7 +41,7 @@ const Modal = ({
             tabIndex={-1}
             role="dialog"
           >
-            <div css={[modal, css]} className={className}>
+            <div css={emotionStyle} style={inlineStyle} className={className}>
               <div css={modalHeader}>
                 <div className="title">{title}</div>
                 <button
