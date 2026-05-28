@@ -1,5 +1,5 @@
-import React, { HTMLInputTypeAttribute } from 'react';
-import { SerializedStyles } from '@emotion/react';
+import React, { CSSProperties, HTMLInputTypeAttribute } from 'react';
+import { composeStyles, isSerializedStyles, StyleOverride } from '@maelstrom-futurism/core';
 
 import {
   outsideContainer,
@@ -57,8 +57,8 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 
   forwardedRef?: React.Ref<HTMLInputElement>;
 
-  /** Emotion css override applied to the outer container */
-  css?: SerializedStyles | SerializedStyles[];
+  /** Style override applied to the outer container. */
+  styles?: StyleOverride;
 
   /** className applied to the outer container */
   className?: string;
@@ -73,7 +73,7 @@ const Input = React.forwardRef(({
   multiline,
   validationState,
   validationMessage,
-  css,
+  styles,
   className,
   ...rest
 }: InputProps, ref?: React.Ref<HTMLInputElement>) => {
@@ -92,8 +92,16 @@ const Input = React.forwardRef(({
   const isMaterial = variant === 'material';
   const additionalStyles = isMaterial ? materialStyledInput : normalStyledInput;
 
+  const emotionStyle = styles && isSerializedStyles(styles)
+    ? composeStyles(outsideContainer, styles)
+    : outsideContainer;
+
+  const inlineStyle = styles && !isSerializedStyles(styles)
+    ? styles as CSSProperties
+    : undefined;
+
   return (
-    <div css={[outsideContainer, css]} className={className}>
+    <div css={emotionStyle} style={inlineStyle} className={className}>
       <div css={[fcContainer, additionalStyles, validationState && validationStyle(validationState, variant)]}>
         <input
           id={name}
