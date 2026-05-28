@@ -1,8 +1,129 @@
 .readabilityBar {
-    width: 100%;
-    padding: 4px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 22px;
+  margin: 0 0 1.75em;
+  padding: 0 0 1.1em;
+  border-bottom: 1px solid #e7e7e7;
+  // Bar uses paper-toned neutral chrome, not the MF dark theme.
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: #4a4a4a;
+}
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.group {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  & + & {
+    padding-left: 22px;
+    border-left: 1px solid #ededed;
+  }
+}
+
+.label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+}
+
+// Segmented control (Font + Spacing groups)
+.seg {
+  display: inline-flex;
+  background: #f1f1f1;
+  border-radius: 9px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.segButton {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: #555;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.12s ease, color 0.12s ease;
+
+  &:hover {
+    background: #e4e4e4;
+  }
+
+  &[aria-pressed='true'] {
+    background: #2b2b2b;
+    color: #fff;
+  }
+}
+
+// Size stepper (A− / value / A+)
+.step {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f1f1f1;
+  border-radius: 9px;
+  padding: 3px;
+}
+
+.stepButton {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: #444;
+  width: 30px;
+  height: 28px;
+  border-radius: 6px;
+  line-height: 1;
+  transition: background 0.12s ease;
+
+  &:hover:not(:disabled) {
+    background: #e4e4e4;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+}
+
+.sm { font-size: 13px; }
+.lg { font-size: 19px; }
+
+.stepVal {
+  min-width: 42px;
+  text-align: center;
+  font-size: 12px;
+  color: #6b6b6b;
+  font-variant-numeric: tabular-nums;
+}
+
+// Line-density glyph used by the Spacing segmented control
+.stackGlyph {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 15px;
+  height: 18px;
+}
+
+.stackLine {
+  display: block;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+}
+
+@media (max-width: 576px) {
+  .group + .group {
+    padding-left: 0;
+    border-left: 0;
+  }
 }
