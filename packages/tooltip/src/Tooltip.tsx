@@ -1,14 +1,15 @@
-import { ReactNode, useRef, useEffect, useState } from 'react';
-import { SerializedStyles } from '@emotion/react';
+import { CSSProperties, ReactNode, useEffect, useRef, useState } from 'react';
+import { composeStyles, isSerializedStyles, StyleOverride } from '@maelstrom-futurism/core';
 
 import * as tooltipStyles from './Tooltip.styles';
 
-interface TooltipProps {
+export interface TooltipProps {
   content: ReactNode;
   children: ReactNode;
   position?: 'top' | 'bottom' | 'left' | 'right';
   trigger?: 'hover' | 'click';
-  css?: SerializedStyles | SerializedStyles[];
+  /** Style override targeting the tooltip popup. */
+  styles?: StyleOverride;
   className?: string;
 }
 
@@ -17,7 +18,7 @@ const Tooltip = ({
   children,
   position = 'top',
   trigger = 'hover',
-  css,
+  styles,
   className,
 }: TooltipProps): ReactNode => {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,6 +35,24 @@ const Tooltip = ({
     return () => document.removeEventListener('click', handleClickOutside);
   }, [trigger]);
 
+  // Compose all internal layers into a single base class:
+  //   base → position → visible (when shown)
+  // Consumer's override is then composed on top so it always wins.
+  const internalBase = composeStyles(
+    tooltipStyles.base,
+    isVisible
+      ? [tooltipStyles[position], tooltipStyles.visible]
+      : [tooltipStyles[position]],
+  );
+
+  const emotionStyle = styles && isSerializedStyles(styles)
+    ? composeStyles(internalBase, styles)
+    : internalBase;
+
+  const inlineStyle = styles && !isSerializedStyles(styles)
+    ? styles as CSSProperties
+    : undefined;
+
   return (
     <div
       style={{ position: 'relative', display: 'inline-block' }}
@@ -46,7 +65,8 @@ const Tooltip = ({
       <div
         ref={tooltipRef}
         onClick={e => e.stopPropagation()}
-        css={[tooltipStyles.base, tooltipStyles[position], isVisible && tooltipStyles.visible, css]}
+        css={emotionStyle}
+        style={inlineStyle}
         className={className}
       >
         {content}
