@@ -1,5 +1,5 @@
-import React, { ReactNode, useRef } from 'react';
-import { debounce } from '@maelstrom-futurism/core';
+import React, { CSSProperties, ReactNode, useRef } from 'react';
+import { composeStyles, debounce, isSerializedStyles } from '@maelstrom-futurism/core';
 import { css as emotionCss } from '@emotion/react';
 
 import { buttonStyle } from './Button.styles';
@@ -55,19 +55,30 @@ const Button = (props: ButtonProps): ReactNode => {
     outline,
     type = 'button',
     disabled = false,
-    css,
+    styles,
     ...rest
   } = props;
 
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const buttonStyleByTheme = emotionCss`
+  const buttonBase = emotionCss`
     ${buttonStyle}
     border-radius: var(--mf-radius-button);
-
     ${getVariantStyle(variant, !!outline)}
     ${scales[size]}
   `;
+
+  const emotionStyle = styles && isSerializedStyles(styles)
+    ? composeStyles(buttonBase, styles)
+    : buttonBase;
+
+  const inlineStyle = styles && !isSerializedStyles(styles)
+    ? styles as CSSProperties
+    : undefined;
+
+  const mergedStyle = (inlineStyle || rest.style)
+    ? { ...inlineStyle, ...rest.style }
+    : undefined;
 
   const addRipple = (e: React.MouseEvent) => {
     if (!buttonRef || !buttonRef.current) return;
@@ -98,7 +109,8 @@ const Button = (props: ButtonProps): ReactNode => {
 
   return (
     <button
-      css={[buttonStyleByTheme, css]}
+      css={emotionStyle}
+      style={mergedStyle}
       onClick={onClick}
       ref={buttonRef}
       onMouseDown={addRipple}
