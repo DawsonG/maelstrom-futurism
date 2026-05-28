@@ -1,40 +1,10 @@
-import { SerializedStyles } from '@emotion/react';
-// import { RequireOneOrNone } from 'type-fest';
-// The world (well mostly this project) just isn't ready for the crazy
-// type weirdness I'm trying to implement here.
-/*
-type backgroundKeys = RequireOneOrNone<{
-    bg: string;
-    background: string;
-}, "bg" | "background">;
-
-type widthKeys = RequireOneOrNone<{
-    w: string;
-    width: string;
-}, "w" | "width">;
-
-type heightKeys = RequireOneOrNone<{
-    h: string;
-    height: string;
-}, "h" | "height">;
-
-type marginKeys = RequireOneOrNone<{
-    m: string;
-    margin: string;
-}, "m" | "margin">;
-
-export type BaseStyles = {
-    border?: string;
-    css?: SerializedStyles | SerializedStyles[];
-} & backgroundKeys
-  & widthKeys
-  & heightKeys
-  & marginKeys;
-*/
+import { StyleOverride } from './utils/composeStyles';
 
 export interface BaseStyles {
   border?: string;
-  css?: SerializedStyles | SerializedStyles[];
+  /** Style override prop — accepts Emotion `SerializedStyles` (composed with
+   *  the component's base class) or plain `CSSProperties` (applied inline). */
+  styles?: StyleOverride;
   bg?: string;
   background?: string;
   p?: string;

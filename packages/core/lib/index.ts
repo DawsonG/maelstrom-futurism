@@ -16,5 +16,6 @@ export { LogoMarkFlat, type LogoMarkFlatProps } from './components/LogoMarkFlat'
 export * from './utils/words';
 export * from './utils/typeof';
 export * from './utils/debounce';
+export * from './utils/composeStyles';
 export * from './motion';
 export * from './tokens';
