@@ -12,8 +12,8 @@
   "dependencies": {
     "@maelstrom-futurism/button": "../packages/button",
     "@maelstrom-futurism/core": "../packages/core",
-    "@maelstrom-futurism/icons": "../packages/icons",
     "@maelstrom-futurism/form": "../packages/form",
+    "@maelstrom-futurism/icons": "../packages/icons",
     "@maelstrom-futurism/layout": "../packages/layout",
     "@maelstrom-futurism/mf-bot-differentiator": "../packages/mf-bot-differentiator",
     "@maelstrom-futurism/modal": "../packages/modal",
@@ -36,7 +36,7 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-markdown": "^10.1.0",
-    "react-router-dom": "^7.9.5",
+    "react-router-dom": "^7.16.0",
     "react-syntax-highlighter": "^16.1.0",
     "sass": "^1.93.3",
     "typescript": "^5.9.3",
