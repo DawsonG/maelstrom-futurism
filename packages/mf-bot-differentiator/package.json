@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/mf-bot-differentiator",
-  "version": "0.7.4-alpha.1",
+  "version": "0.7.4",
   "description": "Make a human readable text problematic for scraping",
   "private": true,
   "main": "dist/index.js",

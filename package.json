@@ -20,6 +20,7 @@
     "lint": "npm run lint --workspaces --if-present",
     "lint:fix": "npm run lint:fix --workspaces --if-present",
     "clean": "npm run clean --workspaces --if-present && rm -Rf node_modules && rm package-lock.json",
+    "version": "npm version --workspaces --if-present",
     "prepublishOnly": "npm run build",
     "create-documentation-website": "cd ./website && npm run build",
     "publish": "npm publish --workspaces"
@@ -36,7 +37,7 @@
     "terser": "^5.44.1",
     "type-fest": "^4.39.1",
     "typescript": "^5.8.2",
-    "vite": "^8.0.16",
+    "vite": "^8.1.0",
     "vite-plugin-dts": "^4.5.4",
     "vite-plugin-lib-inject-css": "^2.2.2",
     "vite-plugin-sass-dts": "^1.3.34",
