@@ -1,38 +1,28 @@
 {
+  "name": "maelstrom-futurism-root",
   "version": "0.9.0",
+  "private": true,
   "description": "OSMstudios own React component library",
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
   "type": "module",
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "website"
-    ],
-    "nohoist": [
-      "@emotion/react/types",
-      "**/@emotion/react/types",
-      "**/@types/theme-ui",
-      "**/@types/theme-ui/**",
-      "**/@types/theme-ui__components",
-      "vite"
-    ]
-  },
+  "workspaces": [
+    "packages/*",
+    "website"
+  ],
   "files": [
     "dist"
   ],
   "repository": "https://github.com/DawsonG/maelstrom-futurism",
   "license": "MIT",
   "scripts": {
-    "build": "lerna run build --ignore src,website --no-private --stream",
-    "test": "lerna run test --ignore src,website --no-private --stream",
-    "lint": "lerna run lint --ignore src --stream",
-    "lint:fix": "lerna run lint:fix --ignore src --stream",
-    "clean": "lerna run clean --ignore src,website --no-private --stream && rm -Rf node_modules && rm package-lock.json",
-    "version": "lerna version",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "lint:fix": "npm run lint:fix --workspaces --if-present",
+    "clean": "npm run clean --workspaces --if-present && rm -Rf node_modules && rm package-lock.json",
     "prepublishOnly": "npm run build",
     "create-documentation-website": "cd ./website && npm run build",
-    "publish": "lerna publish --no-private",
-    "graph": "nx graph"
+    "publish": "npm publish --workspaces"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^5.10.0",
@@ -42,7 +32,6 @@
     "@vitest/coverage-v8": "^4.1.8",
     "commander": "^14.0.2",
     "cross-env": "^10.1.0",
-    "lerna": "^9.0.4",
     "polished": "^4.3.1",
     "terser": "^5.44.1",
     "type-fest": "^4.39.1",
