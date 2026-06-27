@@ -4,7 +4,6 @@
     "compilerOptions": {
         "outDir": "dist",
         "jsxImportSource": "@emotion/react",
-        "sourceMap": true,
         "declaration": true,
         "declarationDir": "dist"
     }

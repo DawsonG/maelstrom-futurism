@@ -5,7 +5,6 @@
         "outDir": "dist",
         "jsxImportSource": "@emotion/react",
         "jsx": "react-jsx",
-        "sourceMap": true,
         "declaration": true,
         "declarationDir": "dist"
     }

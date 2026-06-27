@@ -4,7 +4,6 @@
         "target": "es2020",
         "module": "esnext",
         "outDir": "dist",
-        "sourceMap": true,
         "declaration": true,
         "declarationDir": "dist",
         "jsx": "react-jsx",
