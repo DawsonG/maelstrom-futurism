@@ -1,6 +1,8 @@
 import { CSSProperties, ReactNode } from 'react';
-import { composeStyles, isSerializedStyles, StyleOverride } from '@maelstrom-futurism/core';
 import ReactDOM from 'react-dom';
+import { css, SerializedStyles } from '@emotion/react';
+import { composeStyles, isSerializedStyles, StyleOverride } from '@maelstrom-futurism/core';
+
 import {
   modalOverlay,
   modalWrapper,
@@ -9,22 +11,43 @@ import {
   modalCloseButton,
 } from './Modal.styles';
 
+
+export type Sizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+const getSizeStyle = (size?: Sizes): SerializedStyles | null => {
+  switch(size) {
+    case 'sm':
+      return css`width: 500px;`;
+    case 'md':
+      return css`width: 760px;`;
+    case 'lg':
+      return css`width: 900px;`;
+    case 'xl':
+      return css`width: 1100px;`;
+    case 'xs':
+    default:
+      return null;
+  }
+};
+
 interface ModalProps {
   title?: string;
   children?: ReactNode;
   /** Style override targeting the modal panel. */
   styles?: StyleOverride;
   className?: string;
+  size?: Sizes;
   isShowing?: boolean | (() => void);
   hide: () => void;
 }
 
 const Modal = ({
-  title, children, isShowing, hide, styles, className,
+  title, children, isShowing, hide, styles, className, size,
 }: ModalProps): ReactNode | null => {
+  const modalCss = css`${modal}${getSizeStyle(size)}`;
   const emotionStyle = styles && isSerializedStyles(styles)
-    ? composeStyles(modal, styles)
-    : modal;
+    ? composeStyles(modalCss, styles)
+    : modalCss;
 
   const inlineStyle = styles && !isSerializedStyles(styles)
     ? styles as CSSProperties

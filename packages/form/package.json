@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/form",
-  "version": "0.10.4",
+  "version": "0.10.5",
   "description": "Form and Input components",
   "main": "dist/index.js",
   "module": "dist/index.js",

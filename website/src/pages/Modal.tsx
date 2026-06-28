@@ -1,11 +1,13 @@
+import { useState, ReactNode } from "react";
 import { Button } from "@maelstrom-futurism/button";
 import { Container } from "@maelstrom-futurism/layout";
-import { useModal } from "@maelstrom-futurism/modal";
-import { ReactNode } from "react";
+import { Modal } from "@maelstrom-futurism/modal";
+
 import CodeView from "../components/CodeView";
 
 const ModalPage = (): ReactNode => {
-    const [toggle, Modal] = useModal();
+    // const [toggle, Modal] = useModal();
+    const [isVisible, setIsVisible] = useState<boolean>(false);
 
     return (
         <Container>
@@ -28,8 +30,8 @@ return (
 );
 `}</CodeView>
 
-            <Button onClick={toggle}>Open modal</Button>
-            <Modal title="Modal Title">
+            <Button onClick={() => setIsVisible(true)}>Open modal</Button>
+            <Modal title="Modal Title" size="xl" isShowing={isVisible} hide={() => setIsVisible(false)}>
                 Contents of Modal
             </Modal>
         </Container>

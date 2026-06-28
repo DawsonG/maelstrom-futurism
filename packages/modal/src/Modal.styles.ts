@@ -28,8 +28,7 @@ export const modal = css`
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 1.75rem auto;
-  max-width: 500px;
-  min-width: 300px;
+  max-width: 85%;
   min-height: 200px;
   padding: 1rem 0.75rem;
 `;
