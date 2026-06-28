@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/icons",
-  "version": "0.10.2",
+  "version": "0.10.5",
   "description": "An icon set for use with maelstrom-futurism components",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
