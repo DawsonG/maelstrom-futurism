@@ -52,8 +52,21 @@ const bumpVersion = (version, type) => {
   }
 };
 
+const ensureNpmLogin = () => {
+  try {
+    const whoami = runQuiet("npm whoami");
+    console.log(`Logged in to npm as: ${whoami}\n`);
+  } catch {
+    console.log("You are not logged in to npm. Please log in now:\n");
+    run("npm login");
+    console.log();
+  }
+};
+
 const publish = async () => {
   printHeader();
+
+  ensureNpmLogin();
 
   // 1. Show git status
   console.log("\n── Git Status ──\n");
