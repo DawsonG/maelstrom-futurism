@@ -1,38 +1,38 @@
 {
-    "name": "@maelstrom-futurism/table",
-    "version": "0.10.5",
-    "description": "Simple table component",
-    "main": "dist/table.mjs",
-    "types": "dist/index.d.ts",
-    "files": [
-        "dist"
-    ],
-    "scripts": {
-        "build": "vite build",
-        "test": "vitest run --coverage",
-        "test:dev": "vitest",
-        "lint": "eslint .",
-        "lint:fix": "eslint --fix .",
-        "prepublishOnly": "npm run build"
-    },
-    "author": "Dawson Goodell <dawsong@osmstudios.com>",
-    "homepage": "https://mf.osmstudios.com",
-    "license": "SEE LICENSE IN LICENSE.txt",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
-        "directory": "packages/table"
-    },
-    "dependencies": {
-        "@maelstrom-futurism/core": "^0.10.3",
-        "@maelstrom-futurism/icons": "^0.10.0"
-    },
-    "peerDependences": {
-        "react": ">= 18.0.0",
-        "react-dom": ">= 18.0.0"
-    },
-    "devDependencies": {
-        "@types/node": "^24.10.0"
-    },
-    "gitHead": "839026702c7b52490406b7ac80860b4877805658"
+  "name": "@maelstrom-futurism/table",
+  "version": "0.10.2",
+  "description": "Simple table component",
+  "main": "dist/table.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "test": "vitest run --coverage",
+    "test:dev": "vitest",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "Dawson Goodell <dawsong@osmstudios.com>",
+  "homepage": "https://mf.osmstudios.com",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DawsonG/maelstrom-futurism.git",
+    "directory": "packages/table"
+  },
+  "dependencies": {
+    "@maelstrom-futurism/core": "^0.10.3",
+    "@maelstrom-futurism/icons": "^0.10.0"
+  },
+  "peerDependences": {
+    "react": ">= 18.0.0",
+    "react-dom": ">= 18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0"
+  },
+  "gitHead": "839026702c7b52490406b7ac80860b4877805658"
 }

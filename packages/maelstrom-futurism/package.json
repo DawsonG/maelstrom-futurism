@@ -1,11 +1,12 @@
 {
   "name": "maelstrom-futurism",
-  "version": "0.10.5",
+  "version": "0.10.2",
   "description": "Quick import of all major @maelstrom-futurism/* packages",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "clean": "rm -Rf ./dist",
@@ -13,19 +14,20 @@
     "lint:fix": "eslint --fix .",
     "test": "vitest run --coverage",
     "test:dev": "vitest",
-    "prepublishOnly": "npm run build"
+    "sync-deps": "node scripts/sync-dep-versions.js",
+    "prepublishOnly": "npm run sync-deps && npm run build"
   },
   "dependencies": {
-    "@maelstrom-futurism/button": "^0.10.5",
-    "@maelstrom-futurism/core": "^0.10.5",
-    "@maelstrom-futurism/form": "^0.10.5",
-    "@maelstrom-futurism/layout": "^0.10.5",
-    "@maelstrom-futurism/modal": "^0.10.5",
-    "@maelstrom-futurism/navbar": "^0.10.5",
-    "@maelstrom-futurism/paper": "^0.10.5",
-    "@maelstrom-futurism/sidebar": "^0.10.5",
-    "@maelstrom-futurism/table": "^0.10.5",
-    "@maelstrom-futurism/tooltip": "^0.10.5"
+    "@maelstrom-futurism/button": "^0.10.2",
+    "@maelstrom-futurism/core": "^0.10.2",
+    "@maelstrom-futurism/form": "^0.10.2",
+    "@maelstrom-futurism/layout": "^0.10.2",
+    "@maelstrom-futurism/modal": "^0.10.2",
+    "@maelstrom-futurism/navbar": "^0.10.2",
+    "@maelstrom-futurism/paper": "^0.10.2",
+    "@maelstrom-futurism/sidebar": "^0.10.2",
+    "@maelstrom-futurism/table": "^0.10.2",
+    "@maelstrom-futurism/tooltip": "^0.10.2"
   },
   "repository": {
     "type": "git",
