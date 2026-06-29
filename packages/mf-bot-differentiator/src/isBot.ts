@@ -1,4 +1,5 @@
 import { evaluateRealUserAgent } from "./userAgent";
+import { Confidence } from "./types";
 
 export interface ProtectionMethodFlags {
     userAgent?: boolean;
@@ -31,32 +32,40 @@ export const defaultMethodFlags: ProtectionMethodFlags = {
  */
 
 const isBot = async (methodFlags: ProtectionMethodFlags) => {
+    // Every method contributes to `score` on the SAME scale: higher == more
+    // bot-like. `maxScore` is the total weight of the enabled methods, so the
+    // final decision is "did the majority of available evidence point to a bot".
     let score = 0;
-    let thresholdScore = 0; // Each method we use raises the threshold score for surity of "bot"
+    let maxScore = 0;
     const getValueOrDefault = (key: keyof ProtectionMethodFlags): boolean =>
         methodFlags[key] === undefined ? defaultMethodFlags[key]! : methodFlags[key];
 
     if (getValueOrDefault('userAgent')) {
-        score += evaluateRealUserAgent(navigator.userAgent);
-        thresholdScore += 2;
+        // evaluateRealUserAgent is a *realness* score (higher == more human),
+        // so invert it into bot points before adding it to the bot score.
+        score += Confidence.YES - evaluateRealUserAgent(navigator.userAgent);
+        maxScore += Confidence.YES;
     }
 
     if (getValueOrDefault('resolutionCheck')) {
         score += evaluateResolution(window.innerWidth, window.innerHeight);
-        thresholdScore += 1;
+        maxScore += 1;
     }
 
     if (getValueOrDefault('imageResolver')) {
         score += await evaluateImageLoading();
-        thresholdScore += 1;
+        maxScore += 1;
     }
 
     if (getValueOrDefault('cssSupported')) {
         score += evaluateCssSupported();
-        thresholdScore += 1;
+        maxScore += 1;
     }
 
-    return score >= thresholdScore;
+    // No checks enabled means we have no evidence either way; never accuse.
+    if (maxScore === 0) return false;
+
+    return score > maxScore / 2;
 }
 
 const evaluateResolution = (w: number, h: number): number => {
@@ -67,11 +76,9 @@ const evaluateImageLoading = (): Promise<number> => new Promise((resolve) => {
     const img = new Image();
 
     img.onload = function() {
-        if (img.naturalWidth === 0 && img.naturalHeight === 0) {
-            resolve(1);
-        }
-
-        resolve(0);
+        // A decoded 1x1 pixel reports non-zero natural dimensions; a client that
+        // fires onload without actually decoding (0x0) is behaving bot-like.
+        resolve(img.naturalWidth === 0 && img.naturalHeight === 0 ? 1 : 0);
     };
 
     img.onerror = function() {
