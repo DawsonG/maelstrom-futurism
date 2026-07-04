@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/table",
-  "version": "0.10.7",
+  "version": "0.10.8",
   "description": "Simple table component",
   "main": "dist/table.mjs",
   "types": "dist/index.d.ts",

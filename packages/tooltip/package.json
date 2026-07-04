@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/tooltip",
-  "version": "0.10.7",
+  "version": "0.10.8",
   "description": "Simple popup tooltip",
   "main": "dist/index.js",
   "module": "dist/index.js",

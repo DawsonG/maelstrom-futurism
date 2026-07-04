@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/navbar",
-  "version": "0.10.7",
+  "version": "0.10.8",
   "description": "Simple navbar for MF",
   "source": "lib/index.ts",
   "main": "dist/index.js",
