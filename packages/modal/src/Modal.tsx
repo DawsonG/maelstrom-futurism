@@ -60,7 +60,7 @@ const Modal = ({
           <div
             css={modalWrapper}
             aria-modal
-            aria-hidden
+            aria-hidden={!isShowing}
             tabIndex={-1}
             role="dialog"
           >
