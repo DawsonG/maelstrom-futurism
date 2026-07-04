@@ -6,15 +6,15 @@ export type FontOption = 'serif' | 'sans' | 'dyslexic';
 export type SpacingOption = 'tight' | 'normal' | 'loose';
 
 export const READER_FONTS: Record<FontOption, { label: string; stack: string }> = {
-  serif:    { label: 'Serif',    stack: 'Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif' },
-  sans:     { label: 'Sans',     stack: 'system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' },
+  serif: { label: 'Serif', stack: 'Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif' },
+  sans: { label: 'Sans', stack: 'system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' },
   dyslexic: { label: 'Dyslexic', stack: '"OpenDyslexic", "Comic Sans MS", "Segoe UI", sans-serif' },
 };
 
 export const SPACING: Record<SpacingOption, { label: string; value: number; gap: number }> = {
-  tight:  { label: 'Tight',  value: 1.4, gap: 2 },
+  tight: { label: 'Tight', value: 1.4, gap: 2 },
   normal: { label: 'Normal', value: 1.7, gap: 4 },
-  loose:  { label: 'Loose',  value: 2.1, gap: 6 },
+  loose: { label: 'Loose', value: 2.1, gap: 6 },
 };
 
 export const SIZE_MIN = 14;
@@ -85,7 +85,10 @@ const ReadabilityBar = ({
           >
             A
           </button>
-          <span className={styles.stepVal}>{size}px</span>
+          <span className={styles.stepVal}>
+            {size}
+            px
+          </span>
           <button
             type="button"
             className={`${styles.stepButton} ${styles.lg}`}

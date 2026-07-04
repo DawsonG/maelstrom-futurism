@@ -70,7 +70,7 @@ describe('composeStyles', () => {
       const override = css`color: red;`;
       const result = composeStyles(base, override);
       const bluePos = result.styles.indexOf('color: blue');
-      const redPos  = result.styles.indexOf('color: red');
+      const redPos = result.styles.indexOf('color: red');
       expect(bluePos).toBeGreaterThanOrEqual(0);
       expect(redPos).toBeGreaterThan(bluePos);
     });
@@ -98,7 +98,7 @@ describe('composeStyles', () => {
 
   describe('array of overrides', () => {
     test('applies all overrides in order — each appears in the composed styles string', () => {
-      const base      = css`color: blue;`;
+      const base = css`color: blue;`;
       const override1 = css`font-size: 12px;`;
       const override2 = css`font-weight: bold;`;
       const result = composeStyles(base, [override1, override2]);
@@ -108,7 +108,7 @@ describe('composeStyles', () => {
     });
 
     test('later overrides appear after earlier ones in the styles string', () => {
-      const base      = css`color: blue;`;
+      const base = css`color: blue;`;
       const override1 = css`font-size: 12px;`;
       const override2 = css`font-weight: bold;`;
       const result = composeStyles(base, [override1, override2]);
@@ -118,7 +118,7 @@ describe('composeStyles', () => {
     });
 
     test('last array item wins for a conflicting property', () => {
-      const base      = css`color: blue;`;
+      const base = css`color: blue;`;
       const override1 = css`color: green;`;
       const override2 = css`color: red;`;
       const result = composeStyles(base, [override1, override2]);
@@ -134,10 +134,10 @@ describe('composeStyles', () => {
 
   describe('idempotency & determinism', () => {
     test('composing the same two styles twice produces the same class name', () => {
-      const base     = css`color: blue;`;
+      const base = css`color: blue;`;
       const override = css`font-size: 12px;`;
-      const result1  = composeStyles(base, override);
-      const result2  = composeStyles(base, override);
+      const result1 = composeStyles(base, override);
+      const result2 = composeStyles(base, override);
       expect(result1.name).toBe(result2.name);
     });
   });

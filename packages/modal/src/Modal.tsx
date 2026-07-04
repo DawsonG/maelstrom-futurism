@@ -11,11 +11,10 @@ import {
   modalCloseButton,
 } from './Modal.styles';
 
-
 export type Sizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 const getSizeStyle = (size?: Sizes): SerializedStyles | null => {
-  switch(size) {
+  switch (size) {
     case 'sm':
       return css`width: 500px;`;
     case 'md':

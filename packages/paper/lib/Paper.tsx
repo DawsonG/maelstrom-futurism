@@ -87,18 +87,27 @@ export default function Paper({
 
   // Persist reader prefs to localStorage whenever they change
   useEffect(() => {
-    try { localStorage.setItem(PREFS_KEY, JSON.stringify(prefs)); } catch { /* ignore */ }
+    try {
+      localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+    } catch { /* ignore */ }
   }, [prefs]);
 
   // ── outer (sheet) class list ──────────────────────────────────────────────
   const outerStyles = [styles.paper];
-  if (centered) outerStyles.push(styles.centered);
+  if (centered)
+    outerStyles.push(styles.centered);
 
   if (variant) {
     switch (variant) {
-      case StackType.NONE:         outerStyles.push(styles.stackTypeNone);   break;
-      case StackType.SINGLE:       outerStyles.push(styles.stackTypeSingle); break;
-      case StackType.RANDOM_STACK: outerStyles.push(styles.stackTypeRandom); break;
+      case StackType.NONE:
+        outerStyles.push(styles.stackTypeNone);
+        break;
+      case StackType.SINGLE:
+        outerStyles.push(styles.stackTypeSingle);
+        break;
+      case StackType.RANDOM_STACK:
+        outerStyles.push(styles.stackTypeRandom);
+        break;
       case StackType.STACK:
         outerStyles.push(direction === VDirection.TOP ? styles.stackTypeTop : styles.stackTypeBottom);
         break;
@@ -109,8 +118,12 @@ export default function Paper({
   const innerStyles: string[] = [];
   if (background) {
     switch (background) {
-      case Background.DOT:   innerStyles.push(styles.backgroundDotted); break;
-      case Background.GRAPH: innerStyles.push(styles.backgroundGraph);  break;
+      case Background.DOT:
+        innerStyles.push(styles.backgroundDotted);
+        break;
+      case Background.GRAPH:
+        innerStyles.push(styles.backgroundGraph);
+        break;
     }
   }
   if (pre) innerStyles.push(styles.pre);
@@ -134,9 +147,9 @@ export default function Paper({
             font={prefs.font}
             size={prefs.size}
             spacing={prefs.spacing}
-            onFontChange={(f) => setPrefs(p => ({ ...p, font: f }))}
-            onSizeChange={(s) => setPrefs(p => ({ ...p, size: s }))}
-            onSpacingChange={(sp) => setPrefs(p => ({ ...p, spacing: sp }))}
+            onFontChange={(f) => setPrefs((p) => ({ ...p, font: f }))}
+            onSizeChange={(s) => setPrefs((p) => ({ ...p, size: s }))}
+            onSpacingChange={(sp) => setPrefs((p) => ({ ...p, spacing: sp }))}
           />
         )}
 

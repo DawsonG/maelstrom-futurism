@@ -8,7 +8,7 @@ import { css, SerializedStyles } from '@emotion/react';
 export type StyleOverride = CSSProperties | SerializedStyles | SerializedStyles[];
 
 export const isSerializedStyles = (
-  value: unknown
+  value: unknown,
 ): value is SerializedStyles | SerializedStyles[] => {
   if (Array.isArray(value)) {
     return value.length === 0 || isSerializedStylesObject(value[0]);
@@ -17,14 +17,14 @@ export const isSerializedStyles = (
 };
 
 const isSerializedStylesObject = (value: unknown): value is SerializedStyles =>
-  typeof value === 'object' &&
-  value !== null &&
-  typeof (value as SerializedStyles).name === 'string' &&
-  typeof (value as SerializedStyles).styles === 'string';
+  typeof value === 'object'
+  && value !== null
+  && typeof (value as SerializedStyles).name === 'string'
+  && typeof (value as SerializedStyles).styles === 'string';
 
 export const composeStyles = (
   base: SerializedStyles,
-  overrides?: SerializedStyles | SerializedStyles[]
+  overrides?: SerializedStyles | SerializedStyles[],
 ): SerializedStyles => {
   if (!overrides) return base;
   const arr = Array.isArray(overrides) ? overrides : [overrides];

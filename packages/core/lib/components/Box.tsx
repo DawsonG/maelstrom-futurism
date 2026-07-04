@@ -13,10 +13,10 @@ const Box = (props: BoxProps): ReactNode => {
 
   const boxBase = emotionCss`
     width: ${resolved.width || '100%'};
-    ${resolved.height     && `height: ${resolved.height};`}
-    ${resolved.margin     && `margin: ${resolved.margin};`}
+    ${resolved.height && `height: ${resolved.height};`}
+    ${resolved.margin && `margin: ${resolved.margin};`}
     ${resolved.background && `background: ${resolved.background};`}
-    ${resolved.border     && `border: ${resolved.border};`}
+    ${resolved.border && `border: ${resolved.border};`}
     border-radius: var(--mf-radius-card);
   `;
 

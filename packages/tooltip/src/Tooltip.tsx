@@ -58,13 +58,13 @@ const Tooltip = ({
       style={{ position: 'relative', display: 'inline-block' }}
       onMouseEnter={() => trigger === 'hover' && setIsVisible(true)}
       onMouseLeave={() => trigger === 'hover' && setIsVisible(false)}
-      onClick={() => trigger === 'click' && setIsVisible(v => !v)}
+      onClick={() => trigger === 'click' && setIsVisible((v) => !v)}
     >
       {children}
 
       <div
         ref={tooltipRef}
-        onClick={e => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
         css={emotionStyle}
         style={inlineStyle}
         className={className}
