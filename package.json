@@ -20,10 +20,9 @@
     "lint": "npm run lint --workspaces --if-present",
     "lint:fix": "npm run lint:fix --workspaces --if-present",
     "clean": "npm run clean --workspaces --if-present && rm -Rf node_modules && rm package-lock.json",
-    "version": "npm version --workspaces --if-present",
     "prepublishOnly": "npm run build",
     "create-documentation-website": "cd ./website && npm run build",
-    "publish": "npm publish --workspaces"
+    "publish": "node ./bin/cli.js -- publish"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^5.10.0",

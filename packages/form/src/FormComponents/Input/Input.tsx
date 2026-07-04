@@ -31,9 +31,6 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   /** Help text displayed below the field */
   helpText?: string;
 
-  /** Text to use as a placeholder */
-  placeholder?: string;
-
   /** Literal input value for use outside traditional form */
   value?: string;
 
@@ -62,6 +59,9 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 
   /** className applied to the outer container */
   className?: string;
+
+  /** turn off attributes that clash with internal style rules */
+  placeholder?: never;
 }
 
 const Input = React.forwardRef(({
