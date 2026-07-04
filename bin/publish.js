@@ -146,7 +146,7 @@ const publish = async () => {
   console.log("\n  ✓ All packages published\n");
 
   if (await confirm("Push commit and tag to remote?")) {
-    run("git push && git push --tags");
+    run("git push origin main && git push --tags");
     console.log("\n  ✓ Pushed\n");
   }
 
