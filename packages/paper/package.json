@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/paper",
-  "version": "0.10.9",
+  "version": "0.10.10",
   "description": "Stacks of paper",
   "type": "module",
   "source": "lib/index.ts",

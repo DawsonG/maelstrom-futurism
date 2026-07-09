@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/core",
-  "version": "0.10.9",
+  "version": "0.10.10",
   "description": "Core package for shared resources in Maelstrom Futurism",
   "type": "module",
   "main": "dist/index.js",
