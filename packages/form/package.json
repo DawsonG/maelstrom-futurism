@@ -17,12 +17,12 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "vite build",
     "clean": "rm -Rf dist",
     "test": "vitest run --coverage",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "prepublishOnly": "tsc"
+    "prepublishOnly": "npm run build"
   },
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
   "homepage": "https://mf.osmstudios.com",
