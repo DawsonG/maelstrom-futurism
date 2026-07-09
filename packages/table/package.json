@@ -3,7 +3,7 @@
   "version": "0.10.9",
   "description": "Simple table component",
   "type": "module",
-  "main": "dist/table.mjs",
+  "main": "dist/table.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
