@@ -1,23 +1,28 @@
 import { defineConfig } from 'vite';
+import { resolve } from 'path';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import sass from 'sass';
 
 export default defineConfig({
-    plugins: [react(), dts()],
+    plugins: [
+        react(),
+        dts({ include: ['src'] }),
+    ],
     build: {
         lib: {
-            entry: 'src/index.ts', // Your library's entry file
-            name: 'MfImageComparerator', // Global variable name for UMD builds
-            fileName: (format) => `mf-image-comparerator.${format}.js`, // Output file name
+            entry: resolve(__dirname, 'src/index.ts'),
+            formats: ['es'],
         },
         rollupOptions: {
-            // Externalize dependencies to prevent bundling them
-            external: ['react', 'react-dom'],
+            external: ['react', 'react/jsx-runtime', 'react-dom'],
             output: {
+                assetFileNames: 'assets/[name][extname]',
+                entryFileNames: '[name].js',
                 globals: {
-                    react: 'React',
+                    'react': 'React',
                     'react-dom': 'ReactDOM',
+                    'react/jsx-runtime': 'jsxRuntime',
                 },
             },
         },

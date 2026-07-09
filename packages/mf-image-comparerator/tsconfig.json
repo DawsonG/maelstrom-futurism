@@ -11,6 +11,7 @@
         "allowImportingTsExtensions": true,
         "verbatimModuleSyntax": true,
         "moduleDetection": "force",
-        "emitDeclarationOnly": true
+        "emitDeclarationOnly": true,
+        "types": ["vite/client"]
     }
 }
