@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { Paper, PaperProps } from '@maelstrom-futurism/paper';
 
 import isBot, { ProtectionMethodFlags, defaultMethodFlags } from './isBot';
@@ -8,14 +8,27 @@ interface BotLockedContentProps extends PaperProps {
     methodFlags?: ProtectionMethodFlags;
 }
 
-const BotLockedContent = async ({
+const BotLockedContent = ({
     children,
     botChildren,
     methodFlags = defaultMethodFlags,
     ...rest
-}: BotLockedContentProps): Promise<ReactElement> => (<Paper {...rest}>
-        {await isBot(methodFlags) ? botChildren : children}
-    </Paper>
-);
+}: BotLockedContentProps): ReactElement => {
+    const [isBotVisitor, setIsBotVisitor] = useState(false);
+
+    useEffect(() => {
+        let cancelled = false;
+
+        isBot(methodFlags).then((result) => {
+            if (!cancelled) setIsBotVisitor(result);
+        });
+
+        return () => {
+            cancelled = true;
+        };
+    }, [methodFlags]);
+
+    return <Paper {...rest}>{isBotVisitor ? botChildren : children}</Paper>;
+};
 
 export default BotLockedContent;
