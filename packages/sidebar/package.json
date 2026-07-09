@@ -16,7 +16,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "vite build",
     "test": "vitest run --coverage",
     "test:dev": "vitest",
     "lint": "eslint .",
