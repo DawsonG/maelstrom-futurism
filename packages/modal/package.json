@@ -2,6 +2,7 @@
   "name": "@maelstrom-futurism/modal",
   "version": "0.10.9",
   "description": "",
+  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",

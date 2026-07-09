@@ -2,6 +2,7 @@
   "name": "@maelstrom-futurism/mf-color",
   "version": "0.7.6",
   "description": "Color handling object for improving appearance in MF apps",
+  "type": "module",
   "main": "dist/index.js",
   "private": "true",
   "scripts": {

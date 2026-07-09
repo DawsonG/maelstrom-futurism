@@ -2,6 +2,7 @@
   "name": "@maelstrom-futurism/paper",
   "version": "0.10.9",
   "description": "Stacks of paper",
+  "type": "module",
   "source": "lib/index.ts",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

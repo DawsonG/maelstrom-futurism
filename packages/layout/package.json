@@ -2,6 +2,7 @@
   "name": "@maelstrom-futurism/layout",
   "version": "0.10.9",
   "description": "Basic layout components of MF",
+  "type": "module",
   "keywords": [
     "layout",
     "grid",
