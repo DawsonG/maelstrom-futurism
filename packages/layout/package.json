@@ -29,7 +29,7 @@
     "directory": "packages/layout"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "vite build",
     "clean": "rm -Rf dist",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
