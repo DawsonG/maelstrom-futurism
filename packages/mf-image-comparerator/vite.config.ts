@@ -15,7 +15,7 @@ export default defineConfig({
             formats: ['es'],
         },
         rollupOptions: {
-            external: ['react', 'react/jsx-runtime', 'react-dom'],
+            external: ['react', 'react/jsx-runtime', 'react-dom', '@maelstrom-futurism/core'],
             output: {
                 assetFileNames: 'assets/[name][extname]',
                 entryFileNames: '[name].js',

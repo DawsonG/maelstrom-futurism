@@ -14,7 +14,15 @@ export default defineConfig({
       formats: ['es'],
     },
     rollupOptions: {
-      external: ['react', 'react/jsx-runtime', 'react-dom', '@emotion/react', '@emotion/react/jsx-runtime'],
+      external: [
+        'react',
+        'react/jsx-runtime',
+        'react-dom',
+        '@emotion/react',
+        '@emotion/react/jsx-runtime',
+        '@maelstrom-futurism/core',
+        '@maelstrom-futurism/icons',
+      ],
       output: {
         globals: {
           'react': 'React',

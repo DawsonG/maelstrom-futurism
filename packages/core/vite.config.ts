@@ -11,7 +11,6 @@ export default defineConfig({
     dts({ include: ['lib'] }),
   ],
   build: {
-    minify: 'terser',
     sourcemap: false,
     copyPublicDir: false,
     lib: {
