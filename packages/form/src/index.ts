@@ -1,6 +1,8 @@
 export { default as FormBuilder } from './FormBuilder';
 export { default as Form } from './Form';
 export { Input, TextArea } from './FormComponents/Input';
+export { DateInput } from './FormComponents/DateInput';
+export type { DateInputProps } from './FormComponents/DateInput';
 export { Radio, RadioGroup } from './FormComponents/Radio';
 export type { RadioProps, RadioGroupProps, RadioOption } from './FormComponents/Radio';
 export { Checkbox, CheckboxGroup } from './FormComponents/Checkbox';
