@@ -183,6 +183,38 @@ const FormControl = () => (
             </form>
             <p>Submitted {submitCount} time{submitCount === 1 ? "" : "s"}</p>
 
+            <h2>Leading &amp; Suffix Icons</h2>
+            <p>
+                Pass <code>leadingIcon</code> and/or <code>suffixIcon</code> (any <code>ReactNode</code>) to
+                render content at either end of the field. For <code>type="password"</code>, a built-in
+                show/hide toggle is used automatically as the suffix when <code>suffixIcon</code> isn't provided.
+            </p>
+
+            <CodeView>{`<Input variant="normal" name="search" type="text" label="Search"
+    leadingIcon={<span>🔍</span>} />
+
+<Input variant="normal" name="amount" type="number" label="Amount"
+    leadingIcon={<span>$</span>} suffixIcon={<span>USD</span>} />
+
+<Input variant="normal" name="password" type="password" label="Password" />`}</CodeView>
+
+            <Input variant="normal" name="search" type="text" label="Search" leadingIcon={<span>🔍</span>} />
+            <Input variant="normal" name="amount" type="number" label="Amount"
+                leadingIcon={<span>$</span>} suffixIcon={<span>USD</span>} />
+            <Input variant="normal" name="password" type="password" label="Password" />
+
+            <h2>URL Prefix</h2>
+            <p>
+                For <code>type="url"</code>, the field automatically prepends <code>https://</code> to
+                the value as the user types, unless the value already includes a protocol (or the user
+                is in the middle of typing one out).
+            </p>
+
+            <CodeView>{`<Input variant="normal" name="website" type="url" label="Website"
+    onChange={(e) => console.log(e.target.value)} />`}</CodeView>
+
+            <Input variant="normal" name="website" type="url" label="Website" />
+
             <br/><br/><br/><br/>
         </Container>
     );

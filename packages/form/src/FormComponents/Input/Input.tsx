@@ -9,6 +9,11 @@ import {
   fullWidthStyle,
   clearableInputStyle,
   clearButton,
+  leadingIconStyle,
+  suffixIconStyle,
+  leadingIconSlot,
+  suffixIconSlot,
+  suffixButton,
   characterCount as characterCountCss,
   materialStyledInput,
   normalStyledInput,
@@ -27,6 +32,14 @@ const mergeRefs = (
     if (typeof r === 'function') r(node);
     else (r as { current: HTMLInputElement | null }).current = node;
   });
+};
+
+const hasProtocol = (v: string) => /^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(v);
+const isTypingProtocol = (v: string) => 'https://'.startsWith(v.toLowerCase()) || 'http://'.startsWith(v.toLowerCase());
+
+const withUrlPrefix = (v: string): string => {
+  if (!v || hasProtocol(v) || isTypingProtocol(v)) return v;
+  return `https://${v}`;
 };
 
 export type Variant = 'normal' | 'material';
@@ -71,6 +84,16 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   /** Select the field's full text on focus. Only active when `readOnly` is set. */
   autoSelectOnFocus?: boolean;
 
+  /** Content rendered at the start of the field, e.g. an icon or symbol */
+  leadingIcon?: React.ReactNode;
+
+  /**
+   * Content rendered at the end of the field, e.g. an icon or symbol.
+   * For `type="password"`, a built-in show/hide toggle is used automatically
+   * when this is not provided.
+   */
+  suffixIcon?: React.ReactNode;
+
   /** Validation state: error, warning, or success */
   validationState?: ValidationState;
 
@@ -103,6 +126,8 @@ const Input = React.forwardRef(({
   clearable,
   showCharacterCount,
   autoSelectOnFocus,
+  leadingIcon,
+  suffixIcon,
   validationState,
   validationMessage,
   styles,
@@ -118,6 +143,7 @@ const Input = React.forwardRef(({
   const inputRef = useRef<HTMLInputElement>(null);
   const needsValueTracking = clearable || showCharacterCount;
   const [internalValue, setInternalValue] = useState(() => value ?? defaultValue ?? '');
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   useEffect(() => {
     if (needsValueTracking && value !== undefined) setInternalValue(value);
@@ -155,6 +181,10 @@ const Input = React.forwardRef(({
     : undefined;
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (type === 'url') {
+      const prefixed = withUrlPrefix(e.target.value);
+      if (prefixed !== e.target.value) e.target.value = prefixed;
+    }
     if (needsValueTracking) setInternalValue(e.target.value);
     onChange?.(e);
   };
@@ -174,13 +204,36 @@ const Input = React.forwardRef(({
     input.focus();
   };
 
+  const isPassword = type === 'password';
+  const effectiveType = isPassword && passwordVisible ? 'text' : type;
+  const resolvedSuffixIcon = suffixIcon ?? (isPassword && (
+    <button
+      type="button"
+      css={suffixButton}
+      aria-label={passwordVisible ? 'Hide password' : 'Show password'}
+      onClick={() => setPasswordVisible((v) => !v)}
+    >
+      <span aria-hidden="true">{passwordVisible ? '🙈' : '👁'}</span>
+    </button>
+  ));
+
   return (
     <div css={[emotionStyle, fullWidth && fullWidthStyle]} style={inlineStyle} className={className}>
-      <div css={[fcContainer, additionalStyles, clearable && clearableInputStyle, validationState && validationStyle(validationState, variant)]}>
+      <div
+        css={[
+          fcContainer,
+          additionalStyles,
+          clearable && clearableInputStyle,
+          !!leadingIcon && leadingIconStyle,
+          !!resolvedSuffixIcon && suffixIconStyle,
+          validationState && validationStyle(validationState, variant),
+        ]}
+      >
+        {leadingIcon && <span css={leadingIconSlot} aria-hidden="true">{leadingIcon}</span>}
         <input
           id={name}
           name={name}
-          type={type}
+          type={effectiveType}
           ref={mergeRefs(ref, inputRef)}
           placeholder=" "
           value={value}
@@ -193,10 +246,15 @@ const Input = React.forwardRef(({
         />
         {label && <label htmlFor={name}>{label}</label>}
         {isMaterial && <span className="underline" />}
-        {clearable && !!internalValue && (
-          <button type="button" css={clearButton} aria-label="Clear" onClick={handleClear}>
-            <span aria-hidden="true">&times;</span>
-          </button>
+        {(resolvedSuffixIcon || (clearable && !!internalValue)) && (
+          <span css={suffixIconSlot}>
+            {clearable && !!internalValue && (
+              <button type="button" css={clearButton} aria-label="Clear" onClick={handleClear}>
+                <span aria-hidden="true">&times;</span>
+              </button>
+            )}
+            {resolvedSuffixIcon}
+          </span>
         )}
       </div>
       {validationMessage && validationState && (

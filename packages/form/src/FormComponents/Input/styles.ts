@@ -23,10 +23,63 @@ export const clearableInputStyle = css`
 `;
 
 export const clearButton = css`
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: var(--mf-text-muted);
+    cursor: pointer;
+
+    &:hover {
+        color: var(--mf-text);
+    }
+`;
+
+export const leadingIconStyle = css`
+    input {
+        padding-left: 2.25rem;
+    }
+
+    input:placeholder-shown ~ label {
+        left: 2.25rem;
+    }
+`;
+
+export const suffixIconStyle = css`
+    input {
+        padding-right: 2.25rem;
+    }
+`;
+
+export const leadingIconSlot = css`
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--mf-text-muted);
+    pointer-events: none;
+`;
+
+export const suffixIconSlot = css`
     position: absolute;
     top: 50%;
     right: 8px;
     transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: var(--mf-text-muted);
+`;
+
+export const suffixButton = css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
