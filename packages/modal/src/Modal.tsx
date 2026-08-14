@@ -9,9 +9,12 @@ import {
   modal,
   modalHeader,
   modalCloseButton,
+  getDrawerStyle,
 } from './Modal.styles';
 
 export type Sizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type Variant = 'default' | 'drawer';
+export type Placement = 'left' | 'right' | 'top' | 'bottom';
 
 const getSizeStyle = (size?: Sizes): SerializedStyles | null => {
   switch (size) {
@@ -36,14 +39,20 @@ interface ModalProps {
   styles?: StyleOverride;
   className?: string;
   size?: Sizes;
+  /** Modal chrome, or an edge-anchored drawer */
+  variant?: Variant;
+  /** Edge the drawer slides in from. Only used when variant="drawer" */
+  placement?: Placement;
   isShowing?: boolean | (() => void);
   hide: () => void;
 }
 
 const Modal = ({
-  title, children, isShowing, hide, styles, className, size,
+  title, children, isShowing, hide, styles, className, size, variant = 'default', placement = 'right',
 }: ModalProps): ReactNode | null => {
-  const modalCss = css`${modal}${getSizeStyle(size)}`;
+  const modalCss = variant === 'drawer'
+    ? css`${modal}${getDrawerStyle(placement)}`
+    : css`${modal}${getSizeStyle(size)}`;
   const emotionStyle = styles && isSerializedStyles(styles)
     ? composeStyles(modalCss, styles)
     : modalCss;

@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { DateInput, Input, TextArea } from "@maelstrom-futurism/form";
 import { Container } from "@maelstrom-futurism/layout";
 import { ContentBox } from "@maelstrom-futurism/core";
@@ -6,6 +6,8 @@ import { ContentBox } from "@maelstrom-futurism/core";
 import CodeView from "../components/CodeView";
 
 const Inputs = (): ReactNode => {
+    const [autosizeValue, setAutosizeValue] = useState("");
+
     return (
         <Container>
             <h1>Inputs</h1>
@@ -122,7 +124,29 @@ import { ContentBox } from "@maelstrom-futurism/core";
 
             <DateInput type="date" name="ourDate" />
             <DateInput type="time" name="ourTime" />
-            
+
+            <h2>Autosize Textarea</h2>
+            <p>
+                Pass <code>autosize</code> to a <code>TextArea</code> to have it grow (and shrink)
+                to fit its content instead of scrolling.
+            </p>
+
+            <CodeView>{`import { useState } from "react";
+import { TextArea } from "@maelstrom-futurism/input";
+
+const FormControl = () => {
+    const [value, setValue] = useState("");
+
+    return (
+        <TextArea name="autosize" label="Autosize Textarea" autosize
+            value={value} onChange={(e) => setValue(e.target.value)} />
+    );
+};
+`}</CodeView>
+
+            <TextArea name="autosize" label="Autosize Textarea" autosize
+                value={autosizeValue} onChange={(e) => setAutosizeValue(e.target.value)} />
+
             <br/><br/><br/><br/>
         </Container>
     );
