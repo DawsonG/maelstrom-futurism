@@ -4,6 +4,7 @@ import { composeStyles, isSerializedStyles, StyleOverride } from '@maelstrom-fut
 import {
   outsideContainer,
   fcContainer,
+  fullWidthStyle,
   materialStyledInput,
   normalStyledInput,
   helpText as helpTextCss,
@@ -43,6 +44,9 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   /** Use textarea? */
   multiline?: boolean;
 
+  /** Stretch the input to fill the width of its container */
+  fullWidth?: boolean;
+
   /** Validation state: error, warning, or success */
   validationState?: ValidationState;
 
@@ -71,6 +75,7 @@ const Input = React.forwardRef(({
   label,
   helpText,
   multiline,
+  fullWidth,
   validationState,
   validationMessage,
   styles,
@@ -82,6 +87,7 @@ const Input = React.forwardRef(({
       <TextArea
         name={name}
         label={label || ''}
+        fullWidth={fullWidth}
         validationState={validationState}
         validationMessage={validationMessage}
         {...rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>}
@@ -101,7 +107,7 @@ const Input = React.forwardRef(({
     : undefined;
 
   return (
-    <div css={emotionStyle} style={inlineStyle} className={className}>
+    <div css={[emotionStyle, fullWidth && fullWidthStyle]} style={inlineStyle} className={className}>
       <div css={[fcContainer, additionalStyles, validationState && validationStyle(validationState, variant)]}>
         <input
           id={name}

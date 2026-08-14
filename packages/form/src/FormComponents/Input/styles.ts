@@ -11,6 +11,11 @@ export const fcContainer = css`
     margin-top: 14px;
 `;
 
+export const fullWidthStyle = css`
+    width: 100%;
+    box-sizing: border-box;
+`;
+
 export const helpText = css`
     position: relative;
     display: block;
