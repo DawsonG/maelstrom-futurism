@@ -146,7 +146,7 @@ const FormControl = () => {
 };
 `}</CodeView>
 
-            <TextArea name="autosize" label="Autosize Textarea" autosize
+            <TextArea name="autosize" maxLength={1000} showCharacterCount={true} label="Autosize Textarea" autosize
                 value={autosizeValue} onChange={(e) => setAutosizeValue(e.target.value)} />
 
             <br/><br/><br/><br/>

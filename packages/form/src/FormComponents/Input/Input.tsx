@@ -9,6 +9,7 @@ import {
   fullWidthStyle,
   clearableInputStyle,
   clearButton,
+  characterCount as characterCountCss,
   materialStyledInput,
   normalStyledInput,
   helpText as helpTextCss,
@@ -64,6 +65,9 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   /** Render a trailing clear (×) button that empties the field when it has a value */
   clearable?: boolean;
 
+  /** Show a `n/maxLength` character count label below the field. Requires `maxLength`. */
+  showCharacterCount?: boolean;
+
   /** Validation state: error, warning, or success */
   validationState?: ValidationState;
 
@@ -94,6 +98,7 @@ const Input = React.forwardRef(({
   multiline,
   fullWidth,
   clearable,
+  showCharacterCount,
   validationState,
   validationMessage,
   styles,
@@ -101,14 +106,16 @@ const Input = React.forwardRef(({
   value,
   defaultValue,
   onChange,
+  maxLength,
   ...rest
 }: InputProps, ref?: React.Ref<HTMLInputElement>) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [hasValue, setHasValue] = useState(() => !!(value ?? defaultValue));
+  const needsValueTracking = clearable || showCharacterCount;
+  const [internalValue, setInternalValue] = useState(() => value ?? defaultValue ?? '');
 
   useEffect(() => {
-    if (clearable && value !== undefined) setHasValue(!!value);
-  }, [clearable, value]);
+    if (needsValueTracking && value !== undefined) setInternalValue(value);
+  }, [needsValueTracking, value]);
 
   if (multiline) {
     return (
@@ -116,11 +123,13 @@ const Input = React.forwardRef(({
         name={name}
         label={label || ''}
         fullWidth={fullWidth}
+        showCharacterCount={showCharacterCount}
         validationState={validationState}
         validationMessage={validationMessage}
         value={value}
         defaultValue={defaultValue}
         onChange={onChange}
+        maxLength={maxLength}
         {...rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>}
       />
     );
@@ -138,7 +147,7 @@ const Input = React.forwardRef(({
     : undefined;
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    if (clearable) setHasValue(!!e.target.value);
+    if (needsValueTracking) setInternalValue(e.target.value);
     onChange?.(e);
   };
 
@@ -164,11 +173,12 @@ const Input = React.forwardRef(({
           value={value}
           defaultValue={defaultValue}
           onChange={handleChange}
+          maxLength={maxLength}
           {...rest}
         />
         {label && <label htmlFor={name}>{label}</label>}
         {isMaterial && <span className="underline" />}
-        {clearable && hasValue && (
+        {clearable && !!internalValue && (
           <button type="button" css={clearButton} aria-label="Clear" onClick={handleClear}>
             <span aria-hidden="true">&times;</span>
           </button>
@@ -179,6 +189,9 @@ const Input = React.forwardRef(({
       )}
       {helpText && !validationMessage && (
         <span css={helpTextCss}>{helpText}</span>
+      )}
+      {showCharacterCount && typeof maxLength === 'number' && (
+        <span css={characterCountCss}>{`${internalValue.length}/${maxLength}`}</span>
       )}
     </div>
   );

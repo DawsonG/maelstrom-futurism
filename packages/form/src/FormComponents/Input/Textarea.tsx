@@ -1,8 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { css } from '@emotion/react';
 import { EASE_FUNCTION } from '@maelstrom-futurism/core';
 
-import { validationStyle, validationMessage as validationMessageCss, fullWidthStyle, type ValidationState } from './styles';
+import {
+  validationStyle,
+  validationMessage as validationMessageCss,
+  fullWidthStyle,
+  characterCount as characterCountCss,
+  type ValidationState,
+} from './styles';
 
 interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   name: string;
@@ -16,6 +22,9 @@ interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement
 
   /** Stretch the textarea to fill the width of its container */
   fullWidth?: boolean;
+
+  /** Show a `n/maxLength` character count label below the field. Requires `maxLength`. */
+  showCharacterCount?: boolean;
 }
 
 const containerCss = css`
@@ -50,8 +59,26 @@ const textAreaStyles = css`
     }
 `;
 
-const TextArea = ({ name, label, value, validationState, validationMessage, autosize, fullWidth, ...rest }: TextAreaProps) => {
+const TextArea = ({
+  name,
+  label,
+  value,
+  defaultValue,
+  onChange,
+  maxLength,
+  validationState,
+  validationMessage,
+  autosize,
+  fullWidth,
+  showCharacterCount,
+  ...rest
+}: TextAreaProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [internalValue, setInternalValue] = useState(() => (value ?? defaultValue ?? '') as string);
+
+  useEffect(() => {
+    if (showCharacterCount && value !== undefined) setInternalValue(value as string);
+  }, [showCharacterCount, value]);
 
   useEffect(() => {
     if (!autosize || !textareaRef.current) return;
@@ -61,12 +88,29 @@ const TextArea = ({ name, label, value, validationState, validationMessage, auto
     el.style.height = `${el.scrollHeight}px`; // apply measurement
   }, [autosize, value]);
 
+  const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+    if (showCharacterCount) setInternalValue(e.target.value);
+    onChange?.(e);
+  };
+
   return (
     <div css={[containerCss, fullWidth && fullWidthStyle, validationState && validationStyle(validationState, 'normal')]}>
       {label && <label htmlFor={name}>{label}</label>}
-      <textarea id={name} ref={textareaRef} css={textAreaStyles} value={value} {...rest} />
+      <textarea
+        id={name}
+        ref={textareaRef}
+        css={textAreaStyles}
+        value={value}
+        defaultValue={defaultValue}
+        onChange={handleChange}
+        maxLength={maxLength}
+        {...rest}
+      />
       {validationMessage && validationState && (
         <span css={validationMessageCss(validationState)}>{validationMessage}</span>
+      )}
+      {showCharacterCount && typeof maxLength === 'number' && (
+        <span css={characterCountCss}>{`${internalValue.length}/${maxLength}`}</span>
       )}
     </div>
   );

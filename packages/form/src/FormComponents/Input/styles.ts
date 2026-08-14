@@ -51,6 +51,15 @@ export const helpText = css`
     opacity: 0.7;
 `;
 
+export const characterCount = css`
+    position: relative;
+    display: block;
+    padding: 2px 12px 2px 0;
+    font-size: 0.9em;
+    opacity: 0.7;
+    text-align: right;
+`;
+
 export type ValidationState = 'alert' | 'warning' | 'success';
 
 export const validationStyle = (state: ValidationState, variant: Variant) => {
