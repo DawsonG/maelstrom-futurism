@@ -3,6 +3,8 @@ export { default as Form } from './Form';
 export { Input, TextArea } from './FormComponents/Input';
 export { DateInput } from './FormComponents/DateInput';
 export type { DateInputProps } from './FormComponents/DateInput';
+export { DropZone } from './FormComponents/DropZone';
+export type { DropZoneProps } from './FormComponents/DropZone';
 export { Radio, RadioGroup } from './FormComponents/Radio';
 export type { RadioProps, RadioGroupProps, RadioOption } from './FormComponents/Radio';
 export { Checkbox, CheckboxGroup } from './FormComponents/Checkbox';

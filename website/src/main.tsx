@@ -11,6 +11,7 @@ import App from './pages/App.tsx';
 import Theming from './pages/Theming.tsx';
 // import ColorTool from './pages/ColorTool.tsx';
 import Inputs from './pages/Inputs.tsx';
+import DropZonePage from './pages/DropZone.tsx';
 import PageGrid from './pages/Grid.tsx';
 import PageContainers from './pages/Containers.tsx';
 import PagePaper from './pages/Paper.tsx';
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: '/inputs',
         element: <Inputs />
+      },
+      {
+        path: '/dropzone',
+        element: <DropZonePage />
       },
       {
         path: '/form',
