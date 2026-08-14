@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { DateInput, Input, TextArea } from "@maelstrom-futurism/form";
+import { Input, TextArea } from "@maelstrom-futurism/form";
 import { Container } from "@maelstrom-futurism/layout";
 import { ContentBox } from "@maelstrom-futurism/core";
 import { Button } from "@maelstrom-futurism/button";
@@ -122,15 +122,6 @@ import { ContentBox } from "@maelstrom-futurism/core";
             <TextArea name="v-textarea" label="Bio"
                 validationState="warning"
                 validationMessage="Keep it under 200 characters" />
-
-            <h2>Special Input Types</h2>
-            <p>Input can also wrap DateTime inputs</p>
-
-            <CodeView>{`<DateInput type="date" name="ourDate" />
-<DateInput type="time" name="ourTime" />`}</CodeView>
-
-            <DateInput type="date" name="ourDate" />
-            <DateInput type="time" name="ourTime" />
 
             <h2>Autosize Textarea</h2>
             <p>

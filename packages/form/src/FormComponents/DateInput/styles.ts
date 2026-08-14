@@ -10,6 +10,23 @@ export const fcContainer = css`
     margin-top: 14px;
 `;
 
+export const rangeGroupContainer = css`
+    display: flex;
+    flex-direction: column;
+    background-color: inherit;
+
+    @media only screen and (min-width: 640px) {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: var(--mf-space-4);
+
+        & > * {
+            flex: 1;
+            min-width: 0;
+        }
+    }
+`;
+
 export const dateInputStyle = css`
     background-color: inherit;
 
