@@ -25,6 +25,9 @@ interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement
 
   /** Show a `n/maxLength` character count label below the field. Requires `maxLength`. */
   showCharacterCount?: boolean;
+
+  /** Submit the enclosing form on Ctrl/Cmd+Enter */
+  submitOnEnter?: boolean;
 }
 
 const containerCss = css`
@@ -71,6 +74,8 @@ const TextArea = ({
   autosize,
   fullWidth,
   showCharacterCount,
+  submitOnEnter,
+  onKeyDown,
   ...rest
 }: TextAreaProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -93,16 +98,25 @@ const TextArea = ({
     onChange?.(e);
   };
 
+  const handleKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
+    if (submitOnEnter && e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+      e.currentTarget.form?.requestSubmit();
+    }
+    onKeyDown?.(e);
+  };
+
   return (
     <div css={[containerCss, fullWidth && fullWidthStyle, validationState && validationStyle(validationState, 'normal')]}>
       {label && <label htmlFor={name}>{label}</label>}
       <textarea
         id={name}
+        name={name}
         ref={textareaRef}
         css={textAreaStyles}
         value={value}
         defaultValue={defaultValue}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
         maxLength={maxLength}
         {...rest}
       />

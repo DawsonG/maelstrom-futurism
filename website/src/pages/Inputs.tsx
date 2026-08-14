@@ -7,6 +7,7 @@ import CodeView from "../components/CodeView";
 
 const Inputs = (): ReactNode => {
     const [autosizeValue, setAutosizeValue] = useState("");
+    const [submitCount, setSubmitCount] = useState(0);
 
     return (
         <Container>
@@ -161,6 +162,26 @@ const FormControl = () => {
 
             <Input variant="normal" name="share-link" type="text" label="Share Link"
                 readOnly autoSelectOnFocus value="https://mf.osmstudios.com/asdf/jkl123" />
+
+            <h2>Enter-to-submit Textarea</h2>
+            <p>
+                Pass <code>submitOnEnter</code> to a <code>TextArea</code> to submit its enclosing
+                form on Ctrl/Cmd+Enter, without stopping a plain Enter from adding a new line.
+            </p>
+
+            <CodeView>{`import { TextArea } from "@maelstrom-futurism/input";
+
+const FormControl = () => (
+    <form onSubmit={(e) => { e.preventDefault(); /* handle submit */ }}>
+        <TextArea name="message" label="Message (Ctrl/Cmd+Enter to submit)" submitOnEnter />
+    </form>
+);
+`}</CodeView>
+
+            <form onSubmit={(e) => { e.preventDefault(); setSubmitCount((count) => count + 1); }}>
+                <TextArea name="message" label="Message (Ctrl/Cmd+Enter to submit)" submitOnEnter />
+            </form>
+            <p>Submitted {submitCount} time{submitCount === 1 ? "" : "s"}</p>
 
             <br/><br/><br/><br/>
         </Container>
