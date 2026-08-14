@@ -16,6 +16,33 @@ export const fullWidthStyle = css`
     box-sizing: border-box;
 `;
 
+export const clearableInputStyle = css`
+    input {
+        padding-right: 2.25rem;
+    }
+`;
+
+export const clearButton = css`
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: var(--mf-text-muted);
+    cursor: pointer;
+
+    &:hover {
+        color: var(--mf-text);
+    }
+`;
+
 export const helpText = css`
     position: relative;
     display: block;

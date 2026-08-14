@@ -31,10 +31,12 @@ const FormControl = () => (
 
 const FormControl = () => (
     <Input variant="normal" name="test 2" label="Normal Input" type="text" />
+    <Input variant="normal" name="test 21" label="Clearable Input" clearable type="text" />
 );
 `}</CodeView>
 
             <Input variant="normal" name="test 2" label="Normal Input" type="text" />
+            <Input variant="normal" name="test 21" label="Clearable Input" clearable type="text" />
 
 <CodeView>{`import { TextArea } from "@maelstrom-futurism/input";
 
