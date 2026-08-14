@@ -68,6 +68,9 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   /** Show a `n/maxLength` character count label below the field. Requires `maxLength`. */
   showCharacterCount?: boolean;
 
+  /** Select the field's full text on focus. Only active when `readOnly` is set. */
+  autoSelectOnFocus?: boolean;
+
   /** Validation state: error, warning, or success */
   validationState?: ValidationState;
 
@@ -99,6 +102,7 @@ const Input = React.forwardRef(({
   fullWidth,
   clearable,
   showCharacterCount,
+  autoSelectOnFocus,
   validationState,
   validationMessage,
   styles,
@@ -106,7 +110,9 @@ const Input = React.forwardRef(({
   value,
   defaultValue,
   onChange,
+  onFocus,
   maxLength,
+  readOnly,
   ...rest
 }: InputProps, ref?: React.Ref<HTMLInputElement>) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -129,7 +135,9 @@ const Input = React.forwardRef(({
         value={value}
         defaultValue={defaultValue}
         onChange={onChange}
+        onFocus={onFocus as unknown as React.FocusEventHandler<HTMLTextAreaElement>}
         maxLength={maxLength}
+        readOnly={readOnly}
         {...rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>}
       />
     );
@@ -149,6 +157,11 @@ const Input = React.forwardRef(({
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     if (needsValueTracking) setInternalValue(e.target.value);
     onChange?.(e);
+  };
+
+  const handleFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
+    if (autoSelectOnFocus && readOnly) e.target.select();
+    onFocus?.(e);
   };
 
   const handleClear = () => {
@@ -173,7 +186,9 @@ const Input = React.forwardRef(({
           value={value}
           defaultValue={defaultValue}
           onChange={handleChange}
+          onFocus={handleFocus}
           maxLength={maxLength}
+          readOnly={readOnly}
           {...rest}
         />
         {label && <label htmlFor={name}>{label}</label>}

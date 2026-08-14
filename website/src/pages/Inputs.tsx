@@ -149,6 +149,19 @@ const FormControl = () => {
             <TextArea name="autosize" maxLength={1000} showCharacterCount={true} label="Autosize Textarea" autosize
                 value={autosizeValue} onChange={(e) => setAutosizeValue(e.target.value)} />
 
+            <h2>Auto-select on Focus</h2>
+            <p>
+                Pass <code>autoSelectOnFocus</code> to an <code>Input</code> to select its entire value
+                as soon as it's focused, making it easy to copy. It's only active when <code>readOnly</code>
+                is also set.
+            </p>
+
+            <CodeView>{`<Input variant="normal" name="share-link" type="text" label="Share Link"
+    readOnly autoSelectOnFocus value="https://mf.osmstudios.com/asdf/jkl123" />`}</CodeView>
+
+            <Input variant="normal" name="share-link" type="text" label="Share Link"
+                readOnly autoSelectOnFocus value="https://mf.osmstudios.com/asdf/jkl123" />
+
             <br/><br/><br/><br/>
         </Container>
     );
