@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { css } from '@emotion/react';
 import { EASE_FUNCTION } from '@maelstrom-futurism/core';
 
@@ -9,6 +10,9 @@ interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement
   validationState?: ValidationState;
   validationMessage?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+
+  /** Grow the textarea to fit its content instead of scrolling */
+  autosize?: boolean;
 }
 
 const containerCss = css`
@@ -43,11 +47,21 @@ const textAreaStyles = css`
     }
 `;
 
-const TextArea = ({ name, label, value, validationState, validationMessage, ...rest }: TextAreaProps) => {
+const TextArea = ({ name, label, value, validationState, validationMessage, autosize, ...rest }: TextAreaProps) => {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (!autosize || !textareaRef.current) return;
+
+    const el = textareaRef.current;
+    el.style.height = 'auto'; // reset measurement
+    el.style.height = `${el.scrollHeight}px`; // apply measurement
+  }, [autosize, value]);
+
   return (
     <div css={[containerCss, validationState && validationStyle(validationState, 'normal')]}>
       {label && <label htmlFor={name}>{label}</label>}
-      <textarea id={name} css={textAreaStyles} value={value} {...rest} />
+      <textarea id={name} ref={textareaRef} css={textAreaStyles} value={value} {...rest} />
       {validationMessage && validationState && (
         <span css={validationMessageCss(validationState)}>{validationMessage}</span>
       )}
