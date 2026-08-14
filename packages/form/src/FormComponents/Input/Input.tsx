@@ -23,6 +23,13 @@ import {
   type ValidationState,
 } from './styles';
 import TextArea from './Textarea';
+import {
+  applyCustomValidity,
+  applyAllowedDomains,
+  applyMask,
+  DEFAULT_TEL_MASK,
+  type ErrorMessages,
+} from './validation';
 
 const mergeRefs = (
   ...refs: Array<React.Ref<HTMLInputElement> | undefined>
@@ -100,6 +107,28 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   /** Message displayed below the field when a validationState is set */
   validationMessage?: string;
 
+  /**
+   * Custom messages for native validation failures, keyed by `ValidityState` flag
+   * (e.g. `valueMissing`, `typeMismatch`, `tooShort`). Applied via `setCustomValidity()`.
+   */
+  errorMessages?: ErrorMessages;
+
+  /**
+   * Restrict `type="email"`/`type="url"` values to the given hostnames (subdomains allowed).
+   * Sets a custom validity message when the value's host doesn't match.
+   */
+  allowedDomains?: string[];
+
+  /** Message shown when the value's host isn't in `allowedDomains` */
+  allowedDomainsMessage?: string;
+
+  /**
+   * Format the raw digits typed into the field against a mask pattern, where `0`
+   * marks a digit placeholder (e.g. `"(000) 000-0000"`). Defaults to a US phone
+   * mask for `type="tel"`.
+   */
+  mask?: string;
+
   /** Called whenever the value changes. For use of Inputs outside traditional forms. */
   onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
@@ -130,6 +159,10 @@ const Input = React.forwardRef(({
   suffixIcon,
   validationState,
   validationMessage,
+  errorMessages,
+  allowedDomains,
+  allowedDomainsMessage = 'This domain is not allowed',
+  mask,
   styles,
   className,
   value,
@@ -149,6 +182,16 @@ const Input = React.forwardRef(({
     if (needsValueTracking && value !== undefined) setInternalValue(value);
   }, [needsValueTracking, value]);
 
+  const runValidation = (el: HTMLInputElement) => {
+    const hasCustomError = applyCustomValidity(el, errorMessages);
+    if (!hasCustomError) applyAllowedDomains(el, type, allowedDomains, allowedDomainsMessage);
+  };
+
+  useEffect(() => {
+    const input = inputRef.current;
+    if (input) runValidation(input);
+  }, [errorMessages, allowedDomains, allowedDomainsMessage, type]);
+
   if (multiline) {
     return (
       <TextArea
@@ -158,6 +201,7 @@ const Input = React.forwardRef(({
         showCharacterCount={showCharacterCount}
         validationState={validationState}
         validationMessage={validationMessage}
+        errorMessages={errorMessages}
         value={value}
         defaultValue={defaultValue}
         onChange={onChange}
@@ -180,11 +224,18 @@ const Input = React.forwardRef(({
     ? styles as CSSProperties
     : undefined;
 
+  const effectiveMask = mask ?? (type === 'tel' ? DEFAULT_TEL_MASK : undefined);
+
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     if (type === 'url') {
       const prefixed = withUrlPrefix(e.target.value);
       if (prefixed !== e.target.value) e.target.value = prefixed;
     }
+    if (effectiveMask) {
+      const masked = applyMask(e.target.value, effectiveMask);
+      if (masked !== e.target.value) e.target.value = masked;
+    }
+    runValidation(e.target);
     if (needsValueTracking) setInternalValue(e.target.value);
     onChange?.(e);
   };

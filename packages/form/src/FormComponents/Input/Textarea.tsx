@@ -9,6 +9,7 @@ import {
   characterCount as characterCountCss,
   type ValidationState,
 } from './styles';
+import { applyCustomValidity, type ErrorMessages } from './validation';
 
 interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   name: string;
@@ -28,6 +29,12 @@ interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement
 
   /** Submit the enclosing form on Ctrl/Cmd+Enter */
   submitOnEnter?: boolean;
+
+  /**
+   * Custom messages for native validation failures, keyed by `ValidityState` flag
+   * (e.g. `valueMissing`, `tooLong`, `tooShort`). Applied via `setCustomValidity()`.
+   */
+  errorMessages?: ErrorMessages;
 }
 
 const containerCss = css`
@@ -75,6 +82,7 @@ const TextArea = ({
   fullWidth,
   showCharacterCount,
   submitOnEnter,
+  errorMessages,
   onKeyDown,
   ...rest
 }: TextAreaProps) => {
@@ -86,6 +94,11 @@ const TextArea = ({
   }, [showCharacterCount, value]);
 
   useEffect(() => {
+    const el = textareaRef.current;
+    if (el) applyCustomValidity(el, errorMessages);
+  }, [errorMessages]);
+
+  useEffect(() => {
     if (!autosize || !textareaRef.current) return;
 
     const el = textareaRef.current;
@@ -94,6 +107,7 @@ const TextArea = ({
   }, [autosize, value]);
 
   const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+    applyCustomValidity(e.target, errorMessages);
     if (showCharacterCount) setInternalValue(e.target.value);
     onChange?.(e);
   };

@@ -2,12 +2,16 @@ import { ReactNode, useState } from "react";
 import { DateInput, Input, TextArea } from "@maelstrom-futurism/form";
 import { Container } from "@maelstrom-futurism/layout";
 import { ContentBox } from "@maelstrom-futurism/core";
+import { Button } from "@maelstrom-futurism/button";
 
 import CodeView from "../components/CodeView";
 
 const Inputs = (): ReactNode => {
     const [autosizeValue, setAutosizeValue] = useState("");
     const [submitCount, setSubmitCount] = useState(0);
+    const [usernameError, setUsernameError] = useState("");
+    const [productCodeError, setProductCodeError] = useState("");
+    const [workEmailError, setWorkEmailError] = useState("");
 
     return (
         <Container>
@@ -214,6 +218,91 @@ const FormControl = () => (
     onChange={(e) => console.log(e.target.value)} />`}</CodeView>
 
             <Input variant="normal" name="website" type="url" label="Website" />
+
+            <h2>Custom Error Messages</h2>
+            <p>
+                Pass <code>errorMessages</code> to an <code>Input</code> or <code>TextArea</code> to
+                override the browser's default validation text. It's keyed by the native{" "}
+                <code>ValidityState</code> flag that's currently failing (e.g. <code>valueMissing</code>,{" "}
+                <code>typeMismatch</code>, <code>patternMismatch</code>), and applied via{" "}
+                <code>setCustomValidity()</code> so it still participates in native form validation and{" "}
+                <code>:invalid</code> styling. Click "Check" (or submit) to trigger native validation
+                and reveal the message below.
+            </p>
+
+            <CodeView>{`<Input variant="normal" name="username2" type="text" label="Username" required
+    errorMessages={{ valueMissing: "Please choose a username" }}
+    validationState={usernameError ? "alert" : undefined}
+    validationMessage={usernameError}
+    onInvalid={(e) => { e.preventDefault(); setUsernameError(e.currentTarget.validationMessage); }}
+    onChange={(e) => { if (e.currentTarget.checkValidity()) setUsernameError(""); }} />
+
+<Input variant="normal" name="pattern-example" type="text" label="Product Code"
+    pattern="[A-Z]{2}-[0-9]{4}"
+    errorMessages={{ patternMismatch: "Format must be AB-1234" }}
+    validationState={productCodeError ? "alert" : undefined}
+    validationMessage={productCodeError}
+    onInvalid={(e) => { e.preventDefault(); setProductCodeError(e.currentTarget.validationMessage); }}
+    onChange={(e) => { if (e.currentTarget.checkValidity()) setProductCodeError(""); }} />`}</CodeView>
+
+            <Input variant="normal" name="username2" type="text" label="Username" required
+                errorMessages={{ valueMissing: "Please choose a username" }}
+                validationState={usernameError ? "alert" : undefined}
+                validationMessage={usernameError}
+                onInvalid={(e) => { e.preventDefault(); setUsernameError(e.currentTarget.validationMessage); }}
+                onChange={(e) => { if (e.currentTarget.checkValidity()) setUsernameError(""); }} />
+            <Input variant="normal" name="pattern-example" type="text" label="Product Code"
+                pattern="[A-Z]{2}-[0-9]{4}"
+                errorMessages={{ patternMismatch: "Format must be AB-1234" }}
+                validationState={productCodeError ? "alert" : undefined}
+                validationMessage={productCodeError}
+                onInvalid={(e) => { e.preventDefault(); setProductCodeError(e.currentTarget.validationMessage); }}
+                onChange={(e) => { if (e.currentTarget.checkValidity()) setProductCodeError(""); }} />
+            <Button type="button" variant="secondary" onClick={() => {
+                (document.getElementsByName("username2")[0] as HTMLInputElement)?.reportValidity();
+                (document.getElementsByName("pattern-example")[0] as HTMLInputElement)?.reportValidity();
+            }}>Check</Button>
+
+            <h2>Allowed Domains</h2>
+            <p>
+                Pass <code>allowedDomains</code> to restrict a <code>type="email"</code> or{" "}
+                <code>type="url"</code> field to a set of hostnames (subdomains are accepted
+                automatically). An optional <code>allowedDomainsMessage</code> customizes the
+                validation text. Click "Check" to trigger native validation and reveal the message.
+            </p>
+
+            <CodeView>{`<Input variant="normal" name="work-email" type="email" label="Work Email"
+    allowedDomains={["osmstudios.com"]}
+    allowedDomainsMessage="Please use your osmstudios.com email address"
+    validationState={workEmailError ? "alert" : undefined}
+    validationMessage={workEmailError}
+    onInvalid={(e) => { e.preventDefault(); setWorkEmailError(e.currentTarget.validationMessage); }}
+    onChange={(e) => { if (e.currentTarget.checkValidity()) setWorkEmailError(""); }} />`}</CodeView>
+
+            <Input variant="normal" name="work-email" type="email" label="Work Email"
+                allowedDomains={["osmstudios.com"]}
+                allowedDomainsMessage="Please use your osmstudios.com email address"
+                validationState={workEmailError ? "alert" : undefined}
+                validationMessage={workEmailError}
+                onInvalid={(e) => { e.preventDefault(); setWorkEmailError(e.currentTarget.validationMessage); }}
+                onChange={(e) => { if (e.currentTarget.checkValidity()) setWorkEmailError(""); }} />
+            <Button type="button" variant="secondary" onClick={() => {
+                (document.getElementsByName("work-email")[0] as HTMLInputElement)?.reportValidity();
+            }}>Check</Button>
+
+            <h2>Input Mask</h2>
+            <p>
+                Pass <code>mask</code> to reformat digits as they're typed against a pattern, where{" "}
+                <code>0</code> marks a digit placeholder. <code>type="tel"</code> gets a US phone
+                mask (<code>(000) 000-0000</code>) automatically when no <code>mask</code> is given.
+            </p>
+
+            <CodeView>{`<Input variant="normal" name="phone" type="tel" label="Phone Number" />
+
+<Input variant="normal" name="ssn" type="text" label="SSN" mask="000-00-0000" />`}</CodeView>
+
+            <Input variant="normal" name="phone" type="tel" label="Phone Number" />
+            <Input variant="normal" name="ssn" type="text" label="SSN" mask="000-00-0000" />
 
             <br/><br/><br/><br/>
         </Container>
