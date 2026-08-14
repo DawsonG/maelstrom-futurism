@@ -58,7 +58,7 @@ export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children
             --mf-border-muted:  ${themeValue.color('borderMuted')};
             --mf-border-accent: ${themeValue.color('borderAccent')};
             --mf-text:          ${themeValue.color('textColor')};
-            --mf-text-muted:    ${themeValue.color('textColor')}80;
+            --mf-text-muted:    color-mix(in srgb, ${themeValue.color('textColor')} 50%, transparent);
             --mf-link:          ${themeValue.color('linkColor')};
             --mf-primary:       ${themeValue.color('primary')};
             --mf-secondary:     ${themeValue.color('secondary')};
@@ -302,7 +302,7 @@ export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children
         }
 
         .mf-text-muted {
-            color: ${themeValue.color('textColor')}80;
+            color: color-mix(in srgb, ${themeValue.color('textColor')} 50%, transparent);
         }
     `;
 
