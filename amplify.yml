@@ -1,21 +1,22 @@
 version: 1
 applications:
-  - appRoot: website
-    frontend:
-      phases:
-        preBuild:
-          commands:
-            - npm ci
-        build:
-          commands:
-            - npm run build --workspace=packages/core
-            - npm run build --workspace=packages/button --workspace=packages/form --workspace=packages/icons --workspace=packages/layout --workspace=packages/modal --workspace=packages/navbar --workspace=packages/paper --workspace=packages/sidebar --workspace=packages/table --workspace=packages/tooltip --if-present
-            - npm run build --workspace=packages/mf-bot-differentiator --if-present
-            - npm run build --workspace=website
-      artifacts:
-        baseDirectory: website/dist
-        files:
-          - '**/*'
-      cache:
-        paths:
-          - node_modules/**/*
+    -
+        frontend:
+            phases:
+                preBuild:
+                    commands:
+                        - npm i
+                        - npm run build --workspace=packages/core
+                        - npm run build --workspace=packages/button --workspace=packages/form --workspace=packages/icons --workspace=packages/layout --workspace=packages/modal --workspace=packages/navbar --workspace=packages/paper --workspace=packages/sidebar --workspace=packages/table --workspace=packages/tooltip --if-present
+                        - npm run build --workspace=packages/mf-bot-differentiator --if-present
+                build:
+                    commands: ['cd ./website', 'npm run build']
+            artifacts:
+                baseDirectory: website/dist
+                files:
+                    - '**/*'
+            cache:
+                paths:
+                    - '.npm/**/*'
+            buildPath: /
+        appRoot: website
