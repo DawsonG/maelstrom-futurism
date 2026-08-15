@@ -141,6 +141,9 @@ export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children
             --mf-radius-card:   ${themeValue.borderRadius};
             --mf-radius-pill:   ${themeValue.pillRadius};
 
+            /* Elevation */
+            --mf-shadow-stuck: 0 4px 12px rgba(0, 0, 0, 0.15);
+
             /* Z-index scale */
             --mf-z-bottom: ${themeValue.heights.bottom};
             --mf-z-low:    ${themeValue.heights.low};
