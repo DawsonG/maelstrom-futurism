@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, DropdownButton } from "@maelstrom-futurism/button";
+import { Button, ButtonGroup, Dropdown, DropdownButton } from "@maelstrom-futurism/button";
 import { Container } from "@maelstrom-futurism/layout";
 import CodeView from "../components/CodeView";
 
@@ -96,6 +96,63 @@ const Buttons = () => (
                     onClick: () => alert("Third Option clicked")
                 }
             ]}>Button with Dropdown</DropdownButton>
+        </div>
+
+        <h3>Right-aligned Menu</h3>
+        <p>Pass <code>align=&quot;right&quot;</code> to anchor the menu to the right edge of the trigger — useful near the right side of the viewport.</p>
+        <CodeView>
+{`<DropdownButton
+    align="right"
+    items={[
+        { label: "Edit", onClick: () => alert("Edit clicked") },
+        { label: "Delete", onClick: () => alert("Delete clicked") }
+    ]}
+>Actions</DropdownButton>
+`}
+        </CodeView>
+
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <DropdownButton align="right" items={[
+                { label: "Edit", onClick: () => alert("Edit clicked") },
+                { label: "Delete", onClick: () => alert("Delete clicked") }
+            ]}>Actions</DropdownButton>
+        </div>
+
+        <h2>Dropdown (generic wrapper)</h2>
+        <p>
+            <code>Dropdown</code> is the underlying primitive behind <code>DropdownButton</code> — it
+            handles open/close state, click-outside dismissal, and closing on <code>Escape</code>, but
+            accepts any trigger and any menu content, not just a <code>Button</code> with a flat item list.
+        </p>
+        <CodeView>
+{`<Dropdown trigger={({ toggle, isOpen }) => (
+    <span onClick={toggle} style={{ cursor: "pointer", textDecoration: "underline" }}>
+        {isOpen ? "Close custom trigger" : "Open custom trigger"}
+    </span>
+)}>
+    {({ close }) => (
+        <div style={{ padding: "12px", background: "var(--mf-content)", border: "1px solid var(--mf-secondary)" }}>
+            <p style={{ marginTop: 0 }}>Any content can go here.</p>
+            <Button size="sm" onClick={close}>Close</Button>
+        </div>
+    )}
+</Dropdown>
+`}
+        </CodeView>
+
+        <div>
+            <Dropdown trigger={({ toggle, isOpen }) => (
+                <span onClick={toggle} style={{ cursor: "pointer", textDecoration: "underline" }}>
+                    {isOpen ? "Close custom trigger" : "Open custom trigger"}
+                </span>
+            )}>
+                {({ close }) => (
+                    <div style={{ padding: "12px", background: "var(--mf-content)", border: "1px solid var(--mf-secondary)", minWidth: "220px" }}>
+                        <p style={{ marginTop: 0 }}>Any content can go here.</p>
+                        <Button size="sm" onClick={close}>Close</Button>
+                    </div>
+                )}
+            </Dropdown>
         </div>
 
         <div style={{ marginBottom: "160px" }} />

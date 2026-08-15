@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
-import { Icon } from '@maelstrom-futurism/icons';
 import { css as emotionCss } from '@emotion/react';
+import { Icon } from '@maelstrom-futurism/icons';
 
 import Button from './Button';
+import Dropdown, { DropdownAlign } from './Dropdown';
 import { ButtonProps } from './types';
 
 interface DropdownButtonProps extends Omit<ButtonProps, 'onClick'> {
@@ -10,18 +10,13 @@ interface DropdownButtonProps extends Omit<ButtonProps, 'onClick'> {
     label: string;
     onClick: () => void;
   }>;
+
+  /** Which side of the trigger button the menu aligns to. Default 'left'. */
+  align?: DropdownAlign;
 }
 
-const dropdownWrapperStyle = emotionCss`
-  position: relative;
-  display: inline-block;
-`;
-
-const dropdownMenuStyle = emotionCss`
-  position: absolute;
-  z-index: 10;
-  margin-top: 2px;
-  width: 98%;
+const dropdownMenuListStyle = emotionCss`
+  width: 100%;
 
   & button {
     border-radius: 0;
@@ -45,39 +40,28 @@ const dropdownItemStyle = emotionCss`
 `;
 
 const DropdownButton = (props: DropdownButtonProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const { children, styles, items, ...rest } = props;
+  const { children, styles, items, align, ...rest } = props;
 
   return (
-    <div css={dropdownWrapperStyle} ref={dropdownRef}>
-      <Button styles={styles} onClick={() => setIsOpen(!isOpen)} {...rest}>
-        {children}
-        {' '}
-        <Icon icon="CaretDown" size={20} />
-      </Button>
-
-      {isOpen && (
-        <div css={dropdownMenuStyle}>
+    <Dropdown
+      align={align}
+      trigger={({ toggle }) => (
+        <Button styles={styles} onClick={toggle} {...rest}>
+          {children}
+          {' '}
+          <Icon icon="CaretDown" size={20} />
+        </Button>
+      )}
+    >
+      {({ close }) => (
+        <div css={dropdownMenuListStyle}>
           {items?.map((item, index) => (
             <button
               key={index}
               css={dropdownItemStyle}
               onClick={() => {
                 item.onClick();
-                setIsOpen(false);
+                close();
               }}
             >
               {item.label}
@@ -85,7 +69,7 @@ const DropdownButton = (props: DropdownButtonProps) => {
           ))}
         </div>
       )}
-    </div>
+    </Dropdown>
   );
 };
 
