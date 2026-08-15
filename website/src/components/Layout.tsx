@@ -23,6 +23,7 @@ function Layout() {
                             <li><Link to='/inputs'>Inputs</Link></li>
                             <li><Link to='/dropzone'>DropZone</Link></li>
                             <li><Link to='/datetime'>DateTime</Link></li>
+                            <li><Link to='/accordion'>Accordion</Link></li>
                             <li><Link to='/radio'>Radio &amp; RadioGroup</Link></li>
                             <li><Link to='/checkbox'>Checkbox &amp; CheckboxGroup</Link></li>
                             <li><Link to='/buttons'>Buttons</Link></li>

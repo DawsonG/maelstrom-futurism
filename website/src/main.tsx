@@ -13,6 +13,7 @@ import Theming from './pages/Theming.tsx';
 import Inputs from './pages/Inputs.tsx';
 import DropZonePage from './pages/DropZone.tsx';
 import DateTimePage from './pages/DateTime.tsx';
+import AccordionPage from './pages/Accordion.tsx';
 import PageGrid from './pages/Grid.tsx';
 import PageContainers from './pages/Containers.tsx';
 import PagePaper from './pages/Paper.tsx';
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: '/datetime',
         element: <DateTimePage />
+      },
+      {
+        path: '/accordion',
+        element: <AccordionPage />
       },
       {
         path: '/form',
