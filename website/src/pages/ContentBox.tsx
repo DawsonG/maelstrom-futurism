@@ -1,9 +1,14 @@
+import { useRef } from "react";
 import { css } from "@emotion/react";
-import { Box, ContentBox, Pill } from "@maelstrom-futurism/core";
+import { Box, ContentBox, CopyButton, Pill } from "@maelstrom-futurism/core";
 import { Container } from "@maelstrom-futurism/layout";
+import { Button } from "@maelstrom-futurism/button";
 import CodeView from "../components/CodeView";
 
-const ContentBoxPage = () => (
+const ContentBoxPage = () => {
+    const npmInstallRef = useRef<HTMLElement>(null);
+
+    return (
     <Container>
         <h1>Box and ContentBox</h1>
         <p>
@@ -68,7 +73,56 @@ const ContentBoxPage = () => (
 
         <h2>Pills with Overwrite</h2>
         <Pill styles={css`border: none;background: red;color: white;`}>Custom</Pill>
+
+        <h2>Copy to Clipboard</h2>
+        <p>
+            <code>CopyButton</code> copies text on click and shows a transient "Copied!" bubble on
+            success. By default it renders a plain trigger button; pass a <code>trigger</code> render
+            prop to use the MF <code>Button</code> (or any other clickable component) instead. Copy
+            source is <code>text</code> for an explicit value, or <code>targetId</code>/<code>targetRef</code>{" "}
+            to copy another element's text content.
+        </p>
+        <CodeView>{`<CopyButton
+    text="npm install @maelstrom-futurism/core"
+    trigger={({ onClick }) => (
+        <Button type="button" variant="secondary" onClick={onClick}>
+            Copy install command
+        </Button>
+    )}
+/>
+
+<code ref={npmInstallRef}>npm install @maelstrom-futurism/core</code>
+<CopyButton
+    targetRef={npmInstallRef}
+    trigger={({ onClick }) => (
+        <Button type="button" variant="secondary" size="sm" onClick={onClick}>Copy</Button>
+    )}
+/>`}</CodeView>
+
+        <div css={css`display: flex; align-items: center; gap: var(--mf-space-4); flex-wrap: wrap;`}>
+            <CopyButton
+                text="npm install @maelstrom-futurism/core"
+                trigger={({ onClick }) => (
+                    <Button type="button" variant="secondary" onClick={onClick}>
+                        Copy install command
+                    </Button>
+                )}
+            />
+
+            <span css={css`display: inline-flex; align-items: center; gap: var(--mf-space-2);`}>
+                <code ref={npmInstallRef}>npm install @maelstrom-futurism/core</code>
+                <CopyButton
+                    targetRef={npmInstallRef}
+                    trigger={({ onClick }) => (
+                        <Button type="button" variant="secondary" size="sm" onClick={onClick}>Copy</Button>
+                    )}
+                />
+            </span>
+        </div>
+
+        <br/><br/><br/><br/>
     </Container>
-);
+    );
+};
 
 export default ContentBoxPage;

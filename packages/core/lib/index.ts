@@ -13,6 +13,7 @@ export { LogoMark, type LogoMarkProps } from './components/LogoMark';
 export { LogoMarkFlat, type LogoMarkFlatProps } from './components/LogoMarkFlat';
 export { default as ZoomableImage, type ZoomableImageProps } from './components/ZoomableImage';
 export { default as RoundImage, type RoundImageProps, type RoundImageShape } from './components/RoundImage';
+export { default as CopyButton, type CopyButtonProps, type CopyButtonTriggerProps } from './components/CopyButton';
 
 // utils
 export * from './utils/words';

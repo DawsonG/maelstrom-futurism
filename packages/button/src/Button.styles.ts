@@ -38,6 +38,24 @@ export const buttonStyle = css`
   }
 `;
 
+const spin: SerializedStyles = keyframes`
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const spinnerStyle = css`
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 100%;
+  opacity: 0.85;
+  animation: ${spin} 0.6s linear infinite;
+  vertical-align: -0.2em;
+`;
+
 export const buttonGroupStyle = css`
   & button:first-of-type {
     border-top-right-radius: 0px;

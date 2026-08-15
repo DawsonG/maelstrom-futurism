@@ -1,8 +1,10 @@
-import React, { CSSProperties, ReactNode, useRef } from 'react';
+import React, {
+  CSSProperties, ReactNode, useLayoutEffect, useRef, useState,
+} from 'react';
 import { composeStyles, debounce, isSerializedStyles } from '@maelstrom-futurism/core';
 import { css as emotionCss } from '@emotion/react';
 
-import { buttonStyle } from './Button.styles';
+import { buttonStyle, spinnerStyle } from './Button.styles';
 import LinkButton from './LinkButton';
 import { ButtonProps, ButtonVariant } from './types';
 
@@ -55,17 +57,31 @@ const Button = (props: ButtonProps): ReactNode => {
     outline,
     type = 'button',
     disabled = false,
+    loading = false,
     styles,
     ...rest
   } = props;
 
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const lastKnownWidth = useRef<number | undefined>(undefined);
+  const [preservedWidth, setPreservedWidth] = useState<number | undefined>(undefined);
+
+  useLayoutEffect(() => {
+    if (!loading && buttonRef.current) {
+      lastKnownWidth.current = buttonRef.current.offsetWidth;
+    }
+  });
+
+  useLayoutEffect(() => {
+    setPreservedWidth(loading ? lastKnownWidth.current : undefined);
+  }, [loading]);
 
   const buttonBase = emotionCss`
     ${buttonStyle}
     border-radius: var(--mf-radius-button);
     ${getVariantStyle(variant, !!outline)}
     ${scales[size]}
+    ${preservedWidth !== undefined && `min-width: ${preservedWidth}px;`}
   `;
 
   const emotionStyle = styles && isSerializedStyles(styles)
@@ -116,10 +132,11 @@ const Button = (props: ButtonProps): ReactNode => {
       onMouseDown={addRipple}
       onMouseUp={debounce(cleanUp, 1500)}
       type={type}
-      disabled={disabled}
+      disabled={disabled || loading}
+      aria-busy={loading}
       {...rest}
     >
-      {children}
+      {loading ? <span css={spinnerStyle} aria-hidden="true" /> : children}
       <div className="rippleContainer" />
     </button>
   );

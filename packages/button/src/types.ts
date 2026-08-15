@@ -24,4 +24,9 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
   size?: Sizes;
   variant?: ButtonVariant;
   outline?: boolean;
+
+  /** Shows an inline spinner in place of `children` and disables the button.
+   *  The button's rendered width is preserved via `min-width` so it doesn't
+   *  shrink when its content is swapped out. */
+  loading?: boolean;
 }

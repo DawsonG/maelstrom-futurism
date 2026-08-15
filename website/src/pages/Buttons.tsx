@@ -1,8 +1,17 @@
+import { useState } from "react";
 import { Button, ButtonGroup, Dropdown, DropdownButton } from "@maelstrom-futurism/button";
 import { Container } from "@maelstrom-futurism/layout";
 import CodeView from "../components/CodeView";
 
-const Buttons = () => (
+const Buttons = () => {
+    const [isSaving, setIsSaving] = useState(false);
+
+    const handleSaveClick = () => {
+        setIsSaving(true);
+        setTimeout(() => setIsSaving(false), 2000);
+    };
+
+    return (
     <Container>
         <h1>Button</h1>
 
@@ -45,6 +54,31 @@ const Buttons = () => (
             <Button size="md">Medium/Normal [md]</Button>
             <Button size="lg">Large [lg]</Button>
             <Button size="xl">Very Large [xl]</Button>
+        </div>
+
+        <h2>Loading State</h2>
+        <p>
+            Pass <code>loading</code> to disable the button and swap its content for an inline
+            spinner. The button's width is measured just before the swap and pinned via
+            <code>min-width</code>, so it doesn't shrink when its label disappears. Click the button
+            below to see a simulated 2 second save.
+        </p>
+        <CodeView>{`const [isSaving, setIsSaving] = useState(false);
+
+const handleSaveClick = () => {
+    setIsSaving(true);
+    setTimeout(() => setIsSaving(false), 2000);
+};
+
+<Button variant="primary" loading={isSaving} onClick={handleSaveClick}>
+    Save Changes
+</Button>`}
+        </CodeView>
+
+        <div>
+            <Button variant="primary" loading={isSaving} onClick={handleSaveClick}>
+                Save Changes
+            </Button>
         </div>
 
         <h2>Button Groups</h2>
@@ -157,6 +191,7 @@ const Buttons = () => (
 
         <div style={{ marginBottom: "160px" }} />
     </Container>
-);
+    );
+};
 
 export default Buttons;
