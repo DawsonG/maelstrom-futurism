@@ -14,6 +14,37 @@ import { EASE_FUNCTION } from '../motion';
 const ThemeContext = createContext(createTheme('nordLight'));
 export const useTheme = () => useContext(ThemeContext);
 
+const THEME_TOGGLE_STORAGE_KEY = 'mf-color-scheme';
+
+interface ThemeToggleContextValue {
+  colorScheme: 'dark' | 'light';
+  toggle: () => void;
+  hasDarkTheme: boolean;
+}
+
+const ThemeToggleContext = createContext<ThemeToggleContextValue | undefined>(undefined);
+
+/** Returns the active color scheme and a function to flip it. The choice is
+ *  persisted to localStorage and read back on mount, overriding
+ *  `prefers-color-scheme`. Requires a `darkTheme` to be passed to the
+ *  enclosing `ThemeProvider` — throws otherwise. */
+export const useThemeToggle = (): ThemeToggleContextValue => {
+  const context = useContext(ThemeToggleContext);
+  if (!context) {
+    throw new Error('useThemeToggle must be used within a ThemeProvider');
+  }
+  if (!context.hasDarkTheme) {
+    throw new Error('useThemeToggle requires a `darkTheme` to be passed to ThemeProvider');
+  }
+  return context;
+};
+
+const readStoredScheme = (): 'dark' | 'light' | null => {
+  if (typeof window === 'undefined') return null;
+  const stored = window.localStorage.getItem(THEME_TOGGLE_STORAGE_KEY);
+  return stored === 'dark' || stored === 'light' ? stored : null;
+};
+
 interface ThemeProviderProps {
   theme: Theme;
   darkTheme?: Theme;
@@ -24,11 +55,18 @@ interface ThemeProviderProps {
 export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children }: ThemeProviderProps): ReactNode => {
   const [colorSchemeActual, setColorSchemeActual] = useState<'dark' | 'light'>('light');
   const [_systemPrefersDark, setSystemPrefersDark] = useState(false);
+  const [storedScheme, setStoredScheme] = useState<'dark' | 'light' | null>(() => readStoredScheme());
 
   useEffect(() => {
     if (!darkTheme) {
       // no dark theme is available so we'll have to use the light theme
       setColorSchemeActual('light');
+      return;
+    }
+
+    if (storedScheme) {
+      // a choice was persisted via useThemeToggle, it takes priority
+      setColorSchemeActual(storedScheme);
       return;
     }
 
@@ -45,7 +83,14 @@ export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children
     mq.addEventListener('change', handler);
     setColorSchemeActual(mq.matches ? 'dark' : 'light');
     return () => mq.removeEventListener('change', handler);
-  }, [darkTheme, colorScheme]);
+  }, [darkTheme, colorScheme, storedScheme]);
+
+  const toggleColorScheme = () => {
+    const next = colorSchemeActual === 'dark' ? 'light' : 'dark';
+    window.localStorage.setItem(THEME_TOGGLE_STORAGE_KEY, next);
+    setStoredScheme(next);
+    setColorSchemeActual(next);
+  };
 
   const themeValue = colorSchemeActual === 'dark' ? darkTheme! : theme;
 
@@ -309,10 +354,18 @@ export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children
         }
     `;
 
+  const toggleContextValue: ThemeToggleContextValue = {
+    colorScheme: colorSchemeActual,
+    toggle: toggleColorScheme,
+    hasDarkTheme: !!darkTheme,
+  };
+
   return (
-    <ThemeContext.Provider value={themeValue}>
-      <Global styles={globalStyles} />
-      {children}
-    </ThemeContext.Provider>
+    <ThemeToggleContext.Provider value={toggleContextValue}>
+      <ThemeContext.Provider value={themeValue}>
+        <Global styles={globalStyles} />
+        {children}
+      </ThemeContext.Provider>
+    </ThemeToggleContext.Provider>
   );
 };
