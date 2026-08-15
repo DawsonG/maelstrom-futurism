@@ -18,6 +18,7 @@
     "@maelstrom-futurism/layout": "../packages/layout",
     "@maelstrom-futurism/mf-bot-differentiator": "../packages/mf-bot-differentiator",
     "@maelstrom-futurism/modal": "../packages/modal",
+    "@maelstrom-futurism/navbar": "../packages/navbar",
     "@maelstrom-futurism/paper": "../packages/paper",
     "@maelstrom-futurism/sidebar": "../packages/sidebar",
     "@maelstrom-futurism/table": "../packages/table",
