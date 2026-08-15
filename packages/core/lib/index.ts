@@ -15,6 +15,7 @@ export { default as ZoomableImage, type ZoomableImageProps } from './components/
 export { default as RoundImage, type RoundImageProps, type RoundImageShape } from './components/RoundImage';
 export { default as CopyButton, type CopyButtonProps, type CopyButtonTriggerProps } from './components/CopyButton';
 export { default as Card, type CardProps } from './components/Card';
+export { default as CountUp, type CountUpProps } from './components/CountUp';
 
 // utils
 export * from './utils/words';
