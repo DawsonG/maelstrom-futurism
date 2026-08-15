@@ -1,6 +1,6 @@
 {
   "name": "maelstrom-futurism",
-  "version": "0.10.10",
+  "version": "0.11.0",
   "description": "Quick import of all major @maelstrom-futurism/* packages",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -18,16 +18,16 @@
     "prepublishOnly": "npm run sync-deps && npm run build"
   },
   "dependencies": {
-    "@maelstrom-futurism/button": "^0.10.10",
-    "@maelstrom-futurism/core": "^0.10.10",
-    "@maelstrom-futurism/form": "^0.10.10",
-    "@maelstrom-futurism/layout": "^0.10.10",
-    "@maelstrom-futurism/modal": "^0.10.10",
-    "@maelstrom-futurism/navbar": "^0.10.10",
-    "@maelstrom-futurism/paper": "^0.10.10",
-    "@maelstrom-futurism/sidebar": "^0.10.10",
-    "@maelstrom-futurism/table": "^0.10.10",
-    "@maelstrom-futurism/tooltip": "^0.10.10"
+    "@maelstrom-futurism/button": "^0.11.0",
+    "@maelstrom-futurism/core": "^0.11.0",
+    "@maelstrom-futurism/form": "^0.11.0",
+    "@maelstrom-futurism/layout": "^0.11.0",
+    "@maelstrom-futurism/modal": "^0.11.0",
+    "@maelstrom-futurism/navbar": "^0.11.0",
+    "@maelstrom-futurism/paper": "^0.11.0",
+    "@maelstrom-futurism/sidebar": "^0.11.0",
+    "@maelstrom-futurism/table": "^0.11.0",
+    "@maelstrom-futurism/tooltip": "^0.11.0"
   },
   "repository": {
     "type": "git",
