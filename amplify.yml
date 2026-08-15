@@ -5,17 +5,17 @@ applications:
       phases:
         preBuild:
           commands:
-            - cd .. && npm ci
+            - npm ci
         build:
           commands:
-            - cd .. && npm run build --workspace=packages/core
-            - cd .. && npm run build --workspace=packages/button --workspace=packages/form --workspace=packages/icons --workspace=packages/layout --workspace=packages/modal --workspace=packages/navbar --workspace=packages/paper --workspace=packages/sidebar --workspace=packages/table --workspace=packages/tooltip --if-present
-            - cd .. && npm run build --workspace=packages/mf-bot-differentiator --if-present
-            - cd .. && npm run build --workspace=website
+            - npm run build --workspace=packages/core
+            - npm run build --workspace=packages/button --workspace=packages/form --workspace=packages/icons --workspace=packages/layout --workspace=packages/modal --workspace=packages/navbar --workspace=packages/paper --workspace=packages/sidebar --workspace=packages/table --workspace=packages/tooltip --if-present
+            - npm run build --workspace=packages/mf-bot-differentiator --if-present
+            - npm run build --workspace=website
       artifacts:
-        baseDirectory: dist
+        baseDirectory: website/dist
         files:
           - '**/*'
       cache:
         paths:
-          - ../node_modules/**/*
+          - node_modules/**/*
