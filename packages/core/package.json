@@ -32,5 +32,9 @@
     "url": "https://github.com/DawsonG/maelstrom-futurism/issues"
   },
   "homepage": "https://github.com/DawsonG/maelstrom-futurism#readme",
+  "peerDependences": {
+    "react": ">= 18.0.0",
+    "react-dom": ">= 18.0.0"
+  },
   "gitHead": "839026702c7b52490406b7ac80860b4877805658"
 }

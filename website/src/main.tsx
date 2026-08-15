@@ -18,6 +18,7 @@ import PageGrid from './pages/Grid.tsx';
 import PageContainers from './pages/Containers.tsx';
 import PagePaper from './pages/Paper.tsx';
 import ContentBoxPage from './pages/ContentBox.tsx';
+import ImagesPage from './pages/Images.tsx';
 import Buttons from './pages/Buttons.tsx';
 import Icons from './pages/Icons.tsx';
 import PageTooltip from './pages/Tooltip.tsx';
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: '/box_and_contentbox',
         element: <ContentBoxPage />
+      },
+      {
+        path: '/images',
+        element: <ImagesPage />
       },
       {
         path: '/table',
