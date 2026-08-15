@@ -29,6 +29,7 @@ import PagePaperReadability from './pages/PaperReadability.tsx';
 import PageTable from './pages/Table.tsx';
 import FormBuilderPage from './pages/FormBuilder.tsx';
 import FormPage from './pages/Form.tsx';
+import OtpInputPage from './pages/OtpInput.tsx';
 import RadioPage from './pages/Radio.tsx';
 import CheckboxPage from './pages/Checkbox.tsx';
 import PageNavbar from './pages/Navbar.tsx';
@@ -97,6 +98,10 @@ const router = createBrowserRouter([
       {
         path: '/form_component',
         element: <FormPage />
+      },
+      {
+        path: '/otp_input',
+        element: <OtpInputPage />
       },
       {
         path: '/tooltip',

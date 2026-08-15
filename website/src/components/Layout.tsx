@@ -35,6 +35,7 @@ function Layout() {
                             <li><Link to='/tooltip'>Tooltip</Link></li>
                             <li><Link to='/navbar'>Navbar &amp; Breadcrumb</Link></li>
                             <li><Link to='/form_component'>Form</Link></li>
+                            <li><Link to='/otp_input'>OTP Input</Link></li>
                         </ul>
                     </li>
                     <li>
