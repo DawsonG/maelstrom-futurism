@@ -9,6 +9,7 @@ import CodeView from "../components/CodeView";
 const FormPage = () => {
     const [submittedValues, setSubmittedValues] = useState<string | null>(null);
     const [changeCount, setChangeCount] = useState(0);
+    const [ajaxResult, setAjaxResult] = useState<string | null>(null);
 
     return (
         <Container>
@@ -80,6 +81,58 @@ const FormPage = () => {
                     </div>
                 </Form>
             </ContentBox>
+
+            <h2>Ajax Submit</h2>
+            <p>
+                Pass <code>onSubmitAjax</code> to intercept submission with an async function
+                instead of <code>onSubmit</code>. While it's pending, any submit-type{" "}
+                <code>Button</code> among the form's children is automatically put into its{" "}
+                <code>loading</code> state. Resolve with <code>{"{ fieldErrors }"}</code> (keyed by
+                field <code>name</code>) to surface validation errors on the matching{" "}
+                <code>Input</code>/<code>TextArea</code> — this demo's fake server always rejects{" "}
+                <code>taken</code> as a username, after a 1.5s simulated delay.
+            </p>
+
+            <CodeView>{`<Form
+    onSubmitAjax={async (e) => {
+        const data = new FormData(e.currentTarget);
+        const username = String(data.get("username"));
+
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+
+        if (username === "taken") {
+            return { fieldErrors: { username: "That username is already taken." } };
+        }
+
+        setAjaxResult(\`Account created for "\${username}"\`);
+    }}
+>
+    <Input name="username" label="Username" />
+    <Button type="submit">Create Account</Button>
+</Form>`}</CodeView>
+
+            <Form
+                onSubmitAjax={async (e) => {
+                    const data = new FormData(e.currentTarget);
+                    const username = String(data.get("username") || "");
+
+                    await new Promise((resolve) => { setTimeout(resolve, 1500); });
+
+                    if (username === "taken") {
+                        setAjaxResult(null);
+                        return { fieldErrors: { username: "That username is already taken." } };
+                    }
+
+                    setAjaxResult(`Account created for "${username}"`);
+                    return undefined;
+                }}
+            >
+                <Input name="username" label="Username" defaultValue="taken" />
+                <div css={css`margin-top: 12px;`}>
+                    <Button type="submit" variant="primary">Create Account</Button>
+                </div>
+            </Form>
+            {ajaxResult && <p>{ajaxResult}</p>}
 
             <div style={{ marginBottom: "160px" }} />
         </Container>

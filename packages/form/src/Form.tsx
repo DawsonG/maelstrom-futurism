@@ -1,6 +1,11 @@
 import React, { FormHTMLAttributes, ReactNode, useEffect, useRef, useState } from 'react';
 
-import { Input } from './FormComponents/Input';
+import { Button } from '@maelstrom-futurism/button';
+import { Input, TextArea } from './FormComponents/Input';
+
+export interface AjaxFieldErrors {
+  [fieldName: string]: string;
+}
 
 export interface FormProps extends Omit<FormHTMLAttributes<HTMLFormElement>, 'onSubmit'> {
   children?: ReactNode;
@@ -12,11 +17,23 @@ export interface FormProps extends Omit<FormHTMLAttributes<HTMLFormElement>, 'on
    *  unsaved changes. Dirty state is tracked via native `input`/`change`
    *  events bubbling from any form control, and cleared on submit. */
   confirmLeaveOnDirty?: boolean;
+
+  /** Intercepts native submission and calls this async function instead.
+   *  While it's pending, any submit-type `Button` among the form's children
+   *  is put into its `loading` state. Resolve with `{ fieldErrors }` (keyed
+   *  by field `name`) to display validation errors on the matching `Input`/
+   *  `TextArea` children — anything else resolved/thrown clears prior
+   *  errors. Takes precedence over `onSubmit` when both are given. */
+  onSubmitAjax?: (e: React.FormEvent<HTMLFormElement>) => Promise<{ fieldErrors?: AjaxFieldErrors } | void>;
 }
 
-const Form = ({ children, onSubmit, confirmLeaveOnDirty, ...rest }: FormProps): ReactNode => {
+const Form = ({
+  children, onSubmit, confirmLeaveOnDirty, onSubmitAjax, ...rest
+}: FormProps): ReactNode => {
   const formRef = useRef<HTMLFormElement>(null);
   const [isDirty, setIsDirty] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<AjaxFieldErrors>({});
 
   useEffect(() => {
     if (!confirmLeaveOnDirty || !formRef.current) return undefined;
@@ -43,10 +60,26 @@ const Form = ({ children, onSubmit, confirmLeaveOnDirty, ...rest }: FormProps): 
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
   }, [confirmLeaveOnDirty, isDirty]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsDirty(false);
-    onSubmit?.(e);
+
+    if (!onSubmitAjax) {
+      setIsDirty(false);
+      onSubmit?.(e);
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const result = await onSubmitAjax(e);
+      const nextFieldErrors = result?.fieldErrors ?? {};
+      setFieldErrors(nextFieldErrors);
+      if (Object.keys(nextFieldErrors).length === 0) {
+        setIsDirty(false);
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   function getAllChildrenByTypeRecursive(
@@ -80,9 +113,36 @@ const Form = ({ children, onSubmit, confirmLeaveOnDirty, ...rest }: FormProps): 
     }
   });
 
+  const decorateChildren = (nodes: ReactNode): ReactNode => React.Children.map(nodes, (child) => {
+    if (!React.isValidElement(child)) return child;
+
+    const childProps = child.props as { name?: string; children?: ReactNode; type?: string };
+
+    if ((child.type === Input || child.type === TextArea) && childProps.name && fieldErrors[childProps.name]) {
+      return React.cloneElement(child as React.ReactElement<Record<string, unknown>>, {
+        validationState: 'alert',
+        validationMessage: fieldErrors[childProps.name],
+      });
+    }
+
+    if (child.type === Button && childProps.type === 'submit') {
+      return React.cloneElement(child as React.ReactElement<Record<string, unknown>>, {
+        loading: isSubmitting,
+      });
+    }
+
+    if (childProps.children) {
+      return React.cloneElement(child, undefined, decorateChildren(childProps.children));
+    }
+
+    return child;
+  });
+
+  const renderedChildren = onSubmitAjax ? decorateChildren(children) : children;
+
   return (
     <form ref={formRef} onSubmit={handleSubmit} {...rest}>
-      {children}
+      {renderedChildren}
     </form>
   );
 };
