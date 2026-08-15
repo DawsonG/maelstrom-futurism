@@ -1,4 +1,6 @@
-import { CSSProperties, ReactNode } from 'react';
+import {
+  CSSProperties, ReactNode, useLayoutEffect, useRef, useState,
+} from 'react';
 import { css as emotionCss, SerializedStyles } from '@emotion/react';
 
 import Box, { BoxProps } from './Box';
@@ -8,7 +10,33 @@ type Variant = 'alert' | 'info' | 'error' | 'warning' | 'normal' | 'success';
 
 export type ContentBoxProps = BoxProps & {
   variant?: Variant;
+
+  /** Clamps children to this many lines with a "Show more" toggle beneath.
+   *  The toggle only renders when the content actually overflows the clamp. */
+  clampLines?: number;
 };
+
+const clampContentStyle = (lines: number) => emotionCss`
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: ${lines};
+  overflow: hidden;
+`;
+
+const toggleButtonStyle = emotionCss`
+  display: inline-block;
+  margin-top: 0.25rem;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--mf-link);
+  font-size: 0.9em;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 const getColors = (bg?: string, border?: string, variant?: Variant) => {
   if (bg || border) {
@@ -54,6 +82,7 @@ const ContentBox = ({
   border,
   children,
   variant,
+  clampLines,
   styles: consumerStyles,
   ...rest
 }: ContentBoxProps): ReactNode => {
@@ -66,6 +95,34 @@ const ContentBox = ({
   // ContentBox's own base: variant colors then layout (layout wins on conflicts)
   const internalBase = composeStyles(bgColors, layoutStyles);
 
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+
+  useLayoutEffect(() => {
+    if (!clampLines || !contentRef.current) return;
+    setIsOverflowing(contentRef.current.scrollHeight > contentRef.current.clientHeight);
+  }, [clampLines, children]);
+
+  const content = clampLines
+    ? (
+        <>
+          <div ref={contentRef} css={!isExpanded ? clampContentStyle(clampLines) : undefined}>
+            {children}
+          </div>
+          {isOverflowing && (
+            <button
+              type="button"
+              css={toggleButtonStyle}
+              onClick={() => setIsExpanded((prev) => !prev)}
+            >
+              {isExpanded ? 'Show less' : 'Show more'}
+            </button>
+          )}
+        </>
+      )
+    : children;
+
   if (consumerStyles && !isSerializedStyles(consumerStyles)) {
     // CSSProperties: keep Emotion class intact, apply override as inline style
     // so it beats the class without disturbing the Emotion composition chain.
@@ -75,7 +132,7 @@ const ContentBox = ({
         {...rest}
         style={{ ...(consumerStyles as CSSProperties), ...rest.style }}
       >
-        {children}
+        {content}
       </Box>
     );
   }
@@ -86,7 +143,7 @@ const ContentBox = ({
     ? composeStyles(internalBase, consumerStyles as SerializedStyles | SerializedStyles[])
     : internalBase;
 
-  return <Box styles={boxStyles} {...rest}>{children}</Box>;
+  return <Box styles={boxStyles} {...rest}>{content}</Box>;
 };
 
 export default ContentBox;

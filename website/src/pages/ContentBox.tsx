@@ -65,6 +65,30 @@ const ContentBoxPage = () => {
         <ContentBox>Normal ContentBox with no variant assigned.</ContentBox>
         <ContentBox styles={css`border: var(--nord-polar-1);color: red;`}>This ContentBox has some custom overrides applied.</ContentBox>
 
+        <h2>Truncated ContentBox</h2>
+        <p>
+            Pass <code>clampLines</code> to clamp long content to a fixed number of lines, with a
+            "Show more" / "Show less" toggle appended automatically — but only when the content
+            actually overflows the clamp. Short content that already fits gets no toggle at all.
+        </p>
+        <CodeView>{`<ContentBox clampLines={3}>
+    A long paragraph of text that will be clamped to three lines, with a
+    "Show more" toggle appended automatically once it overflows...
+</ContentBox>
+
+<ContentBox clampLines={3}>Short content that fits within three lines.</ContentBox>`}</CodeView>
+
+        <ContentBox clampLines={3}>
+            Maelstrom Futurism is a component library built around consistent design tokens,
+            accessible defaults, and small composable primitives rather than large monolithic
+            components. Every piece — buttons, inputs, layout primitives, and more — pulls its
+            colors, spacing, radii, and motion timing from a small set of CSS custom properties
+            defined by the active theme, so switching themes or adjusting a single token cascades
+            consistently across the entire library without touching individual components.
+        </ContentBox>
+
+        <ContentBox clampLines={3}>Short content that fits within three lines.</ContentBox>
+
         <h2>Pills</h2>
         <Pill variant='alert'>Alert | Error</Pill>
         <Pill variant='warning'>Warning</Pill>
