@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/css": "^11.13.5",
     "@maelstrom-futurism/button": "../packages/button",
     "@maelstrom-futurism/core": "../packages/core",
     "@maelstrom-futurism/form": "../packages/form",

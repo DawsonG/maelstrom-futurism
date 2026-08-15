@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { css } from "@emotion/react";
+import { css } from "@emotion/css";
 import { OtpInput } from "@maelstrom-futurism/form";
 import { Container } from "@maelstrom-futurism/layout";
 import CodeView from "../components/CodeView";
 import { Button } from "@maelstrom-futurism/button";
+
+const controlledRowStyle = css({ display: "flex", alignItems: "center", gap: "16px" });
+const spacerStyle = css({ marginBottom: "160px" });
 
 const OtpInputPage = () => {
     const [basicValue, setBasicValue] = useState("");
@@ -59,7 +62,7 @@ const OtpInputPage = () => {
 <OtpInput name="otp-controlled" length={4} value={value} onChange={setValue} />
 <button type="button" onClick={() => setValue("")}>Clear</button>`}</CodeView>
 
-            <div css={css`display: flex; align-items: center; gap: 16px;`}>
+            <div className={controlledRowStyle}>
                 <OtpInput name="otp-controlled" length={4} value={controlledValue} onChange={setControlledValue} />
                 <Button onClick={() => setControlledValue("")}>Clear</Button>
             </div>
@@ -70,7 +73,7 @@ const OtpInputPage = () => {
 
             <OtpInput name="otp-disabled" length={4} defaultValue="42" disabled />
 
-            <div style={{ marginBottom: "160px" }} />
+            <div className={spacerStyle} />
         </Container>
     );
 };

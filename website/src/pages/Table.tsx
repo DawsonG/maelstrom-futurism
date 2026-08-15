@@ -1,8 +1,11 @@
 import { Table } from '@maelstrom-futurism/table';
 import { Pill, type PillVariant } from '@maelstrom-futurism/core';
 import { Container } from '@maelstrom-futurism/layout';
+import { css } from '@emotion/css';
 
 import CodeView from '../components/CodeView';
+
+const isbnStyle = css({ fontFamily: 'var(--mf-font-mono)', fontSize: 13 });
 
 const STATUS_MAP: Record<string, { variant: PillVariant; label: string }> = {
     active:    { variant: 'success', label: 'Active' },
@@ -51,7 +54,7 @@ function PageTable() {
                     {
                         name: 'isbn',
                         header: () => 'ISBN',
-                        cell: (data: string | number) => <span style={{ fontFamily: 'var(--mf-font-mono)', fontSize: 13 }}>{data}</span>,
+                        cell: (data: string | number) => <span className={isbnStyle}>{data}</span>,
                     },
                     {
                         name: 'status',

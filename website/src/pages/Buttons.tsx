@@ -1,7 +1,19 @@
 import { useState } from "react";
+import { css } from "@emotion/css";
 import { Button, ButtonGroup, Dropdown, DropdownButton } from "@maelstrom-futurism/button";
 import { Container } from "@maelstrom-futurism/layout";
 import CodeView from "../components/CodeView";
+
+const rightAlignStyle = css({ display: "flex", justifyContent: "flex-end" });
+const dropdownTriggerStyle = css({ cursor: "pointer", textDecoration: "underline" });
+const dropdownContentWithWidthStyle = css({
+    padding: "12px",
+    background: "var(--mf-content)",
+    border: "1px solid var(--mf-secondary)",
+    minWidth: "220px",
+});
+const noTopMarginStyle = css({ marginTop: 0 });
+const spacerStyle = css({ marginBottom: "160px" });
 
 const Buttons = () => {
     const [isSaving, setIsSaving] = useState(false);
@@ -145,7 +157,7 @@ const handleSaveClick = () => {
 `}
         </CodeView>
 
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div className={rightAlignStyle}>
             <DropdownButton align="right" items={[
                 { label: "Edit", onClick: () => alert("Edit clicked") },
                 { label: "Delete", onClick: () => alert("Delete clicked") }
@@ -176,20 +188,20 @@ const handleSaveClick = () => {
 
         <div>
             <Dropdown trigger={({ toggle, isOpen }) => (
-                <span onClick={toggle} style={{ cursor: "pointer", textDecoration: "underline" }}>
+                <span onClick={toggle} className={dropdownTriggerStyle}>
                     {isOpen ? "Close custom trigger" : "Open custom trigger"}
                 </span>
             )}>
                 {({ close }) => (
-                    <div style={{ padding: "12px", background: "var(--mf-content)", border: "1px solid var(--mf-secondary)", minWidth: "220px" }}>
-                        <p style={{ marginTop: 0 }}>Any content can go here.</p>
+                    <div className={dropdownContentWithWidthStyle}>
+                        <p className={noTopMarginStyle}>Any content can go here.</p>
                         <Button size="sm" onClick={close}>Close</Button>
                     </div>
                 )}
             </Dropdown>
         </div>
 
-        <div style={{ marginBottom: "160px" }} />
+        <div className={spacerStyle} />
     </Container>
     );
 };

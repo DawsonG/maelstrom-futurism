@@ -2,10 +2,13 @@ import { Container } from '@maelstrom-futurism/layout';
 import { Sidebar } from '@maelstrom-futurism/sidebar';
 import { LogoMark } from '@maelstrom-futurism/core';
 import { Link, Outlet } from 'react-router-dom';
+import { css } from '@emotion/css';
+
+const layoutStyle = css({ display: 'flex', maxWidth: 'calc(100vw - 20px)' });
 
 function Layout() {
     return (
-        <div style={{ display: 'flex', maxWidth: 'calc(100vw - 20px)' }}>
+        <div className={layoutStyle}>
             <Sidebar isClosable={true}>
                 <Sidebar.Heading title='Maelstrom Futurism' logo={<>
                     <LogoMark width={28} height={28} />

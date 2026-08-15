@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { css } from "@emotion/react";
+import { css } from "@emotion/css";
 import { Form, Input } from "@maelstrom-futurism/form";
 import { Button } from "@maelstrom-futurism/button";
 import { ContentBox } from "@maelstrom-futurism/core";
 import { Container } from "@maelstrom-futurism/layout";
 import CodeView from "../components/CodeView";
+
+const submitRowStyle = css({ marginTop: "12px" });
+const dirtySubmitRowStyle = css({ marginTop: "12px", display: "flex", alignItems: "center", gap: "12px" });
+const spacerStyle = css({ marginBottom: "160px" });
 
 const FormPage = () => {
     const [submittedValues, setSubmittedValues] = useState<string | null>(null);
@@ -38,7 +42,7 @@ const FormPage = () => {
                 }}
             >
                 <Input name="name" label="Name" />
-                <div css={css`margin-top: 12px;`}>
+                <div className={submitRowStyle}>
                     <Button type="submit" variant="primary">Submit</Button>
                 </div>
             </Form>
@@ -71,7 +75,7 @@ const FormPage = () => {
                     onSubmit={() => setChangeCount(0)}
                 >
                     <Input name="draft" label="Draft title" />
-                    <div css={css`margin-top: 12px; display: flex; align-items: center; gap: 12px;`}>
+                    <div className={dirtySubmitRowStyle}>
                         <Button type="submit" variant="primary">Save</Button>
                         <span>
                             {changeCount > 0
@@ -128,13 +132,13 @@ const FormPage = () => {
                 }}
             >
                 <Input name="username" label="Username" defaultValue="taken" />
-                <div css={css`margin-top: 12px;`}>
+                <div className={submitRowStyle}>
                     <Button type="submit" variant="primary">Create Account</Button>
                 </div>
             </Form>
             {ajaxResult && <p>{ajaxResult}</p>}
 
-            <div style={{ marginBottom: "160px" }} />
+            <div className={spacerStyle} />
         </Container>
     );
 };
