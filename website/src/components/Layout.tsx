@@ -34,6 +34,7 @@ function Layout() {
                             <li><Link to='/table'>Table</Link></li>
                             <li><Link to='/tooltip'>Tooltip</Link></li>
                             <li><Link to='/navbar'>Navbar &amp; Breadcrumb</Link></li>
+                            <li><Link to='/form_component'>Form</Link></li>
                         </ul>
                     </li>
                     <li>
