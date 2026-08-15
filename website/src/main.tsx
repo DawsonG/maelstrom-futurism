@@ -28,6 +28,7 @@ import PageTable from './pages/Table.tsx';
 import FormBuilderPage from './pages/FormBuilder.tsx';
 import RadioPage from './pages/Radio.tsx';
 import CheckboxPage from './pages/Checkbox.tsx';
+import PageNavbar from './pages/Navbar.tsx';
 import SecretPage from './pages/SecretPage.tsx';
 
 const router = createBrowserRouter([
@@ -117,6 +118,10 @@ const router = createBrowserRouter([
       {
         path: '/icons',
         element: <Icons />
+      },
+      {
+        path: '/navbar',
+        element: <PageNavbar />
       },
       {
         path: '/asdf/jkl123',

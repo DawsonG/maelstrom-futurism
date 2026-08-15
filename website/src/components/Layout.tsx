@@ -31,6 +31,7 @@ function Layout() {
                             <li><Link to="/modal">Modal</Link></li>
                             <li><Link to='/table'>Table</Link></li>
                             <li><Link to='/tooltip'>Tooltip</Link></li>
+                            <li><Link to='/navbar'>Navbar &amp; Breadcrumb</Link></li>
                         </ul>
                     </li>
                     <li>
