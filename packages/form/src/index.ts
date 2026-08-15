@@ -8,4 +8,4 @@ export type { DropZoneProps } from './FormComponents/DropZone';
 export { Radio, RadioGroup } from './FormComponents/Radio';
 export type { RadioProps, RadioGroupProps, RadioOption } from './FormComponents/Radio';
 export { Checkbox, CheckboxGroup } from './FormComponents/Checkbox';
-export type { CheckboxProps, CheckboxGroupProps, CheckboxOption } from './FormComponents/Checkbox';
+export type { CheckboxProps, CheckboxGroupProps, CheckboxOption, CheckboxVariant } from './FormComponents/Checkbox';

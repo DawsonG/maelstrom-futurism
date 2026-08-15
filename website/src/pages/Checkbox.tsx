@@ -9,6 +9,8 @@ const CheckboxPage = (): ReactNode => {
     const [controlledValues, setControlledValues] = useState<string[]>(["email"]);
     const [agreedToTerms, setAgreedToTerms] = useState(false);
     const [selectedToppings, setSelectedToppings] = useState<string[]>([]);
+    const [darkMode, setDarkMode] = useState(false);
+    const [switchGroupValues, setSwitchGroupValues] = useState<string[]>(["email"]);
 
     return (
         <Container>
@@ -249,6 +251,67 @@ import { CheckboxGroup } from "@maelstrom-futurism/form";
 
             <Checkbox name="subscribe" value="yes" label="Subscribe to the newsletter" />
             <Checkbox name="rememberMe" value="yes" label="Remember me on this device" />
+
+            <h2>Switch Variant</h2>
+
+            <p>
+                Pass <code>variant="switch"</code> to render a pill-shaped track+thumb toggle instead of
+                the default checkbox. It renders with <code>role="switch"</code> and a live-updating
+                <code>aria-checked</code>, and works the same whether controlled or uncontrolled.
+            </p>
+
+            <CodeView>{`const [darkMode, setDarkMode] = useState(false);
+
+<Checkbox
+    name="dark-mode"
+    label="Dark mode"
+    variant="switch"
+    checked={darkMode}
+    onChange={(e) => setDarkMode((e.target as HTMLInputElement).checked)}
+/>
+{darkMode && <p>Dark mode is on.</p>}`}</CodeView>
+
+            <Checkbox
+                name="dark-mode"
+                label="Dark mode"
+                variant="switch"
+                checked={darkMode}
+                onChange={(e) => setDarkMode((e.target as HTMLInputElement).checked)}
+            />
+            {darkMode && <p>Dark mode is on.</p>}
+
+            <h3>Switch Variant in a Group</h3>
+
+            <p><code>CheckboxGroup</code> accepts the same <code>variant</code> prop, applying it to every option.</p>
+
+            <CodeView>{`const [values, setValues] = useState<string[]>(["email"]);
+
+<CheckboxGroup
+    name="notifications-switch"
+    label="Notification Channels"
+    variant="switch"
+    value={values}
+    onChange={setValues}
+    options={[
+        { value: "email", label: "Email" },
+        { value: "sms",   label: "SMS" },
+        { value: "push",  label: "Push Notification" },
+    ]}
+/>`}</CodeView>
+
+            <CheckboxGroup
+                name="notifications-switch"
+                label="Notification Channels"
+                variant="switch"
+                value={switchGroupValues}
+                onChange={setSwitchGroupValues}
+                options={[
+                    { value: "email", label: "Email" },
+                    { value: "sms",   label: "SMS" },
+                    { value: "push",  label: "Push Notification" },
+                ]}
+            />
+            <p>Selected: <code>{switchGroupValues.length > 0 ? switchGroupValues.join(", ") : "none"}</code></p>
 
             <br /><br /><br /><br />
         </Container>

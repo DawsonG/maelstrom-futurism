@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { checkboxGroupContainer, groupLabel, helpText as helpTextCss, optionsContainer } from './styles';
-import Checkbox from './Checkbox';
+import Checkbox, { CheckboxVariant } from './Checkbox';
 
 export interface CheckboxOption {
   /** The value submitted with the form */
@@ -54,6 +54,12 @@ export interface CheckboxGroupProps {
      * Is at least one selection required? Used by FormValidator
      */
   required?: boolean;
+
+  /**
+     * 'default' renders standard material-style checkboxes; 'switch' renders
+     * pill-shaped track+thumb toggles. Applies to every option in the group.
+     */
+  variant?: CheckboxVariant;
 }
 
 const CheckboxGroup = ({
@@ -65,6 +71,7 @@ const CheckboxGroup = ({
   defaultValue,
   onChange,
   required,
+  variant,
 }: CheckboxGroupProps) => {
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     if (!onChange || !value) return;
@@ -91,6 +98,7 @@ const CheckboxGroup = ({
             value={option.value}
             label={option.label}
             disabled={option.disabled}
+            variant={variant}
             checked={value !== undefined ? value.includes(option.value) : undefined}
             defaultChecked={
               value === undefined && defaultValue !== undefined

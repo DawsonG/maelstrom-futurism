@@ -129,3 +129,71 @@ const materialStyledControl = (inputType: 'checkbox' | 'radio') => {
 
 export const materialStyledCheckbox = materialStyledControl('checkbox');
 export const materialStyledRadio = materialStyledControl('radio');
+
+export const switchStyledCheckbox = css`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    padding: 4px 0;
+
+    input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 40px;
+        height: 22px;
+        border: var(--mf-border-width-thin) solid var(--mf-secondary);
+        border-radius: var(--mf-radius-pill);
+        position: relative;
+        cursor: pointer;
+        flex-shrink: 0;
+        background: var(--mf-background);
+        transition: background var(--mf-dur-normal) ${EASE_FUNCTION}, border-color var(--mf-dur-normal) ${EASE_FUNCTION};
+    }
+
+    input[type="checkbox"]::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 3px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--mf-secondary);
+        transform: translateY(-50%);
+        transition: transform var(--mf-dur-normal) ${EASE_FUNCTION}, background var(--mf-dur-normal) ${EASE_FUNCTION};
+    }
+
+    input[type="checkbox"]:checked {
+        background: var(--mf-active);
+        border-color: var(--mf-active);
+    }
+
+    input[type="checkbox"]:checked::after {
+        background: var(--mf-content);
+        transform: translate(16px, -50%);
+    }
+
+    input[type="checkbox"]:focus-visible {
+        outline: var(--mf-border-width-medium) solid var(--mf-focus);
+        outline-offset: 2px;
+    }
+
+    input[type="checkbox"]:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+    label {
+        font-size: var(--mf-size-base);
+        color: var(--mf-text);
+        cursor: pointer;
+        transition: color var(--mf-dur-normal) ${EASE_FUNCTION};
+    }
+
+    &:has(input[type="checkbox"]:disabled) label {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+`;

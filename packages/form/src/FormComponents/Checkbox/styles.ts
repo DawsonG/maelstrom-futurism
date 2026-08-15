@@ -4,4 +4,5 @@ export {
   helpText,
   optionsContainer,
   materialStyledCheckbox,
+  switchStyledCheckbox,
 } from '../selectionControl.styles';
