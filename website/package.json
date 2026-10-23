@@ -1,7 +1,7 @@
 {
   "name": "website",
   "private": true,
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -25,15 +25,15 @@
     "@maelstrom-futurism/tooltip": "../packages/tooltip"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
+    "@eslint/js": "^10.0.1",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@types/react-syntax-highlighter": "^15.5.13",
     "@vitejs/plugin-react": "^5.1.0",
-    "eslint": "^9.9.0",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.4.24",
-    "globals": "^15.9.0",
+    "eslint": "^10.13.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.13.0",
     "polished": "^4.3.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
@@ -41,8 +41,8 @@
     "react-router-dom": "^7.16.0",
     "react-syntax-highlighter": "^16.1.0",
     "sass": "^1.93.3",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.46.3",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.72.0",
     "vite": "^8.3.4"
   }
 }
