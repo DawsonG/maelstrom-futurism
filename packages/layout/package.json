@@ -1,6 +1,6 @@
 {
   "name": "@maelstrom-futurism/layout",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "Basic layout components of MF",
   "type": "module",
   "keywords": [
