@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import type { ReactElement } from 'react';
 
 import styles from './ReadabilityBar.module.scss';
 
@@ -52,7 +52,6 @@ const ReadabilityBar = ({
 }: ReadabilityBarProps): ReactElement => {
   return (
     <div className={styles.readabilityBar} role="group" aria-label="Reading preferences">
-
       {/* Font family */}
       <div className={styles.group}>
         <span className={styles.label}>Font</span>
@@ -105,22 +104,23 @@ const ReadabilityBar = ({
       <div className={styles.group}>
         <span className={styles.label}>Spacing</span>
         <div className={styles.seg}>
-          {(Object.entries(SPACING) as [SpacingOption, { label: string; value: number; gap: number }][]).map(([key, s]) => (
-            <button
-              key={key}
-              type="button"
-              aria-pressed={spacing === key}
-              onClick={() => onSpacingChange(key)}
-              title={`${s.label} line spacing`}
-              aria-label={`${s.label} line spacing`}
-              className={styles.segButton}
-            >
-              <StackGlyph gap={s.gap} />
-            </button>
-          ))}
+          {(Object.entries(SPACING) as [SpacingOption, { label: string; value: number; gap: number }][]).map(
+            ([key, s]) => (
+              <button
+                key={key}
+                type="button"
+                aria-pressed={spacing === key}
+                onClick={() => onSpacingChange(key)}
+                title={`${s.label} line spacing`}
+                aria-label={`${s.label} line spacing`}
+                className={styles.segButton}
+              >
+                <StackGlyph gap={s.gap} />
+              </button>
+            ),
+          )}
         </div>
       </div>
-
     </div>
   );
 };

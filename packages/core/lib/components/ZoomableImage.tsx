@@ -1,8 +1,8 @@
-import { CSSProperties, ImgHTMLAttributes, ReactNode, useEffect, useState } from 'react';
+import { type CSSProperties, type ImgHTMLAttributes, type ReactNode, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { css as emotionCss, keyframes } from '@emotion/react';
 import { EASE_FUNCTION } from '../motion';
-import { composeStyles, isSerializedStyles, StyleOverride } from '../utils/composeStyles';
+import { composeStyles, isSerializedStyles, type StyleOverride } from '../utils/composeStyles';
 
 export type ZoomableImageProps = {
   /** Style override applied to the inline (non-zoomed) <img>. */
@@ -76,17 +76,11 @@ export const ZoomableImage = ({ styles, className, alt, ...rest }: ZoomableImage
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
 
-  const emotionStyle = styles && isSerializedStyles(styles)
-    ? composeStyles(thumbnailStyle, styles)
-    : thumbnailStyle;
+  const emotionStyle = styles && isSerializedStyles(styles) ? composeStyles(thumbnailStyle, styles) : thumbnailStyle;
 
-  const inlineStyle = styles && !isSerializedStyles(styles)
-    ? styles as CSSProperties
-    : undefined;
+  const inlineStyle = styles && !isSerializedStyles(styles) ? (styles as CSSProperties) : undefined;
 
-  const mergedStyle = (inlineStyle || rest.style)
-    ? { ...inlineStyle, ...rest.style }
-    : undefined;
+  const mergedStyle = inlineStyle || rest.style ? { ...inlineStyle, ...rest.style } : undefined;
 
   return (
     <>
@@ -99,20 +93,16 @@ export const ZoomableImage = ({ styles, className, alt, ...rest }: ZoomableImage
         {...rest}
       />
 
-      {isOpen && ReactDOM.createPortal(
-        <div css={overlay} onClick={() => setIsOpen(false)}>
-          <button
-            type="button"
-            css={closeButtonStyle}
-            aria-label="Close"
-            onClick={() => setIsOpen(false)}
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <img css={fullImageStyle} src={rest.src} alt={alt} />
-        </div>,
-        document.body,
-      )}
+      {isOpen &&
+        ReactDOM.createPortal(
+          <div css={overlay} onClick={() => setIsOpen(false)}>
+            <button type="button" css={closeButtonStyle} aria-label="Close" onClick={() => setIsOpen(false)}>
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <img css={fullImageStyle} src={rest.src} alt={alt} />
+          </div>,
+          document.body,
+        )}
     </>
   );
 };

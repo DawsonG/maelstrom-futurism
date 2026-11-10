@@ -1,25 +1,29 @@
-import { Paper } from "@maelstrom-futurism/paper";
-import { useEffect, useState } from "react";
-import Markdown from "react-markdown";
+import { Paper } from '@maelstrom-futurism/paper';
+import { useEffect, useState } from 'react';
+import Markdown from 'react-markdown';
 
 function App() {
-    const [md, setMd] = useState('');
+  const [md, setMd] = useState('');
 
-    useEffect(() => {
-        async function loadReadme() {
-            // @ts-ignore
-            import('../../../README.md').then(async (res) => {
-                const response = await fetch(res.default);
-                const text = await response.text();
+  useEffect(() => {
+    async function loadReadme() {
+      // @ts-expect-error
+      import('../../../README.md').then(async res => {
+        const response = await fetch(res.default);
+        const text = await response.text();
 
-                setMd(text);
-            });
-        }
+        setMd(text);
+      });
+    }
 
-        loadReadme();
-    });
+    loadReadme();
+  });
 
-    return <Paper><Markdown>{md}</Markdown></Paper>;
+  return (
+    <Paper>
+      <Markdown>{md}</Markdown>
+    </Paper>
+  );
 }
 
 export default App;

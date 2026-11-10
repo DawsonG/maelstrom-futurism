@@ -31,7 +31,7 @@ export const isDateDisabled = (value: string, disabledDays: DisabledDay[] | unde
   const dayName = DAY_NAMES[date.getDay()];
   const isWeekend = dayName === 'saturday' || dayName === 'sunday';
 
-  return disabledDays.some((rule) => {
+  return disabledDays.some(rule => {
     const normalized = rule.toLowerCase();
     if (normalized === 'weekends') return isWeekend;
     if (DAY_NAMES.includes(normalized)) return normalized === dayName;

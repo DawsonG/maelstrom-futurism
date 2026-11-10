@@ -1,4 +1,4 @@
-import { HTMLAttributes, Suspense, useMemo } from 'react';
+import { type HTMLAttributes, Suspense, useMemo } from 'react';
 
 import { icons } from './icons';
 

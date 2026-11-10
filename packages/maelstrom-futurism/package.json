@@ -10,8 +10,8 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -Rf ./dist",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
     "test": "vitest run --coverage",
     "test:dev": "vitest",
     "sync-deps": "node scripts/sync-dep-versions.js",

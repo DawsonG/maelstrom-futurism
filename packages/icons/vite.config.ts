@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import svgr from 'vite-plugin-svgr';
-import dts from 'vite-plugin-dts';
+import dts from 'unplugin-dts/vite';
 
 export default defineConfig({
   plugins: [
@@ -11,12 +11,14 @@ export default defineConfig({
         plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
         svgoConfig: {
           floatPrecision: 2,
-          plugins: [{
-            name: 'convertColors',
-            params: {
-              currentColor: true,
+          plugins: [
+            {
+              name: 'convertColors',
+              params: {
+                currentColor: true,
+              },
             },
-          }],
+          ],
         },
       },
       include: '**/*.svg',
@@ -33,7 +35,7 @@ export default defineConfig({
         assetFileNames: 'assets/[name][extname]',
         entryFileNames: '[name].js',
         globals: {
-          'react': 'React',
+          react: 'React',
           'react-dom': 'ReactDOM',
           'react/jsx-runtime': 'jsxRuntime',
         },

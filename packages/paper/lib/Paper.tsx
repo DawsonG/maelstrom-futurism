@@ -1,9 +1,9 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 
 import styles from './styles.module.scss';
 import ReadabilityBar, {
-  FontOption,
-  SpacingOption,
+  type FontOption,
+  type SpacingOption,
   READER_FONTS,
   SPACING,
 } from './Readability/ReadabilityBar';
@@ -89,13 +89,14 @@ export default function Paper({
   useEffect(() => {
     try {
       localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
   }, [prefs]);
 
   // ── outer (sheet) class list ──────────────────────────────────────────────
   const outerStyles = [styles.paper];
-  if (centered)
-    outerStyles.push(styles.centered);
+  if (centered) outerStyles.push(styles.centered);
 
   if (variant) {
     switch (variant) {
@@ -141,22 +142,20 @@ export default function Paper({
   return (
     <div className={styles.parent}>
       <div className={outerStyles.join(' ')} style={{ width }}>
-
         {showReadabilityControls && (
           <ReadabilityBar
             font={prefs.font}
             size={prefs.size}
             spacing={prefs.spacing}
-            onFontChange={(f) => setPrefs((p) => ({ ...p, font: f }))}
-            onSizeChange={(s) => setPrefs((p) => ({ ...p, size: s }))}
-            onSpacingChange={(sp) => setPrefs((p) => ({ ...p, spacing: sp }))}
+            onFontChange={f => setPrefs(p => ({ ...p, font: f }))}
+            onSizeChange={s => setPrefs(p => ({ ...p, size: s }))}
+            onSpacingChange={sp => setPrefs(p => ({ ...p, spacing: sp }))}
           />
         )}
 
         <div className={innerStyles.join(' ')} style={innerStyle}>
           {children}
         </div>
-
       </div>
     </div>
   );

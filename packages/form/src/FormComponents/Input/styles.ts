@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { EASE_FUNCTION } from '@maelstrom-futurism/core';
-import { Variant } from './Input';
+import type { Variant } from './Input';
 
 export const outsideContainer = css`
     background-color: inherit;

@@ -1,81 +1,83 @@
-import { useState } from "react";
-import { css } from "@emotion/css";
-import { Button, ButtonGroup, Dropdown, DropdownButton } from "@maelstrom-futurism/button";
-import { Container } from "@maelstrom-futurism/layout";
-import CodeView from "../components/CodeView";
+import { useState } from 'react';
+import { css } from '@emotion/css';
+import { Button, ButtonGroup, Dropdown, DropdownButton } from '@maelstrom-futurism/button';
+import { Container } from '@maelstrom-futurism/layout';
+import CodeView from '../components/CodeView';
 
-const rightAlignStyle = css({ display: "flex", justifyContent: "flex-end" });
-const dropdownTriggerStyle = css({ cursor: "pointer", textDecoration: "underline" });
+const rightAlignStyle = css({ display: 'flex', justifyContent: 'flex-end' });
+const dropdownTriggerStyle = css({ cursor: 'pointer', textDecoration: 'underline' });
 const dropdownContentWithWidthStyle = css({
-    padding: "12px",
-    background: "var(--mf-content)",
-    border: "1px solid var(--mf-secondary)",
-    minWidth: "220px",
+  padding: '12px',
+  background: 'var(--mf-content)',
+  border: '1px solid var(--mf-secondary)',
+  minWidth: '220px',
 });
 const noTopMarginStyle = css({ marginTop: 0 });
-const spacerStyle = css({ marginBottom: "160px" });
+const spacerStyle = css({ marginBottom: '160px' });
 
 const Buttons = () => {
-    const [isSaving, setIsSaving] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
-    const handleSaveClick = () => {
-        setIsSaving(true);
-        setTimeout(() => setIsSaving(false), 2000);
-    };
+  const handleSaveClick = () => {
+    setIsSaving(true);
+    setTimeout(() => setIsSaving(false), 2000);
+  };
 
-    return (
+  return (
     <Container>
-        <h1>Button</h1>
+      <h1>Button</h1>
 
-        <p>
-            HTML &lt;button/&gt; tag with fancy ripple on click effect.
-        </p>
+      <p>HTML &lt;button/&gt; tag with fancy ripple on click effect.</p>
 
-        <p>Found in <code>@maelstrom-futurism/button</code> and <code>maelstrom-futurism</code>.</p>
+      <p>
+        Found in <code>@maelstrom-futurism/button</code> and <code>maelstrom-futurism</code>.
+      </p>
 
-        <h2>Variants</h2>
-        <CodeView>{`<Button variant="primary">Primary</Button>
+      <h2>Variants</h2>
+      <CodeView>
+        {`<Button variant="primary">Primary</Button>
 <Button variant="secondary">Secondary</Button>
 <Button variant="cancel">Cancel</Button>
 <Button variant="ghost">Ghost</Button>
 <Button variant="outline">Outline</Button>
 <Button variant="link">Link</Button>`}
-        </CodeView>
+      </CodeView>
 
-        <div>
-            <Button variant="primary">Primary</Button>
-            <Button variant="secondary">Secondary</Button>
-            <Button variant="cancel">Cancel</Button>
-            <Button variant="ghost">Ghost</Button>
-            <Button variant="outline">Outline</Button>
-            <Button variant="link">Link</Button>
-            
-        </div>
+      <div>
+        <Button variant="primary">Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="cancel">Cancel</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="outline">Outline</Button>
+        <Button variant="link">Link</Button>
+      </div>
 
-        <h2>Sizes</h2>
-        <CodeView>{`<Button size="xs">Very Small [xs]</Button>
+      <h2>Sizes</h2>
+      <CodeView>
+        {`<Button size="xs">Very Small [xs]</Button>
 <Button size="sm">Small [sm]</Button>
 <Button size="md">Medium/Normal [md]</Button>
 <Button size="lg">Large [lg]</Button>
 <Button size="xl">Very Large [xl]</Button>`}
-        </CodeView>
+      </CodeView>
 
-        <div>
-            <Button size="xs">Very Small [xs]</Button>
-            <Button size="sm">Small [sm]</Button>
-            <Button size="md">Medium/Normal [md]</Button>
-            <Button size="lg">Large [lg]</Button>
-            <Button size="xl">Very Large [xl]</Button>
-        </div>
+      <div>
+        <Button size="xs">Very Small [xs]</Button>
+        <Button size="sm">Small [sm]</Button>
+        <Button size="md">Medium/Normal [md]</Button>
+        <Button size="lg">Large [lg]</Button>
+        <Button size="xl">Very Large [xl]</Button>
+      </div>
 
-        <h2>Loading State</h2>
-        <p>
-            Pass <code>loading</code> to disable the button and swap its content for an inline
-            spinner. The button's width is measured just before the swap and pinned via
-            <code>min-width</code>, so it doesn't shrink when its label disappears. Click the button
-            below to see a simulated 2 second save.
-        </p>
-        <CodeView>{`const [isSaving, setIsSaving] = useState(false);
+      <h2>Loading State</h2>
+      <p>
+        Pass <code>loading</code> to disable the button and swap its content for an inline spinner. The button's width
+        is measured just before the swap and pinned via
+        <code>min-width</code>, so it doesn't shrink when its label disappears. Click the button below to see a
+        simulated 2 second save.
+      </p>
+      <CodeView>
+        {`const [isSaving, setIsSaving] = useState(false);
 
 const handleSaveClick = () => {
     setIsSaving(true);
@@ -85,34 +87,34 @@ const handleSaveClick = () => {
 <Button variant="primary" loading={isSaving} onClick={handleSaveClick}>
     Save Changes
 </Button>`}
-        </CodeView>
+      </CodeView>
 
-        <div>
-            <Button variant="primary" loading={isSaving} onClick={handleSaveClick}>
-                Save Changes
-            </Button>
-        </div>
+      <div>
+        <Button variant="primary" loading={isSaving} onClick={handleSaveClick}>
+          Save Changes
+        </Button>
+      </div>
 
-        <h2>Button Groups</h2>
-        <CodeView>
-{`<ButtonGroup>
+      <h2>Button Groups</h2>
+      <CodeView>
+        {`<ButtonGroup>
     <Button>One</Button>
     <Button>2</Button>
     <Button>| | |</Button>
 </ButtonGroup>`}
-        </CodeView>
+      </CodeView>
 
-        <div>
-            <ButtonGroup>
-                <Button>One</Button>
-                <Button>2</Button>
-                <Button>| | |</Button>
-            </ButtonGroup>
-        </div>
+      <div>
+        <ButtonGroup>
+          <Button>One</Button>
+          <Button>2</Button>
+          <Button>| | |</Button>
+        </ButtonGroup>
+      </div>
 
-        <h2>Dropdown Buttons</h2>
-        <CodeView>
-{`<DropdownButton
+      <h2>Dropdown Buttons</h2>
+      <CodeView>
+        {`<DropdownButton
     items={[
         {
             label: "First Option",
@@ -125,29 +127,36 @@ const handleSaveClick = () => {
     ]}
 >Button with Dropdown</DropdownButton>
 `}
-        </CodeView>
+      </CodeView>
 
-        <div>
-            <DropdownButton items={[
-                {
-                    label: "First Option",
-                    onClick: () => alert("First Option clicked")
-                },
-                {
-                    label: "Second Option",
-                    onClick: () => alert("Second Option clicked")
-                },
-                {
-                    label: "Third Option",
-                    onClick: () => alert("Third Option clicked")
-                }
-            ]}>Button with Dropdown</DropdownButton>
-        </div>
+      <div>
+        <DropdownButton
+          items={[
+            {
+              label: 'First Option',
+              onClick: () => alert('First Option clicked'),
+            },
+            {
+              label: 'Second Option',
+              onClick: () => alert('Second Option clicked'),
+            },
+            {
+              label: 'Third Option',
+              onClick: () => alert('Third Option clicked'),
+            },
+          ]}
+        >
+          Button with Dropdown
+        </DropdownButton>
+      </div>
 
-        <h3>Right-aligned Menu</h3>
-        <p>Pass <code>align=&quot;right&quot;</code> to anchor the menu to the right edge of the trigger — useful near the right side of the viewport.</p>
-        <CodeView>
-{`<DropdownButton
+      <h3>Right-aligned Menu</h3>
+      <p>
+        Pass <code>align=&quot;right&quot;</code> to anchor the menu to the right edge of the trigger — useful near the
+        right side of the viewport.
+      </p>
+      <CodeView>
+        {`<DropdownButton
     align="right"
     items={[
         { label: "Edit", onClick: () => alert("Edit clicked") },
@@ -155,23 +164,28 @@ const handleSaveClick = () => {
     ]}
 >Actions</DropdownButton>
 `}
-        </CodeView>
+      </CodeView>
 
-        <div className={rightAlignStyle}>
-            <DropdownButton align="right" items={[
-                { label: "Edit", onClick: () => alert("Edit clicked") },
-                { label: "Delete", onClick: () => alert("Delete clicked") }
-            ]}>Actions</DropdownButton>
-        </div>
+      <div className={rightAlignStyle}>
+        <DropdownButton
+          align="right"
+          items={[
+            { label: 'Edit', onClick: () => alert('Edit clicked') },
+            { label: 'Delete', onClick: () => alert('Delete clicked') },
+          ]}
+        >
+          Actions
+        </DropdownButton>
+      </div>
 
-        <h2>Dropdown (generic wrapper)</h2>
-        <p>
-            <code>Dropdown</code> is the underlying primitive behind <code>DropdownButton</code> — it
-            handles open/close state, click-outside dismissal, and closing on <code>Escape</code>, but
-            accepts any trigger and any menu content, not just a <code>Button</code> with a flat item list.
-        </p>
-        <CodeView>
-{`<Dropdown trigger={({ toggle, isOpen }) => (
+      <h2>Dropdown (generic wrapper)</h2>
+      <p>
+        <code>Dropdown</code> is the underlying primitive behind <code>DropdownButton</code> — it handles open/close
+        state, click-outside dismissal, and closing on <code>Escape</code>, but accepts any trigger and any menu
+        content, not just a <code>Button</code> with a flat item list.
+      </p>
+      <CodeView>
+        {`<Dropdown trigger={({ toggle, isOpen }) => (
     <span onClick={toggle} style={{ cursor: "pointer", textDecoration: "underline" }}>
         {isOpen ? "Close custom trigger" : "Open custom trigger"}
     </span>
@@ -184,26 +198,30 @@ const handleSaveClick = () => {
     )}
 </Dropdown>
 `}
-        </CodeView>
+      </CodeView>
 
-        <div>
-            <Dropdown trigger={({ toggle, isOpen }) => (
-                <span onClick={toggle} className={dropdownTriggerStyle}>
-                    {isOpen ? "Close custom trigger" : "Open custom trigger"}
-                </span>
-            )}>
-                {({ close }) => (
-                    <div className={dropdownContentWithWidthStyle}>
-                        <p className={noTopMarginStyle}>Any content can go here.</p>
-                        <Button size="sm" onClick={close}>Close</Button>
-                    </div>
-                )}
-            </Dropdown>
-        </div>
+      <div>
+        <Dropdown
+          trigger={({ toggle, isOpen }) => (
+            <span onClick={toggle} className={dropdownTriggerStyle}>
+              {isOpen ? 'Close custom trigger' : 'Open custom trigger'}
+            </span>
+          )}
+        >
+          {({ close }) => (
+            <div className={dropdownContentWithWidthStyle}>
+              <p className={noTopMarginStyle}>Any content can go here.</p>
+              <Button size="sm" onClick={close}>
+                Close
+              </Button>
+            </div>
+          )}
+        </Dropdown>
+      </div>
 
-        <div className={spacerStyle} />
+      <div className={spacerStyle} />
     </Container>
-    );
+  );
 };
 
 export default Buttons;

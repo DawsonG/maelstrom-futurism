@@ -1,6 +1,6 @@
-import { CSSProperties, HTMLAttributes, ReactNode } from 'react';
+import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 import { css as emotionCss } from '@emotion/react';
-import { composeStyles, isSerializedStyles, StyleOverride } from '../utils/composeStyles';
+import { composeStyles, isSerializedStyles, type StyleOverride } from '../utils/composeStyles';
 
 export type PillVariant = 'success' | 'warning' | 'alert' | 'info' | 'muted';
 
@@ -52,19 +52,13 @@ const Pill = ({ variant = 'info', dot = false, children, styles, ...rest }: Pill
   // SerializedStyles: compose into a single merged class (override declarations
   // come after base, so they win in the CSS cascade).
   // CSSProperties: applied as an inline style — inline always beats class-based.
-  const emotionStyle = styles && isSerializedStyles(styles)
-    ? composeStyles(pillBase, styles)
-    : pillBase;
+  const emotionStyle = styles && isSerializedStyles(styles) ? composeStyles(pillBase, styles) : pillBase;
 
-  const inlineStyle = styles && !isSerializedStyles(styles)
-    ? styles as CSSProperties
-    : undefined;
+  const inlineStyle = styles && !isSerializedStyles(styles) ? (styles as CSSProperties) : undefined;
 
   // Merge our inline override with any `style` the caller passed via rest,
   // giving the caller's explicit `style` the final say.
-  const mergedStyle = (inlineStyle || rest.style)
-    ? { ...inlineStyle, ...rest.style }
-    : undefined;
+  const mergedStyle = inlineStyle || rest.style ? { ...inlineStyle, ...rest.style } : undefined;
 
   return (
     <span css={emotionStyle} {...rest} style={mergedStyle}>

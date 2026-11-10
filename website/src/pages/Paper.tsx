@@ -5,17 +5,21 @@ import CodeView from '../components/CodeView';
 import { text } from '../components/Text';
 
 function PagePaper() {
-
   return (
     <Container>
       <h1>Paper</h1>
 
-      <p>Paper is a legability first component with a few fun tricks (like looking like an actual stack of paper) up its sleeves.</p>
-      
-      <p>Found in <code>@maelstrom-futurism/paper</code> and <code>maelstrom-futurism</code>.</p>
+      <p>
+        Paper is a legability first component with a few fun tricks (like looking like an actual stack of paper) up its
+        sleeves.
+      </p>
+
+      <p>
+        Found in <code>@maelstrom-futurism/paper</code> and <code>maelstrom-futurism</code>.
+      </p>
 
       <CodeView>
-{`<Paper variant={PaperVariant.NONE} background={Background.DOT}>
+        {`<Paper variant={PaperVariant.NONE} background={Background.DOT}>
   {text}
 </Paper>`}
       </CodeView>
@@ -24,31 +28,25 @@ function PagePaper() {
       </Paper>
 
       <CodeView>
-{`<Paper variant={PaperVariant.SINGLE}>
+        {`<Paper variant={PaperVariant.SINGLE}>
   {text}
 </Paper>`}
       </CodeView>
-      <Paper variant={PaperVariant.SINGLE}>
-        {text}
-      </Paper>
+      <Paper variant={PaperVariant.SINGLE}>{text}</Paper>
 
       <CodeView>
-{`<Paper variant={PaperVariant.STACK}>
+        {`<Paper variant={PaperVariant.STACK}>
   {text}
 </Paper>`}
       </CodeView>
-      <Paper variant={PaperVariant.STACK}>
-        {text}
-      </Paper>
+      <Paper variant={PaperVariant.STACK}>{text}</Paper>
 
       <CodeView>
-{`<Paper variant={PaperVariant.RANDOM_STACK}>
+        {`<Paper variant={PaperVariant.RANDOM_STACK}>
   {text}
 </Paper>`}
       </CodeView>
-      <Paper variant={PaperVariant.RANDOM_STACK}>
-        {text}
-      </Paper>
+      <Paper variant={PaperVariant.RANDOM_STACK}>{text}</Paper>
     </Container>
   );
 }

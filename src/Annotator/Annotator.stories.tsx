@@ -1,17 +1,16 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
+import * as React from 'react';
+import { storiesOf } from '@storybook/react';
 
-import Container from "../Layout/Container";
-import Annotator from "./Annotator";
+import Container from '../Layout/Container';
+import Annotator from './Annotator';
 
-storiesOf("Annotator", module)
-  .add("Basic", () => (
+storiesOf('Annotator', module)
+  .add('Basic', () => (
     <Container>
       <div>
         <p>
-          Annotators are used for identifying parts of speech, named entity
-          recognition, and more! They're ideal for Machine Learning applications
-          and the management of datasets.
+          Annotators are used for identifying parts of speech, named entity recognition, and more! They're ideal for
+          Machine Learning applications and the management of datasets.
         </p>
 
         <div>
@@ -20,8 +19,8 @@ storiesOf("Annotator", module)
           <Annotator
             name="basic"
             entityLabels={[
-              { name: "City", color: "#0000ff" },
-              { name: "State", color: "#ff0000" },
+              { name: 'City', color: '#0000ff' },
+              { name: 'State', color: '#ff0000' },
             ]}
             value="I live in Seattle, Washington."
             isEditable={false}
@@ -35,8 +34,8 @@ storiesOf("Annotator", module)
         <Annotator
           name="basic"
           entityLabels={[
-            { name: "Noun", color: "#0000ff" },
-            { name: "Verb", color: "#ff0000" },
+            { name: 'Noun', color: '#0000ff' },
+            { name: 'Verb', color: '#ff0000' },
           ]}
           value="This annotator starts with a value, but you can edit it."
         />
@@ -44,27 +43,27 @@ storiesOf("Annotator", module)
 
       <div>
         <p>
-          Annotators can also be used to edit existing entities. This Annotator
-          includes not only text but pre-selected entities!
+          Annotators can also be used to edit existing entities. This Annotator includes not only text but pre-selected
+          entities!
         </p>
         <Annotator
           name="basic"
           entityLabels={[
-            { name: "Noun", color: "#0000ff" },
-            { name: "Verb", color: "#ff0000" },
+            { name: 'Noun', color: '#0000ff' },
+            { name: 'Verb', color: '#ff0000' },
           ]}
           defaultEntities={[
             {
               start: 5,
               end: 14,
-              value: "annotator",
-              label: { name: "Noun", color: "#0000ff" },
+              value: 'annotator',
+              label: { name: 'Noun', color: '#0000ff' },
             },
             {
               start: 20,
               end: 23,
-              value: "has",
-              label: { name: "Verb", color: "#ff0000" },
+              value: 'has',
+              label: { name: 'Verb', color: '#ff0000' },
             },
           ]}
           isEditable={false}
@@ -73,25 +72,25 @@ storiesOf("Annotator", module)
       </div>
     </Container>
   ))
-  .add("Only One", () => (
+  .add('Only One', () => (
     <Annotator
       name="basic"
       entityLabels={[
-        { name: "Noun", color: "#0000ff" },
-        { name: "Verb", color: "#ff0000" },
+        { name: 'Noun', color: '#0000ff' },
+        { name: 'Verb', color: '#ff0000' },
       ]}
       defaultEntities={[
         {
           start: 5,
           end: 15,
-          value: "annotator",
-          label: { name: "Noun", color: "#0000ff" },
+          value: 'annotator',
+          label: { name: 'Noun', color: '#0000ff' },
         },
         {
           start: 20,
           end: 23,
-          value: "has",
-          label: { name: "Verb", color: "#ff0000" },
+          value: 'has',
+          label: { name: 'Verb', color: '#ff0000' },
         },
       ]}
       isEditable={false}

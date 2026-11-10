@@ -1,4 +1,4 @@
-import { ColorSet } from '../interfaces';
+import type { ColorSet } from '../interfaces';
 import { SIZES } from '../tokens';
 import Theme from './theme';
 

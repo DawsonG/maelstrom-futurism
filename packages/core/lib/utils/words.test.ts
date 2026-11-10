@@ -7,7 +7,7 @@ describe('words', () => {
     test('it should capitalize a set of words', () => {
       expect(capitalize('Title')).toEqual('Title');
       expect(capitalize('a word')).toEqual('A word');
-      expect(capitalize('\'ok')).toEqual('\'ok');
+      expect(capitalize("'ok")).toEqual("'ok");
     });
   });
 

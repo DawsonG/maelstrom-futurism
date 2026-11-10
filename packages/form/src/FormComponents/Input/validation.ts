@@ -20,7 +20,7 @@ export const applyCustomValidity = (
 ): boolean => {
   if (!errorMessages) return false;
 
-  const failingKey = VALIDITY_KEYS.find((key) => el.validity[key]);
+  const failingKey = VALIDITY_KEYS.find(key => el.validity[key]);
   const message = failingKey ? errorMessages[failingKey] : undefined;
 
   el.setCustomValidity(message ?? '');
@@ -42,10 +42,11 @@ const extractHost = (rawValue: string, type: string | undefined): string | null 
   }
 };
 
-const isAllowedHost = (host: string, allowedDomains: string[]): boolean => allowedDomains.some((domain) => {
-  const normalized = domain.toLowerCase();
-  return host === normalized || host.endsWith(`.${normalized}`);
-});
+const isAllowedHost = (host: string, allowedDomains: string[]): boolean =>
+  allowedDomains.some(domain => {
+    const normalized = domain.toLowerCase();
+    return host === normalized || host.endsWith(`.${normalized}`);
+  });
 
 export const applyAllowedDomains = (
   el: HTMLInputElement,

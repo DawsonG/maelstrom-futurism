@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { css } from '@emotion/react';
 import { useTheme } from '@maelstrom-futurism/core';
 
@@ -9,7 +9,7 @@ interface ContainerProps {
   padding?: string;
   maxWidth?: string;
   className?: string;
-};
+}
 
 const Container = ({ fluid, children, margin, padding, maxWidth, ...rest }: ContainerProps): ReactNode => {
   const theme = useTheme();

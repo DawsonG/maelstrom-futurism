@@ -1,7 +1,5 @@
-import React, {
-  CSSProperties, HTMLInputTypeAttribute, useEffect, useRef, useState,
-} from 'react';
-import { composeStyles, isSerializedStyles, StyleOverride } from '@maelstrom-futurism/core';
+import React, { type CSSProperties, type HTMLInputTypeAttribute, useEffect, useRef, useState } from 'react';
+import { composeStyles, isSerializedStyles, type StyleOverride } from '@maelstrom-futurism/core';
 
 import {
   outsideContainer,
@@ -31,15 +29,15 @@ import {
   type ErrorMessages,
 } from './validation';
 
-const mergeRefs = (
-  ...refs: Array<React.Ref<HTMLInputElement> | undefined>
-) => (node: HTMLInputElement) => {
-  refs.forEach((r) => {
-    if (!r) return;
-    if (typeof r === 'function') r(node);
-    else (r as { current: HTMLInputElement | null }).current = node;
-  });
-};
+const mergeRefs =
+  (...refs: Array<React.Ref<HTMLInputElement> | undefined>) =>
+  (node: HTMLInputElement) => {
+    refs.forEach(r => {
+      if (!r) return;
+      if (typeof r === 'function') r(node);
+      else (r as { current: HTMLInputElement | null }).current = node;
+    });
+  };
 
 const hasProtocol = (v: string) => /^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(v);
 const isTypingProtocol = (v: string) => 'https://'.startsWith(v.toLowerCase()) || 'http://'.startsWith(v.toLowerCase());
@@ -144,181 +142,187 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   placeholder?: never;
 }
 
-const Input = React.forwardRef(({
-  variant = 'normal',
-  type,
-  name,
-  label,
-  helpText,
-  multiline,
-  fullWidth,
-  clearable,
-  showCharacterCount,
-  autoSelectOnFocus,
-  leadingIcon,
-  suffixIcon,
-  validationState,
-  validationMessage,
-  errorMessages,
-  allowedDomains,
-  allowedDomainsMessage = 'This domain is not allowed',
-  mask,
-  styles,
-  className,
-  value,
-  defaultValue,
-  onChange,
-  onFocus,
-  maxLength,
-  readOnly,
-  ...rest
-}: InputProps, ref?: React.Ref<HTMLInputElement>) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const needsValueTracking = clearable || showCharacterCount;
-  const [internalValue, setInternalValue] = useState(() => value ?? defaultValue ?? '');
-  const [passwordVisible, setPasswordVisible] = useState(false);
+const Input = React.forwardRef(
+  (
+    {
+      variant = 'normal',
+      type,
+      name,
+      label,
+      helpText,
+      multiline,
+      fullWidth,
+      clearable,
+      showCharacterCount,
+      autoSelectOnFocus,
+      leadingIcon,
+      suffixIcon,
+      validationState,
+      validationMessage,
+      errorMessages,
+      allowedDomains,
+      allowedDomainsMessage = 'This domain is not allowed',
+      mask,
+      styles,
+      className,
+      value,
+      defaultValue,
+      onChange,
+      onFocus,
+      maxLength,
+      readOnly,
+      ...rest
+    }: InputProps,
+    ref?: React.Ref<HTMLInputElement>,
+  ) => {
+    const inputRef = useRef<HTMLInputElement>(null);
+    const needsValueTracking = clearable || showCharacterCount;
+    const [internalValue, setInternalValue] = useState(() => value ?? defaultValue ?? '');
+    const [passwordVisible, setPasswordVisible] = useState(false);
 
-  useEffect(() => {
-    if (needsValueTracking && value !== undefined) setInternalValue(value);
-  }, [needsValueTracking, value]);
+    useEffect(() => {
+      if (needsValueTracking && value !== undefined) setInternalValue(value);
+    }, [needsValueTracking, value]);
 
-  const runValidation = (el: HTMLInputElement) => {
-    const hasCustomError = applyCustomValidity(el, errorMessages);
-    if (!hasCustomError) applyAllowedDomains(el, type, allowedDomains, allowedDomainsMessage);
-  };
+    const runValidation = (el: HTMLInputElement) => {
+      const hasCustomError = applyCustomValidity(el, errorMessages);
+      if (!hasCustomError) applyAllowedDomains(el, type, allowedDomains, allowedDomainsMessage);
+    };
 
-  useEffect(() => {
-    const input = inputRef.current;
-    if (input) runValidation(input);
-  }, [errorMessages, allowedDomains, allowedDomainsMessage, type]);
+    useEffect(() => {
+      const input = inputRef.current;
+      if (input) runValidation(input);
+    }, [errorMessages, allowedDomains, allowedDomainsMessage, type]);
 
-  if (multiline) {
-    return (
-      <TextArea
-        name={name}
-        label={label || ''}
-        fullWidth={fullWidth}
-        showCharacterCount={showCharacterCount}
-        validationState={validationState}
-        validationMessage={validationMessage}
-        errorMessages={errorMessages}
-        value={value}
-        defaultValue={defaultValue}
-        onChange={onChange}
-        onFocus={onFocus as unknown as React.FocusEventHandler<HTMLTextAreaElement>}
-        maxLength={maxLength}
-        readOnly={readOnly}
-        {...rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>}
-      />
-    );
-  }
-
-  const isMaterial = variant === 'material';
-  const additionalStyles = isMaterial ? materialStyledInput : normalStyledInput;
-
-  const emotionStyle = styles && isSerializedStyles(styles)
-    ? composeStyles(outsideContainer, styles)
-    : outsideContainer;
-
-  const inlineStyle = styles && !isSerializedStyles(styles)
-    ? styles as CSSProperties
-    : undefined;
-
-  const effectiveMask = mask ?? (type === 'tel' ? DEFAULT_TEL_MASK : undefined);
-
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    if (type === 'url') {
-      const prefixed = withUrlPrefix(e.target.value);
-      if (prefixed !== e.target.value) e.target.value = prefixed;
-    }
-    if (effectiveMask) {
-      const masked = applyMask(e.target.value, effectiveMask);
-      if (masked !== e.target.value) e.target.value = masked;
-    }
-    runValidation(e.target);
-    if (needsValueTracking) setInternalValue(e.target.value);
-    onChange?.(e);
-  };
-
-  const handleFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
-    if (autoSelectOnFocus && readOnly) e.target.select();
-    onFocus?.(e);
-  };
-
-  const handleClear = () => {
-    const input = inputRef.current;
-    if (!input) return;
-
-    const nativeValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')?.set;
-    nativeValueSetter?.call(input, '');
-    input.dispatchEvent(new Event('input', { bubbles: true }));
-    input.focus();
-  };
-
-  const isPassword = type === 'password';
-  const effectiveType = isPassword && passwordVisible ? 'text' : type;
-  const resolvedSuffixIcon = suffixIcon ?? (isPassword && (
-    <button
-      type="button"
-      css={suffixButton}
-      aria-label={passwordVisible ? 'Hide password' : 'Show password'}
-      onClick={() => setPasswordVisible((v) => !v)}
-    >
-      <span aria-hidden="true">{passwordVisible ? '🙈' : '👁'}</span>
-    </button>
-  ));
-
-  return (
-    <div css={[emotionStyle, fullWidth && fullWidthStyle]} style={inlineStyle} className={className}>
-      <div
-        css={[
-          fcContainer,
-          additionalStyles,
-          clearable && clearableInputStyle,
-          !!leadingIcon && leadingIconStyle,
-          !!resolvedSuffixIcon && suffixIconStyle,
-          validationState && validationStyle(validationState, variant),
-        ]}
-      >
-        {leadingIcon && <span css={leadingIconSlot} aria-hidden="true">{leadingIcon}</span>}
-        <input
-          id={name}
+    if (multiline) {
+      return (
+        <TextArea
           name={name}
-          type={effectiveType}
-          ref={mergeRefs(ref, inputRef)}
-          placeholder=" "
+          label={label || ''}
+          fullWidth={fullWidth}
+          showCharacterCount={showCharacterCount}
+          validationState={validationState}
+          validationMessage={validationMessage}
+          errorMessages={errorMessages}
           value={value}
           defaultValue={defaultValue}
-          onChange={handleChange}
-          onFocus={handleFocus}
+          onChange={onChange}
+          onFocus={onFocus as unknown as React.FocusEventHandler<HTMLTextAreaElement>}
           maxLength={maxLength}
           readOnly={readOnly}
-          {...rest}
+          {...(rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
         />
-        {label && <label htmlFor={name}>{label}</label>}
-        {isMaterial && <span className="underline" />}
-        {(resolvedSuffixIcon || (clearable && !!internalValue)) && (
-          <span css={suffixIconSlot}>
-            {clearable && !!internalValue && (
-              <button type="button" css={clearButton} aria-label="Clear" onClick={handleClear}>
-                <span aria-hidden="true">&times;</span>
-              </button>
-            )}
-            {resolvedSuffixIcon}
-          </span>
+      );
+    }
+
+    const isMaterial = variant === 'material';
+    const additionalStyles = isMaterial ? materialStyledInput : normalStyledInput;
+
+    const emotionStyle =
+      styles && isSerializedStyles(styles) ? composeStyles(outsideContainer, styles) : outsideContainer;
+
+    const inlineStyle = styles && !isSerializedStyles(styles) ? (styles as CSSProperties) : undefined;
+
+    const effectiveMask = mask ?? (type === 'tel' ? DEFAULT_TEL_MASK : undefined);
+
+    const handleChange: React.ChangeEventHandler<HTMLInputElement> = e => {
+      if (type === 'url') {
+        const prefixed = withUrlPrefix(e.target.value);
+        if (prefixed !== e.target.value) e.target.value = prefixed;
+      }
+      if (effectiveMask) {
+        const masked = applyMask(e.target.value, effectiveMask);
+        if (masked !== e.target.value) e.target.value = masked;
+      }
+      runValidation(e.target);
+      if (needsValueTracking) setInternalValue(e.target.value);
+      onChange?.(e);
+    };
+
+    const handleFocus: React.FocusEventHandler<HTMLInputElement> = e => {
+      if (autoSelectOnFocus && readOnly) e.target.select();
+      onFocus?.(e);
+    };
+
+    const handleClear = () => {
+      const input = inputRef.current;
+      if (!input) return;
+
+      const nativeValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')?.set;
+      nativeValueSetter?.call(input, '');
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.focus();
+    };
+
+    const isPassword = type === 'password';
+    const effectiveType = isPassword && passwordVisible ? 'text' : type;
+    const resolvedSuffixIcon =
+      suffixIcon ??
+      (isPassword && (
+        <button
+          type="button"
+          css={suffixButton}
+          aria-label={passwordVisible ? 'Hide password' : 'Show password'}
+          onClick={() => setPasswordVisible(v => !v)}
+        >
+          <span aria-hidden="true">{passwordVisible ? '🙈' : '👁'}</span>
+        </button>
+      ));
+
+    return (
+      <div css={[emotionStyle, fullWidth && fullWidthStyle]} style={inlineStyle} className={className}>
+        <div
+          css={[
+            fcContainer,
+            additionalStyles,
+            clearable && clearableInputStyle,
+            !!leadingIcon && leadingIconStyle,
+            !!resolvedSuffixIcon && suffixIconStyle,
+            validationState && validationStyle(validationState, variant),
+          ]}
+        >
+          {leadingIcon && (
+            <span css={leadingIconSlot} aria-hidden="true">
+              {leadingIcon}
+            </span>
+          )}
+          <input
+            id={name}
+            name={name}
+            type={effectiveType}
+            ref={mergeRefs(ref, inputRef)}
+            placeholder=" "
+            value={value}
+            defaultValue={defaultValue}
+            onChange={handleChange}
+            onFocus={handleFocus}
+            maxLength={maxLength}
+            readOnly={readOnly}
+            {...rest}
+          />
+          {label && <label htmlFor={name}>{label}</label>}
+          {isMaterial && <span className="underline" />}
+          {(resolvedSuffixIcon || (clearable && !!internalValue)) && (
+            <span css={suffixIconSlot}>
+              {clearable && !!internalValue && (
+                <button type="button" css={clearButton} aria-label="Clear" onClick={handleClear}>
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              )}
+              {resolvedSuffixIcon}
+            </span>
+          )}
+        </div>
+        {validationMessage && validationState && (
+          <span css={validationMessageCss(validationState)}>{validationMessage}</span>
+        )}
+        {helpText && !validationMessage && <span css={helpTextCss}>{helpText}</span>}
+        {showCharacterCount && typeof maxLength === 'number' && (
+          <span css={characterCountCss}>{`${internalValue.length}/${maxLength}`}</span>
         )}
       </div>
-      {validationMessage && validationState && (
-        <span css={validationMessageCss(validationState)}>{validationMessage}</span>
-      )}
-      {helpText && !validationMessage && (
-        <span css={helpTextCss}>{helpText}</span>
-      )}
-      {showCharacterCount && typeof maxLength === 'number' && (
-        <span css={characterCountCss}>{`${internalValue.length}/${maxLength}`}</span>
-      )}
-    </div>
-  );
-});
+    );
+  },
+);
 
 export default Input;

@@ -1,1 +1,1 @@
-export { default } from "./Annotator";
+export { default } from './Annotator';

@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import { useTheme } from '@maelstrom-futurism/core';
 
@@ -40,9 +40,9 @@ const Column = ({
   const baseWidth = 8.33333333;
 
   /**
-     * If one of these values is null we attempt to use the next largest so on until the largest size.
-     * If no larger sizes are available we default to the smaller values.
-     */
+   * If one of these values is null we attempt to use the next largest so on until the largest size.
+   * If no larger sizes are available we default to the smaller values.
+   */
   const xsWidth = xs ? baseWidth * xs + '%' : null;
   const smWidth = sm ? baseWidth * sm + '%' : null;
   const mdWidth = md ? baseWidth * md + '%' : null;

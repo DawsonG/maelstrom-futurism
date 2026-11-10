@@ -1,4 +1,4 @@
-import { CardinalDirection, Intensity } from './enums';
+import type { CardinalDirection, Intensity } from './enums';
 
 export interface ColorSet {
   background: string;

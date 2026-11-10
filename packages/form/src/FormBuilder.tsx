@@ -1,4 +1,5 @@
-import React, { useState, FormEvent } from 'react';
+import type React from 'react';
+import { useState, type FormEvent } from 'react';
 import { capitalize, isFunction } from '@maelstrom-futurism/core';
 import { Button } from '@maelstrom-futurism/button';
 
@@ -17,12 +18,7 @@ interface FormBuilderProps {
   onSubmit?: (values: Record<string, string>) => void;
 }
 
-const FormBuilder = ({
-  model,
-  values,
-  onSubmit,
-  emitChange,
-}: FormBuilderProps) => {
+const FormBuilder = ({ model, values, onSubmit, emitChange }: FormBuilderProps) => {
   const [internalValues, setInternalValues] = useState<Record<string, string> | undefined>(values);
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {
@@ -59,7 +55,7 @@ const FormBuilder = ({
 
   return (
     <form style={{ backgroundColor: 'inherit' }} onSubmit={submitForm}>
-      {model.map((m) => mapFields(m))}
+      {model.map(m => mapFields(m))}
 
       <Button type="submit">Save</Button>
     </form>

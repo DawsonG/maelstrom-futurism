@@ -58,8 +58,9 @@ const materialStyledControl = (inputType: 'checkbox' | 'radio') => {
         ${sel}::after {
             content: '';
             position: absolute;
-            ${isRadio
-              ? `
+            ${
+              isRadio
+                ? `
                 width: 10px;
                 height: 10px;
                 background: var(--mf-secondary);
@@ -69,7 +70,7 @@ const materialStyledControl = (inputType: 'checkbox' | 'radio') => {
                 transform: translate(-50%, -50%) scale(0);
                 transition: transform var(--mf-dur-normal) ${EASE_FUNCTION}, background var(--mf-dur-normal) ${EASE_FUNCTION};
             `
-              : `
+                : `
                 left: 4px;
                 top: 1px;
                 width: 5px;
@@ -79,7 +80,8 @@ const materialStyledControl = (inputType: 'checkbox' | 'radio') => {
                 border-left: none;
                 transform: rotate(45deg) scale(0);
                 transition: transform var(--mf-dur-normal) ${EASE_FUNCTION};
-            `}
+            `
+            }
         }
 
         ${sel}:checked {
@@ -88,7 +90,8 @@ const materialStyledControl = (inputType: 'checkbox' | 'radio') => {
         }
 
         ${sel}:checked::after {
-            ${isRadio
+            ${
+              isRadio
                 ? `background: var(--mf-active); transform: translate(-50%, -50%) scale(1);`
                 : `transform: rotate(45deg) scale(1);`
             }

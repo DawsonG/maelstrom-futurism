@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import styles from './Breadcrumb.module.scss';
 
@@ -29,17 +29,15 @@ const Breadcrumb = ({ items, className }: BreadcrumbProps): ReactNode => {
 
         return (
           <li key={`${item.label}-${index}`} className={styles.item}>
-            {item.href && !isCurrent
-              ? (
-                  <a href={item.href} onClick={item.onClick} className={styles.link}>
-                    {item.label}
-                  </a>
-                )
-              : (
-                  <span className={styles.current} aria-current={isCurrent ? 'page' : undefined}>
-                    {item.label}
-                  </span>
-                )}
+            {item.href && !isCurrent ? (
+              <a href={item.href} onClick={item.onClick} className={styles.link}>
+                {item.label}
+              </a>
+            ) : (
+              <span className={styles.current} aria-current={isCurrent ? 'page' : undefined}>
+                {item.label}
+              </span>
+            )}
           </li>
         );
       })}

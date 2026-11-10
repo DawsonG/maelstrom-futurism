@@ -1,4 +1,4 @@
-import { StyleOverride } from './utils/composeStyles';
+import type { StyleOverride } from './utils/composeStyles';
 
 export interface BaseStyles {
   border?: string;

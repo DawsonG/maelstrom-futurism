@@ -1,9 +1,16 @@
-import { SVGProps } from 'react';
+import type { SVGProps } from 'react';
 
 export type LogoMarkProps = SVGProps<SVGSVGElement>;
 
 export const LogoMark = (props: LogoMarkProps) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" shapeRendering="crispEdges" role="img" aria-label="Maelstrom-Futurism mark" {...props}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 192 192"
+    shapeRendering="crispEdges"
+    role="img"
+    aria-label="Maelstrom-Futurism mark"
+    {...props}
+  >
     <title>Maelstrom-Futurism</title>
     <rect x="114" y="120" width="6" height="6" fill="currentColor" fillOpacity="0.55"></rect>
     <rect x="108" y="114" width="6" height="6" fill="currentColor" fillOpacity="0.47"></rect>

@@ -1,9 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@maelstrom-futurism/core';
 
 import Layout from './components/Layout.tsx';
@@ -41,114 +38,114 @@ const router = createBrowserRouter([
     children: [
       ...['/', '/getting_started'].map(path => ({
         path,
-        element: <App />
+        element: <App />,
       })),
       {
         path: '/buttons',
-        element: <Buttons />
+        element: <Buttons />,
       },
       {
         path: '/box_and_contentbox',
-        element: <ContentBoxPage />
+        element: <ContentBoxPage />,
       },
       {
         path: '/images',
-        element: <ImagesPage />
+        element: <ImagesPage />,
       },
       {
         path: '/card',
-        element: <CardPage />
+        element: <CardPage />,
       },
       {
         path: '/countup',
-        element: <CountUpPage />
+        element: <CountUpPage />,
       },
       {
         path: '/table',
-        element: <PageTable />
+        element: <PageTable />,
       },
       {
         path: '/theming',
-        element: <Theming />
+        element: <Theming />,
       },
-//      {
-//        path: '/color_tool',
-//        element: <ColorTool />
-//      },
+      //      {
+      //        path: '/color_tool',
+      //        element: <ColorTool />
+      //      },
       {
         path: '/inputs',
-        element: <Inputs />
+        element: <Inputs />,
       },
       {
         path: '/dropzone',
-        element: <DropZonePage />
+        element: <DropZonePage />,
       },
       {
         path: '/datetime',
-        element: <DateTimePage />
+        element: <DateTimePage />,
       },
       {
         path: '/accordion',
-        element: <AccordionPage />
+        element: <AccordionPage />,
       },
       {
         path: '/form',
-        element: <FormBuilderPage />
+        element: <FormBuilderPage />,
       },
       {
         path: '/form_component',
-        element: <FormPage />
+        element: <FormPage />,
       },
       {
         path: '/otp_input',
-        element: <OtpInputPage />
+        element: <OtpInputPage />,
       },
       {
         path: '/tooltip',
-        element: <PageTooltip />
+        element: <PageTooltip />,
       },
       {
         path: '/layout/containers',
-        element: <PageContainers />
+        element: <PageContainers />,
       },
       {
         path: '/layout/grid',
-        element: <PageGrid />
+        element: <PageGrid />,
       },
       {
         path: '/modal',
-        element: <PageModal />
+        element: <PageModal />,
       },
       {
         path: '/paper',
-        element: <PagePaper />
+        element: <PagePaper />,
       },
       {
         path: '/paper_readability',
-        element: <PagePaperReadability />
+        element: <PagePaperReadability />,
       },
       {
         path: '/radio',
-        element: <RadioPage />
+        element: <RadioPage />,
       },
       {
         path: '/checkbox',
-        element: <CheckboxPage />
+        element: <CheckboxPage />,
       },
       {
         path: '/icons',
-        element: <Icons />
+        element: <Icons />,
       },
       {
         path: '/navbar',
-        element: <PageNavbar />
+        element: <PageNavbar />,
       },
       {
         path: '/asdf/jkl123',
-        element: <SecretPage />
-      }
-    ]
-  }
+        element: <SecretPage />,
+      },
+    ],
+  },
 ]);
 
 createRoot(document.getElementById('root')!).render(

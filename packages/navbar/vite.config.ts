@@ -2,16 +2,11 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import react from '@vitejs/plugin-react-swc';
 import sassDts from 'vite-plugin-sass-dts';
-import dts from 'vite-plugin-dts';
+import dts from 'unplugin-dts/vite';
 import { libInjectCss } from 'vite-plugin-lib-inject-css';
 
 export default defineConfig({
-  plugins: [
-    react(),
-    sassDts(),
-    libInjectCss(),
-    dts({ include: ['lib'] }),
-  ],
+  plugins: [react(), sassDts(), libInjectCss(), dts({ include: ['lib'] })],
   build: {
     lib: {
       entry: resolve(__dirname, 'lib/index.ts'),
@@ -23,7 +18,7 @@ export default defineConfig({
         assetFileNames: 'assets/[name][extname]',
         entryFileNames: '[name].js',
         globals: {
-          'react': 'React',
+          react: 'React',
           'react-dom': 'ReactDOM',
           'react/jsx-runtime': 'jsxRuntime',
         },

@@ -2,8 +2,8 @@ import { css as emotionCss } from '@emotion/react';
 import { Icon } from '@maelstrom-futurism/icons';
 
 import Button from './Button';
-import Dropdown, { DropdownAlign } from './Dropdown';
-import { ButtonProps } from './types';
+import Dropdown, { type DropdownAlign } from './Dropdown';
+import type { ButtonProps } from './types';
 
 interface DropdownButtonProps extends Omit<ButtonProps, 'onClick'> {
   items?: Array<{
@@ -47,9 +47,7 @@ const DropdownButton = (props: DropdownButtonProps) => {
       align={align}
       trigger={({ toggle }) => (
         <Button styles={styles} onClick={toggle} {...rest}>
-          {children}
-          {' '}
-          <Icon icon="CaretDown" size={20} />
+          {children} <Icon icon="CaretDown" size={20} />
         </Button>
       )}
     >

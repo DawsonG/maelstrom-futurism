@@ -2,7 +2,8 @@
  * This is an opinionated layout component for Maelstrom Futurism.  It
  * assumes the page has a navigation bar at the top and a sidebar on the left.
  */
-import React, { ReactNode } from 'react';
+import type React from 'react';
+import type { ReactNode } from 'react';
 import { css } from '@emotion/react';
 
 const pageLayoutStyle = css`
@@ -24,11 +25,7 @@ interface PageLayoutProps {
   children: React.ReactNode;
 }
 
-const PageLayout = ({
-  navbar,
-  sidebar,
-  children,
-}: PageLayoutProps): ReactNode => {
+const PageLayout = ({ navbar, sidebar, children }: PageLayoutProps): ReactNode => {
   return (
     <div css={pageLayoutStyle} data-testid="page-layout">
       {navbar}

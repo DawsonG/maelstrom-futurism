@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useContext, useState, useEffect } from 'react';
+import { type ReactNode, createContext, useContext, useState, useEffect } from 'react';
 import { Global, css } from '@emotion/react';
 import poppinsLight from '../fonts/Poppins-Light.ttf';
 import poppinsMedium from '../fonts/Poppins-Medium.ttf';
@@ -7,7 +7,7 @@ import silkscreenBold from '../fonts/Silkscreen-Bold.ttf';
 import jetbrainsMonoLight from '../fonts/JetBrainsMono-Light.ttf';
 import jetbrainsMonoMedium from '../fonts/JetBrainsMono-Medium.ttf';
 
-import Theme from './theme';
+import type Theme from './theme';
 import { createTheme } from './createTheme';
 import { EASE_FUNCTION } from '../motion';
 
@@ -109,7 +109,9 @@ export const ThemeProvider = ({ theme, darkTheme, colorScheme = 'auto', children
             --mf-secondary:     ${themeValue.color('secondary')};
             --mf-accent:        ${themeValue.color('accent')};
             --mf-focus:         ${themeValue.color('focus')};
-            ${Object.entries(themeValue.customColors).map(([name, value]) => `--mf-color-${name}: ${value};`).join('\n            ')}
+            ${Object.entries(themeValue.customColors)
+              .map(([name, value]) => `--mf-color-${name}: ${value};`)
+              .join('\n            ')}
             --mf-active:        ${themeValue.color('active')};
             --mf-alert:         ${themeValue.color('alert')};
             --mf-warning:       ${themeValue.color('warning')};

@@ -1,5 +1,5 @@
-import { CSSProperties, ReactNode, useEffect, useRef, useState } from 'react';
-import { composeStyles, isSerializedStyles, StyleOverride } from '@maelstrom-futurism/core';
+import { type CSSProperties, type ReactNode, useEffect, useRef, useState } from 'react';
+import { composeStyles, isSerializedStyles, type StyleOverride } from '@maelstrom-futurism/core';
 
 import * as tooltipStyles from './Tooltip.styles';
 
@@ -40,31 +40,25 @@ const Tooltip = ({
   // Consumer's override is then composed on top so it always wins.
   const internalBase = composeStyles(
     tooltipStyles.base,
-    isVisible
-      ? [tooltipStyles[position], tooltipStyles.visible]
-      : [tooltipStyles[position]],
+    isVisible ? [tooltipStyles[position], tooltipStyles.visible] : [tooltipStyles[position]],
   );
 
-  const emotionStyle = styles && isSerializedStyles(styles)
-    ? composeStyles(internalBase, styles)
-    : internalBase;
+  const emotionStyle = styles && isSerializedStyles(styles) ? composeStyles(internalBase, styles) : internalBase;
 
-  const inlineStyle = styles && !isSerializedStyles(styles)
-    ? styles as CSSProperties
-    : undefined;
+  const inlineStyle = styles && !isSerializedStyles(styles) ? (styles as CSSProperties) : undefined;
 
   return (
     <div
       style={{ position: 'relative', display: 'inline-block' }}
       onMouseEnter={() => trigger === 'hover' && setIsVisible(true)}
       onMouseLeave={() => trigger === 'hover' && setIsVisible(false)}
-      onClick={() => trigger === 'click' && setIsVisible((v) => !v)}
+      onClick={() => trigger === 'click' && setIsVisible(v => !v)}
     >
       {children}
 
       <div
         ref={tooltipRef}
-        onClick={(e) => e.stopPropagation()}
+        onClick={e => e.stopPropagation()}
         css={emotionStyle}
         style={inlineStyle}
         className={className}

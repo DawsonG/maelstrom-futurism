@@ -1,4 +1,4 @@
-import React, { FormHTMLAttributes, ReactNode, useEffect, useRef, useState } from 'react';
+import React, { type FormHTMLAttributes, type ReactNode, useEffect, useRef, useState } from 'react';
 
 import { Button } from '@maelstrom-futurism/button';
 import { Input, TextArea } from './FormComponents/Input';
@@ -27,9 +27,7 @@ export interface FormProps extends Omit<FormHTMLAttributes<HTMLFormElement>, 'on
   onSubmitAjax?: (e: React.FormEvent<HTMLFormElement>) => Promise<{ fieldErrors?: AjaxFieldErrors } | void>;
 }
 
-const Form = ({
-  children, onSubmit, confirmLeaveOnDirty, onSubmitAjax, ...rest
-}: FormProps): ReactNode => {
+const Form = ({ children, onSubmit, confirmLeaveOnDirty, onSubmitAjax, ...rest }: FormProps): ReactNode => {
   const formRef = useRef<HTMLFormElement>(null);
   const [isDirty, setIsDirty] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -82,13 +80,10 @@ const Form = ({
     }
   };
 
-  function getAllChildrenByTypeRecursive(
-    nodes: ReactNode,
-    targetType: React.ElementType,
-  ): React.ReactElement[] {
+  function getAllChildrenByTypeRecursive(nodes: ReactNode, targetType: React.ElementType): React.ReactElement[] {
     let matches: React.ReactElement[] = [];
 
-    React.Children.forEach(nodes, (child) => {
+    React.Children.forEach(nodes, child => {
       if (!React.isValidElement(child)) return;
 
       if (child.type === targetType) {
@@ -106,37 +101,38 @@ const Form = ({
 
   const keyValueInternal: Record<string, string> = {};
   const formElements = getAllChildrenByTypeRecursive(children, Input);
-  formElements.forEach((element) => {
+  formElements.forEach(element => {
     const props = element.props as { name?: string; value?: string };
     if (props.name) {
       keyValueInternal[props.name] = props.value ?? '';
     }
   });
 
-  const decorateChildren = (nodes: ReactNode): ReactNode => React.Children.map(nodes, (child) => {
-    if (!React.isValidElement(child)) return child;
+  const decorateChildren = (nodes: ReactNode): ReactNode =>
+    React.Children.map(nodes, child => {
+      if (!React.isValidElement(child)) return child;
 
-    const childProps = child.props as { name?: string; children?: ReactNode; type?: string };
+      const childProps = child.props as { name?: string; children?: ReactNode; type?: string };
 
-    if ((child.type === Input || child.type === TextArea) && childProps.name && fieldErrors[childProps.name]) {
-      return React.cloneElement(child as React.ReactElement<Record<string, unknown>>, {
-        validationState: 'alert',
-        validationMessage: fieldErrors[childProps.name],
-      });
-    }
+      if ((child.type === Input || child.type === TextArea) && childProps.name && fieldErrors[childProps.name]) {
+        return React.cloneElement(child as React.ReactElement<Record<string, unknown>>, {
+          validationState: 'alert',
+          validationMessage: fieldErrors[childProps.name],
+        });
+      }
 
-    if (child.type === Button && childProps.type === 'submit') {
-      return React.cloneElement(child as React.ReactElement<Record<string, unknown>>, {
-        loading: isSubmitting,
-      });
-    }
+      if (child.type === Button && childProps.type === 'submit') {
+        return React.cloneElement(child as React.ReactElement<Record<string, unknown>>, {
+          loading: isSubmitting,
+        });
+      }
 
-    if (childProps.children) {
-      return React.cloneElement(child, undefined, decorateChildren(childProps.children));
-    }
+      if (childProps.children) {
+        return React.cloneElement(child, undefined, decorateChildren(childProps.children));
+      }
 
-    return child;
-  });
+      return child;
+    });
 
   const renderedChildren = onSubmitAjax ? decorateChildren(children) : children;
 

@@ -1,13 +1,7 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
-import { StyleOverride } from '@maelstrom-futurism/core';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import type { StyleOverride } from '@maelstrom-futurism/core';
 
-export type ButtonVariant
-  = | 'primary'
-    | 'secondary'
-    | 'cancel'
-    | 'ghost'
-    | 'link'
-    | 'outline';
+export type ButtonVariant = 'primary' | 'secondary' | 'cancel' | 'ghost' | 'link' | 'outline';
 export type ButtonType = 'button' | 'submit';
 export type Sizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 

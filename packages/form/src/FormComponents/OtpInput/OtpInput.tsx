@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+import type React from 'react';
+import { useRef, useState } from 'react';
 
 import { otpCell, otpContainer } from './styles';
 
@@ -29,15 +30,20 @@ export interface OtpInputProps {
 const isDigit = (char: string) => /^[0-9]$/.test(char);
 
 const OtpInput = ({
-  name, length = 6, value, defaultValue, onChange, onComplete, disabled, autoFocus,
+  name,
+  length = 6,
+  value,
+  defaultValue,
+  onChange,
+  onComplete,
+  disabled,
+  autoFocus,
 }: OtpInputProps): React.ReactNode => {
   const isControlled = value !== undefined;
-  const [uncontrolledDigits, setUncontrolledDigits] = useState<string[]>(
-    () => Array.from({ length }, (_, i) => defaultValue?.[i] ?? ''),
+  const [uncontrolledDigits, setUncontrolledDigits] = useState<string[]>(() =>
+    Array.from({ length }, (_, i) => defaultValue?.[i] ?? ''),
   );
-  const digits = isControlled
-    ? Array.from({ length }, (_, i) => value[i] ?? '')
-    : uncontrolledDigits;
+  const digits = isControlled ? Array.from({ length }, (_, i) => value[i] ?? '') : uncontrolledDigits;
 
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
 
@@ -46,7 +52,7 @@ const OtpInput = ({
 
     const joined = next.join('');
     onChange?.(joined);
-    if (joined.length === length && next.every((d) => d !== '')) {
+    if (joined.length === length && next.every(d => d !== '')) {
       onComplete?.(joined);
     }
   };
@@ -104,7 +110,9 @@ const OtpInput = ({
       {digits.map((digit, index) => (
         <input
           key={index}
-          ref={(el) => { inputRefs.current[index] = el; }}
+          ref={el => {
+            inputRefs.current[index] = el;
+          }}
           css={otpCell}
           type="text"
           inputMode="numeric"
@@ -114,9 +122,9 @@ const OtpInput = ({
           disabled={disabled}
           autoFocus={autoFocus && index === 0}
           aria-label={`Digit ${index + 1} of ${length}`}
-          onChange={(e) => handleChange(index, e.target.value)}
-          onKeyDown={(e) => handleKeyDown(index, e)}
-          onPaste={(e) => handlePaste(index, e)}
+          onChange={e => handleChange(index, e.target.value)}
+          onKeyDown={e => handleKeyDown(index, e)}
+          onPaste={e => handlePaste(index, e)}
         />
       ))}
     </div>

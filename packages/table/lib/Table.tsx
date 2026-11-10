@@ -1,4 +1,4 @@
-import { ReactNode, useState, useMemo } from 'react';
+import { type ReactNode, useState, useMemo } from 'react';
 import { css } from '@emotion/react';
 import { EASE_FUNCTION } from '@maelstrom-futurism/core';
 import { Icon } from '@maelstrom-futurism/icons';
@@ -74,13 +74,13 @@ const Table = ({
   const [density, setDensity] = useState<Density>(defaultDensity);
 
   const showToolbar = !!heading || showSearch || showDensity;
-  const hasFooterRow = columns.some((col) => col.footer);
+  const hasFooterRow = columns.some(col => col.footer);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return data;
-    return data.filter((row) =>
-      columns.some((col) => {
+    return data.filter(row =>
+      columns.some(col => {
         const val = row[col.name];
         return typeof val === 'string' && val.toLowerCase().includes(q);
       }),
@@ -90,10 +90,10 @@ const Table = ({
   const sorted = useMemo(() => {
     if (!sortCol) return filtered;
     return [...filtered].sort((a, b) => {
-      const av = a[sortCol], bv = b[sortCol];
-      const cmp = typeof av === 'number' && typeof bv === 'number'
-        ? av - bv
-        : String(av ?? '').localeCompare(String(bv ?? ''));
+      const av = a[sortCol],
+        bv = b[sortCol];
+      const cmp =
+        typeof av === 'number' && typeof bv === 'number' ? av - bv : String(av ?? '').localeCompare(String(bv ?? ''));
       return sortDir === 'asc' ? cmp : -cmp;
     });
   }, [filtered, sortCol, sortDir]);
@@ -106,7 +106,7 @@ const Table = ({
 
   const handleSort = (colName: string) => {
     if (sortCol === colName) {
-      setSortDir((d) => d === 'asc' ? 'desc' : 'asc');
+      setSortDir(d => (d === 'asc' ? 'desc' : 'asc'));
     } else {
       setSortCol(colName);
       setSortDir('asc');
@@ -417,9 +417,7 @@ const Table = ({
             <h3 css={headingGroupStyle}>
               <span>{heading}</span>
               <span css={countStyle}>
-                {totalRows}
-                {' '}
-                record
+                {totalRows} record
                 {totalRows !== 1 ? 's' : ''}
               </span>
             </h3>
@@ -432,7 +430,7 @@ const Table = ({
               </span>
               <input
                 value={query}
-                onChange={(e) => {
+                onChange={e => {
                   setQuery(e.target.value);
                   setPage(1);
                 }}
@@ -442,12 +440,8 @@ const Table = ({
           )}
           {showDensity && (
             <div css={densityGroupStyle} role="group" aria-label="Row density">
-              {(Object.keys(DENSITY_LABELS) as Density[]).map((d) => (
-                <button
-                  key={d}
-                  aria-pressed={density === d ? 'true' : 'false'}
-                  onClick={() => setDensity(d)}
-                >
+              {(Object.keys(DENSITY_LABELS) as Density[]).map(d => (
+                <button key={d} aria-pressed={density === d ? 'true' : 'false'} onClick={() => setDensity(d)}>
                   {DENSITY_LABELS[d]}
                 </button>
               ))}
@@ -459,7 +453,7 @@ const Table = ({
       <table css={tableStyle}>
         <thead>
           <tr>
-            {columns.map((col) => (
+            {columns.map(col => (
               <th
                 key={col.name}
                 css={[thBaseStyle, col.sortable && thSortableStyle]}
@@ -485,7 +479,7 @@ const Table = ({
             const isLast = i === pageRows.length - 1;
             return (
               <tr key={i} css={rowStyle}>
-                {columns.map((col) => (
+                {columns.map(col => (
                   <td
                     key={col.name}
                     css={[tdBaseStyle, isLast && lastRowTdStyle]}
@@ -496,11 +490,7 @@ const Table = ({
                 ))}
                 {onRowAction && (
                   <td css={[actionTdStyle, isLast && lastRowTdStyle]}>
-                    <button
-                      css={actionBtnStyle}
-                      onClick={() => onRowAction(row)}
-                      aria-label="Row actions"
-                    >
+                    <button css={actionBtnStyle} onClick={() => onRowAction(row)} aria-label="Row actions">
                       {rowActionIcon ?? <Icon icon="DotsHorizontal" size={16} />}
                     </button>
                   </td>
@@ -512,7 +502,7 @@ const Table = ({
         {hasFooterRow && (
           <tfoot>
             <tr>
-              {columns.map((col) => (
+              {columns.map(col => (
                 <td key={col.name} css={tfootTdStyle} style={{ textAlign: col.align ?? 'left' }}>
                   {col.footer?.()}
                 </td>
@@ -526,51 +516,49 @@ const Table = ({
       {showPagination && (
         <div css={paginationFooterStyle}>
           <span css={rangeStyle}>
-            {rangeFrom}
-            –
-            {rangeTo}
-            {' '}
-            of
-            {' '}
-            {totalRows}
+            {rangeFrom}–{rangeTo} of {totalRows}
           </span>
           <div css={perPageStyle}>
             <span>Per page</span>
             <select
               value={pageSize}
-              onChange={(e) => {
+              onChange={e => {
                 setPageSize(Number(e.target.value));
                 setPage(1);
               }}
             >
-              {pageSizeOptions.map((n) => <option key={n} value={n}>{n}</option>)}
+              {pageSizeOptions.map(n => (
+                <option key={n} value={n}>
+                  {n}
+                </option>
+              ))}
             </select>
           </div>
           <nav css={pagerStyle} aria-label="Pagination">
             <button
-              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              onClick={() => setPage(p => Math.max(1, p - 1))}
               disabled={currentPage === 1}
               aria-label="Previous page"
             >
               ‹
             </button>
             {getPageButtons().map((btn, i) =>
-              btn === 'ellipsis'
-                ? (
-                    <span key={`e${i}`} className="ellipsis">…</span>
-                  )
-                : (
-                    <button
-                      key={btn}
-                      onClick={() => setPage(btn as number)}
-                      aria-current={currentPage === btn ? 'page' : undefined}
-                    >
-                      {btn}
-                    </button>
-                  ),
+              btn === 'ellipsis' ? (
+                <span key={`e${i}`} className="ellipsis">
+                  …
+                </span>
+              ) : (
+                <button
+                  key={btn}
+                  onClick={() => setPage(btn as number)}
+                  aria-current={currentPage === btn ? 'page' : undefined}
+                >
+                  {btn}
+                </button>
+              ),
             )}
             <button
-              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              onClick={() => setPage(p => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
               aria-label="Next page"
             >
@@ -580,9 +568,7 @@ const Table = ({
         </div>
       )}
 
-      {footer && (
-        <div css={tableFooterStyle}>{footer}</div>
-      )}
+      {footer && <div css={tableFooterStyle}>{footer}</div>}
     </div>
   );
 };

@@ -6,6 +6,7 @@
         "jsxImportSource": "@emotion/react",
         "jsx": "react-jsx",
         "declaration": true,
-        "declarationDir": "dist"
+        "declarationDir": "dist",
+        "types": ["vite/client"]
     }
 }

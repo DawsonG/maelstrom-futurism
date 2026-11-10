@@ -1,9 +1,16 @@
-import { SVGProps } from 'react';
+import type { SVGProps } from 'react';
 
 export type LogoMarkFlatProps = SVGProps<SVGSVGElement>;
 
 export const LogoMarkFlat = (props: LogoMarkFlatProps) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" shapeRendering="crispEdges" role="img" aria-label="Maelstrom-Futurism mark (flat)" {...props}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 192 192"
+    shapeRendering="crispEdges"
+    role="img"
+    aria-label="Maelstrom-Futurism mark (flat)"
+    {...props}
+  >
     <title>Maelstrom-Futurism</title>
     <rect x="114" y="120" width="6" height="6" fill="currentColor"></rect>
     <rect x="108" y="114" width="6" height="6" fill="currentColor"></rect>

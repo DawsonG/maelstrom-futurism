@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import type React from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import {
   container,
@@ -81,11 +82,14 @@ const DropZone = ({
   const filesRef = useRef(files);
   filesRef.current = files;
 
-  useEffect(() => () => {
-    filesRef.current.forEach((f) => {
-      if (f.previewUrl) URL.revokeObjectURL(f.previewUrl);
-    });
-  }, []);
+  useEffect(
+    () => () => {
+      filesRef.current.forEach(f => {
+        if (f.previewUrl) URL.revokeObjectURL(f.previewUrl);
+      });
+    },
+    [],
+  );
 
   const addFiles = (incoming: FileList | File[]) => {
     const incomingArray = Array.from(incoming);
@@ -110,33 +114,33 @@ const DropZone = ({
     const next = multiple ? [...files, ...accepted] : accepted.slice(0, 1);
 
     if (!multiple) {
-      files.forEach((f) => {
+      files.forEach(f => {
         if (f.previewUrl) URL.revokeObjectURL(f.previewUrl);
       });
     }
 
     setError(null);
     setFiles(next);
-    onChange?.(next.map((f) => f.file));
+    onChange?.(next.map(f => f.file));
   };
 
-  const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = e => {
     if (e.target.files && e.target.files.length > 0) addFiles(e.target.files);
     e.target.value = '';
   };
 
-  const handleDrop: React.DragEventHandler<HTMLDivElement> = (e) => {
+  const handleDrop: React.DragEventHandler<HTMLDivElement> = e => {
     e.preventDefault();
     setIsDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) addFiles(e.dataTransfer.files);
   };
 
-  const handleDragOver: React.DragEventHandler<HTMLDivElement> = (e) => {
+  const handleDragOver: React.DragEventHandler<HTMLDivElement> = e => {
     e.preventDefault();
     setIsDragActive(true);
   };
 
-  const handleDragLeave: React.DragEventHandler<HTMLDivElement> = (e) => {
+  const handleDragLeave: React.DragEventHandler<HTMLDivElement> = e => {
     e.preventDefault();
     setIsDragActive(false);
   };
@@ -147,7 +151,7 @@ const DropZone = ({
 
     const next = files.filter((_, i) => i !== index);
     setFiles(next);
-    onChange?.(next.map((f) => f.file));
+    onChange?.(next.map(f => f.file));
   };
 
   return (
@@ -180,9 +184,11 @@ const DropZone = ({
         <ul css={fileList}>
           {files.map((f, index) => (
             <li key={`${f.file.name}-${index}`} css={fileItem}>
-              {f.previewUrl
-                ? <img css={thumbnail} src={f.previewUrl} alt={f.file.name} />
-                : <span css={fileIcon}>{extensionOf(f.file.name) || 'file'}</span>}
+              {f.previewUrl ? (
+                <img css={thumbnail} src={f.previewUrl} alt={f.file.name} />
+              ) : (
+                <span css={fileIcon}>{extensionOf(f.file.name) || 'file'}</span>
+              )}
               <span css={fileMeta}>
                 <span css={fileName}>{f.file.name}</span>
                 <span css={fileSize}>{formatSize(f.file.size)}</span>
@@ -191,7 +197,7 @@ const DropZone = ({
                 type="button"
                 css={removeButton}
                 aria-label={`Remove ${f.file.name}`}
-                onClick={(e) => {
+                onClick={e => {
                   e.stopPropagation();
                   handleRemove(index);
                 }}

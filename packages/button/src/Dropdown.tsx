@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { css as emotionCss } from '@emotion/react';
 
 export type DropdownAlign = 'left' | 'right';
@@ -45,7 +45,7 @@ export const Dropdown = ({ trigger, children, align = 'left', className }: Dropd
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const close = () => setIsOpen(false);
-  const toggle = () => setIsOpen((prev) => !prev);
+  const toggle = () => setIsOpen(prev => !prev);
 
   useEffect(() => {
     if (!isOpen) return undefined;
@@ -70,11 +70,7 @@ export const Dropdown = ({ trigger, children, align = 'left', className }: Dropd
 
   return (
     <div css={dropdownWrapperStyle} className={className} ref={wrapperRef}>
-      {typeof trigger === 'function'
-        ? trigger({ isOpen, toggle, close })
-        : (
-            <div onClick={toggle}>{trigger}</div>
-          )}
+      {typeof trigger === 'function' ? trigger({ isOpen, toggle, close }) : <div onClick={toggle}>{trigger}</div>}
 
       {isOpen && (
         <div css={dropdownMenuStyle(align)}>

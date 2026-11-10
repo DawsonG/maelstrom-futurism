@@ -14,8 +14,8 @@
     "clean": "rm -Rf dist",
     "test": "vitest run --coverage",
     "test:dev": "vitest",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
     "prepublishOnly": "npm run build"
   },
   "author": "Dawson Goodell <dawsong@osmstudios.com>",
@@ -27,7 +27,7 @@
     "directory": "packages/paper"
   },
   "dependencies": {
-    "@maelstrom-futurism/core": "^0.10.3",
+    "@maelstrom-futurism/core": "^0.11.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

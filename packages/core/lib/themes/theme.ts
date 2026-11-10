@@ -1,5 +1,15 @@
-import { ColorSet, ThemeInterface } from '../interfaces';
-import { SIZES, SPACES, BREAKPOINTS, HEIGHTS, RADII, LINE_HEIGHTS, LETTER_SPACINGS, BORDER_WIDTHS, FONTS } from '../tokens';
+import type { ColorSet, ThemeInterface } from '../interfaces';
+import {
+  SIZES,
+  SPACES,
+  BREAKPOINTS,
+  HEIGHTS,
+  RADII,
+  LINE_HEIGHTS,
+  LETTER_SPACINGS,
+  BORDER_WIDTHS,
+  FONTS,
+} from '../tokens';
 
 export type ColorMode = 'Light' | 'Dark' | 'User';
 

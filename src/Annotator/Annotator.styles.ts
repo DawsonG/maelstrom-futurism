@@ -1,16 +1,16 @@
-import { css } from "@emotion/react";
+import { css } from '@emotion/react';
 
-import theme from "../theme";
+import theme from '../theme';
 
 export const wrapper = css`
-  border: solid 1px ${theme.color("border")};
+  border: solid 1px ${theme.color('border')};
   border-radius: 4px;
-  box-shadow: 2px 4px 8px ${theme.color("border")};
+  box-shadow: 2px 4px 8px ${theme.color('border')};
 `;
 
 export const labelList = css`
   padding: 0.3em 0.3em 0.6em 0.3em;
-  border-bottom: solid 1px ${theme.color("border")};
+  border-bottom: solid 1px ${theme.color('border')};
 `;
 
 export const labelStyle = css`

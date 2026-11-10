@@ -1,24 +1,18 @@
-import React, { Fragment, useState, useEffect, useRef } from "react";
-import ContentEditable from "react-contenteditable";
+import type React from 'react';
+import { Fragment, useState, useEffect, useRef } from 'react';
+import ContentEditable from 'react-contenteditable';
 
 // import renderEntities from './renderEntities';
-import { brightness, hexToDecimal } from "../utils/colors";
+import { brightness, hexToDecimal } from '../utils/colors';
 
-import * as styles from "./Annotator.styles";
-import { IAnnotator, ILabel, IEntity, TSelection } from "./Annotator.interfaces";
+import * as styles from './Annotator.styles';
+import type { IAnnotator, ILabel, IEntity, TSelection } from './Annotator.interfaces';
 
-const Annotator: React.FC<IAnnotator> = ({
-  name,
-  label,
-  value,
-  isEditable = true,
-  defaultEntities,
-  entityLabels,
-}) => {
-  let inputNode = useRef(null);
+const Annotator: React.FC<IAnnotator> = ({ name, label, value, isEditable = true, defaultEntities, entityLabels }) => {
+  const inputNode = useRef(null);
 
   const [selections, setSelections] = useState<Array<TSelection>>([]);
-  const [text, setText] = useState(value || "");
+  const [text, setText] = useState(value || '');
   const [entities, setEntities] = useState(defaultEntities || []);
 
   const handleEntityClick = (label: ILabel) => {
@@ -28,7 +22,7 @@ const Annotator: React.FC<IAnnotator> = ({
     const { start, end } = select;
     const value = text.substr(start, end - start);
 
-    setEntities((prevState) => [...prevState, { start, end, value, label }]);
+    setEntities(prevState => [...prevState, { start, end, value, label }]);
     setSelections([]);
   };
 
@@ -36,12 +30,8 @@ const Annotator: React.FC<IAnnotator> = ({
     const selectionChangeHandler = () => {
       const selection = window.getSelection();
 
-      if (
-        selection &&
-        selection.anchorNode &&
-        selection.anchorNode.parentNode === inputNode.current
-      ) {
-        setSelections((prevState) => {
+      if (selection && selection.anchorNode && selection.anchorNode.parentNode === inputNode.current) {
+        setSelections(prevState => {
           const newSelection = {
             start: selection.anchorOffset,
             end: (selection as any).extentOffset, // missing TS item
@@ -57,10 +47,9 @@ const Annotator: React.FC<IAnnotator> = ({
       }
     };
 
-    document.addEventListener("selectionchange", selectionChangeHandler, false);
+    document.addEventListener('selectionchange', selectionChangeHandler, false);
 
-    return () =>
-      document.removeEventListener("selectionchange", selectionChangeHandler);
+    return () => document.removeEventListener('selectionchange', selectionChangeHandler);
   }, [entities]);
 
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,11 +60,8 @@ const Annotator: React.FC<IAnnotator> = ({
 
     //update the entity boundaries
 
-    oldEntities.forEach((oldEntity) => {
-      const oldSelection = oldText.substr(
-        oldEntity.start,
-        oldEntity.end - oldEntity.start
-      );
+    oldEntities.forEach(oldEntity => {
+      const oldSelection = oldText.substr(oldEntity.start, oldEntity.end - oldEntity.start);
 
       function findClosestStart(lastMatch?: number): number {
         if (!lastMatch) {
@@ -116,12 +102,12 @@ const Annotator: React.FC<IAnnotator> = ({
     setText(newText);
   };
 
-  let html = "";
+  let html = '';
   for (let i = 0; i < text.length; i++) {
     const char = text[i];
 
     let charInserted = false;
-    for (let entity of entities) {
+    for (const entity of entities) {
       if (i === entity.start) {
         const color = hexToDecimal(entity.label.color);
         html += `<span class="mf_annotator_span" style="background-color: rgba(${color.r}, ${color.g}, ${color.b}, 0.4);">${char}`;
@@ -141,13 +127,13 @@ const Annotator: React.FC<IAnnotator> = ({
       <div css={styles.wrapper}>
         <div css={styles.labelList}>
           {entityLabels &&
-            entityLabels.map((label) => (
+            entityLabels.map(label => (
               <span
                 key={label.name}
                 css={styles.labelStyle}
                 style={{
                   backgroundColor: label.color,
-                  color: brightness(label.color) < 50 ? "white" : "black",
+                  color: brightness(label.color) < 50 ? 'white' : 'black',
                 }}
                 role="button"
                 onClick={() => handleEntityClick(label)}
@@ -157,7 +143,7 @@ const Annotator: React.FC<IAnnotator> = ({
             ))}
         </div>
 
-        <div style={{ position: "relative" }}>
+        <div style={{ position: 'relative' }}>
           <ContentEditable
             html={text}
             onChange={handleTextChange}
@@ -166,10 +152,7 @@ const Annotator: React.FC<IAnnotator> = ({
             disabled={!isEditable}
           />
 
-          <div
-            css={styles.zeroPos}
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
+          <div css={styles.zeroPos} dangerouslySetInnerHTML={{ __html: html }} />
         </div>
 
         {/*entities.map(entity => <p>{entity.start}:{entity.end}:{entity.value}</p>)*/}

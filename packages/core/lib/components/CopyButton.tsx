@@ -1,8 +1,6 @@
-import {
-  CSSProperties, ReactNode, RefObject, useEffect, useRef, useState,
-} from 'react';
+import { type CSSProperties, type ReactNode, type RefObject, useEffect, useRef, useState } from 'react';
 import { css as emotionCss } from '@emotion/react';
-import { composeStyles, isSerializedStyles, StyleOverride } from '../utils/composeStyles';
+import { composeStyles, isSerializedStyles, type StyleOverride } from '../utils/composeStyles';
 
 export interface CopyButtonTriggerProps {
   onClick: React.MouseEventHandler;
@@ -121,43 +119,33 @@ export const CopyButton = ({
     return () => clearTimeout(timer);
   }, [isCopied, displayDuration]);
 
-  const handleClick: React.MouseEventHandler = async (event) => {
+  const handleClick: React.MouseEventHandler = async event => {
     onClick?.(event as React.MouseEvent<HTMLButtonElement>);
 
-    const resolvedText = text
-      ?? (targetId ? document.getElementById(targetId)?.textContent : undefined)
-      ?? targetRef?.current?.textContent
-      ?? triggerRef.current?.textContent
-      ?? '';
+    const resolvedText =
+      text ??
+      (targetId ? document.getElementById(targetId)?.textContent : undefined) ??
+      targetRef?.current?.textContent ??
+      triggerRef.current?.textContent ??
+      '';
 
     await navigator.clipboard.writeText(resolvedText);
     setIsCopied(true);
   };
 
-  const emotionStyle = styles && isSerializedStyles(styles)
-    ? composeStyles(triggerStyle, styles)
-    : triggerStyle;
+  const emotionStyle = styles && isSerializedStyles(styles) ? composeStyles(triggerStyle, styles) : triggerStyle;
 
-  const inlineStyle = styles && !isSerializedStyles(styles)
-    ? styles as CSSProperties
-    : undefined;
+  const inlineStyle = styles && !isSerializedStyles(styles) ? (styles as CSSProperties) : undefined;
 
   return (
     <span css={wrapperStyle} className={className}>
-      {trigger
-        ? trigger({ onClick: handleClick, isCopied })
-        : (
-            <button
-              type="button"
-              ref={triggerRef}
-              css={emotionStyle}
-              style={inlineStyle}
-              onClick={handleClick}
-              {...rest}
-            >
-              {children}
-            </button>
-          )}
+      {trigger ? (
+        trigger({ onClick: handleClick, isCopied })
+      ) : (
+        <button type="button" ref={triggerRef} css={emotionStyle} style={inlineStyle} onClick={handleClick} {...rest}>
+          {children}
+        </button>
+      )}
 
       <span css={[bubbleBase, isCopied && bubbleVisible]} role="status">
         {copiedMessage}

@@ -1,4 +1,5 @@
-import React, { ReactNode, useState } from 'react';
+import type React from 'react';
+import { type ReactNode, useState } from 'react';
 import Modal from './Modal';
 
 interface RenderModalProps {

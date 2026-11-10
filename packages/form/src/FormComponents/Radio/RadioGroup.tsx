@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 import { radioGroupContainer, groupLabel, helpText as helpTextCss, optionsContainer } from './styles';
 import Radio from './Radio';
@@ -16,56 +16,47 @@ export interface RadioOption {
 
 export interface RadioGroupProps {
   /**
-     * A unique field name shared by all radio buttons in the group (Required)
-     */
+   * A unique field name shared by all radio buttons in the group (Required)
+   */
   name: string;
 
   /**
-     * The label displayed above the group
-     */
+   * The label displayed above the group
+   */
   label?: string;
 
   /**
-     * Help text displayed below the group
-     */
+   * Help text displayed below the group
+   */
   helpText?: string;
 
   /**
-     * Array of radio options to render
-     */
+   * Array of radio options to render
+   */
   options: RadioOption[];
 
   /**
-     * The currently selected value (controlled)
-     */
+   * The currently selected value (controlled)
+   */
   value?: string;
 
   /**
-     * The initially selected value (uncontrolled)
-     */
+   * The initially selected value (uncontrolled)
+   */
   defaultValue?: string;
 
   /**
-     * Called when the selected value changes
-     */
+   * Called when the selected value changes
+   */
   onChange?: (value: string) => void;
 
   /**
-     * Is this field required? Used by FormValidator
-     */
+   * Is this field required? Used by FormValidator
+   */
   required?: boolean;
 }
 
-const RadioGroup = ({
-  name,
-  label,
-  helpText,
-  options,
-  value,
-  defaultValue,
-  onChange,
-  required,
-}: RadioGroupProps) => {
+const RadioGroup = ({ name, label, helpText, options, value, defaultValue, onChange, required }: RadioGroupProps) => {
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     if (onChange) {
       onChange((e.target as HTMLInputElement).value);
@@ -81,7 +72,7 @@ const RadioGroup = ({
         </span>
       )}
       <div css={optionsContainer}>
-        {options.map((option) => (
+        {options.map(option => (
           <Radio
             key={option.value}
             name={name}
@@ -89,7 +80,9 @@ const RadioGroup = ({
             label={option.label}
             disabled={option.disabled}
             checked={value !== undefined ? value === option.value : undefined}
-            defaultChecked={value === undefined && defaultValue !== undefined ? defaultValue === option.value : undefined}
+            defaultChecked={
+              value === undefined && defaultValue !== undefined ? defaultValue === option.value : undefined
+            }
             onChange={handleChange}
           />
         ))}

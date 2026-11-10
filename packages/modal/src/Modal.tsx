@@ -1,16 +1,9 @@
-import { CSSProperties, ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
-import { css, SerializedStyles } from '@emotion/react';
-import { composeStyles, isSerializedStyles, StyleOverride } from '@maelstrom-futurism/core';
+import { css, type SerializedStyles } from '@emotion/react';
+import { composeStyles, isSerializedStyles, type StyleOverride } from '@maelstrom-futurism/core';
 
-import {
-  modalOverlay,
-  modalWrapper,
-  modal,
-  modalHeader,
-  modalCloseButton,
-  getDrawerStyle,
-} from './Modal.styles';
+import { modalOverlay, modalWrapper, modal, modalHeader, modalCloseButton, getDrawerStyle } from './Modal.styles';
 
 export type Sizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type Variant = 'default' | 'drawer';
@@ -48,40 +41,31 @@ interface ModalProps {
 }
 
 const Modal = ({
-  title, children, isShowing, hide, styles, className, size, variant = 'default', placement = 'right',
+  title,
+  children,
+  isShowing,
+  hide,
+  styles,
+  className,
+  size,
+  variant = 'default',
+  placement = 'right',
 }: ModalProps): ReactNode | null => {
-  const modalCss = variant === 'drawer'
-    ? css`${modal}${getDrawerStyle(placement)}`
-    : css`${modal}${getSizeStyle(size)}`;
-  const emotionStyle = styles && isSerializedStyles(styles)
-    ? composeStyles(modalCss, styles)
-    : modalCss;
+  const modalCss =
+    variant === 'drawer' ? css`${modal}${getDrawerStyle(placement)}` : css`${modal}${getSizeStyle(size)}`;
+  const emotionStyle = styles && isSerializedStyles(styles) ? composeStyles(modalCss, styles) : modalCss;
 
-  const inlineStyle = styles && !isSerializedStyles(styles)
-    ? styles as CSSProperties
-    : undefined;
+  const inlineStyle = styles && !isSerializedStyles(styles) ? (styles as CSSProperties) : undefined;
 
   return isShowing
     ? ReactDOM.createPortal(
         <>
           <div css={modalOverlay} onClick={() => hide()} />
-          <div
-            css={modalWrapper}
-            aria-modal
-            aria-hidden={!isShowing}
-            tabIndex={-1}
-            role="dialog"
-          >
+          <div css={modalWrapper} aria-modal aria-hidden={!isShowing} tabIndex={-1} role="dialog">
             <div css={emotionStyle} style={inlineStyle} className={className}>
               <div css={modalHeader}>
                 <div className="title">{title}</div>
-                <button
-                  type="button"
-                  css={modalCloseButton}
-                  data-dismiss="modal"
-                  aria-label="Close"
-                  onClick={hide}
-                >
+                <button type="button" css={modalCloseButton} data-dismiss="modal" aria-label="Close" onClick={hide}>
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>

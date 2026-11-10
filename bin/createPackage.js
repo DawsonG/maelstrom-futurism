@@ -19,7 +19,7 @@ const createPackage = (name, options) => {
   const { description, packageVersion } = options;
   const dir = path.join('packages', name);
   const src = path.join(dir, 'src');
-  
+
   const packageJson = `{
     "name": "@maelstrom-futurism/${name}",
     "version": "${packageVersion}",
@@ -59,9 +59,9 @@ const createPackage = (name, options) => {
       "react-dom": ">= 18.0.0"
     }
   }`;
-  
+
   printHeader();
-  
+
   console.log(`Creating a new package with the following properties:
 {
   "name": "@maelstrom-futurism/${name}",
@@ -71,28 +71,28 @@ const createPackage = (name, options) => {
 }
   `);
 
-  if (!fs.existsSync(dir)){
-      fs.mkdirSync(dir);
-      fs.mkdirSync(src);
-      console.log(`New package directory created ${dir}.
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+    fs.mkdirSync(src);
+    console.log(`New package directory created ${dir}.
 New src directory created ${src}.`);
   } else {
-      console.error(`package with name ${name} already exists! Exiting...`);
-      return false;
+    console.error(`package with name ${name} already exists! Exiting...`);
+    return false;
   }
 
   try {
     fs.writeFileSync(path.join(dir, 'package.json'), packageJson);
-    console.log("package.json created");
+    console.log('package.json created');
 
     fs.writeFileSync(path.join(dir, 'tsconfig.json'), tsconfigJson);
-    console.log("tsconfig.json created");
+    console.log('tsconfig.json created');
   } catch (err) {
-    console.error("Error creating files");
+    console.error('Error creating files');
     throw err;
   }
 
-  console.log("\n\n\nDone! Have fun with your new package.");
+  console.log('\n\n\nDone! Have fun with your new package.');
 };
 
 export default createPackage;

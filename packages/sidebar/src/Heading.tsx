@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from 'react';
+import { type ReactNode, useContext } from 'react';
 import { css } from '@emotion/react';
 import { Button } from '@maelstrom-futurism/button';
 import { Icon } from '@maelstrom-futurism/icons';
@@ -45,19 +45,11 @@ const Heading = ({ title, logo }: HeadingProps): ReactNode => {
   return (
     <div css={headingStyle}>
       <h2>
-        <div css={wordmarkStyle}>
-          {sidebarContext.isOpen && logoMark}
-        </div>
+        <div css={wordmarkStyle}>{sidebarContext.isOpen && logoMark}</div>
 
         {sidebarContext.isClosable && (
           <Button variant="ghost" onClick={() => sidebarContext.setIsOpen(!sidebarContext.isOpen)}>
-            {sidebarContext.isOpen
-              ? (
-                  <Icon icon="AngleLeft" />
-                )
-              : (
-                  <Icon icon="MenuBurger" />
-                )}
+            {sidebarContext.isOpen ? <Icon icon="AngleLeft" /> : <Icon icon="MenuBurger" />}
           </Button>
         )}
       </h2>

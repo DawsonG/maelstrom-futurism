@@ -1,6 +1,6 @@
-import { CSSProperties, ImgHTMLAttributes, ReactNode } from 'react';
+import type { CSSProperties, ImgHTMLAttributes, ReactNode } from 'react';
 import { css as emotionCss } from '@emotion/react';
-import { composeStyles, isSerializedStyles, StyleOverride } from '../utils/composeStyles';
+import { composeStyles, isSerializedStyles, type StyleOverride } from '../utils/composeStyles';
 
 export type RoundImageShape = 'circle' | 'oval';
 
@@ -29,7 +29,13 @@ const baseStyle = emotionCss`
 `;
 
 export const RoundImage = ({
-  shape = 'circle', width = '96px', height, styles, className, alt, ...rest
+  shape = 'circle',
+  width = '96px',
+  height,
+  styles,
+  className,
+  alt,
+  ...rest
 }: RoundImageProps): ReactNode => {
   const sizeStyle = emotionCss`
     width: ${width};
@@ -38,27 +44,13 @@ export const RoundImage = ({
 
   const roundImageBase = emotionCss`${baseStyle}${sizeStyle}`;
 
-  const emotionStyle = styles && isSerializedStyles(styles)
-    ? composeStyles(roundImageBase, styles)
-    : roundImageBase;
+  const emotionStyle = styles && isSerializedStyles(styles) ? composeStyles(roundImageBase, styles) : roundImageBase;
 
-  const inlineStyle = styles && !isSerializedStyles(styles)
-    ? styles as CSSProperties
-    : undefined;
+  const inlineStyle = styles && !isSerializedStyles(styles) ? (styles as CSSProperties) : undefined;
 
-  const mergedStyle = (inlineStyle || rest.style)
-    ? { ...inlineStyle, ...rest.style }
-    : undefined;
+  const mergedStyle = inlineStyle || rest.style ? { ...inlineStyle, ...rest.style } : undefined;
 
-  return (
-    <img
-      css={emotionStyle}
-      style={mergedStyle}
-      className={className}
-      alt={alt}
-      {...rest}
-    />
-  );
+  return <img css={emotionStyle} style={mergedStyle} className={className} alt={alt} {...rest} />;
 };
 
 export default RoundImage;

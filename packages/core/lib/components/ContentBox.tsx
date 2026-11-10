@@ -1,9 +1,7 @@
-import {
-  CSSProperties, ReactNode, useLayoutEffect, useRef, useState,
-} from 'react';
-import { css as emotionCss, SerializedStyles } from '@emotion/react';
+import { type CSSProperties, type ReactNode, useLayoutEffect, useRef, useState } from 'react';
+import { css as emotionCss, type SerializedStyles } from '@emotion/react';
 
-import Box, { BoxProps } from './Box';
+import Box, { type BoxProps } from './Box';
 import { composeStyles, isSerializedStyles } from '../utils/composeStyles';
 
 type Variant = 'alert' | 'info' | 'error' | 'warning' | 'normal' | 'success';
@@ -104,34 +102,26 @@ const ContentBox = ({
     setIsOverflowing(contentRef.current.scrollHeight > contentRef.current.clientHeight);
   }, [clampLines, children]);
 
-  const content = clampLines
-    ? (
-        <>
-          <div ref={contentRef} css={!isExpanded ? clampContentStyle(clampLines) : undefined}>
-            {children}
-          </div>
-          {isOverflowing && (
-            <button
-              type="button"
-              css={toggleButtonStyle}
-              onClick={() => setIsExpanded((prev) => !prev)}
-            >
-              {isExpanded ? 'Show less' : 'Show more'}
-            </button>
-          )}
-        </>
-      )
-    : children;
+  const content = clampLines ? (
+    <>
+      <div ref={contentRef} css={!isExpanded ? clampContentStyle(clampLines) : undefined}>
+        {children}
+      </div>
+      {isOverflowing && (
+        <button type="button" css={toggleButtonStyle} onClick={() => setIsExpanded(prev => !prev)}>
+          {isExpanded ? 'Show less' : 'Show more'}
+        </button>
+      )}
+    </>
+  ) : (
+    children
+  );
 
   if (consumerStyles && !isSerializedStyles(consumerStyles)) {
     // CSSProperties: keep Emotion class intact, apply override as inline style
     // so it beats the class without disturbing the Emotion composition chain.
     return (
-      <Box
-        styles={internalBase}
-        {...rest}
-        style={{ ...(consumerStyles as CSSProperties), ...rest.style }}
-      >
+      <Box styles={internalBase} {...rest} style={{ ...(consumerStyles as CSSProperties), ...rest.style }}>
         {content}
       </Box>
     );
@@ -143,7 +133,11 @@ const ContentBox = ({
     ? composeStyles(internalBase, consumerStyles as SerializedStyles | SerializedStyles[])
     : internalBase;
 
-  return <Box styles={boxStyles} {...rest}>{content}</Box>;
+  return (
+    <Box styles={boxStyles} {...rest}>
+      {content}
+    </Box>
+  );
 };
 
 export default ContentBox;

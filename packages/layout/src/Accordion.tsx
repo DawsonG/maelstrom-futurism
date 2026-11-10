@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useEffect, useId, useState } from 'react';
+import type React from 'react';
+import { createContext, useContext, useEffect, useId, useState } from 'react';
 import { css } from '@emotion/react';
 import { EASE_FUNCTION } from '@maelstrom-futurism/core';
 
@@ -36,7 +37,7 @@ const Accordion = ({ children, allowMultiple, className }: AccordionProps): Reac
   const [openItems, setOpenItems] = useState<Set<string>>(new Set());
 
   const toggle = (id: string) => {
-    setOpenItems((prev) => {
+    setOpenItems(prev => {
       const isOpen = prev.has(id);
 
       if (allowMultiple) {
@@ -51,7 +52,7 @@ const Accordion = ({ children, allowMultiple, className }: AccordionProps): Reac
   };
 
   const openByDefault = (id: string) => {
-    setOpenItems((prev) => {
+    setOpenItems(prev => {
       if (prev.has(id)) return prev;
       return allowMultiple ? new Set(prev).add(id) : new Set([id]);
     });
@@ -59,7 +60,9 @@ const Accordion = ({ children, allowMultiple, className }: AccordionProps): Reac
 
   return (
     <AccordionContext.Provider value={{ openItems, toggle, openByDefault }}>
-      <div css={accordionContainer} className={className}>{children}</div>
+      <div css={accordionContainer} className={className}>
+        {children}
+      </div>
     </AccordionContext.Provider>
   );
 };
@@ -153,14 +156,16 @@ export const AccordionItem = ({ title, children, defaultOpen, className }: Accor
 
   const handleToggle = () => {
     if (context) context.toggle(id);
-    else setStandaloneOpen((prev) => !prev);
+    else setStandaloneOpen(prev => !prev);
   };
 
   return (
     <div css={[itemContainer, !context && standaloneItemContainer]} className={className}>
       <button type="button" css={trigger} onClick={handleToggle} aria-expanded={isOpen}>
         <span>{title}</span>
-        <span css={chevron(isOpen)} aria-hidden="true">&#9660;</span>
+        <span css={chevron(isOpen)} aria-hidden="true">
+          &#9660;
+        </span>
       </button>
       <div css={panel(isOpen)}>
         <div css={panelInner}>

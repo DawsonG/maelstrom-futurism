@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, Mock, test, vi, vitest } from 'vitest';
+import { afterAll, beforeAll, describe, expect, type Mock, test, vi, vitest } from 'vitest';
 import { debounce } from './debounce';
 
 describe('debounce', () => {

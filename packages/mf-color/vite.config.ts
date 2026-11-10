@@ -1,11 +1,9 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
-import dts from 'vite-plugin-dts';
+import dts from 'unplugin-dts/vite';
 
 export default defineConfig({
-  plugins: [
-    dts({ include: ['src'], exclude: ['src/**/*.test.*'] }),
-  ],
+  plugins: [dts({ include: ['src'], exclude: ['src/**/*.test.*'] })],
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),

@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import react from '@vitejs/plugin-react-swc';
-import dts from 'vite-plugin-dts';
+import dts from 'unplugin-dts/vite';
 
 export default defineConfig({
   plugins: [
@@ -23,7 +23,7 @@ export default defineConfig({
         assetFileNames: 'assets/[name][extname]',
         entryFileNames: '[name].js',
         globals: {
-          'react': 'React',
+          react: 'React',
           'react-dom': 'ReactDOM',
           'react/jsx-runtime': 'jsxRuntime',
         },

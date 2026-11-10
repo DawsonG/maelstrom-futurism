@@ -1,7 +1,7 @@
-import { CSSProperties, HTMLAttributes, ReactNode, useEffect, useRef, useState } from 'react';
+import { type CSSProperties, type HTMLAttributes, type ReactNode, useEffect, useRef, useState } from 'react';
 import { css as emotionCss } from '@emotion/react';
 import { composeStyles, isSerializedStyles } from '../utils/composeStyles';
-import { constructStyles, BaseStyles } from '../styleSystem';
+import { constructStyles, type BaseStyles } from '../styleSystem';
 
 export type BoxProps = {
   children?: ReactNode;
@@ -14,7 +14,8 @@ export type BoxProps = {
    *  distance from the top used to detect when the box becomes stuck.
    *  Defaults to '0px'. Only used when `sticky` is set. */
   stickyOffset?: string;
-} & BaseStyles & HTMLAttributes<HTMLDivElement>;
+} & BaseStyles &
+  HTMLAttributes<HTMLDivElement>;
 
 const sentinelStyle = emotionCss`
   height: 1px;
@@ -23,9 +24,7 @@ const sentinelStyle = emotionCss`
 
 const Box = (props: BoxProps): ReactNode => {
   const resolved = constructStyles(props);
-  const {
-    styles, children, sticky, stickyOffset = '0px', ...rest
-  } = props;
+  const { styles, children, sticky, stickyOffset = '0px', ...rest } = props;
 
   const sentinelRef = useRef<HTMLDivElement>(null);
   const [isStuck, setIsStuck] = useState(false);
@@ -33,10 +32,10 @@ const Box = (props: BoxProps): ReactNode => {
   useEffect(() => {
     if (!sticky || !sentinelRef.current) return undefined;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsStuck(!entry.isIntersecting),
-      { threshold: 0, rootMargin: `-${stickyOffset} 0px 0px 0px` },
-    );
+    const observer = new IntersectionObserver(([entry]) => setIsStuck(!entry.isIntersecting), {
+      threshold: 0,
+      rootMargin: `-${stickyOffset} 0px 0px 0px`,
+    });
 
     observer.observe(sentinelRef.current);
     return () => observer.disconnect();
@@ -49,25 +48,22 @@ const Box = (props: BoxProps): ReactNode => {
     ${resolved.background && `background: ${resolved.background};`}
     ${resolved.border && `border: ${resolved.border};`}
     border-radius: var(--mf-radius-card);
-    ${sticky && `
+    ${
+      sticky &&
+      `
       position: sticky;
       top: ${stickyOffset};
       transition: box-shadow var(--mf-dur-fast) var(--mf-ease);
       ${isStuck && `box-shadow: var(--mf-shadow-stuck);`}
-    `}
+    `
+    }
   `;
 
-  const emotionStyle = styles && isSerializedStyles(styles)
-    ? composeStyles(boxBase, styles)
-    : boxBase;
+  const emotionStyle = styles && isSerializedStyles(styles) ? composeStyles(boxBase, styles) : boxBase;
 
-  const inlineStyle = styles && !isSerializedStyles(styles)
-    ? styles as CSSProperties
-    : undefined;
+  const inlineStyle = styles && !isSerializedStyles(styles) ? (styles as CSSProperties) : undefined;
 
-  const mergedStyle = (inlineStyle || rest.style)
-    ? { ...inlineStyle, ...rest.style }
-    : undefined;
+  const mergedStyle = inlineStyle || rest.style ? { ...inlineStyle, ...rest.style } : undefined;
 
   return (
     <>

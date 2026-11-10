@@ -4,9 +4,11 @@ import { isFunction, isString } from './typeof';
 describe('typeof', () => {
   test('isFunction', () => {
     expect(isFunction(() => false)).toBe(true);
-    expect(isFunction(function testCase() {
-      return;
-    })).toBe(true);
+    expect(
+      isFunction(function testCase() {
+        return;
+      }),
+    ).toBe(true);
     expect(isFunction([])).toBe(false);
     expect(isFunction({})).toBe(false);
     expect(isFunction('string')).toBe(false);

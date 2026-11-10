@@ -1,4 +1,4 @@
-import { css, keyframes, SerializedStyles } from '@emotion/react';
+import { css, keyframes, type SerializedStyles } from '@emotion/react';
 import { EASE_FUNCTION } from '@maelstrom-futurism/core';
 
 import type { Placement } from './Modal';

@@ -1,7 +1,7 @@
-import React from 'react';
+import type React from 'react';
 
 import { checkboxGroupContainer, groupLabel, helpText as helpTextCss, optionsContainer } from './styles';
-import Checkbox, { CheckboxVariant } from './Checkbox';
+import Checkbox, { type CheckboxVariant } from './Checkbox';
 
 export interface CheckboxOption {
   /** The value submitted with the form */
@@ -16,49 +16,49 @@ export interface CheckboxOption {
 
 export interface CheckboxGroupProps {
   /**
-     * A unique field name for the group (Required)
-     */
+   * A unique field name for the group (Required)
+   */
   name: string;
 
   /**
-     * The label displayed above the group
-     */
+   * The label displayed above the group
+   */
   label?: string;
 
   /**
-     * Help text displayed below the group
-     */
+   * Help text displayed below the group
+   */
   helpText?: string;
 
   /**
-     * Array of checkbox options to render
-     */
+   * Array of checkbox options to render
+   */
   options: CheckboxOption[];
 
   /**
-     * The currently checked values (controlled)
-     */
+   * The currently checked values (controlled)
+   */
   value?: string[];
 
   /**
-     * The initially checked values (uncontrolled)
-     */
+   * The initially checked values (uncontrolled)
+   */
   defaultValue?: string[];
 
   /**
-     * Called when the set of checked values changes
-     */
+   * Called when the set of checked values changes
+   */
   onChange?: (values: string[]) => void;
 
   /**
-     * Is at least one selection required? Used by FormValidator
-     */
+   * Is at least one selection required? Used by FormValidator
+   */
   required?: boolean;
 
   /**
-     * 'default' renders standard material-style checkboxes; 'switch' renders
-     * pill-shaped track+thumb toggles. Applies to every option in the group.
-     */
+   * 'default' renders standard material-style checkboxes; 'switch' renders
+   * pill-shaped track+thumb toggles. Applies to every option in the group.
+   */
   variant?: CheckboxVariant;
 }
 
@@ -76,9 +76,7 @@ const CheckboxGroup = ({
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     if (!onChange || !value) return;
     const target = e.target as HTMLInputElement;
-    const next = target.checked
-      ? [...value, target.value]
-      : value.filter((v) => v !== target.value);
+    const next = target.checked ? [...value, target.value] : value.filter(v => v !== target.value);
     onChange(next);
   };
 
@@ -91,7 +89,7 @@ const CheckboxGroup = ({
         </span>
       )}
       <div css={optionsContainer}>
-        {options.map((option) => (
+        {options.map(option => (
           <Checkbox
             key={option.value}
             name={name}
@@ -101,9 +99,7 @@ const CheckboxGroup = ({
             variant={variant}
             checked={value !== undefined ? value.includes(option.value) : undefined}
             defaultChecked={
-              value === undefined && defaultValue !== undefined
-                ? defaultValue.includes(option.value)
-                : undefined
+              value === undefined && defaultValue !== undefined ? defaultValue.includes(option.value) : undefined
             }
             onChange={handleChange}
           />

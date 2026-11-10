@@ -1,8 +1,6 @@
-import {
-  AnchorHTMLAttributes, CSSProperties, HTMLAttributes, ReactNode,
-} from 'react';
+import type { AnchorHTMLAttributes, CSSProperties, HTMLAttributes, ReactNode } from 'react';
 import { css as emotionCss } from '@emotion/react';
-import { composeStyles, isSerializedStyles, StyleOverride } from '../utils/composeStyles';
+import { composeStyles, isSerializedStyles, type StyleOverride } from '../utils/composeStyles';
 
 type CardOwnProps = {
   children?: ReactNode;
@@ -21,9 +19,9 @@ type CardOwnProps = {
   actions?: ReactNode;
 };
 
-export type CardProps = CardOwnProps
-  & Omit<HTMLAttributes<HTMLDivElement>, 'style'>
-  & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'style' | 'href'>;
+export type CardProps = CardOwnProps &
+  Omit<HTMLAttributes<HTMLDivElement>, 'style'> &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'style' | 'href'>;
 
 const cardBase = emotionCss`
   display: block;
@@ -79,18 +77,12 @@ const actionsStyle = emotionCss`
   border-top: var(--mf-border-width-thin) solid var(--mf-border);
 `;
 
-const Card = ({
-  children, styles, href, image, actions, ...rest
-}: CardProps): ReactNode => {
+const Card = ({ children, styles, href, image, actions, ...rest }: CardProps): ReactNode => {
   const base = href ? emotionCss`${cardBase}${interactiveCard}` : cardBase;
 
-  const emotionStyle = styles && isSerializedStyles(styles)
-    ? composeStyles(base, styles)
-    : base;
+  const emotionStyle = styles && isSerializedStyles(styles) ? composeStyles(base, styles) : base;
 
-  const inlineStyle = styles && !isSerializedStyles(styles)
-    ? styles as CSSProperties
-    : undefined;
+  const inlineStyle = styles && !isSerializedStyles(styles) ? (styles as CSSProperties) : undefined;
 
   const content = (
     <>
@@ -102,14 +94,14 @@ const Card = ({
 
   if (href) {
     return (
-      <a href={href} css={emotionStyle} style={inlineStyle} {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
+      <a href={href} css={emotionStyle} style={inlineStyle} {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
         {content}
       </a>
     );
   }
 
   return (
-    <div css={emotionStyle} style={inlineStyle} {...rest as HTMLAttributes<HTMLDivElement>}>
+    <div css={emotionStyle} style={inlineStyle} {...(rest as HTMLAttributes<HTMLDivElement>)}>
       {content}
     </div>
   );

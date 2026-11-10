@@ -21,7 +21,7 @@ export const dropZone = (isDragActive: boolean, hasError: boolean) => css`
     box-sizing: border-box;
     width: 100%;
     padding: 2em 1em;
-    border: dashed var(--mf-border-width-medium) ${hasError ? 'var(--mf-alert)' : (isDragActive ? 'var(--mf-focus)' : 'var(--mf-secondary)')};
+    border: dashed var(--mf-border-width-medium) ${hasError ? 'var(--mf-alert)' : isDragActive ? 'var(--mf-focus)' : 'var(--mf-secondary)'};
     border-radius: var(--mf-radius-input);
     background-color: ${isDragActive ? 'var(--mf-surface-hover)' : 'var(--mf-content)'};
     color: var(--mf-text-muted);

@@ -1,6 +1,4 @@
-import {
-  HTMLAttributes, ReactNode, useEffect, useRef, useState,
-} from 'react';
+import { type HTMLAttributes, type ReactNode, useEffect, useRef, useState } from 'react';
 
 export type CountUpProps = {
   /** The final number to count up (or down) to. */
@@ -22,7 +20,11 @@ const defaultFormatter = (n: number) => Math.round(n).toLocaleString();
 const easeOutQuad = (t: number) => 1 - (1 - t) * (1 - t);
 
 export const CountUp = ({
-  value, duration = 1500, start = 0, formatter = defaultFormatter, ...rest
+  value,
+  duration = 1500,
+  start = 0,
+  formatter = defaultFormatter,
+  ...rest
 }: CountUpProps): ReactNode => {
   const spanRef = useRef<HTMLSpanElement>(null);
   const hasAnimated = useRef(false);
@@ -31,27 +33,30 @@ export const CountUp = ({
   useEffect(() => {
     if (!spanRef.current) return undefined;
 
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting || hasAnimated.current) return;
-      hasAnimated.current = true;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || hasAnimated.current) return;
+        hasAnimated.current = true;
 
-      const startTime = performance.now();
-      let frameId: number;
+        const startTime = performance.now();
+        let frameId: number;
 
-      const tick = (now: number) => {
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = easeOutQuad(progress);
-        setDisplay(start + (value - start) * eased);
+        const tick = (now: number) => {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = easeOutQuad(progress);
+          setDisplay(start + (value - start) * eased);
 
-        if (progress < 1) {
-          frameId = requestAnimationFrame(tick);
-        }
-      };
+          if (progress < 1) {
+            frameId = requestAnimationFrame(tick);
+          }
+        };
 
-      frameId = requestAnimationFrame(tick);
-      return () => cancelAnimationFrame(frameId);
-    }, { threshold: 0 });
+        frameId = requestAnimationFrame(tick);
+        return () => cancelAnimationFrame(frameId);
+      },
+      { threshold: 0 },
+    );
 
     observer.observe(spanRef.current);
     return () => observer.disconnect();

@@ -106,13 +106,13 @@ const TextArea = ({
     el.style.height = `${el.scrollHeight}px`; // apply measurement
   }, [autosize, value]);
 
-  const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+  const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = e => {
     applyCustomValidity(e.target, errorMessages);
     if (showCharacterCount) setInternalValue(e.target.value);
     onChange?.(e);
   };
 
-  const handleKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
+  const handleKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> = e => {
     if (submitOnEnter && e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
       e.currentTarget.form?.requestSubmit();
     }
@@ -120,7 +120,9 @@ const TextArea = ({
   };
 
   return (
-    <div css={[containerCss, fullWidth && fullWidthStyle, validationState && validationStyle(validationState, 'normal')]}>
+    <div
+      css={[containerCss, fullWidth && fullWidthStyle, validationState && validationStyle(validationState, 'normal')]}
+    >
       {label && <label htmlFor={name}>{label}</label>}
       <textarea
         id={name}

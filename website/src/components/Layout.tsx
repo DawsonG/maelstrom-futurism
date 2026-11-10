@@ -7,62 +7,115 @@ import { css } from '@emotion/css';
 const layoutStyle = css({ display: 'flex', maxWidth: 'calc(100vw - 20px)' });
 
 function Layout() {
-    return (
-        <div className={layoutStyle}>
-            <Sidebar isClosable={true}>
-                <Sidebar.Heading title='Maelstrom Futurism' logo={<>
-                    <LogoMark width={28} height={28} />
-                    Maelstrom Futurism
-                </>} />
-                <ul>
-                    <li><Link to='/getting_started'>Getting Started</Link></li>
-                    <li><Link to='/theming'>Theming</Link></li>
-                    <li>
-                        Components
-                        <ul>
-                            <li><Link to='/box_and_contentbox'>Box and ContentBox</Link></li>
-                            <li><Link to='/images'>Images</Link></li>
-                            <li><Link to='/card'>Card</Link></li>
-                            <li><Link to='/countup'>CountUp</Link></li>
-                            <li><Link to='/paper'>Paper</Link></li>
-                            <li><Link to='/paper_readability'>Paper with Readability Controls</Link></li>
-                            <li><Link to='/inputs'>Inputs</Link></li>
-                            <li><Link to='/dropzone'>DropZone</Link></li>
-                            <li><Link to='/datetime'>DateTime</Link></li>
-                            <li><Link to='/accordion'>Accordion</Link></li>
-                            <li><Link to='/radio'>Radio &amp; RadioGroup</Link></li>
-                            <li><Link to='/checkbox'>Checkbox &amp; CheckboxGroup</Link></li>
-                            <li><Link to='/buttons'>Buttons</Link></li>
-                            <li><Link to="/modal">Modal</Link></li>
-                            <li><Link to='/table'>Table</Link></li>
-                            <li><Link to='/tooltip'>Tooltip</Link></li>
-                            <li><Link to='/navbar'>Navbar &amp; Breadcrumb</Link></li>
-                            <li><Link to='/form_component'>Form</Link></li>
-                            <li><Link to='/otp_input'>OTP Input</Link></li>
-                        </ul>
-                    </li>
-                    <li>
-                        Layouts
-                        <ul>
-                            <li><Link to='/layout/containers'>Container</Link></li>
-                            <li><Link to='/layout/grid'>Grids &amp; Columns</Link></li>
-                        </ul>
-                    </li>
-                    {/*<li>
+  return (
+    <div className={layoutStyle}>
+      <Sidebar isClosable={true}>
+        <Sidebar.Heading
+          title="Maelstrom Futurism"
+          logo={
+            <>
+              <LogoMark width={28} height={28} />
+              Maelstrom Futurism
+            </>
+          }
+        />
+        <ul>
+          <li>
+            <Link to="/getting_started">Getting Started</Link>
+          </li>
+          <li>
+            <Link to="/theming">Theming</Link>
+          </li>
+          <li>
+            Components
+            <ul>
+              <li>
+                <Link to="/box_and_contentbox">Box and ContentBox</Link>
+              </li>
+              <li>
+                <Link to="/images">Images</Link>
+              </li>
+              <li>
+                <Link to="/card">Card</Link>
+              </li>
+              <li>
+                <Link to="/countup">CountUp</Link>
+              </li>
+              <li>
+                <Link to="/paper">Paper</Link>
+              </li>
+              <li>
+                <Link to="/paper_readability">Paper with Readability Controls</Link>
+              </li>
+              <li>
+                <Link to="/inputs">Inputs</Link>
+              </li>
+              <li>
+                <Link to="/dropzone">DropZone</Link>
+              </li>
+              <li>
+                <Link to="/datetime">DateTime</Link>
+              </li>
+              <li>
+                <Link to="/accordion">Accordion</Link>
+              </li>
+              <li>
+                <Link to="/radio">Radio &amp; RadioGroup</Link>
+              </li>
+              <li>
+                <Link to="/checkbox">Checkbox &amp; CheckboxGroup</Link>
+              </li>
+              <li>
+                <Link to="/buttons">Buttons</Link>
+              </li>
+              <li>
+                <Link to="/modal">Modal</Link>
+              </li>
+              <li>
+                <Link to="/table">Table</Link>
+              </li>
+              <li>
+                <Link to="/tooltip">Tooltip</Link>
+              </li>
+              <li>
+                <Link to="/navbar">Navbar &amp; Breadcrumb</Link>
+              </li>
+              <li>
+                <Link to="/form_component">Form</Link>
+              </li>
+              <li>
+                <Link to="/otp_input">OTP Input</Link>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Layouts
+            <ul>
+              <li>
+                <Link to="/layout/containers">Container</Link>
+              </li>
+              <li>
+                <Link to="/layout/grid">Grids &amp; Columns</Link>
+              </li>
+            </ul>
+          </li>
+          {/*<li>
                         Tooling
                         <ul>
                             <li><Link to='/color_tool'>Color Tool</Link></li>
                         </ul>
                     </li>*/}
-                    <li><Link to="/icons">Icons</Link></li>
-                </ul>
-            </Sidebar>
+          <li>
+            <Link to="/icons">Icons</Link>
+          </li>
+        </ul>
+      </Sidebar>
 
-            <Container maxWidth='980px'>
-                <Outlet />
-            </Container>
-        </div>
-    );
+      <Container maxWidth="980px">
+        <Outlet />
+      </Container>
+    </div>
+  );
 }
 
 export default Layout;
